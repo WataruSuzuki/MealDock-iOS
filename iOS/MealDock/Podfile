@@ -1,0 +1,13 @@
+platform :ios, "8.0"
+#inhibit_all_warnings!
+use_frameworks!
+
+target "MealDock" do
+    pod 'Alamofire', '~> 4.7'
+    # pod 'DJKFlatIconAuthors', :git => 'https://github.com/WataruSuzuki/DJKFlatIconAuthors.git'
+end
+
+post_install do | installer |
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-MealDock/Pods-MealDock-acknowledgements.plist', 'MealDock/Settings.bundle/Pods-acknowledgements.plist')
+end

@@ -15,6 +15,7 @@
 		96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96317C9B210F56FD00F81F22 /* LaunchScreen.storyboard */; };
 		96317CA8210F56FD00F81F22 /* MealDockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CA7210F56FD00F81F22 /* MealDockTests.swift */; };
 		96317CB3210F56FD00F81F22 /* MealDockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CB2210F56FD00F81F22 /* MealDockUITests.swift */; };
+		EAA25D2ED327EDD0EA90FDC7 /* Pods_MealDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21C49D9CEEE8533906C5B8C0 /* Pods-MealDock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.debug.xcconfig"; sourceTree = "<group>"; };
 		96317C8D210F56FC00F81F22 /* MealDock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealDock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96317C90210F56FC00F81F22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96317C92210F56FC00F81F22 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		96317CAE210F56FD00F81F22 /* MealDockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MealDockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96317CB2210F56FD00F81F22 /* MealDockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockUITests.swift; sourceTree = "<group>"; };
 		96317CB4210F56FD00F81F22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
+		D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAA25D2ED327EDD0EA90FDC7 /* Pods_MealDock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0027EFAFC64BD498325A37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21C49D9CEEE8533906C5B8C0 /* Pods-MealDock.debug.xcconfig */,
+				A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		96317C84210F56FC00F81F22 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +97,8 @@
 				96317CA6210F56FD00F81F22 /* MealDockTests */,
 				96317CB1210F56FD00F81F22 /* MealDockUITests */,
 				96317C8E210F56FC00F81F22 /* Products */,
+				0C0027EFAFC64BD498325A37 /* Pods */,
+				AA70B33A27ACF3C86E6A50F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +144,14 @@
 			path = MealDockUITests;
 			sourceTree = "<group>";
 		};
+		AA70B33A27ACF3C86E6A50F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96317CB7210F56FD00F81F22 /* Build configuration list for PBXNativeTarget "MealDock" */;
 			buildPhases = (
+				0BA9F25369CBCFC1B6E0B000 /* [CP] Check Pods Manifest.lock */,
 				96317C89210F56FC00F81F22 /* Sources */,
 				96317C8A210F56FC00F81F22 /* Frameworks */,
 				96317C8B210F56FC00F81F22 /* Resources */,
+				A453649339ECB2BDDC675D29 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +279,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0BA9F25369CBCFC1B6E0B000 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MealDock-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A453649339ECB2BDDC675D29 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MealDock/Pods-MealDock-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealDock/Pods-MealDock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		96317C89210F56FC00F81F22 /* Sources */ = {
@@ -432,6 +497,7 @@
 		};
 		96317CB8210F56FD00F81F22 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21C49D9CEEE8533906C5B8C0 /* Pods-MealDock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +516,7 @@
 		};
 		96317CB9210F56FD00F81F22 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
