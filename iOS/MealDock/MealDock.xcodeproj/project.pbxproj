@@ -15,6 +15,7 @@
 		96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96317C9B210F56FD00F81F22 /* LaunchScreen.storyboard */; };
 		96317CA8210F56FD00F81F22 /* MealDockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CA7210F56FD00F81F22 /* MealDockTests.swift */; };
 		96317CB3210F56FD00F81F22 /* MealDockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CB2210F56FD00F81F22 /* MealDockUITests.swift */; };
+		965460FC21109252005AC0B3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 965460FB21109252005AC0B3 /* Settings.bundle */; };
 		EAA25D2ED327EDD0EA90FDC7 /* Pods_MealDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		96317CAE210F56FD00F81F22 /* MealDockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MealDockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96317CB2210F56FD00F81F22 /* MealDockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockUITests.swift; sourceTree = "<group>"; };
 		96317CB4210F56FD00F81F22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		965460FB21109252005AC0B3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -115,6 +117,7 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
+				965460FB21109252005AC0B3 /* Settings.bundle */,
 				96317C90210F56FC00F81F22 /* AppDelegate.swift */,
 				96317C92210F56FC00F81F22 /* FirstViewController.swift */,
 				96317C94210F56FC00F81F22 /* SecondViewController.swift */,
@@ -164,6 +167,7 @@
 				96317C8A210F56FC00F81F22 /* Frameworks */,
 				96317C8B210F56FC00F81F22 /* Resources */,
 				A453649339ECB2BDDC675D29 /* [CP] Embed Pods Frameworks */,
+				965460FD211093F2005AC0B3 /* Auto Increments Build Number */,
 			);
 			buildRules = (
 			);
@@ -258,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				965460FC21109252005AC0B3 /* Settings.bundle in Resources */,
 				96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */,
 				96317C9A210F56FD00F81F22 /* Assets.xcassets in Resources */,
 				96317C98210F56FC00F81F22 /* Main.storyboard in Resources */,
@@ -298,6 +303,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		965460FD211093F2005AC0B3 /* Auto Increments Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Auto Increments Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./auto_increments_build_no.sh;
 		};
 		A453649339ECB2BDDC675D29 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -432,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -486,7 +505,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
