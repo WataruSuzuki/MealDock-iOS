@@ -117,6 +117,7 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
+				96E5F23D21109A7C00C2F09E /* ViewControllers */,
 				965460FB21109252005AC0B3 /* Settings.bundle */,
 				96317C90210F56FC00F81F22 /* AppDelegate.swift */,
 				96317C92210F56FC00F81F22 /* FirstViewController.swift */,
@@ -145,6 +146,13 @@
 				96317CB4210F56FD00F81F22 /* Info.plist */,
 			);
 			path = MealDockUITests;
+			sourceTree = "<group>";
+		};
+		96E5F23D21109A7C00C2F09E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		AA70B33A27ACF3C86E6A50F3 /* Frameworks */ = {
