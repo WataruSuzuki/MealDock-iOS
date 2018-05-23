@@ -1,16 +1,139 @@
 PODS:
   - Alamofire (4.7.3)
+  - DJKFlatIconAuthors (0.0.2)
+  - DJKInAppPurchase (0.1.0)
+  - DJKUtilities (0.1.5)
+  - Firebase/AdMob (5.7.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (~> 7.32)
+  - Firebase/Core (5.7.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.1.1)
+  - Firebase/CoreOnly (5.7.0):
+    - FirebaseCore (= 5.1.2)
+  - Firebase/Messaging (5.7.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.1.1)
+  - FirebaseAnalytics (5.1.1):
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.2)
+    - GoogleAppMeasurement (~> 5.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.1.2):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.2.1):
+    - FirebaseCore (~> 5.1)
+    - GoogleUtilities/Environment (~> 5.2)
+  - FirebaseMessaging (3.1.1):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - GoogleUtilities/Reachability (~> 5.2)
+    - Protobuf (~> 3.1)
+  - Google-Mobile-Ads-SDK (7.32.0)
+  - GoogleAppMeasurement (5.1.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleMobileAdsMediationNend (5.0.2.0):
+    - Google-Mobile-Ads-SDK (>= 7.14.0)
+    - NendSDK_iOS (= 5.0.2)
+  - GoogleUtilities/AppDelegateSwizzler (5.2.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.2.2)
+  - GoogleUtilities/Logger (5.2.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.2.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.2.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.2.2)"
+  - GoogleUtilities/Reachability (5.2.2):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - NendSDK_iOS (5.0.2)
+  - PersonalizedAdConsent (1.0.3)
+  - Protobuf (3.6.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - DJKFlatIconAuthors (from `https://github.com/WataruSuzuki/DJKFlatIconAuthors.git`)
+  - DJKInAppPurchase (from `https://github.com/WataruSuzuki/DJKInAppPurchase.git`)
+  - DJKUtilities (from `https://github.com/WataruSuzuki/DJKUtilities.git`)
+  - Firebase/AdMob
+  - Firebase/Core
+  - Firebase/Messaging
+  - GoogleMobileAdsMediationNend
+  - PersonalizedAdConsent
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - Google-Mobile-Ads-SDK
+    - GoogleAppMeasurement
+    - GoogleMobileAdsMediationNend
+    - GoogleUtilities
+    - nanopb
+    - NendSDK_iOS
+    - PersonalizedAdConsent
+    - Protobuf
+
+EXTERNAL SOURCES:
+  DJKFlatIconAuthors:
+    :git: https://github.com/WataruSuzuki/DJKFlatIconAuthors.git
+  DJKInAppPurchase:
+    :git: https://github.com/WataruSuzuki/DJKInAppPurchase.git
+  DJKUtilities:
+    :git: https://github.com/WataruSuzuki/DJKUtilities.git
+
+CHECKOUT OPTIONS:
+  DJKFlatIconAuthors:
+    :commit: 04f3379bee05b3ce7566326ece13466f40636052
+    :git: https://github.com/WataruSuzuki/DJKFlatIconAuthors.git
+  DJKInAppPurchase:
+    :commit: 3f27c87d0be69a9fc0a74b931655b5cdff7f0f50
+    :git: https://github.com/WataruSuzuki/DJKInAppPurchase.git
+  DJKUtilities:
+    :commit: 07152fa1ba91269a8b5c84d19c52083c3db8e772
+    :git: https://github.com/WataruSuzuki/DJKUtilities.git
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  DJKFlatIconAuthors: eb488fab9ee7c961401aec3552bfbaea6763088c
+  DJKInAppPurchase: d106040dc239d754a8f786fe91599f309e55998a
+  DJKUtilities: 6f4c98547b70a46a80fce2bc7173ea2036493eb3
+  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
+  FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
+  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
+  FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
+  FirebaseMessaging: 698c94dd1e3436346c29bb9c85dcdca4c4a0c30b
+  Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
+  GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
+  GoogleMobileAdsMediationNend: 088dc7f71e0b3ee89d028f76ef5a762e6d2d19ba
+  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NendSDK_iOS: 412b3d68be41227468d808e94f5e9aee8f6cb62c
+  PersonalizedAdConsent: b50a8a5d6065b6db23121e8fcc0dce2ae983f6ea
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
 
-PODFILE CHECKSUM: bb57ce116d1f77fe4ae737546540efcd2676a0c2
+PODFILE CHECKSUM: f266d656c6a4b8f56e3adc336fc30c94634f0aa6
 
 COCOAPODS: 1.5.3

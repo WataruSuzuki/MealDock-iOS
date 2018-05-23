@@ -1,0 +1,19 @@
+{
+  "name": "DJKInAppPurchase",
+  "version": "0.1.0",
+  "summary": "A short description of DJKInAppPurchase.",
+  "description": "A longer description of DJKInAppPurchase in Markdown format.\n\n* Think: Why did you write this? What is the focus? What does it do?\n* CocoaPods will be using this to generate tags, and improve search results.\n* Try to keep it short, snappy and to the point.\n* Finally, don't worry about the indent, CocoaPods strips it!",
+  "homepage": "https://github.com/WataruSuzuki",
+  "license": "MIT License",
+  "authors": {
+    "WataruSuzuki": "wataru0406@gmail.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/WataruSuzuki/DJKInAppPurchase.git",
+    "tag": "0.1.0"
+  },
+  "vendored_frameworks": "DJKInAppPurchase.framework"
+}
