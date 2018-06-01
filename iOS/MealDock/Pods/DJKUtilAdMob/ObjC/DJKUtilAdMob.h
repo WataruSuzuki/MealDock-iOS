@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
-//#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
+#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 
 @interface DJKUtilAdMob : NSObject <GADInterstitialDelegate>
 

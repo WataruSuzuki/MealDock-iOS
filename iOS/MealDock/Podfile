@@ -6,7 +6,7 @@ target "MealDock" do
     pod 'Alamofire', '~> 4.7'
     pod 'DJKFlatIconAuthors', :git => 'https://github.com/WataruSuzuki/DJKFlatIconAuthors.git'
     pod 'DJKUtilities', :git => 'https://github.com/WataruSuzuki/DJKUtilities.git'
-    # pod 'DJKUtilAdMob', :git => 'https://github.com/WataruSuzuki/DJKUtilAdMob.git'#, :configuration => ["Release"]
+    pod 'DJKUtilAdMob', :git => 'https://github.com/WataruSuzuki/DJKUtilAdMob.git'#, :configuration => ["Release"]
     pod 'DJKInAppPurchase', :git => 'https://github.com/WataruSuzuki/DJKInAppPurchase.git'#, :configuration => ["Release"]
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'

@@ -1,6 +1,6 @@
 {
   "name": "DJKUtilAdMob",
-  "version": "0.3.5",
+  "version": "0.4.1",
   "summary": "A short description of DJKUtilAdMob.",
   "description": "A longer description of DJKUtilAdMob in Markdown format.\n\n* Think: Why did you write this? What is the focus? What does it do?\n* CocoaPods will be using this to generate tags, and improve search results.\n* Try to keep it short, snappy and to the point.\n* Finally, don't worry about the indent, CocoaPods strips it!",
   "homepage": "https://github.com/WataruSuzuki",
@@ -10,10 +10,16 @@
   },
   "source": {
     "git": "https://github.com/WataruSuzuki/DJKUtilAdMob.git",
-    "tag": "0.3.5"
+    "tag": "0.4.1"
   },
-  "xcconfig": {
-    "FRAMEWORK_SEARCH_PATHS": "$(PODS_ROOT)/Google-Mobile-Ads-SDK/**/"
+  "static_framework": true,
+  "dependencies": {
+    "PersonalizedAdConsent": [
+
+    ],
+    "Google-Mobile-Ads-SDK": [
+
+    ]
   },
   "source_files": "ObjC/*.{h,m}",
   "platforms": {
