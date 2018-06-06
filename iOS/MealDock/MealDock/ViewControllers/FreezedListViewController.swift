@@ -8,7 +8,9 @@
 
 import UIKit
 
-class FreezedListViewController: UITableViewController {
+class FreezedListViewController: UITableViewController,
+    DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,9 @@ class FreezedListViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,4 +97,12 @@ class FreezedListViewController: UITableViewController {
     }
     */
 
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "コンテンツは0件です"
+        let attributes: [NSAttributedStringKey : Any] = [
+            .foregroundColor : UIColor.black,
+            .font : UIFont.systemFont(ofSize: 24.0)
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
 }
