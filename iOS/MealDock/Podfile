@@ -11,6 +11,7 @@ target "MealDock" do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/AdMob'
+    pod 'FirebaseUI'
     # pod 'BubbleTransition-objc'
     # pod 'RMPZoomTransitionAnimator'
     pod 'PersonalizedAdConsent'
