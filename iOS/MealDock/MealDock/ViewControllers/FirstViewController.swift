@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import FirebaseUI
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController,
+    FUIAuthDelegate
+{
+    let providers: [FUIAuthProvider] = [
+        FUIGoogleAuth(),
+//        FUIFacebookAuth(),
+//        FUITwitterAuth(),
+//        FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()),
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +29,20 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let authUI = FUIAuth.defaultAuthUI() {
+            // You need to adopt a FUIAuthDelegate protocol to receive callback
+            authUI.delegate = self
+            authUI.providers = providers
+            let authViewController = authUI.authViewController()
+            self.present(authViewController, animated: true, completion: nil)
+        }
+    }
 
+    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+        // handle user and error as necessary
+    }
 }
 
