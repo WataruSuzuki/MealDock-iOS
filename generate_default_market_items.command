@@ -7,7 +7,8 @@ declare -a gabages=(
 
 function remove_unnecessaries () {
     for ((i = 0; i < ${#gabages[@]}; i++)) {
-        sed -e "s/{\"name\":\"${gabages[i]}\",\"section\":\".\",\"imageUrl\":\"https\:\/\/watarusuzuki.github.io\/MealDock\/images\/.\/${gabages[i]}\",\"timeStamp\":0},//g" ./default_market_items.json > ./data-new.json
+        NAME_STR=${gabages[i]%.*}
+        sed -e "s/{\"name\":\"${NAME_STR}\",\"section\":\".\",\"imageUrl\":\"https\:\/\/watarusuzuki.github.io\/MealDock\/images\/.\/${gabages[i]}\",\"timeStamp\":0},//g" ./default_market_items.json > ./data-new.json
 
         rm default_market_items.json
         mv data-new.json default_market_items.json

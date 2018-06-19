@@ -34,7 +34,7 @@ var walk = function(p, callback){
 			//Create each harvests from files
 			var stat = fs.statSync(file);
 			results.push({
-				name: path.basename(file),
+				name: path.basename(file, path.extname(file)),
 				section: path.dirname(file),
 				imageUrl: "https://watarusuzuki.github.io/MealDock/images/" + path.dirname(file) + "/" + path.basename(file),
 				timeStamp: 0
