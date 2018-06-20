@@ -69,13 +69,19 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
         if kind == UICollectionElementKindSectionHeader {
-            view.textLabel?.text = "Example header"
+            if let section = Harvest.Section(rawValue: indexPath.section) {
+                view.textLabel?.text = NSLocalizedString(section.toString(), comment: "")
+            }
         }
         return view
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
+        if 0 == collectionView.numberOfItems(inSection: section) {
+            return CGSize(width: 0, height: 0)
+        } else {
+            return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
+        }
     }
     // MARK: UICollectionViewDelegate
 
