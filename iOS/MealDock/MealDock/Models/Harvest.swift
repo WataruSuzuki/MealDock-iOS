@@ -16,8 +16,12 @@ struct Harvest: Codable {
 
     enum Section: Int {
         case unknown = 0,
-        meat,
-        fish,
+        protein,
+        calcium,
+        vegetable,
+        fruit,
+        carbohydrate,
+        oil,
         max
         
         func toString() -> String {
