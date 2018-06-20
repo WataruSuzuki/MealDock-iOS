@@ -11,6 +11,7 @@
 #import "FUIPasswordSignInViewController+Injection.h"
 #import "FUIPasswordSignUpViewController+Injection.h"
 
+NSString * const initializedFUIAuth = @"initialized-user";
 NSString * const emailFUIAuth = @"user-email";
 NSString * const passwordFUIAuth = @"user-password";
 NSString * const usernameFUIAuth = @"user-name";

@@ -48,9 +48,10 @@ extension FirebaseService {
             self.ref.child("users/\(user.uid)/mealdocks").removeValue()
             self.ref.child("mealdocks/\(user.uid)").removeValue()
         }
-        A0SimpleKeychain().setString("", forKey: emailFUIAuth)
-        A0SimpleKeychain().setString("", forKey: passwordFUIAuth)
-        A0SimpleKeychain().setString("", forKey: usernameFUIAuth)
+        A0SimpleKeychain().deleteEntry(forKey: initializedFUIAuth)
+        A0SimpleKeychain().deleteEntry(forKey: emailFUIAuth)
+        A0SimpleKeychain().deleteEntry(forKey: passwordFUIAuth)
+        A0SimpleKeychain().deleteEntry(forKey: usernameFUIAuth)
     }
         
     func updatedUserName(username: String) {

@@ -17,7 +17,6 @@ class InitViewController: UITabBarController,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        FirebaseService.shared.addDefaultErrands()
     }
 
     override func didReceiveMemoryWarning() {

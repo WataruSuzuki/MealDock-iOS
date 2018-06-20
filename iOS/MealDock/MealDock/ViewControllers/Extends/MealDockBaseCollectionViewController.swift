@@ -155,7 +155,7 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
     
     @objc func onAddFabTapped() {
         //Caution: do not add action here!!
-        FirebaseService.shared.addHarvests()
+        FirebaseService.shared.addErrand()
     }
     
     func instatiateBottomBar() {

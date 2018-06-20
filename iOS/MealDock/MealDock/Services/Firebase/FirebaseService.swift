@@ -121,6 +121,10 @@ class FirebaseService: NSObject,
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if let user = user {
             currentUser = user
+            if !A0SimpleKeychain().hasValue(forKey: initializedFUIAuth) {
+                addDefaultErrands()
+                A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
+            }
         } else {
             print(error?.localizedDescription ?? "error")
             signOut(authUI)

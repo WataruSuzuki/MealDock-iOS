@@ -9,6 +9,7 @@
 #import <FirebaseUI/FirebaseUI.h>
 #import <SimpleKeychain/SimpleKeychain.h>
 
+extern NSString * const initializedFUIAuth;
 extern NSString * const emailFUIAuth;
 extern NSString * const passwordFUIAuth;
 extern NSString * const usernameFUIAuth;

@@ -14,7 +14,7 @@ extension FirebaseService {
     
     func observeHarvest(success:(([[Harvest]]) -> Void)?) {
         if let user = currentUser {
-            self.ref.child("harvests")
+            ref.child("harvests")
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observe(.value, with: { (snapshot) in
@@ -44,14 +44,20 @@ extension FirebaseService {
         }
     }
     
-    func addDefaultErrands()  {
+    func addDefaultErrands() {
         let jsonUrl = "https://watarusuzuki.github.io/MealDock/default_market_items.json"
         Alamofire.request(jsonUrl).responseJSON { (response) in
             if response.result.isSuccess {
                 if let jsonData = response.data {
                     do {
                         let marketItems = try JSONDecoder().decode([DefalutMarketItems].self, from: jsonData)
-                        debugPrint(marketItems)
+                        for type in marketItems {
+                            for harvest in type.items {
+                                debugPrint(harvest)
+                                self.addMarketItem(harvest: harvest)
+                            }
+                        }
+                        
                     } catch let error {
                         print(error)
                     }
@@ -60,17 +66,23 @@ extension FirebaseService {
         }
     }
     
-    func addHarvests()  {
+    func addMarketItem(harvest: Harvest) {
+        addHarvest(itemId: "market_items", harvest: harvest)
+    }
+    
+    func addErrand() {
+        let imageUrl = "https://raw.githubusercontent.com/fmn/alfred-engineer-homeru-neko-workflow/master/images/08.png"
+        let itemId = "harvests"
+    }
+    
+    fileprivate func addHarvest(itemId: String, harvest: Harvest) {
         if let user = currentUser {
-            let timeStamp = NSDate().timeIntervalSince1970
-            let imageUrl = "https://raw.githubusercontent.com/fmn/alfred-engineer-homeru-neko-workflow/master/images/08.png"
-            self.ref.child("harvests").child(user.uid)
-                .childByAutoId()
+            ref.child(itemId).child(user.uid).child(harvest.name)
                 .setValue([
-                    "name": "HogeFuga",
-                    "section": Harvest.Section.unknown.rawValue,
-                    "imageUrl": imageUrl,
-                    "timeStamp": timeStamp
+                    "name": harvest.name,
+                    "section": harvest.section,
+                    "imageUrl": harvest.imageUrl,
+                    "timeStamp": harvest.timeStamp
                     ])
         }
     }
