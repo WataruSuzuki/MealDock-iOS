@@ -8,7 +8,14 @@
 
 import Foundation
 
-struct DefalutMarketItems: Codable {
+struct MarketItems: Codable {
     let type: String
     let items: [Harvest]
+}
+
+extension MarketItems {
+    init(type: String, harvest items: [Harvest]) {
+        self.type = type
+        self.items = items
+    }
 }

@@ -39,8 +39,12 @@ class FirebaseService: NSObject,
         }
     }
     //var harvests = [Harvest]()
-    var harvests = [[Harvest]](repeating: [], count: Harvest.Section.max.rawValue)
+    var harvests = initHarvestArray()
 
+    class func initHarvestArray() -> [[Harvest]] {
+        return [[Harvest]](repeating: [], count: Harvest.Section.max.rawValue)
+    }
+    
     private override init() {
         FirebaseApp.configure()
         FirebaseUIAuthInjection.kakushiAzi()
