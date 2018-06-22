@@ -12,7 +12,10 @@ import MaterialComponents.MaterialCollections
 
 private let reuseIdentifier = "ErrandCell"
 
-class ErrandViewController: UICollectionViewController {
+class ErrandViewController: UICollectionViewController,
+    DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+{
+    var items: [Harvest]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,8 @@ class ErrandViewController: UICollectionViewController {
         self.collectionView!.registerCustomCell(String(describing: ErrandCell.self))
 
         // Do any additional setup after loading the view.
+        self.collectionView!.emptyDataSetSource = self
+        self.collectionView!.emptyDataSetDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,15 +61,14 @@ class ErrandViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 100
+        return items.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ErrandCell
     
         // Configure the cell
-        let imageUrl = "https://raw.githubusercontent.com/fmn/alfred-engineer-homeru-neko-workflow/master/images/08.png"
-        cell.imageView.setImageByAlamofire(with: URL(string: imageUrl)!)
+        cell.imageView.setImageByAlamofire(with: URL(string: items[indexPath.row].imageUrl)!)
 
         return cell
     }
@@ -100,5 +104,13 @@ class ErrandViewController: UICollectionViewController {
     }
     */
 
+    // MARK: DZNEmptyDataSetSource
+
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return -100.0
+    }
     
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "No Items")
+    }
 }

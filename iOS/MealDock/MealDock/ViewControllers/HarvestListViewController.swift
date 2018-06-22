@@ -118,6 +118,7 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
             DispatchQueue.main.async {
                 let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
                 if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ErrandPagingViewController.self)) as? ErrandPagingViewController {
+                    viewController.items = items
                     let navigation = UINavigationController.init(rootViewController: viewController)
                     self.present(navigation, animated: true, completion: nil)
                 }

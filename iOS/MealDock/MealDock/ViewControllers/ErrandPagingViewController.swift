@@ -12,6 +12,7 @@ import MaterialComponents.MaterialBottomAppBar
 
 class ErrandPagingViewController: UIViewController {
 
+    var items: [MarketItems]!
     var pagingViewController: FixedPagingViewController!
     
     override func viewDidLoad() {
@@ -21,15 +22,17 @@ class ErrandPagingViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
         
         let storyboard = UIStoryboard(name: "Errand", bundle: nil)
-        let firstViewController = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
-        let secondViewController = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
+        var viewControllers = [ErrandViewController]()
+        for i in 0..<Harvest.Section.max.rawValue{
+            let controller = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
+            controller.title = NSLocalizedString(items[i].type, comment: "")
+            controller.items = items[i].items
+            viewControllers.append(controller)
+        }
         
         // Initialize a FixedPagingViewController and pass
         // in the view controllers.
-        pagingViewController = FixedPagingViewController(viewControllers: [
-            firstViewController,
-            secondViewController
-        ])
+        pagingViewController = FixedPagingViewController(viewControllers: viewControllers)
         addChildViewController(pagingViewController)
         view.addSubview(pagingViewController.view)
     }
