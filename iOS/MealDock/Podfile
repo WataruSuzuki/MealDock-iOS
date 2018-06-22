@@ -18,6 +18,7 @@ target "MealDock" do
     # pod 'ZFDragableModalTransition'
     pod 'GoogleMobileAdsMediationNend'
     pod 'DZNEmptyDataSet'
+    pod 'KeychainAccess'
 end
 
 post_install do | installer |

@@ -202,6 +202,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
+  - KeychainAccess (3.1.1)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -230,6 +231,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - FirebaseUI
   - GoogleMobileAdsMediationNend
+  - KeychainAccess
   - PersonalizedAdConsent
 
 SPEC REPOS:
@@ -264,6 +266,7 @@ SPEC REPOS:
     - gRPC-RxLibrary
     - GTMOAuth2
     - GTMSessionFetcher
+    - KeychainAccess
     - leveldb-library
     - nanopb
     - NendSDK_iOS
@@ -332,6 +335,7 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: 3c305f32155024b116b780f389323c73a28197e6
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NendSDK_iOS: 412b3d68be41227468d808e94f5e9aee8f6cb62c
@@ -341,6 +345,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
 
-PODFILE CHECKSUM: b8f8c6a9c86bf49e5c5f9cdd08e2571c70e1c4f6
+PODFILE CHECKSUM: 85045e0cfb8b3d945ff570c0822c0584e5c37974
 
 COCOAPODS: 1.5.3
