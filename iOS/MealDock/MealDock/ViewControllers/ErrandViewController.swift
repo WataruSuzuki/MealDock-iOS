@@ -68,13 +68,17 @@ class ErrandViewController: UICollectionViewController,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ErrandCell
     
         // Configure the cell
-        cell.imageView.setImageByAlamofire(with: URL(string: items[indexPath.row].imageUrl)!)
+        cell.itemImage.setImageByAlamofire(with: URL(string: items[indexPath.row].imageUrl)!)
 
         return cell
     }
 
     // MARK: UICollectionViewDelegate
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ErrandCell
+        cell.checked = !cell.checked
+    }
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
