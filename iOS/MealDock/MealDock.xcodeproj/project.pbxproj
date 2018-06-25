@@ -20,6 +20,7 @@
 		CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCA83D51214B45BF00226382 /* GoogleService-Info.plist */; };
 		CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E1214B813B007FBAB0 /* InitViewController.swift */; };
 		CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */; };
+		CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */; };
 		EAA25D2ED327EDD0EA90FDC7 /* Pods_MealDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,8 @@
 		CCA83D51214B45BF00226382 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CCDC94E1214B813B007FBAB0 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		CCDC94EE214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FUIPasswordSignInViewController+Injection.h"; sourceTree = "<group>"; };
+		CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FUIPasswordSignInViewController+Injection.m"; sourceTree = "<group>"; };
 		D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -181,6 +184,8 @@
 			children = (
 				CCA83D51214B45BF00226382 /* GoogleService-Info.plist */,
 				CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */,
+				CCDC94EE214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.h */,
+				CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */,
 				CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */,
 				96E5F243212459E000C2F09E /* FreezedListViewController.swift in Sources */,
+				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
 			);
