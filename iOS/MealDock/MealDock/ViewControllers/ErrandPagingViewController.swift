@@ -20,19 +20,20 @@ class ErrandPagingViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
+
         let storyboard = UIStoryboard(name: "Errand", bundle: nil)
-        var viewControllers = [ErrandViewController]()
+        var controllers = [ErrandViewController]()
         for i in 0..<Harvest.Section.max.rawValue{
             let controller = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
             controller.title = NSLocalizedString(items[i].type, comment: "")
             controller.items = items[i].items
-            viewControllers.append(controller)
+            controllers.append(controller)
         }
         
         // Initialize a FixedPagingViewController and pass
         // in the view controllers.
-        pagingViewController = FixedPagingViewController(viewControllers: viewControllers)
+        pagingViewController = FixedPagingViewController(viewControllers: controllers)
         addChildViewController(pagingViewController)
         view.addSubview(pagingViewController.view)
     }
@@ -60,5 +61,16 @@ class ErrandPagingViewController: UIViewController {
         pagingViewController.didMove(toParentViewController: self)
     }
 
+    @objc func tapDone() {
+        let controllers = pagingViewController.viewControllers as! [ErrandViewController]
+        for controller in controllers {
+            debugPrint(controller.selectedItems)
+            let items = [Harvest](controller.selectedItems.values)
+            for item in items {
+                FirebaseService.shared.addHarvestToErrand(harvest: item)
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
 

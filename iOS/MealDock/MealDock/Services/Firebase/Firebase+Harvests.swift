@@ -101,9 +101,8 @@ extension FirebaseService {
         addHarvest(itemId: "market_items", harvest: harvest)
     }
     
-    func addErrand() {
-        let imageUrl = "https://raw.githubusercontent.com/fmn/alfred-engineer-homeru-neko-workflow/master/images/08.png"
-        let itemId = "harvests"
+    func addHarvestToErrand(harvest: Harvest) {
+        addHarvest(itemId: "harvests", harvest: harvest)
     }
     
     fileprivate func addHarvest(itemId: String, harvest: Harvest) {

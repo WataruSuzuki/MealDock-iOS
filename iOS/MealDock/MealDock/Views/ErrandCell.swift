@@ -12,14 +12,14 @@ import TinyConstraints
 class ErrandCell: UICollectionViewCell {
     
     let itemImage = UIImageView(image: UIImage(named: "baseline_help_black_48pt"))
-    let checkImage = UIImageView(image: UIImage(named: "outline_check_black_36pt"))
     var label: UILabel!
-    var checkImageBackgroundView: UIView!
-    var checked = false {
+    var isChecked = false {
         didSet {
-            checkImageBackgroundView.isHidden = !checked
+            checkmarkBackgroundView.isHidden = !isChecked
         }
     }
+    fileprivate let checkmarkImage = UIImageView(image: UIImage(named: "outline_check_black_36pt"))
+    fileprivate var checkmarkBackgroundView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,16 +34,16 @@ class ErrandCell: UICollectionViewCell {
         label.centerYToSuperview()
         label.isHidden = true
         
-        checkImageBackgroundView = UIView(frame: frame)
-        checkImageBackgroundView.backgroundColor = .darkGray
-        checkImageBackgroundView.alpha = 0.8
-        addSubview(checkImageBackgroundView)
-        checkImageBackgroundView.autoPinEdgesToSuperviewEdges()
-        checkImageBackgroundView.isHidden = true
+        checkmarkBackgroundView = UIView(frame: frame)
+        checkmarkBackgroundView.backgroundColor = .darkGray
+        checkmarkBackgroundView.alpha = 0.8
+        addSubview(checkmarkBackgroundView)
+        checkmarkBackgroundView.autoPinEdgesToSuperviewEdges()
+        checkmarkBackgroundView.isHidden = true
         
-        checkImage.contentMode = .scaleAspectFit
-        checkImageBackgroundView.addSubview(checkImage)
-        checkImage.autoCenterInSuperview()
+        checkmarkImage.contentMode = .scaleAspectFit
+        checkmarkBackgroundView.addSubview(checkmarkImage)
+        checkmarkImage.autoCenterInSuperview()
     }
 
 }

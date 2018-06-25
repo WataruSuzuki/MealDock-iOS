@@ -16,12 +16,10 @@ class ErrandViewController: UICollectionViewController,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     var items: [Harvest]!
+    var selectedItems = [String : Harvest]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
         self.collectionView!.register(ErrandCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -41,26 +39,14 @@ class ErrandViewController: UICollectionViewController,
         super.viewWillLayoutSubviews()
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return items.count
     }
 
@@ -77,7 +63,12 @@ class ErrandViewController: UICollectionViewController,
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! ErrandCell
-        cell.checked = !cell.checked
+        cell.isChecked = !cell.isChecked
+        if cell.isChecked {
+            selectedItems.updateValue(items[indexPath.row], forKey: items[indexPath.row].name)
+        } else {
+            selectedItems.removeValue(forKey: items[indexPath.row].name)
+        }
     }
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
