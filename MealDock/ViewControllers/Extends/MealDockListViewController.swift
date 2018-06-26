@@ -16,6 +16,8 @@ class MealDockListViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.rowHeight = CGFloat(integerLiteral: 66)
+        
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         // A little trick for removing the cell separators

@@ -41,6 +41,7 @@
 		96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE88842158D0A200924490 /* UIViewController+Transition.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
+		CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */; };
 		CC9B6D24215CB1CE00E49491 /* MarketItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B6D23215CB1CE00E49491 /* MarketItems.swift */; };
 		CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCA83D51214B45BF00226382 /* GoogleService-Info.plist */; };
 		CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E1214B813B007FBAB0 /* InitViewController.swift */; };
@@ -112,6 +113,7 @@
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
+		CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		CC7A3DC6214A2D6600F50AB0 /* MealDock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MealDock-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC9B6D23215CB1CE00E49491 /* MarketItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketItems.swift; sourceTree = "<group>"; };
 		CCA83D51214B45BF00226382 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
+				CC77E4FD2165E865002891BB /* Controllers */,
 				96EE887A2158802D00924490 /* Views */,
 				CCDC94F22150E829007FBAB0 /* Models */,
 				9615BDF5214D40BF001801D5 /* Storyboards */,
@@ -309,6 +312,22 @@
 				D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC77E4FD2165E865002891BB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC77E4FE2165E875002891BB /* Extensions */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CC77E4FE2165E875002891BB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CCDC94E3214B81EB007FBAB0 /* Services */ = {
@@ -644,6 +663,7 @@
 				964C00BC214E22FB0099689B /* PackedListViewController.swift in Sources */,
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,
 				CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */,
+				CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */,
 				964C00C0214E33610099689B /* MealDockBaseCollectionViewController.swift in Sources */,
 				CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */,
 				96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */,

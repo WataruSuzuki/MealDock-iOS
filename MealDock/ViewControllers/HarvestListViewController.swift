@@ -58,9 +58,14 @@ class HarvestListViewController: MealDockListViewController {
         
         // Configure the cell...
         cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
+        cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
+        cell.imageView?.contentMode = .scaleAspectFit
+        cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
 
         return cell
     }
+    
+    
     
 //    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
