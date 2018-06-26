@@ -65,8 +65,15 @@ class HarvestListViewController: MealDockListViewController {
         return cell
     }
     
-    
-    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if 0 < harvests[section].count {
+            if let harvestSection = Harvest.Section(rawValue: section) {
+                return harvestSection.emoji()
+            }
+        }
+        return nil
+    }
+
 //    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
 //        if kind == UICollectionElementKindSectionHeader {

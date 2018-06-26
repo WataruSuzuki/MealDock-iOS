@@ -27,6 +27,18 @@ struct Harvest: Codable {
         func toString() -> String {
             return String(describing: self)
         }
+        
+        func emoji() -> String {
+            switch self {
+            case .protein:      return "🍖🥩🐟🐠🍳"
+            case .calcium:      return "🥛🧀"
+            case .vegetable:    return "🍅🍆🌽🥒🥕🥔🥦"
+            case .fruit:        return "🍓🍊🍎🍒🍇🍌🥝🍍"
+            case .carbohydrate: return "🍚🍞🍙🥖🍜🍝"
+            case .oil:          return "🍯🍰🍦🍨🍔🍟🍤"
+            default:            return "👻"
+            }
+        }
     }
 
     func getRawValue(fromDescribing described: String) -> Int {
