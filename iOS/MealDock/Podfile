@@ -19,6 +19,7 @@ target "MealDock" do
     pod 'GoogleMobileAdsMediationNend'
     pod 'DZNEmptyDataSet'
     pod 'KeychainAccess'
+    pod "SimpleKeychain"
 end
 
 post_install do | installer |
