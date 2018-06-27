@@ -7,23 +7,40 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialCollections
+import MaterialComponents.MaterialButtons_ColorThemer
+import TinyConstraints
 
 class MealDockListViewController: UITableViewController,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
+    let fab = MDCFloatingButton()
     let reuseIdentifier = "MealDockListCell"
+    var checkedItems = [String : Harvest]()
+    let colorScheme = MDCSemanticColorScheme()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        fab.isHidden = true
         self.tableView.rowHeight = CGFloat(integerLiteral: 66)
         
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         // A little trick for removing the cell separators
         self.tableView.tableFooterView = UIView()
+        
+        MDCFloatingButtonColorThemer.applySemanticColorScheme(colorScheme, to: fab)
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        DispatchQueue.main.async {
+            self.layoutFab()
+        }
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -68,6 +85,23 @@ class MealDockListViewController: UITableViewController,
         return true
     }
     */
+    func instantiateFab(target: Any?, image: UIImage, selector: Selector) {
+        fab.setImage(image, for: .normal)
+        fab.addTarget(target, action: selector, for: .touchUpInside)
+        view.addSubview(fab)
+    }
+    
+    func layoutFab() {
+        if let targetOf = tabBarController?.tabBar {
+            fab.autoPinEdge(.trailing, to: .trailing, of: targetOf, withOffset: -30)
+            fab.autoPinEdge(.bottom, to: .top, of: targetOf, withOffset: -30)
+        } else {
+            fab.autoPinEdge(.trailing, to: .trailing, of: self.view, withOffset: -30)
+            fab.autoPinEdge(.bottom, to: .top, of: self.view, withOffset: -30)
+        }
+        view.bringSubview(toFront: fab)
+    }
+    
     // MARK: DZNEmptyDataSetSource
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {

@@ -28,6 +28,8 @@ class HarvestListViewController: MealDockListViewController {
             self.harvests = harvests
             self.tableView.reloadData()
         }
+        
+        instantiateFab(target: self, image: UIImage(named: "freezer")!, selector: #selector(onFabTapped))
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +82,14 @@ class HarvestListViewController: MealDockListViewController {
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! StrikethroughTableViewCell
+        let harvest = harvests[indexPath.section][indexPath.row]
         cell.isChecked = !cell.isChecked
+        if cell.isChecked {
+            checkedItems.updateValue(harvest, forKey: harvest.name)
+        } else {
+            checkedItems.removeValue(forKey: harvest.name)
+        }
+        fab.isHidden = 0 == checkedItems.count
     }
 
 //    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -114,6 +123,9 @@ class HarvestListViewController: MealDockListViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    @objc func onFabTapped() {
     }
     
     func showViaBottomSheet(viewController: UICollectionViewController) {
