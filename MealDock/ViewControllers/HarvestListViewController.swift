@@ -12,10 +12,12 @@ import MaterialComponents.MaterialBottomSheet
 class HarvestListViewController: MealDockListViewController {
     var harvests = [[Harvest]]()
     let shapeScheme = MDCShapeScheme()
+    let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.registerCustomCell(customCellIdentifier)
 //        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
@@ -54,10 +56,11 @@ class HarvestListViewController: MealDockListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
         
         // Configure the cell...
         cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
+        
         cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
@@ -72,6 +75,12 @@ class HarvestListViewController: MealDockListViewController {
             }
         }
         return nil
+    }
+    
+    // MARK: - Table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! StrikethroughTableViewCell
+        cell.isChecked = !cell.isChecked
     }
 
 //    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
