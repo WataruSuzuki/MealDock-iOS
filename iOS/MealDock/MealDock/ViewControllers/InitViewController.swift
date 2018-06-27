@@ -40,7 +40,7 @@ class InitViewController: UITabBarController,
         
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
             if !delegate.firebaseService.isSignOn {
-                delegate.firebaseService.requestAuthUI(vc: self)
+                delegate.firebaseService.fetchAuth(vc: self)
             }
         }
     }

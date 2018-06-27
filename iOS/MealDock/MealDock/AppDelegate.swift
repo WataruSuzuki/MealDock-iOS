@@ -16,12 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        return FirebaseService.isSourceApplication(url: url, options: options)
+        return FirebaseService.shared.isSourceApplication(url: url, options: options)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        firebaseService = FirebaseService()
+        firebaseService = FirebaseService.shared
         return true
     }
 

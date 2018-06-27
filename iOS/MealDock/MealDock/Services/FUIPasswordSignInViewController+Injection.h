@@ -8,6 +8,9 @@
 
 #import <FirebaseUI/FirebaseUI.h>
 
+extern NSString * const emailFUIAuth;
+extern NSString * const passwordFUIAuth;
+
 @interface FUIPasswordSignInViewController (Injection)
 
 +(void)switchMethodInjection;

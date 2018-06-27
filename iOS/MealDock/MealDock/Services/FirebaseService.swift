@@ -9,13 +9,17 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import SimpleKeychain
 
 class FirebaseService: NSObject,
     FUIAuthDelegate
 {
+    static let shared: FirebaseService = {
+        return FirebaseService()
+    }()
     
     let providers: [FUIAuthProvider] = [
-        FUIGoogleAuth(),
+//        FUIGoogleAuth(),
 //        FUIFacebookAuth(),
 //        FUITwitterAuth(),
 //        FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()),
@@ -23,13 +27,21 @@ class FirebaseService: NSObject,
     
     var defaultAuthUI: FUIAuth!
     var currentUser: User?
-    var isSignOn = false
+    var handle: AuthStateDidChangeListenerHandle!
+    var state: State
+    var isSignOn: Bool {
+        get {
+            return state == .signOn
+        }
+    }
     
-    override init() {
-        super.init()
+    private override init() {
+        state = .unknown
         FirebaseApp.configure()
         FUIPasswordSignInViewController.switchMethodInjection()
-
+        
+        super.init()
+        initHandle()
         loadDefaultAuthUI()
     }
     
@@ -40,36 +52,72 @@ class FirebaseService: NSObject,
             authUI.providers = providers
             
             defaultAuthUI = authUI
+            signInByKeychain()
         }
     }
     
-    func requestAuthUI(vc: UIViewController) {
-        if let authUI = defaultAuthUI {
-            let authViewController = authUI.authViewController()
-            vc.present(authViewController, animated: true, completion: nil)
+    fileprivate func initHandle() {
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            print("auth = \(auth)")
+            if let user = user {
+                print("user = \(user.debugDescription)")
+            }
+        }
+    }
+    
+    fileprivate func signInByKeychain() {
+        self.state = .signing
+        if let email = A0SimpleKeychain().string(forKey: emailFUIAuth),
+            let password = A0SimpleKeychain().string(forKey: passwordFUIAuth) {
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                if let error = error {
+                    print(error)
+                    self.state = .signOff
+                } else {
+                    self.currentUser = result?.user
+                    self.state = .signOn
+                }
+            }
+        }
+    }
+    
+    func fetchAuth(vc: UIViewController) {
+        if state == .signOff {
+            if let authUI = defaultAuthUI {
+                let authViewController = authUI.authViewController()
+                vc.present(authViewController, animated: true, completion: nil)
+                self.state = .signing
+            }
         }
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if let user = user {
             currentUser = user
-            isSignOn = true
         } else {
-            do {
-                try authUI.signOut()
-                isSignOn = false
-            } catch {
-                // エラー処理
-            }
+            print(error?.localizedDescription ?? "error")
+            signOut(authUI)
         }
     }
     
-    class func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    fileprivate func signOut(_ authUI: FUIAuth) {
+        do {
+            try authUI.signOut()
+            self.state = .signOff
+        } catch (let error) {
+            print(error)
+        }
+    }
+    
+    func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
-        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-            return true
-        }
-        return false
+        return defaultAuthUI.handleOpen(url, sourceApplication: sourceApplication)
     }
     
+    enum State: Int {
+        case unknown = 0,
+        signing,
+        signOn,
+        signOff
+    }
 }
