@@ -67,7 +67,7 @@ class ErrandPagingViewController: UIViewController {
             debugPrint(controller.selectedItems)
             let items = [Harvest](controller.selectedItems.values)
             for item in items {
-                FirebaseService.shared.addHarvestToErrand(harvest: item)
+                FirebaseService.shared.addToErrand(harvest: item)
             }
         }
         dismiss(animated: true, completion: nil)

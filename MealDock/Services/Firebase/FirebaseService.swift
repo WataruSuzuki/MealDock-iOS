@@ -126,7 +126,7 @@ class FirebaseService: NSObject,
         if let user = user {
             currentUser = user
             if !A0SimpleKeychain().hasValue(forKey: initializedFUIAuth) {
-                addDefaultErrands()
+                registerDefaultMarketItems()
                 A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
             }
         } else {

@@ -75,7 +75,7 @@ extension FirebaseService {
         }
     }
     
-    func addDefaultErrands() {
+    func registerDefaultMarketItems() {
         let jsonUrl = "https://watarusuzuki.github.io/MealDock/default_market_items.json"
         Alamofire.request(jsonUrl).responseJSON { (response) in
             if response.result.isSuccess {
@@ -85,7 +85,7 @@ extension FirebaseService {
                         for type in marketItems {
                             for harvest in type.items {
                                 debugPrint(harvest)
-                                self.addMarketItem(harvest: harvest)
+                                self.addToMarketItem(harvest: harvest)
                             }
                         }
                         
@@ -97,12 +97,16 @@ extension FirebaseService {
         }
     }
     
-    func addMarketItem(harvest: Harvest) {
+    func addToMarketItem(harvest: Harvest) {
         addHarvest(itemId: "market_items", harvest: harvest)
     }
     
-    func addHarvestToErrand(harvest: Harvest) {
+    func addToErrand(harvest: Harvest) {
         addHarvest(itemId: "harvests", harvest: harvest)
+    }
+    
+    func addToFreezer(harvest: Harvest) {
+        addHarvest(itemId: "freezeds", harvest: harvest)
     }
     
     fileprivate func addHarvest(itemId: String, harvest: Harvest) {

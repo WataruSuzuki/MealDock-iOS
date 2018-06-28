@@ -126,6 +126,10 @@ class HarvestListViewController: MealDockListViewController {
     }
     
     @objc func onFabTapped() {
+        let items = [Harvest](checkedItems.values)
+        for item in items {
+            FirebaseService.shared.addToFreezer(harvest: item)
+        }
     }
     
     func showViaBottomSheet(viewController: UICollectionViewController) {

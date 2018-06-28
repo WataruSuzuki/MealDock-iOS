@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FreezedListViewController: MealDockListViewController {
+class InFridgeListViewController: MealDockListViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
