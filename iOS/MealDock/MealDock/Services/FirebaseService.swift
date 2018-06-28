@@ -31,7 +31,7 @@ class FirebaseService: NSObject,
     var state: State
     var isSignOn: Bool {
         get {
-            return state == .signOn
+            return currentUser != nil
         }
     }
     
@@ -41,7 +41,6 @@ class FirebaseService: NSObject,
         FUIPasswordSignInViewController.switchMethodInjection()
         
         super.init()
-        initHandle()
         loadDefaultAuthUI()
     }
     
@@ -56,41 +55,51 @@ class FirebaseService: NSObject,
         }
     }
     
-    fileprivate func initHandle() {
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            print("auth = \(auth)")
-            if let user = user {
-                print("user = \(user.debugDescription)")
-            }
-        }
-    }
-    
-    fileprivate func signInByKeychain() {
-        self.state = .signing
-        if let email = A0SimpleKeychain().string(forKey: emailFUIAuth),
-            let password = A0SimpleKeychain().string(forKey: passwordFUIAuth) {
-            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-                if let error = error {
-                    print(error)
-                    self.state = .signOff
+    fileprivate func regsiterStateListener() {
+        if handle == nil {
+            handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+                print("auth = \(auth)")
+                if let user = user {
+                    print("user = \(user.debugDescription)")
                 } else {
-                    self.currentUser = result?.user
-                    self.state = .signOn
+                    self.fetchAuth()
                 }
             }
         }
     }
     
-    func fetchAuth(vc: UIViewController) {
-        if state == .signOff {
-            if let authUI = defaultAuthUI {
-                let authViewController = authUI.authViewController()
-                vc.present(authViewController, animated: true, completion: nil)
-                self.state = .signing
+    fileprivate func signInByKeychain() {
+        if let email = A0SimpleKeychain().string(forKey: emailFUIAuth),
+            let password = A0SimpleKeychain().string(forKey: passwordFUIAuth) {
+            signIn(byEmail: email, password: password)
+        } else {
+            regsiterStateListener()
+        }
+    }
+    
+    fileprivate func signIn(byEmail email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print(error)
+            } else {
+                self.currentUser = result?.user
+            }
+            self.regsiterStateListener()
+        }
+    }
+    
+    func fetchAuth() {
+        if let authUI = defaultAuthUI {
+            let authViewController = authUI.authViewController()
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                if let controller = delegate.window?.rootViewController {
+                    controller.present(authViewController, animated: true, completion: nil)
+                }
             }
         }
     }
     
+
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if let user = user {
             currentUser = user
@@ -103,7 +112,6 @@ class FirebaseService: NSObject,
     fileprivate func signOut(_ authUI: FUIAuth) {
         do {
             try authUI.signOut()
-            self.state = .signOff
         } catch (let error) {
             print(error)
         }

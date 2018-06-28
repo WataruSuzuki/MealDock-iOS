@@ -38,11 +38,11 @@ class InitViewController: UITabBarController,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let delegate = UIApplication.shared.delegate as? AppDelegate {
-            if !delegate.firebaseService.isSignOn {
-                delegate.firebaseService.fetchAuth(vc: self)
-            }
-        }
+//        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+//            if !delegate.firebaseService.isSignOn {
+//                delegate.firebaseService.fetchAuth(vc: self)
+//            }
+//        }
     }
     
 }
