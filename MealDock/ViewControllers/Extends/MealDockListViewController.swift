@@ -22,6 +22,7 @@ class MealDockListViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(fab)
         fab.isHidden = true
         self.tableView.rowHeight = CGFloat(integerLiteral: 66)
         
@@ -85,10 +86,9 @@ class MealDockListViewController: UITableViewController,
         return true
     }
     */
-    func instantiateFab(target: Any?, image: UIImage, selector: Selector) {
+    func activateFab(target: Any?, image: UIImage, selector: Selector) {
         fab.setImage(image, for: .normal)
         fab.addTarget(target, action: selector, for: .touchUpInside)
-        view.addSubview(fab)
     }
     
     func layoutFab() {

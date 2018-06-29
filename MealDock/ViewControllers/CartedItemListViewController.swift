@@ -29,7 +29,7 @@ class CartedItemListViewController: MealDockListViewController {
             self.tableView.reloadData()
         }
         
-        instantiateFab(target: self, image: UIImage(named: "freezer")!, selector: #selector(onFabTapped))
+        activateFab(target: self, image: UIImage(named: "freezer")!, selector: #selector(onFabTapped))
     }
 
     override func didReceiveMemoryWarning() {
