@@ -14,7 +14,7 @@ extension FirebaseService {
     
     func loadMarketItems(success:(([MarketItems]) -> Void)?, failure failureBlock : ((Error) -> ())?) {
         if let user = currentUser {
-            ref.child("market_items")
+            ref.child(FirebaseService.ID_MARKET_ITEMS)
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observeSingleEvent(of: .value, with: { (snapshot) in
@@ -64,7 +64,7 @@ extension FirebaseService {
     
     func observeHarvest(success:(([[Harvest]]) -> Void)?) {
         if let user = currentUser {
-            ref.child("carted_items")
+            ref.child(FirebaseService.ID_CARTED_ITEMS)
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observe(.value, with: { (snapshot) in
@@ -98,15 +98,16 @@ extension FirebaseService {
     }
     
     func addToMarketItem(harvest: Harvest) {
-        addHarvest(itemId: "market_items", harvest: harvest)
+        addHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvest: harvest)
     }
     
     func addToErrand(harvest: Harvest) {
-        addHarvest(itemId: "carted_items", harvest: harvest)
+        addHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvest: harvest)
     }
     
     func addToFridge(harvest: Harvest) {
-        addHarvest(itemId: "in_fridge_items", harvest: harvest)
+        addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvest: harvest)
+        removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvest: harvest)
     }
     
     fileprivate func addHarvest(itemId: String, harvest: Harvest) {
@@ -118,6 +119,12 @@ extension FirebaseService {
                     "imageUrl": harvest.imageUrl,
                     "timeStamp": harvest.timeStamp
                     ])
+        }
+    }
+    
+    fileprivate func removeHarvest(itemId: String, harvest: Harvest) {
+        if let user = currentUser {
+            ref.child(itemId).child(user.uid).child(harvest.name).removeValue()
         }
     }
 }
