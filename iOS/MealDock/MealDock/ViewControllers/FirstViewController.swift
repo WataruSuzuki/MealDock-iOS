@@ -20,5 +20,11 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        FirebaseService.shared.addUser()
+    }
+    
 }
 

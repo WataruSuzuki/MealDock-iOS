@@ -14,6 +14,7 @@
 		96317CA8210F56FD00F81F22 /* MealDockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CA7210F56FD00F81F22 /* MealDockTests.swift */; };
 		96317CB3210F56FD00F81F22 /* MealDockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CB2210F56FD00F81F22 /* MealDockUITests.swift */; };
 		965460FC21109252005AC0B3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 965460FB21109252005AC0B3 /* Settings.bundle */; };
+		9696B4A6214C8E28001DFB60 /* Firebase+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+User.swift */; };
 		96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* SecondViewController.swift */; };
 		96E5F24121244FBF00C2F09E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* FirstViewController.swift */; };
 		96E5F243212459E000C2F09E /* FreezedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F242212459E000C2F09E /* FreezedListViewController.swift */; };
@@ -56,6 +57,7 @@
 		96317CB2210F56FD00F81F22 /* MealDockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockUITests.swift; sourceTree = "<group>"; };
 		96317CB4210F56FD00F81F22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		965460FB21109252005AC0B3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		9696B4A5214C8E28001DFB60 /* Firebase+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+User.swift"; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		96E5F23F21244FBF00C2F09E /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		96E5F242212459E000C2F09E /* FreezedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezedListViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,16 @@
 			path = MealDockUITests;
 			sourceTree = "<group>";
 		};
+		9696B4A4214C8DAF001DFB60 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */,
+				CCA83D51214B45BF00226382 /* GoogleService-Info.plist */,
+				9696B4A5214C8E28001DFB60 /* Firebase+User.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		96E5F23D21109A7C00C2F09E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,8 +194,7 @@
 		CCDC94E3214B81EB007FBAB0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CCA83D51214B45BF00226382 /* GoogleService-Info.plist */,
-				CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */,
+				9696B4A4214C8DAF001DFB60 /* Firebase */,
 				CCDC94EE214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.h */,
 				CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */,
 			);
@@ -466,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96E5F24121244FBF00C2F09E /* FirstViewController.swift in Sources */,
+				9696B4A6214C8E28001DFB60 /* Firebase+User.swift in Sources */,
 				96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */,
 				CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */,
 				96E5F243212459E000C2F09E /* FreezedListViewController.swift in Sources */,

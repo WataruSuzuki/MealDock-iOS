@@ -28,7 +28,7 @@ class FirebaseService: NSObject,
     var defaultAuthUI: FUIAuth!
     var currentUser: User?
     var handle: AuthStateDidChangeListenerHandle!
-    var state: State
+    var ref: DatabaseReference!
     var isSignOn: Bool {
         get {
             return currentUser != nil
@@ -36,12 +36,12 @@ class FirebaseService: NSObject,
     }
     
     private override init() {
-        state = .unknown
         FirebaseApp.configure()
         FUIPasswordSignInViewController.switchMethodInjection()
         
         super.init()
         loadDefaultAuthUI()
+        ref = Database.database().reference()
     }
     
     fileprivate func loadDefaultAuthUI() {
@@ -98,7 +98,6 @@ class FirebaseService: NSObject,
             }
         }
     }
-    
 
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if let user = user {
@@ -122,10 +121,4 @@ class FirebaseService: NSObject,
         return defaultAuthUI.handleOpen(url, sourceApplication: sourceApplication)
     }
     
-    enum State: Int {
-        case unknown = 0,
-        signing,
-        signOn,
-        signOff
-    }
 }
