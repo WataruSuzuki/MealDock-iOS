@@ -1,5 +1,5 @@
 //
-//  HarvestListViewController.swift
+//  CartedItemListViewController.swift
 //  MealDock
 //
 //  Created by 鈴木 航 on 2018/09/17.
@@ -9,7 +9,7 @@
 import UIKit
 import MaterialComponents.MaterialBottomSheet
 
-class HarvestListViewController: MealDockListViewController {
+class CartedItemListViewController: MealDockListViewController {
     var harvests = [[Harvest]]()
     let shapeScheme = MDCShapeScheme()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
@@ -128,7 +128,7 @@ class HarvestListViewController: MealDockListViewController {
     @objc func onFabTapped() {
         let items = [Harvest](checkedItems.values)
         for item in items {
-            FirebaseService.shared.addToFreezer(harvest: item)
+            FirebaseService.shared.addToFridge(harvest: item)
         }
     }
     

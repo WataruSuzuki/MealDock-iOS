@@ -1,5 +1,5 @@
 //
-//  FreezedListViewController.swift
+//  InFridgeListViewController.swift
 //  MealDock
 //
 //  Created by 鈴木 航 on 2018/08/15.

@@ -64,7 +64,7 @@ extension FirebaseService {
     
     func observeHarvest(success:(([[Harvest]]) -> Void)?) {
         if let user = currentUser {
-            ref.child("harvests")
+            ref.child("carted_items")
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observe(.value, with: { (snapshot) in
@@ -102,11 +102,11 @@ extension FirebaseService {
     }
     
     func addToErrand(harvest: Harvest) {
-        addHarvest(itemId: "harvests", harvest: harvest)
+        addHarvest(itemId: "carted_items", harvest: harvest)
     }
     
-    func addToFreezer(harvest: Harvest) {
-        addHarvest(itemId: "freezeds", harvest: harvest)
+    func addToFridge(harvest: Harvest) {
+        addHarvest(itemId: "in_fridge_items", harvest: harvest)
     }
     
     fileprivate func addHarvest(itemId: String, harvest: Harvest) {
