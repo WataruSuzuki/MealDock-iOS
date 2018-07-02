@@ -165,11 +165,21 @@
 		9696B4A4214C8DAF001DFB60 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				9696B4A7214C91A3001DFB60 /* Injections */,
 				CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */,
 				CCA83D51214B45BF00226382 /* GoogleService-Info.plist */,
 				9696B4A5214C8E28001DFB60 /* Firebase+User.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		9696B4A7214C91A3001DFB60 /* Injections */ = {
+			isa = PBXGroup;
+			children = (
+				CCDC94EE214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.h */,
+				CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */,
+			);
+			path = Injections;
 			sourceTree = "<group>";
 		};
 		96E5F23D21109A7C00C2F09E /* ViewControllers */ = {
@@ -195,8 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				9696B4A4214C8DAF001DFB60 /* Firebase */,
-				CCDC94EE214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.h */,
-				CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";

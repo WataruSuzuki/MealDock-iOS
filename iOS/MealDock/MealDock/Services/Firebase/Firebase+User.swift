@@ -12,7 +12,13 @@ extension FirebaseService {
 
     func addUser() {
         if let user = currentUser {
-            self.ref.child("users").child(user.uid).setValue(["username": user.displayName])
+            self.ref.child("users").child(user.uid).setValue(["username": "username"])
+        }
+    }
+    
+    func updatedUserName(username: String) {
+        if let user = currentUser {
+            self.ref.child("users/\(user.uid)/username").setValue(username)
         }
     }
 }
