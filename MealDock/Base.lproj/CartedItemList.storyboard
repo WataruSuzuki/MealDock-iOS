@@ -73,11 +73,11 @@
             </objects>
             <point key="canvasLocation" x="1694" y="430"/>
         </scene>
-        <!--Harvest-->
+        <!--Carted-->
         <scene sceneID="IgO-30-8vJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d2z-JJ-j0C" customClass="AppBarNavigationController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Harvest" image="harvest" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Carted" image="harvest" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OJG-h7-Nm3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -94,6 +94,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="harvest" width="30" height="30"/>
+        <image name="harvest" width="48" height="48"/>
     </resources>
 </document>

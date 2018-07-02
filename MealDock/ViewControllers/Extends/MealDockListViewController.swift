@@ -16,6 +16,7 @@ class MealDockListViewController: UITableViewController,
 {
     let fab = MDCFloatingButton()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
+    var harvests = [[Harvest]]()
     var checkedItems = [String : Harvest]()
     let colorScheme = MDCSemanticColorScheme()
 
@@ -44,7 +45,30 @@ class MealDockListViewController: UITableViewController,
         }
     }
     
-    func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return harvests.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return harvests[section].count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableViewCustomCell(tableView, cellForRowAt: indexPath, harvests: harvests)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if 0 < harvests[section].count {
+            if let harvestSection = Harvest.Section(rawValue: section) {
+                return harvestSection.emoji()
+            }
+        }
+        return nil
+    }
+    
+    fileprivate func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
         
         // Configure the cell...
@@ -91,6 +115,20 @@ class MealDockListViewController: UITableViewController,
         return true
     }
     */
+    
+    // MARK: - Table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! StrikethroughTableViewCell
+        let harvest = harvests[indexPath.section][indexPath.row]
+        cell.isChecked = !cell.isChecked
+        if cell.isChecked {
+            checkedItems.updateValue(harvest, forKey: harvest.name)
+        } else {
+            checkedItems.removeValue(forKey: harvest.name)
+        }
+        fab.isHidden = 0 == checkedItems.count
+    }
+    
     func activateFab(target: Any?, image: UIImage, selector: Selector) {
         fab.setImage(image, for: .normal)
         fab.addTarget(target, action: selector, for: .touchUpInside)

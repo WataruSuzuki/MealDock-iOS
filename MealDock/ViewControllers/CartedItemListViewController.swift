@@ -10,19 +10,19 @@ import UIKit
 import MaterialComponents.MaterialBottomSheet
 
 class CartedItemListViewController: MealDockListViewController {
-    var harvests = [[Harvest]]()
     let shapeScheme = MDCShapeScheme()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = NSLocalizedString("carted", comment: "")
 //        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
 //        styler.cellStyle = .card
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
         //addTargetToFab(target: self, action: #selector(onAddFabTapped))
-        FirebaseService.shared.observeHarvest { (harvests) in
+        FirebaseService.shared.observeCartedHarvest { (harvests) in
             self.harvests = harvests
             self.tableView.reloadData()
         }
@@ -44,42 +44,6 @@ class CartedItemListViewController: MealDockListViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return harvests.count
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return harvests[section].count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableViewCustomCell(tableView, cellForRowAt: indexPath, harvests: harvests)
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if 0 < harvests[section].count {
-            if let harvestSection = Harvest.Section(rawValue: section) {
-                return harvestSection.emoji()
-            }
-        }
-        return nil
-    }
-    
-    // MARK: - Table view delegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! StrikethroughTableViewCell
-        let harvest = harvests[indexPath.section][indexPath.row]
-        cell.isChecked = !cell.isChecked
-        if cell.isChecked {
-            checkedItems.updateValue(harvest, forKey: harvest.name)
-        } else {
-            checkedItems.removeValue(forKey: harvest.name)
-        }
-        fab.isHidden = 0 == checkedItems.count
-    }
 
 //    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell

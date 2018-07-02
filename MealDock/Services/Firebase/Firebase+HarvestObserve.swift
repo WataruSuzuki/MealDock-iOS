@@ -11,7 +11,7 @@ import CodableFirebase
 
 extension FirebaseService {
     
-    func observeHarvest(success:(([[Harvest]]) -> Void)?) {
+    func observeCartedHarvest(success:(([[Harvest]]) -> Void)?) {
         observeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS) { (items) in
             success?(items)
         }

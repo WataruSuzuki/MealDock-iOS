@@ -9,12 +9,11 @@
 import UIKit
 
 class InFridgeListViewController: MealDockListViewController {
-
-    var harvests = [[Harvest]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = NSLocalizedString("in_fridge", comment: "")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,25 +23,12 @@ class InFridgeListViewController: MealDockListViewController {
             self.harvests = items
             self.tableView.reloadData()
         }
+        activateFab(target: self, image: UIImage(named: "packed_food")!, selector: #selector(onFabTapped))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return harvests.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return harvests[section].count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableViewCustomCell(tableView, cellForRowAt: indexPath, harvests: harvests)
     }
 
     /*
@@ -79,7 +65,6 @@ class InFridgeListViewController: MealDockListViewController {
         return true
     }
     */
-
     /*
     // MARK: - Navigation
 
@@ -89,4 +74,8 @@ class InFridgeListViewController: MealDockListViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    @objc func onFabTapped() {
+        let items = [Harvest](checkedItems.values)
+    }
 }
