@@ -12,12 +12,10 @@ import MaterialComponents.MaterialBottomSheet
 class CartedItemListViewController: MealDockListViewController {
     var harvests = [[Harvest]]()
     let shapeScheme = MDCShapeScheme()
-    let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.registerCustomCell(customCellIdentifier)
 //        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
@@ -58,16 +56,7 @@ class CartedItemListViewController: MealDockListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
-        
-        // Configure the cell...
-        cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
-        
-        cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
-        cell.imageView?.contentMode = .scaleAspectFit
-        cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
-
-        return cell
+        return tableViewCustomCell(tableView, cellForRowAt: indexPath, harvests: harvests)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

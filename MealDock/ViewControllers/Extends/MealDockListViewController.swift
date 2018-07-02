@@ -15,7 +15,7 @@ class MealDockListViewController: UITableViewController,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     let fab = MDCFloatingButton()
-    let reuseIdentifier = "MealDockListCell"
+    let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
     var checkedItems = [String : Harvest]()
     let colorScheme = MDCSemanticColorScheme()
 
@@ -24,6 +24,8 @@ class MealDockListViewController: UITableViewController,
 
         view.addSubview(fab)
         fab.isHidden = true
+        
+        self.tableView.registerCustomCell(customCellIdentifier)
         self.tableView.rowHeight = CGFloat(integerLiteral: 66)
         
         self.tableView.emptyDataSetSource = self
@@ -42,15 +44,18 @@ class MealDockListViewController: UITableViewController,
         }
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+    func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
+        
         // Configure the cell...
-
+        cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
+        
+        cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
+        cell.imageView?.contentMode = .scaleAspectFit
+        cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
