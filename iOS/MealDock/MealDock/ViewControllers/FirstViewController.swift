@@ -23,8 +23,8 @@ class FirstViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //FirebaseService.shared.addUser()
-        FirebaseService.shared.updatedUserName(username: "FugaFuga")
+//        FirebaseService.shared.addUser()
+        FirebaseService.shared.addGroup(groupName: "(・w・)")
     }
     
 }
