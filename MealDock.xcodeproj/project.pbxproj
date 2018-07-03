@@ -40,6 +40,7 @@
 		96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE888221589AAA00924490 /* UICollectionView+CustomNib.swift */; };
 		96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE88842158D0A200924490 /* UIViewController+Transition.swift */; };
 		96FC04DD2168599300533529 /* Firebase+HarvestObserve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DC2168599300533529 /* Firebase+HarvestObserve.swift */; };
+		96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DE21686D0B00533529 /* EditDishViewController.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */; };
@@ -115,6 +116,7 @@
 		96EE888221589AAA00924490 /* UICollectionView+CustomNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CustomNib.swift"; sourceTree = "<group>"; };
 		96EE88842158D0A200924490 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		96FC04DC2168599300533529 /* Firebase+HarvestObserve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+HarvestObserve.swift"; sourceTree = "<group>"; };
+		96FC04DE21686D0B00533529 /* EditDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDishViewController.swift; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				96E5F242212459E000C2F09E /* InFridgeListViewController.swift */,
 				964C00BB214E22FB0099689B /* PackedListViewController.swift */,
 				964C00C5214FDBB10099689B /* ErrandViewController.swift */,
+				96FC04DE21686D0B00533529 /* EditDishViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				CC9B6D24215CB1CE00E49491 /* MarketItems.swift in Sources */,
 				96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */,
 				96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */,
+				96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */,
 				96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */,
 				964C00BC214E22FB0099689B /* PackedListViewController.swift in Sources */,
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,

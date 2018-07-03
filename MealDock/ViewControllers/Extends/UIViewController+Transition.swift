@@ -7,9 +7,26 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
 
 extension UIViewController {
     @objc func tapDismiss() {
         dismiss(animated: true, completion: nil)
     }
+    
+    func presentBottomSheet(viewController: UICollectionViewController) {
+        // Initialize the bottom sheet with the view controller just created
+        let container = AppBarContainerViewController.init(contentViewController: viewController)
+        container.preferredContentSize = CGSize(width: 500, height: 200)
+        container.appBarViewController.headerView.trackingScrollView = viewController.collectionView
+        container.isTopLayoutGuideAdjustmentEnabled = true
+        MDCAppBarColorThemer.applyColorScheme(MDCSemanticColorScheme(), to: container.appBarViewController)
+        
+        let bottomSheet = MDCBottomSheetController(contentViewController: container)
+        MDCBottomSheetControllerShapeThemer.applyShapeScheme(MDCShapeScheme(), to: bottomSheet)
+        bottomSheet.trackingScrollView = viewController.collectionView;
+        // Present the bottom sheet
+        present(bottomSheet, animated: true, completion: nil)
+    }
+
 }
