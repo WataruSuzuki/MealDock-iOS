@@ -37,6 +37,9 @@ class FirebaseService: NSObject,
     var connectedRef: DatabaseReference!
     var presenceRef: DatabaseReference!
     var databaseHandle: DatabaseHandle!
+    var storage: Storage!
+    var storageRef: StorageReference!
+    var uploadTasks = [StorageUploadTask]()
     var isSignOn: Bool {
         get {
             return currentUser != nil
@@ -61,6 +64,9 @@ class FirebaseService: NSObject,
         ref = database.reference()
         observeReachability()
         observeDatabaseHandle()
+        
+        storage = Storage.storage()
+        storageRef = storage.reference()
     }
     
     fileprivate func loadDefaultAuthUI() {

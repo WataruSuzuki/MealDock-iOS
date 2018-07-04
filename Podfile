@@ -9,9 +9,10 @@ target "MealDock" do
     pod 'DJKUtilities', :git => 'https://github.com/WataruSuzuki/DJKUtilities.git'
     pod 'DJKUtilAdMob', :git => 'https://github.com/WataruSuzuki/DJKUtilAdMob.git'#, :configuration => ["Release"]
     pod 'DJKInAppPurchase', :git => 'https://github.com/WataruSuzuki/DJKInAppPurchase.git'#, :configuration => ["Release"]
-    pod 'Firebase/Core'
-    pod 'Firebase/Messaging'
     pod 'Firebase/AdMob'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
     pod 'FirebaseUI'
     pod 'CodableFirebase'
     pod 'PersonalizedAdConsent'

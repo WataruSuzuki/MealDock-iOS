@@ -43,6 +43,7 @@
 		96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DE21686D0B00533529 /* EditDishViewController.swift */; };
 		96FC04E2216892B500533529 /* EditDish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FC04E0216892B500533529 /* EditDish.storyboard */; };
 		96FC04E42168D6D200533529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FC04E32168D6D200533529 /* InfoPlist.strings */; };
+		96FC04E62168E5BB00533529 /* Firebase+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E52168E5BB00533529 /* Firebase+Storage.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */; };
@@ -121,6 +122,7 @@
 		96FC04DE21686D0B00533529 /* EditDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDishViewController.swift; sourceTree = "<group>"; };
 		96FC04E1216892B500533529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditDish.storyboard; sourceTree = "<group>"; };
 		96FC04E32168D6D200533529 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		96FC04E52168E5BB00533529 /* Firebase+Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Storage.swift"; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				964C00C1214FA8770099689B /* Firebase+HarvestExecute.swift */,
 				96FC04DC2168599300533529 /* Firebase+HarvestObserve.swift */,
 				CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */,
+				96FC04E52168E5BB00533529 /* Firebase+Storage.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,
 				CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */,
 				CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */,
+				96FC04E62168E5BB00533529 /* Firebase+Storage.swift in Sources */,
 				964C00C0214E33610099689B /* MealDockBaseCollectionViewController.swift in Sources */,
 				CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */,
 				96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */,

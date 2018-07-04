@@ -186,6 +186,9 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     @objc func tapDone() {
+        if let image = capturePhotoView?.image {
+            FirebaseService.shared.uploadDishPhoto(image: image, contentType: "image/png")
+        }
         dismiss(animated: true, completion: nil)
     }
     
