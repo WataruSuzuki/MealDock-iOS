@@ -12,11 +12,15 @@ import MaterialComponents.MaterialCollections
 private let reuseIdentifier = "EditDishCell"
 private let textCellIdentifier = "EditDishTextCell"
 
-class EditDishViewController: MDCCollectionViewController {
+class EditDishViewController: MDCCollectionViewController,
+    UINavigationControllerDelegate, UIImagePickerControllerDelegate
+{
 
     var checkedItems : [Harvest]!
     var titleTextController: MDCTextInputController!
     var descriptionTextController: MDCTextInputController!
+    var capturePhotoView: UIImageView?
+    var cameraButton: UIButton?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +76,19 @@ class EditDishViewController: MDCCollectionViewController {
         
         switch section {
         case .photo:
-            let button = UIButton(frame: .zero)
-            button.setImage(UIImage(named: "baseline_photo_camera_white_48pt"), for: .normal)
-            cell.addSubview(button)
-            button.autoCenterInSuperview()
+            if cameraButton == nil {
+                cameraButton = UIButton(frame: .zero)
+                cameraButton!.setImage(UIImage(named: "baseline_photo_camera_white_48pt"), for: .normal)
+                cameraButton!.addTarget(self, action: #selector(tapCamera), for: .touchUpInside)
+                cell.addSubview(cameraButton!)
+                cameraButton!.autoCenterInSuperview()
+            }
+            if capturePhotoView == nil {
+                capturePhotoView = UIImageView(frame: .zero)
+                capturePhotoView!.contentMode = .scaleAspectFit
+                cell.addSubview(capturePhotoView!)
+                capturePhotoView!.autoPinEdgesToSuperviewEdges()
+            }
             
         case .title:
             let textField = MDCTextField(frame: .zero)
@@ -150,7 +163,28 @@ class EditDishViewController: MDCCollectionViewController {
     
     }
     */
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            capturePhotoView?.image = image
+        }
+        dismiss(animated: true, completion: nil)
+    }
 
+    // MARK: Actions
+    
+    @objc func tapCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.allowsEditing = true
+            picker.delegate = self
+            
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+    
     @objc func tapDone() {
         dismiss(animated: true, completion: nil)
     }
