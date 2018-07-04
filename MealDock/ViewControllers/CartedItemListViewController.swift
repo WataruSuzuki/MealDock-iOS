@@ -14,12 +14,9 @@ class CartedItemListViewController: MealDockListViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("carted", comment: "")
-//        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
-//        styler.cellStyle = .card
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
-        //addTargetToFab(target: self, action: #selector(onAddFabTapped))
         FirebaseService.shared.observeCartedHarvest { (harvests) in
             self.harvests = harvests
             self.tableView.reloadData()
@@ -42,24 +39,6 @@ class CartedItemListViewController: MealDockListViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
-//        if kind == UICollectionElementKindSectionHeader {
-//            if let section = Harvest.Section(rawValue: indexPath.section) {
-//                view.textLabel?.text = NSLocalizedString(section.toString(), comment: "")
-//            }
-//        }
-//        return view
-//    }
-//
-//    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        if 0 == collectionView.numberOfItems(inSection: section) {
-//            return CGSize(width: 0, height: 0)
-//        } else {
-//            return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
-//        }
-//    }
 
     @objc func onAddTapped() {
         FirebaseService.shared.loadMarketItems(success: { (items) in

@@ -24,3 +24,7 @@ vegetable = "Vegetable";
 fruit = "Fruit";
 carbohydrate = "Carbohydrate";
 oil = "Oil";
+
+title = "Title";
+description = "Description";
+harvest = "Harvest";

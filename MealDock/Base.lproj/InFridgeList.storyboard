@@ -38,40 +38,6 @@
             </objects>
             <point key="canvasLocation" x="1689" y="1039"/>
         </scene>
-        <!--Edit Dish View Controller-->
-        <scene sceneID="Iee-3Z-XZn">
-            <objects>
-                <collectionViewController storyboardIdentifier="EditDishViewController" id="paq-ZM-KN1" customClass="EditDishViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MwA-bQ-2OG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kRD-gO-bC4">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xhp-G4-r8v">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="paq-ZM-KN1" id="Dv8-gq-ucZ"/>
-                            <outlet property="delegate" destination="paq-ZM-KN1" id="ZsM-a2-CLY"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hZ3-aL-XOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2492" y="1039"/>
-        </scene>
         <!--InFridge-->
         <scene sceneID="MF7-Gs-KX8">
             <objects>
@@ -88,6 +54,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aQ-Te-Nym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="1039"/>
+        </scene>
+        <!--EditDishViewController-->
+        <scene sceneID="bCS-Mi-rDN">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="EditDishViewController" storyboardName="EditDish" referencedIdentifier="EditDishViewController" id="gHI-2x-uKH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RYl-E8-r9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2492" y="1039"/>
         </scene>
     </scenes>
     <resources>

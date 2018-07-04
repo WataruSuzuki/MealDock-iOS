@@ -76,9 +76,9 @@ class InFridgeListViewController: MealDockListViewController {
     */
 
     @objc func onFabTapped() {
-        //let items = [Harvest](checkedItems.values)
         let sb = UIStoryboard(name: "InFridgeList", bundle: Bundle.main)
         if let viewController = sb.instantiateViewController(withIdentifier: String(describing: EditDishViewController.self)) as? EditDishViewController {
+            viewController.checkedItems = [Harvest](checkedItems.values)
             presentBottomSheet(viewController: viewController)
         }
     }

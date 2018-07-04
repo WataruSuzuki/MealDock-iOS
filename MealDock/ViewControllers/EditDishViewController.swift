@@ -10,19 +10,26 @@ import UIKit
 import MaterialComponents.MaterialCollections
 
 private let reuseIdentifier = "EditDishCell"
+private let textCellIdentifier = "EditDishTextCell"
 
 class EditDishViewController: MDCCollectionViewController {
+
+    var checkedItems : [Harvest]!
+    var titleTextController: MDCTextInputController!
+    var descriptionTextController: MDCTextInputController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: textCellIdentifier)
+        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
+        styler.cellStyle = .card
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_cancel_black_36pt")!, style: .plain, target: self, action: #selector(tapDismiss))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "packed_food")!, style: .done, target: self, action: #selector(tapDone))
     }
 
     /*
@@ -38,53 +45,125 @@ class EditDishViewController: MDCCollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return Section.max.rawValue
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 10
+        if section == Section.harvest.rawValue {
+            return checkedItems.count
+        } else {
+            return 1
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
         // Configure the cell
+        if let section = Section(rawValue: indexPath.section) {
+            if section == .harvest {
+                return harvestCell(collectionView, cellForItemAt: indexPath)
+            }
+            return materialCollectionCell(collectionView, cellForItemAt: indexPath, section: section)
+        }
+        return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+    }
     
+    fileprivate func materialCollectionCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
+        switch section {
+        case .photo:
+            let button = UIButton(frame: .zero)
+            button.setImage(UIImage(named: "baseline_photo_camera_white_48pt"), for: .normal)
+            cell.addSubview(button)
+            button.autoCenterInSuperview()
+            
+        case .title:
+            let textField = MDCTextField(frame: .zero)
+            titleTextController = MDCTextInputControllerOutlined(textInput: textField)
+            titleTextController.placeholderText = NSLocalizedString("title", comment: "")
+            cell.addSubview(textField)
+            textField.autoPinEdgesToSuperviewEdges()
+            
+        case .description:
+            let multiLineField = MDCMultilineTextField(frame: .zero)
+            descriptionTextController = MDCTextInputControllerOutlinedTextArea(textInput: multiLineField)
+            descriptionTextController.placeholderText = NSLocalizedString("description", comment: "")
+            cell.addSubview(multiLineField)
+            multiLineField.autoPinEdgesToSuperviewEdges()
+            
+        default:
+            break
+        }
+        
         return cell
+    }
+    
+    fileprivate func harvestCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MDCCollectionViewTextCell {
+        let textCell = collectionView.dequeueReusableCell(withReuseIdentifier: textCellIdentifier, for: indexPath) as! MDCCollectionViewTextCell
+        textCell.textLabel?.text = checkedItems[indexPath.row].name
+        textCell.imageView?.image = UIImage(named: "harvest")
+        textCell.imageView?.setImageByAlamofire(with: URL(string: checkedItems[indexPath.row].imageUrl)!)
+
+        return textCell
     }
 
     // MARK: UICollectionViewDelegate
 
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let section = Section(rawValue: indexPath.section) {
+            switch section {
+            case .photo:
+                return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.width)
+                
+            case .title:
+                return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight * 1.5)
+
+            case .description:
+                return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight * 3)
+                
+            default:
+                break
+            }
+        }
+        return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
+        if kind == UICollectionElementKindSectionHeader {
+            if let section = Section(rawValue: indexPath.section) {
+                view.textLabel?.text = NSLocalizedString(section.toString(), comment: "")
+            }
+        }
+        return view
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section != Section.harvest.rawValue {
+            return CGSize(width: 0, height: 0)
+        } else {
+            return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
+        }
+    }
     /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
     }
     */
 
+    @objc func tapDone() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    enum Section: Int {
+        case photo = 0,
+        title,
+        description,
+        harvest,
+        max
+        
+        func toString() -> String {
+            return String(describing: self)
+        }
+    }
 }

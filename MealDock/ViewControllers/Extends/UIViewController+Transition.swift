@@ -17,7 +17,7 @@ extension UIViewController {
     func presentBottomSheet(viewController: UICollectionViewController) {
         // Initialize the bottom sheet with the view controller just created
         let container = AppBarContainerViewController.init(contentViewController: viewController)
-        container.preferredContentSize = CGSize(width: 500, height: 200)
+        container.preferredContentSize = CGSize(width: 500, height: self.view.frame.height / 2)
         container.appBarViewController.headerView.trackingScrollView = viewController.collectionView
         container.isTopLayoutGuideAdjustmentEnabled = true
         MDCAppBarColorThemer.applyColorScheme(MDCSemanticColorScheme(), to: container.appBarViewController)

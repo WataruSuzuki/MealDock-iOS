@@ -41,6 +41,7 @@
 		96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE88842158D0A200924490 /* UIViewController+Transition.swift */; };
 		96FC04DD2168599300533529 /* Firebase+HarvestObserve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DC2168599300533529 /* Firebase+HarvestObserve.swift */; };
 		96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DE21686D0B00533529 /* EditDishViewController.swift */; };
+		96FC04E2216892B500533529 /* EditDish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FC04E0216892B500533529 /* EditDish.storyboard */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */; };
@@ -117,6 +118,7 @@
 		96EE88842158D0A200924490 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		96FC04DC2168599300533529 /* Firebase+HarvestObserve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+HarvestObserve.swift"; sourceTree = "<group>"; };
 		96FC04DE21686D0B00533529 /* EditDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDishViewController.swift; sourceTree = "<group>"; };
+		96FC04E1216892B500533529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditDish.storyboard; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				9615BDEF214CA855001801D5 /* PackedList.storyboard */,
 				9615BDEC214CA822001801D5 /* CartedItemList.storyboard */,
 				9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */,
+				96FC04E0216892B500533529 /* EditDish.storyboard */,
 				96EE887621565CED00924490 /* Errand.storyboard */,
 			);
 			name = Storyboards;
@@ -479,6 +482,7 @@
 				9615BDF7214D42E7001801D5 /* Localizable.strings in Resources */,
 				9615BDEB214CA7E0001801D5 /* InFridgeList.storyboard in Resources */,
 				CC77E5042165F9D5002891BB /* StrikethroughTableViewCell.xib in Resources */,
+				96FC04E2216892B500533529 /* EditDish.storyboard in Resources */,
 				96EE88812158951F00924490 /* ErrandCell.xib in Resources */,
 				9615BDF4214D3605001801D5 /* Settings.storyboard in Resources */,
 				96317C98210F56FC00F81F22 /* Main.storyboard in Resources */,
@@ -785,6 +789,14 @@
 				96EE887721565CED00924490 /* Base */,
 			);
 			name = Errand.storyboard;
+			sourceTree = "<group>";
+		};
+		96FC04E0216892B500533529 /* EditDish.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96FC04E1216892B500533529 /* Base */,
+			);
+			name = EditDish.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
