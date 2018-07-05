@@ -42,7 +42,7 @@ extension FirebaseService {
     
     fileprivate func getUploadReference() -> StorageReference? {
         if let user = currentUser, let bundleId = Bundle.main.bundleIdentifier {
-            let uploadRef = storageRef.child("\(bundleId)/images/\(user.uid)/\(Date().timeIntervalSince1970).png)")
+            let uploadRef = storageRef.child("user/\(user.uid)/\(bundleId)/images/\(Date().timeIntervalSince1970).png")
             return uploadRef
         }
         return nil

@@ -39,7 +39,6 @@ class FirebaseService: NSObject,
     var databaseHandle: DatabaseHandle!
     var storage: Storage!
     var storageRef: StorageReference!
-    var uploadTasks = [StorageUploadTask]()
     var isSignOn: Bool {
         get {
             return currentUser != nil
