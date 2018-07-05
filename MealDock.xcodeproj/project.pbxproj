@@ -44,6 +44,8 @@
 		96FC04E2216892B500533529 /* EditDish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FC04E0216892B500533529 /* EditDish.storyboard */; };
 		96FC04E42168D6D200533529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FC04E32168D6D200533529 /* InfoPlist.strings */; };
 		96FC04E62168E5BB00533529 /* Firebase+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E52168E5BB00533529 /* Firebase+Storage.swift */; };
+		96FC04E8216900FD00533529 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E7216900FD00533529 /* Dish.swift */; };
+		96FC04EA21690B8D00533529 /* MDCTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E921690B8D00533529 /* MDCTextFieldCell.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */; };
@@ -123,6 +125,8 @@
 		96FC04E1216892B500533529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditDish.storyboard; sourceTree = "<group>"; };
 		96FC04E32168D6D200533529 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		96FC04E52168E5BB00533529 /* Firebase+Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Storage.swift"; sourceTree = "<group>"; };
+		96FC04E7216900FD00533529 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		96FC04E921690B8D00533529 /* MDCTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDCTextFieldCell.swift; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
@@ -217,10 +221,10 @@
 			isa = PBXGroup;
 			children = (
 				CC77E4FD2165E865002891BB /* Controllers */,
-				96EE887A2158802D00924490 /* Views */,
 				CCDC94F22150E829007FBAB0 /* Models */,
-				9615BDF5214D40BF001801D5 /* Storyboards */,
 				CCDC94E3214B81EB007FBAB0 /* Services */,
+				9615BDF5214D40BF001801D5 /* Storyboards */,
+				96EE887A2158802D00924490 /* Views */,
 				96E5F23D21109A7C00C2F09E /* ViewControllers */,
 				965460FB21109252005AC0B3 /* Settings.bundle */,
 				96317C90210F56FC00F81F22 /* AppDelegate.swift */,
@@ -316,6 +320,7 @@
 				96EE887F2158951F00924490 /* ErrandCell.xib */,
 				CC77E5012165F9D5002891BB /* StrikethroughTableViewCell.swift */,
 				CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */,
+				96FC04E921690B8D00533529 /* MDCTextFieldCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 			children = (
 				CCDC94F32150E853007FBAB0 /* Harvest.swift */,
 				CC9B6D23215CB1CE00E49491 /* MarketItems.swift */,
+				96FC04E7216900FD00533529 /* Dish.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -700,11 +706,13 @@
 				96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */,
 				CC77E5032165F9D5002891BB /* StrikethroughTableViewCell.swift in Sources */,
 				96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */,
+				96FC04E8216900FD00533529 /* Dish.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+HarvestExecute.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
 				964C00C8214FF2910099689B /* AppBarNavigationController.swift in Sources */,
+				96FC04EA21690B8D00533529 /* MDCTextFieldCell.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,
 				9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */,
 				964C00C4214FCC1A0099689B /* CartedItemListViewController.swift in Sources */,

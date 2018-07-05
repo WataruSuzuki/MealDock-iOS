@@ -22,7 +22,6 @@ extension UIImage {
         return resizedImage ?? self
     }
     
-    // 比率だけ指定する場合
     func resize(ratio: CGFloat) -> UIImage {
         let resizedSize = CGSize(width: Int(self.size.width * ratio), height: Int(self.size.height * ratio))
         UIGraphicsBeginImageContextWithOptions(resizedSize, false, 2)

@@ -21,7 +21,8 @@ class FirebaseService: NSObject,
     static let ID_MARKET_ITEMS = "market_items"
     static let ID_CARTED_ITEMS = "carted_items"
     static let ID_FRIDGE_ITEMS = "in_fridge_items"
-    
+    static let ID_DISH_ITEMS = "dishes"
+
     let providers: [FUIAuthProvider] = [
 //        FUIGoogleAuth(),
 //        FUIFacebookAuth(),

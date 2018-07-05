@@ -17,8 +17,6 @@ class EditDishViewController: MDCCollectionViewController,
 {
 
     var checkedItems : [Harvest]!
-    var titleTextController: MDCTextInputController!
-    var descriptionTextController: MDCTextInputController!
     var capturePhotoView: UIImageView?
     var cameraButton: UIButton?
 
@@ -28,6 +26,7 @@ class EditDishViewController: MDCCollectionViewController,
         // Register cell classes
         self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView!.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: textCellIdentifier)
+        self.collectionView!.register(MDCTextFieldCell.self, forCellWithReuseIdentifier: String(describing: MDCTextFieldCell.self))
         self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
@@ -63,15 +62,50 @@ class EditDishViewController: MDCCollectionViewController,
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Configure the cell
         if let section = Section(rawValue: indexPath.section) {
-            if section == .harvest {
+            switch section {
+            case .harvest:
                 return harvestCell(collectionView, cellForItemAt: indexPath)
+            case .title: fallthrough
+            case .description:
+                return textFieldCell(collectionView, cellForItemAt: indexPath, section: section)
+
+            case .photo:
+                return photoCell(collectionView, cellForItemAt: indexPath, section: section)
+                
+            default:
+                break
             }
-            return materialCollectionCell(collectionView, cellForItemAt: indexPath, section: section)
         }
         return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     }
     
-    fileprivate func materialCollectionCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> UICollectionViewCell {
+    fileprivate func textFieldCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> MDCTextFieldCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCTextFieldCell.self), for: indexPath) as! MDCTextFieldCell
+        switch section {
+        case .title:
+            if cell.textField.superview == nil {
+                cell.inputController = MDCTextInputControllerOutlined(textInput: cell.textField)
+                cell.inputController?.placeholderText = NSLocalizedString("title", comment: "")
+                cell.addSubview(cell.textField)
+                cell.textField.autoPinEdgesToSuperviewEdges()
+            }
+            
+        case .description:
+            if cell.multiLineField.superview == nil {
+                cell.inputController = MDCTextInputControllerOutlinedTextArea(textInput: cell.multiLineField)
+                cell.inputController?.placeholderText = NSLocalizedString("description", comment: "")
+                cell.addSubview(cell.multiLineField)
+                cell.multiLineField.autoPinEdgesToSuperviewEdges()
+            }
+            
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    fileprivate func photoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
         switch section {
@@ -89,20 +123,6 @@ class EditDishViewController: MDCCollectionViewController,
                 cell.addSubview(capturePhotoView!)
                 capturePhotoView!.autoPinEdgesToSuperviewEdges()
             }
-            
-        case .title:
-            let textField = MDCTextField(frame: .zero)
-            titleTextController = MDCTextInputControllerOutlined(textInput: textField)
-            titleTextController.placeholderText = NSLocalizedString("title", comment: "")
-            cell.addSubview(textField)
-            textField.autoPinEdgesToSuperviewEdges()
-            
-        case .description:
-            let multiLineField = MDCMultilineTextField(frame: .zero)
-            descriptionTextController = MDCTextInputControllerOutlinedTextArea(textInput: multiLineField)
-            descriptionTextController.placeholderText = NSLocalizedString("description", comment: "")
-            cell.addSubview(multiLineField)
-            multiLineField.autoPinEdgesToSuperviewEdges()
             
         default:
             break
@@ -187,12 +207,37 @@ class EditDishViewController: MDCCollectionViewController,
     
     @objc func tapDone() {
         if let image = capturePhotoView?.image {
-            FirebaseService.shared.uploadDishPhoto(image: image, contentType: "image/png")
+            FirebaseService.shared.uploadDishPhoto(image: image, uploadedPath: { (path) in
+                FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
+                self.dismiss(animated: true, completion: nil)
+            }) { (error) in
+                //TODO error message for user
+            }
+        } else {
+            FirebaseService.shared.addDish(dish: generateDishData(path: ""))
+            dismiss(animated: true, completion: nil)
         }
-        dismiss(animated: true, completion: nil)
     }
     
-    enum Section: Int {
+    fileprivate func generateDishData(path: String) -> Dish {
+        var title: String!
+        var description: String!
+        for section in Section.allCases {
+            if let cell = collectionView?.cellForItem(at: IndexPath(row: 0, section: section.rawValue)) as? MDCTextFieldCell {
+                switch section {
+                case .title:
+                    title = cell.textField.text
+                case .description:
+                    description = cell.multiLineField.text
+                default:
+                    break
+                }
+            }
+        }
+        return Dish(title: title, description: description, imagePath: path, harvest: checkedItems)
+    }
+    
+    enum Section: Int, CaseIterable {
         case photo = 0,
         title,
         description,

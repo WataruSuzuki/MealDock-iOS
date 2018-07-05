@@ -23,11 +23,15 @@ extension FirebaseService {
         // Upload file and metadata to the object 'images/mountains.jpg'
         if let uploadRef = getUploadReference() {
             let uploadTask = uploadRef.putFile(from: localFile, metadata: metadata)
-            upload(task: uploadTask)
+            upload(task: uploadTask, success: { (path) in
+                debugPrint(path)
+            }) { (error) in
+                print(error ?? "error")
+            }
         }
     }
     
-    func uploadDishPhoto(image: UIImage, contentType: String) {
+    func uploadDishPhoto(image: UIImage, uploadedPath:((String) -> Void)?, failure failureBlock : ((Error?) -> ())?) {
         if let data = UIImagePNGRepresentation(image) {
             // Create the file metadata
             let metadata = StorageMetadata()
@@ -35,7 +39,11 @@ extension FirebaseService {
             
             if let uploadRef = getUploadReference() {
                 let uploadTask = uploadRef.putData(data, metadata: metadata)
-                upload(task: uploadTask)
+                upload(task: uploadTask, success: { (path) in
+                    uploadedPath?(path)
+                }) { (error) in
+                    print(error ?? "error")
+                }
             }
         }
     }
@@ -48,7 +56,7 @@ extension FirebaseService {
         return nil
     }
     
-    fileprivate func upload(task: StorageUploadTask) {
+    fileprivate func upload(task: StorageUploadTask, success:((String) -> Void)?, failure failureBlock : ((Error?) -> ())?) {
         
         // Listen for state changes, errors, and completion of the upload.
         task.observe(.resume) { snapshot in
@@ -71,12 +79,13 @@ extension FirebaseService {
         task.observe(.success) { snapshot in
             // Upload completed successfully
             debugPrint("(・∀・) Upload completed successfully: \(snapshot)")
+            success?(snapshot.reference.fullPath)
         }
         
         task.observe(.failure) { snapshot in
             debugPrint("(・∀・) Upload failure: \(snapshot)")
-            if let error = snapshot.error as NSError? {
-                switch (StorageErrorCode(rawValue: error.code)!) {
+            if let nsError = snapshot.error as NSError? {
+                switch (StorageErrorCode(rawValue: nsError.code)!) {
                 case .objectNotFound:
                     // File doesn't exist
                     break
@@ -97,6 +106,7 @@ extension FirebaseService {
                     break
                 }
             }
+            failureBlock?(snapshot.error)
         }
     }
 }

@@ -48,19 +48,48 @@ extension FirebaseService {
     
     fileprivate func addHarvest(itemId: String, harvest: Harvest) {
         if let user = currentUser {
-            ref.child(itemId).child(user.uid).child(harvest.name)
-                .setValue([
-                    "name": harvest.name,
-                    "section": harvest.section,
-                    "imageUrl": harvest.imageUrl,
-                    "timeStamp": harvest.timeStamp
-                    ])
+            let harvestRef = ref.child(itemId).child(user.uid).child(harvest.name)
+            setHarvestValue(ref: harvestRef, harvest: harvest)
         }
+    }
+    
+    fileprivate func setHarvestValue(ref: DatabaseReference, harvest: Harvest) {
+        ref.setValue([
+            "name": harvest.name,
+            "section": harvest.section,
+            "imageUrl": harvest.imageUrl,
+            "timeStamp": harvest.timeStamp
+            ])
     }
     
     fileprivate func removeHarvest(itemId: String, harvest: Harvest) {
         if let user = currentUser {
             ref.child(itemId).child(user.uid).child(harvest.name).removeValue()
+        }
+    }
+    
+    func addDish(dish: Dish) {
+        addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish)
+    }
+    
+    fileprivate func addDish(itemId: String, dish: Dish) {
+        if let user = currentUser {
+            let dishRef = ref.child(itemId).child(user.uid).childByAutoId()
+            dishRef.observe(.value) { (snapshot) in
+                for harvest in dish.harvests {
+                    let harvestRef = dishRef.child("harvests").child(harvest.name)
+                    self.setHarvestValue(ref: harvestRef, harvest: harvest)
+                }
+                dishRef.removeAllObservers()
+            }
+            dishRef.setValue([
+                "title": dish.title,
+                "description": dish.description,
+                "imagePath": dish.imagePath,
+                //"harvests": dish.harvests,
+                "timeStamp": dish.timeStamp
+                ])
+            
         }
     }
 }

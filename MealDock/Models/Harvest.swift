@@ -12,7 +12,7 @@ struct Harvest: Codable {
     let name: String
     let section: String
     let imageUrl: String
-    let timeStamp: Int
+    let timeStamp: Double
 
     enum Section: Int {
         case unknown = 0,
