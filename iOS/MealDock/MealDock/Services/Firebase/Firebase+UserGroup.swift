@@ -14,22 +14,49 @@ extension FirebaseService {
         if let user = currentUser {
             self.ref.child("users").child(user.uid).setValue([
                 "username": user.displayName,
-                "email" : user.email
+                "email": user.email
             ])
         }
     }
     
-    func addGroup(groupName name: String) {
+    func readInfo() {
         if let user = currentUser {
-            self.ref.child("groups").child(user.uid).setValue([
-                "name": name
-            ])
+            self.ref.child("messages")
+                .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
+                //.child("message from \(String(describing: user.displayName))")
+                .observeSingleEvent(of: .value, with: { (snapshot) in
+                print(snapshot)
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+            
+        }
+    }
+    
+    func addMessages()  {
+        if let user = currentUser {
+            self.ref.child("messages").child(user.uid)
+                .childByAutoId()
+//                .child("message from \(String(describing: user.displayName))")
+                .setValue([
+                "user": user.displayName ?? "Fuga",
+                "text": "Fugaaaa!",
+                "timestamp": 1435285206
+                ])
         }
     }
     
     func updatedUserName(username: String) {
         if let user = currentUser {
             self.ref.child("users/\(user.uid)/username").setValue(username)
+        }
+    }
+    
+    func updatedUserRoom() {
+        if let user = currentUser {
+            self.ref.child("users/\(user.uid)/rooms").setValue([
+                user.uid: true
+            ])
         }
     }
 }
