@@ -29,23 +29,15 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--UINavigationController-wPh-3O-OWl-->
+        <!--FreezedList-->
         <scene sceneID="uT1-y5-Blc">
             <objects>
-                <viewControllerPlaceholder storyboardName="FreezedList" referencedIdentifier="UINavigationController-wPh-3O-OWl" id="fdQ-Bn-MGZ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="FreezedList" id="fdQ-Bn-MGZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="JMn-1q-GRB"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n46-4J-LKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="374" y="486"/>
-        </scene>
-        <!--FreezedListViewController-->
-        <scene sceneID="JMV-xk-hkG">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="FreezedListViewController" storyboardName="FreezedList" referencedIdentifier="FreezedListViewController" id="UA7-j7-ii7" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="epl-cm-91O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1116" y="486"/>
         </scene>
         <!--HarvestList-->
         <scene sceneID="tgT-Nq-KAw">
@@ -67,23 +59,15 @@
             </objects>
             <point key="canvasLocation" x="-335" y="486"/>
         </scene>
-        <!--UINavigationController-cqE-9P-Aqi-->
+        <!--Settings-->
         <scene sceneID="rMX-03-mjW">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="UINavigationController-cqE-9P-Aqi" id="0uG-EC-XoP" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Settings" id="0uG-EC-XoP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="E84-8l-Yuk"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfb-vS-Tty" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698" y="45"/>
-        </scene>
-        <!--SettingsViewController-->
-        <scene sceneID="U3i-c8-VbJ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SettingsViewController" storyboardName="Settings" referencedIdentifier="SettingsViewController" id="e9E-uZ-Xqj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L50-L1-aNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1651" y="45"/>
+            <point key="canvasLocation" x="742" y="486"/>
         </scene>
     </scenes>
 </document>
