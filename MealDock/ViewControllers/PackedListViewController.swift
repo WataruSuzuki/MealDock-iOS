@@ -16,6 +16,12 @@ class PackedListViewController: MealDockBaseCollectionViewController {
 
         // Do any additional setup after loading the view.
         styler.cellStyle = .card
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            FirebaseService.shared.observeDishes { (dishes) in
+                
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -30,7 +30,7 @@ extension FirebaseService {
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observeSingleEvent(of: .value, with: { (snapshot) in
                     var items = [MarketItems]()
-                    let harvests = self.snapshotToArray(snapshot: snapshot)
+                    let harvests = self.snapshotToHarvests(snapshot: snapshot)
                     for (index, harvest) in harvests.enumerated() {
                         if let section = Harvest.Section(rawValue: index) {
                             let item = MarketItems(type: section.toString(), harvest: harvest)
@@ -54,7 +54,7 @@ extension FirebaseService {
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observe(.value, with: { (snapshot) in
-                    success?(self.snapshotToArray(snapshot: snapshot))
+                    success?(self.snapshotToHarvests(snapshot: snapshot))
                 }, withCancel: { (error) in
                     print(error.localizedDescription)
                 })
@@ -62,7 +62,7 @@ extension FirebaseService {
     }
 
     
-    fileprivate func snapshotToArray(snapshot: DataSnapshot) -> [[Harvest]] {
+    fileprivate func snapshotToHarvests(snapshot: DataSnapshot) -> [[Harvest]] {
         var items = FirebaseService.initHarvestArray()
         for child in snapshot.children {
             if let data = child as? DataSnapshot {
@@ -87,4 +87,32 @@ extension FirebaseService {
         return items
     }
     
+    func observeDishes(success:(([Dish]) -> Void)?) {
+        if let user = currentUser {
+            ref.child(FirebaseService.ID_DISH_ITEMS)
+                //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
+                .child(user.uid)
+                .observe(.value, with: { (snapshot) in
+                    var items = [Dish]()
+                    debugPrint(snapshot)
+                    for child in snapshot.children {
+                        if let data = child as? DataSnapshot {
+                            if let childValue = data.value! as? [String: Any] {
+                                do {
+                                    let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
+                                    items.append(dish)
+                                } catch let error {
+                                    //debugPrint(childValue)
+                                    print(error)
+                                }
+                            }
+                        }
+                    }
+                    items.sort(by: {$0.timeStamp < $1.timeStamp})
+                    success?(items)
+                }, withCancel: { (error) in
+                    print(error.localizedDescription)
+                })
+        }
+    }
 }
