@@ -94,8 +94,8 @@ extension FirebaseService {
                 .child(user.uid)
                 .observe(.value, with: { (snapshot) in
                     var items = [Dish]()
-                    debugPrint(snapshot)
                     for child in snapshot.children {
+                        debugPrint(child)
                         if let data = child as? DataSnapshot {
                             if let childValue = data.value! as? [String: Any] {
                                 do {

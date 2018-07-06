@@ -11,6 +11,8 @@ import MaterialComponents.MaterialCollections
 
 class PackedListViewController: MealDockBaseCollectionViewController {
 
+    var dishes = [Dish]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +21,8 @@ class PackedListViewController: MealDockBaseCollectionViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             FirebaseService.shared.observeDishes { (dishes) in
-                
+                self.dishes = dishes
+                self.collectionView!.reloadData()
             }
         }
     }
@@ -42,24 +45,19 @@ class PackedListViewController: MealDockBaseCollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        let section = 0
-        if section == 0 {
-            updateEmptyMessage(section: section)
-        }
-        return section
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 1
+        return dishes.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = degueueCollectionViewTextCell(cellForItemAt: indexPath)
 
         // Configure the cell
-        cell.textLabel?.text = "MDCCollectionViewTextCell"
+        cell.textLabel?.text = dishes[indexPath.row].title
     
         return cell
     }

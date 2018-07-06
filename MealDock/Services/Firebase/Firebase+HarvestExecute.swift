@@ -75,18 +75,22 @@ extension FirebaseService {
     fileprivate func addDish(itemId: String, dish: Dish) {
         if let user = currentUser {
             let dishRef = ref.child(itemId).child(user.uid).childByAutoId()
-            dishRef.observe(.value) { (snapshot) in
-                for harvest in dish.harvests {
-                    let harvestRef = dishRef.child("harvests").child(harvest.name)
-                    self.setHarvestValue(ref: harvestRef, harvest: harvest)
-                }
-                dishRef.removeAllObservers()
+            var harvestArray = [Any]()
+            for harvest in dish.harvests {
+                harvestArray.append(try! harvest.asDictionary())
             }
+//            dishRef.observe(.value) { (snapshot) in
+//                for harvest in dish.harvests {
+//                    let harvestRef = dishRef.child("harvests").child(harvest.name)
+//                    self.setHarvestValue(ref: harvestRef, harvest: harvest)
+//                }
+//                dishRef.removeAllObservers()
+//            }
             dishRef.setValue([
                 "title": dish.title,
                 "description": dish.description,
                 "imagePath": dish.imagePath,
-                //"harvests": dish.harvests,
+                "harvests": harvestArray,
                 "timeStamp": dish.timeStamp
                 ])
             
