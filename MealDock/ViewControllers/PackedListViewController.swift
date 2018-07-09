@@ -19,11 +19,9 @@ class PackedListViewController: MealDockBaseCollectionViewController {
         // Do any additional setup after loading the view.
         styler.cellStyle = .card
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            FirebaseService.shared.observeDishes { (dishes) in
-                self.dishes = dishes
-                self.collectionView!.reloadData()
-//            }
+        FirebaseService.shared.observeDishes { (dishes) in
+            self.dishes = dishes
+            self.collectionView!.reloadData()
         }
     }
 
@@ -58,6 +56,12 @@ class PackedListViewController: MealDockBaseCollectionViewController {
 
         // Configure the cell
         cell.textLabel?.text = dishes[indexPath.row].title
+        
+        FirebaseService.shared.downloadURL(path: dishes[indexPath.row].imagePath, success: { (url) in
+            debugPrint(url)
+        }) { (error) in
+            
+        }
     
         return cell
     }

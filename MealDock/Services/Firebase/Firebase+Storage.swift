@@ -10,6 +10,18 @@ import Foundation
 
 extension FirebaseService {
     
+    func downloadURL(path: String, success:((URL) -> Void)?, failure failureBlock : ((Error) -> ())?) {
+        let downloadUrlRef = storageRef.child(path)
+        
+        downloadUrlRef.downloadURL { url, error in
+            if let url = url {
+                success?(url)
+            } else {
+                failureBlock?(error!)
+            }
+        }
+    }
+    
     func uploadFile(path: String, contentType: String) {
         // Local file you want to upload
         guard let localFile = URL(string: "path/to/image") else {
