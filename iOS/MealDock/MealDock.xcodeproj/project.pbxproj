@@ -12,6 +12,8 @@
 		9615BDEE214CA822001801D5 /* HarvestList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDEC214CA822001801D5 /* HarvestList.storyboard */; };
 		9615BDF1214CA855001801D5 /* PackedList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDEF214CA855001801D5 /* PackedList.storyboard */; };
 		9615BDF4214D3605001801D5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDF2214D3605001801D5 /* Settings.storyboard */; };
+		9615BDF7214D42E7001801D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDF6214D42E7001801D5 /* Localizable.strings */; };
+		9615BDF9214D452E001801D5 /* baseline_settings_black_36pt.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDF8214D452E001801D5 /* baseline_settings_black_36pt.xcassets */; };
 		96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317C90210F56FC00F81F22 /* AppDelegate.swift */; };
 		96317C98210F56FC00F81F22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96317C96210F56FC00F81F22 /* Main.storyboard */; };
 		96317C9A210F56FD00F81F22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96317C99210F56FD00F81F22 /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		9615BDED214CA822001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HarvestList.storyboard; sourceTree = "<group>"; };
 		9615BDF0214CA855001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PackedList.storyboard; sourceTree = "<group>"; };
 		9615BDF3214D3605001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		9615BDF6214D42E7001801D5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		9615BDF8214D452E001801D5 /* baseline_settings_black_36pt.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = baseline_settings_black_36pt.xcassets; path = "../../../../../../Downloads/baseline-settings-ios-black/baseline_settings_black_36pt.xcassets"; sourceTree = "<group>"; };
 		96317C8D210F56FC00F81F22 /* MealDock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealDock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96317C90210F56FC00F81F22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96317C97210F56FC00F81F22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +120,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9615BDF5214D40BF001801D5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				96317C9B210F56FD00F81F22 /* LaunchScreen.storyboard */,
+				96317C96210F56FC00F81F22 /* Main.storyboard */,
+				9615BDF2214D3605001801D5 /* Settings.storyboard */,
+				9615BDEF214CA855001801D5 /* PackedList.storyboard */,
+				9615BDEC214CA822001801D5 /* HarvestList.storyboard */,
+				9615BDE9214CA7E0001801D5 /* FreezedList.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		96317C84210F56FC00F81F22 = {
 			isa = PBXGroup;
 			children = (
@@ -141,19 +158,16 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
-				9615BDF2214D3605001801D5 /* Settings.storyboard */,
-				9615BDEF214CA855001801D5 /* PackedList.storyboard */,
-				9615BDEC214CA822001801D5 /* HarvestList.storyboard */,
-				9615BDE9214CA7E0001801D5 /* FreezedList.storyboard */,
+				9615BDF5214D40BF001801D5 /* Storyboards */,
 				CCDC94E3214B81EB007FBAB0 /* Services */,
 				96E5F23D21109A7C00C2F09E /* ViewControllers */,
 				965460FB21109252005AC0B3 /* Settings.bundle */,
 				96317C90210F56FC00F81F22 /* AppDelegate.swift */,
-				96317C96210F56FC00F81F22 /* Main.storyboard */,
 				96317C99210F56FD00F81F22 /* Assets.xcassets */,
-				96317C9B210F56FD00F81F22 /* LaunchScreen.storyboard */,
+				9615BDF8214D452E001801D5 /* baseline_settings_black_36pt.xcassets */,
 				96317C9E210F56FD00F81F22 /* Info.plist */,
 				CC7A3DC6214A2D6600F50AB0 /* MealDock-Bridging-Header.h */,
+				9615BDF6214D42E7001801D5 /* Localizable.strings */,
 			);
 			path = MealDock;
 			sourceTree = "<group>";
@@ -335,9 +349,11 @@
 			files = (
 				9615BDF1214CA855001801D5 /* PackedList.storyboard in Resources */,
 				965460FC21109252005AC0B3 /* Settings.bundle in Resources */,
+				9615BDF9214D452E001801D5 /* baseline_settings_black_36pt.xcassets in Resources */,
 				96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */,
 				CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */,
 				96317C9A210F56FD00F81F22 /* Assets.xcassets in Resources */,
+				9615BDF7214D42E7001801D5 /* Localizable.strings in Resources */,
 				9615BDEB214CA7E0001801D5 /* FreezedList.storyboard in Resources */,
 				9615BDF4214D3605001801D5 /* Settings.storyboard in Resources */,
 				96317C98210F56FC00F81F22 /* Main.storyboard in Resources */,

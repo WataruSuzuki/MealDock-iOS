@@ -108,6 +108,12 @@ class FirebaseService: NSObject,
         }
     }
     
+    func signOut() {
+        if let authUI = defaultAuthUI {
+            signOut(authUI)
+        }
+    }
+    
     fileprivate func signOut(_ authUI: FUIAuth) {
         do {
             try authUI.signOut()
