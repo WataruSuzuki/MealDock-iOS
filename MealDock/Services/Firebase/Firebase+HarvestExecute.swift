@@ -79,13 +79,6 @@ extension FirebaseService {
             for harvest in dish.harvests {
                 harvestArray.append(try! harvest.asDictionary())
             }
-//            dishRef.observe(.value) { (snapshot) in
-//                for harvest in dish.harvests {
-//                    let harvestRef = dishRef.child("harvests").child(harvest.name)
-//                    self.setHarvestValue(ref: harvestRef, harvest: harvest)
-//                }
-//                dishRef.removeAllObservers()
-//            }
             dishRef.setValue([
                 "title": dish.title,
                 "description": dish.description,

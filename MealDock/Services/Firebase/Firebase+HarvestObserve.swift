@@ -89,30 +89,39 @@ extension FirebaseService {
     
     func observeDishes(success:(([Dish]) -> Void)?) {
         if let user = currentUser {
-            ref.child(FirebaseService.ID_DISH_ITEMS)
-                //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
-                .child(user.uid)
-                .observe(.value, with: { (snapshot) in
-                    var items = [Dish]()
-                    for child in snapshot.children {
-                        debugPrint(child)
-                        if let data = child as? DataSnapshot {
-                            if let childValue = data.value! as? [String: Any] {
-                                do {
-                                    let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
-                                    items.append(dish)
-                                } catch let error {
-                                    //debugPrint(childValue)
-                                    print(error)
-                                }
+            observeDishes(user: user, success: success)
+        } else {
+            signInObservation = observe(\.currentUser) { (user, change) in
+                self.observeDishes(user: self.currentUser!, success: success)
+                self.signInObservation.invalidate()
+            }
+        }
+    }
+    
+    fileprivate func observeDishes(user: User, success:(([Dish]) -> Void)?) {
+        ref.child(FirebaseService.ID_DISH_ITEMS)
+            //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
+            .child(user.uid)
+            .observe(.value, with: { (snapshot) in
+                var items = [Dish]()
+                for child in snapshot.children {
+                    debugPrint(child)
+                    if let data = child as? DataSnapshot {
+                        if let childValue = data.value! as? [String: Any] {
+                            do {
+                                let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
+                                items.append(dish)
+                            } catch let error {
+                                //debugPrint(childValue)
+                                print(error)
                             }
                         }
                     }
-                    items.sort(by: {$0.timeStamp < $1.timeStamp})
-                    success?(items)
-                }, withCancel: { (error) in
-                    print(error.localizedDescription)
-                })
-        }
+                }
+                items.sort(by: {$0.timeStamp < $1.timeStamp})
+                success?(items)
+            }, withCancel: { (error) in
+                print(error.localizedDescription)
+            })
     }
 }

@@ -31,7 +31,7 @@ class FirebaseService: NSObject,
     ]
     
     var defaultAuthUI: FUIAuth!
-    var currentUser: User?
+    @objc dynamic var currentUser: User?
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
     var database: Database!
     var ref: DatabaseReference!
@@ -45,6 +45,7 @@ class FirebaseService: NSObject,
             return currentUser != nil
         }
     }
+    var signInObservation: NSKeyValueObservation!
     //var harvests = [Harvest]()
     var harvests = initHarvestArray()
 
