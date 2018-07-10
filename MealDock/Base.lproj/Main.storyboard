@@ -45,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="-2" y="486"/>
         </scene>
-        <!--PackedList-->
+        <!--DishList-->
         <scene sceneID="k9N-mz-M1P">
             <objects>
-                <viewControllerPlaceholder storyboardName="PackedList" id="MI3-kn-67l" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="DishList" id="MI3-kn-67l" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="cRD-I9-PQb"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hn2-mx-2od" userLabel="First Responder" sceneMemberID="firstResponder"/>

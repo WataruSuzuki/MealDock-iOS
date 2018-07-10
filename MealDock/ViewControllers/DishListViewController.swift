@@ -1,5 +1,5 @@
 //
-//  PackedListViewController.swift
+//  DishListViewController.swift
 //  MealDock
 //
 //  Created by 鈴木 航 on 2018/09/16.
@@ -8,17 +8,30 @@
 
 import UIKit
 import MaterialComponents.MaterialCollections
+import MaterialComponents.MaterialCards_CardThemer
+import MaterialComponents.MaterialColorScheme
+import MaterialComponents.MaterialTypographyScheme
 
-class PackedListViewController: MealDockBaseCollectionViewController {
+private let reuseIdentifier = "DishCollectionCell"
+
+class DishListViewController: UICollectionViewController,
+    DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+{
+    var colorScheme = MDCSemanticColorScheme()
+    var shapeScheme = MDCShapeScheme()
+    var typographyScheme = MDCTypographyScheme()
+    let cardScheme = MDCCardScheme()
 
     var dishes = [Dish]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.collectionView!.register(DishCardCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         // Do any additional setup after loading the view.
-        styler.cellStyle = .card
-        
+        self.collectionView!.emptyDataSetSource = self
+        self.collectionView!.emptyDataSetDelegate = self
+
         FirebaseService.shared.observeDishes { (dishes) in
             self.dishes = dishes
             self.collectionView!.reloadData()
@@ -52,13 +65,15 @@ class PackedListViewController: MealDockBaseCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = degueueCollectionViewTextCell(cellForItemAt: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        guard let cardCell = cell as? DishCardCollectionCell else { return cell }
 
+        cardCell.apply(cardScheme: cardScheme, typographyScheme: typographyScheme)
         // Configure the cell
-        cell.textLabel?.text = dishes[indexPath.row].title
+        cardCell.configure(title: dishes[indexPath.row].title, imageName: "baseline_help_black_48pt")
         
         FirebaseService.shared.downloadURL(path: dishes[indexPath.row].imagePath, success: { (url) in
-            debugPrint(url)
+            cardCell.imageView.setImageByAlamofire(with: url)
         }) { (error) in
             
         }
@@ -97,4 +112,16 @@ class PackedListViewController: MealDockBaseCollectionViewController {
     }
     */
 
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return -100.0
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "No Foods")
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "Let's start to add foods")
+    }
+    
 }

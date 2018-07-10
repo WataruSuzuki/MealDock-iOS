@@ -26,7 +26,7 @@ class EditDishViewController: MDCCollectionViewController,
         // Register cell classes
         self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView!.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: textCellIdentifier)
-        self.collectionView!.register(MDCTextFieldCell.self, forCellWithReuseIdentifier: String(describing: MDCTextFieldCell.self))
+        self.collectionView!.register(TextFieldCell.self, forCellWithReuseIdentifier: String(describing: TextFieldCell.self))
         self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
@@ -79,8 +79,8 @@ class EditDishViewController: MDCCollectionViewController,
         return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     }
     
-    fileprivate func textFieldCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> MDCTextFieldCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCTextFieldCell.self), for: indexPath) as! MDCTextFieldCell
+    fileprivate func textFieldCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> TextFieldCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TextFieldCell.self), for: indexPath) as! TextFieldCell
         switch section {
         case .title:
             if cell.textField.superview == nil {
@@ -223,7 +223,7 @@ class EditDishViewController: MDCCollectionViewController,
         var title: String!
         var description: String!
         for section in Section.allCases {
-            if let cell = collectionView?.cellForItem(at: IndexPath(row: 0, section: section.rawValue)) as? MDCTextFieldCell {
+            if let cell = collectionView?.cellForItem(at: IndexPath(row: 0, section: section.rawValue)) as? TextFieldCell {
                 switch section {
                 case .title:
                     title = cell.textField.text

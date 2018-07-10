@@ -109,34 +109,6 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         return NSAttributedString(string: "Let's start to add foods")
     }
     
-//    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
-//        return emptyMessage
-//    }
-    
-//    fileprivate func createEmptyView() -> UIView {
-//        let card = MDCCard(frame: self.view.bounds)
-//
-//        let label = UILabel()
-//        label.text = "No foods"
-//        card.addSubview(label)
-//        label.autoCenterInSuperview(in: card)
-//
-//        self.view.addSubview(card)
-//        card.edges(to: self.view, insets: UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.height)! * 2, left: 16, bottom: -((self.tabBarController?.tabBar.frame.height)! * 2), right: -16))
-//
-//        return card
-//    }
-    
-    func updateEmptyMessage(section: Int) {
-        if section == 0 {
-            //self.view.addSubview(emptyMessage)
-            //emptyMessage.isHidden = false
-        } else {
-            //emptyMessage.removeFromSuperview()
-            //emptyMessage.isHidden = true
-        }
-    }
-    
     func instantiateFab() {
         fab.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
         addTargetToFab(target: self, action: #selector(onAddFabTapped))
