@@ -59,10 +59,11 @@ class FirebaseService: NSObject,
         if handle == nil {
             handle = Auth.auth().addStateDidChangeListener { (auth, user) in
                 print("auth = \(auth)")
-                if let user = user {
+                self.currentUser = user
+                if let user = self.currentUser {
                     print("user = \(user.debugDescription)")
                 } else {
-                    self.fetchAuth()
+                    self.requestAuthUI()
                 }
             }
         }
@@ -88,7 +89,7 @@ class FirebaseService: NSObject,
         }
     }
     
-    func fetchAuth() {
+    func requestAuthUI() {
         if let authUI = defaultAuthUI {
             let authViewController = authUI.authViewController()
             if let delegate = UIApplication.shared.delegate as? AppDelegate {
@@ -117,6 +118,7 @@ class FirebaseService: NSObject,
     fileprivate func signOut(_ authUI: FUIAuth) {
         do {
             try authUI.signOut()
+            currentUser = nil
         } catch (let error) {
             print(error)
         }

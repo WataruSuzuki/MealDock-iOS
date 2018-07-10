@@ -51,6 +51,8 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let section = Sections(rawValue: indexPath.section) {
             switch section {
+            case .signIn:
+                FirebaseService.shared.requestAuthUI()
             case .signOut:
                 FirebaseService.shared.signOut()
             default:
