@@ -73,13 +73,12 @@ class ErrandPagingViewController: UIViewController {
         view.addSubview(bottomBarView)
         
         bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
-        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
+        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_mic_white_48pt"), for: .normal)
+        bottomBarView.floatingButton.addTarget(self, action: #selector(tapMicToSpeech), for: .touchUpInside)
         bottomBarView.floatingButtonPosition = .center
         
-        let barButtonLeadingItem = UIBarButtonItem(title: "Left", style: .plain, target: self, action: nil)
-        let barButtonTrailingItem = UIBarButtonItem(title: "Right", style: .plain, target: self, action: nil)
-        
-        //bottomBarView.floatingButton.addTarget(self, action: #selector(onAddFabTapped), for: .touchDown)
+        let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_search_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapSearch))
+        let barButtonTrailingItem = UIBarButtonItem(image: UIImage(named:"baseline_photo_camera_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapCamera))
         
         bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
         bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
@@ -101,6 +100,16 @@ class ErrandPagingViewController: UIViewController {
         bottomBarView.autoSetDimension(.height, toSize: bottomBarView.frame.height)
         //bottomBarView.autoPinEdge(toSuperviewEdge: .bottom)
         bottomBarView.autoPinEdge(toSuperviewSafeArea: .bottom)
+    }
+    
+    @objc func tapMicToSpeech() {
+    }
+    
+    @objc func tapSearch() {
+    }
+
+    @objc func tapCamera() {
+        performSegue(withIdentifier: String(describing: CaptureBarcodeViewController.self), sender: self)
     }
     
     @objc func tapDone() {

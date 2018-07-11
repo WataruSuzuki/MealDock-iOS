@@ -30,7 +30,7 @@
 		965460FC21109252005AC0B3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 965460FB21109252005AC0B3 /* Settings.bundle */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserGroup.swift */; };
 		96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */; };
-		96E5F24121244FBF00C2F09E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* FirstViewController.swift */; };
+		96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */; };
 		96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F242212459E000C2F09E /* InFridgeListViewController.swift */; };
 		96EE887821565CED00924490 /* Errand.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96EE887621565CED00924490 /* Errand.storyboard */; };
 		96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE887C2158806100924490 /* UIImageView+Alamofire.swift */; };
@@ -111,7 +111,7 @@
 		965460FB21109252005AC0B3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserGroup.swift"; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrandPagingViewController.swift; sourceTree = "<group>"; };
-		96E5F23F21244FBF00C2F09E /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureBarcodeViewController.swift; sourceTree = "<group>"; };
 		96E5F242212459E000C2F09E /* InFridgeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFridgeListViewController.swift; sourceTree = "<group>"; };
 		96EE887721565CED00924490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Errand.storyboard; sourceTree = "<group>"; };
 		96EE887C2158806100924490 /* UIImageView+Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alamofire.swift"; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 				964C00C9214FF2A20099689B /* Extends */,
 				CCDC94E1214B813B007FBAB0 /* InitViewController.swift */,
 				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
-				96E5F23F21244FBF00C2F09E /* FirstViewController.swift */,
+				96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */,
 				96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */,
 				964C00C3214FCC1A0099689B /* CartedItemListViewController.swift */,
 				96E5F242212459E000C2F09E /* InFridgeListViewController.swift */,
@@ -684,7 +684,7 @@
 			files = (
 				CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */,
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
-				96E5F24121244FBF00C2F09E /* FirstViewController.swift in Sources */,
+				96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */,
 				96FC04DD2168599300533529 /* Firebase+HarvestObserve.swift in Sources */,
 				964C00CB214FFE350099689B /* AppBarContainerViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserGroup.swift in Sources */,

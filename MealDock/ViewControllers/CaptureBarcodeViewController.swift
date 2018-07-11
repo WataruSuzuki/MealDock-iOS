@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  CaptureBarcodeViewController.swift
 //  MealDock
 //
 //  Created by 鈴木 航 on 2018/07/30.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class CaptureBarcodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(tapDismiss))
     }
 
     override func didReceiveMemoryWarning() {
