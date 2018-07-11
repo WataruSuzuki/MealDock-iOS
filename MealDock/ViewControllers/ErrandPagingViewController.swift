@@ -8,17 +8,21 @@
 
 import UIKit
 import Parchment
+import PureLayout
 import MaterialComponents.MaterialBottomAppBar
+import MaterialComponents.MaterialBottomAppBar_ColorThemer
+import MaterialComponents.MaterialButtons_ButtonThemer
 
 class ErrandPagingViewController: UIViewController {
 
+    let bottomBarView = MDCBottomAppBarView()
     var items: [MarketItems]!
     var pagingViewController: FixedPagingViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
 
@@ -36,6 +40,8 @@ class ErrandPagingViewController: UIViewController {
         pagingViewController = FixedPagingViewController(viewControllers: controllers)
         addChildViewController(pagingViewController)
         view.addSubview(pagingViewController.view)
+        
+        instatiateBottomBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +53,7 @@ class ErrandPagingViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         layoutPagingView()
+        layoutBottomAppBar()
     }
     
     func layoutPagingView() {
@@ -57,10 +64,45 @@ class ErrandPagingViewController: UIViewController {
         } else {
             pagingViewController.view.autoPinEdge(toSuperviewEdge: .top)
         }
-        pagingViewController.view.autoPinEdge(toSuperviewEdge: .bottom)
+        pagingViewController.view.autoPinEdge(.bottom, to: .top, of: bottomBarView, withOffset: bottomBarView.floatingButton.frame.height)
+        //pagingViewController.view.autoPinEdge(toSuperviewEdge: .bottom)
         pagingViewController.didMove(toParentViewController: self)
     }
 
+    func instatiateBottomBar() {
+        view.addSubview(bottomBarView)
+        
+        bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
+        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
+        bottomBarView.floatingButtonPosition = .center
+        
+        let barButtonLeadingItem = UIBarButtonItem(title: "Left", style: .plain, target: self, action: nil)
+        let barButtonTrailingItem = UIBarButtonItem(title: "Right", style: .plain, target: self, action: nil)
+        
+        //bottomBarView.floatingButton.addTarget(self, action: #selector(onAddFabTapped), for: .touchDown)
+        
+        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
+        bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
+    }
+    
+    private func layoutBottomAppBar() {
+        let size = bottomBarView.sizeThatFits(view.bounds.size)
+        let offset = (self.tabBarController != nil
+            ? self.tabBarController!.tabBar.frame.height
+            : 0)
+        let bottomBarViewFrame = CGRect(
+            x: 0,
+            y: self.view.frame.height - (size.height + offset),
+            width: size.width, height: size.height)
+        bottomBarView.frame = bottomBarViewFrame
+        
+        bottomBarView.autoPinEdge(toSuperviewEdge: .trailing)
+        bottomBarView.autoPinEdge(toSuperviewEdge: .leading)
+        bottomBarView.autoSetDimension(.height, toSize: bottomBarView.frame.height)
+        //bottomBarView.autoPinEdge(toSuperviewEdge: .bottom)
+        bottomBarView.autoPinEdge(toSuperviewSafeArea: .bottom)
+    }
+    
     @objc func tapDone() {
         let controllers = pagingViewController.viewControllers as! [ErrandViewController]
         for controller in controllers {
