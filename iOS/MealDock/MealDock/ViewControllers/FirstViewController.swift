@@ -24,7 +24,7 @@ class FirstViewController: UIViewController {
         super.viewDidAppear(animated)
         
         FirebaseService.shared.readInfo()
-        FirebaseService.shared.addMessages()
+        FirebaseService.shared.createMyDockGroup()
     }
     
 }

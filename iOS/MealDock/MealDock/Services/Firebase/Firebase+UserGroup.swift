@@ -10,7 +10,7 @@ import UIKit
 
 extension FirebaseService {
 
-    func addUser() {
+    func createUser() {
         if let user = currentUser {
             self.ref.child("users").child(user.uid).setValue([
                 "username": user.displayName,
@@ -19,10 +19,20 @@ extension FirebaseService {
         }
     }
     
+    func createMyDockGroup() {
+        if let user = currentUser {
+            self.ref.child("users/\(user.uid)/rooms").setValue([
+                "nzPmjoNg0XXGcNVRLNx6w2L3BZW2": "My Dock Group"
+                //user.uid: "My Dock Group"
+            ])
+        }
+    }
+    
     func readInfo() {
         if let user = currentUser {
             self.ref.child("messages")
-                .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
+                .child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
+                //.child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 //.child("message from \(String(describing: user.displayName))")
                 .observeSingleEvent(of: .value, with: { (snapshot) in
                 print(snapshot)
