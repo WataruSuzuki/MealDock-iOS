@@ -35,7 +35,7 @@ extension FirebaseService {
         // Upload file and metadata to the object 'images/mountains.jpg'
         if let uploadRef = getUploadReference() {
             let uploadTask = uploadRef.putFile(from: localFile, metadata: metadata)
-            upload(task: uploadTask, success: { (path) in
+            observeUploadTask(task: uploadTask, success: { (path) in
                 debugPrint(path)
             }) { (error) in
                 print(error ?? "error")
@@ -50,8 +50,11 @@ extension FirebaseService {
             metadata.contentType = "image/png"
             
             if let uploadRef = getUploadReference() {
+                let length = data.count / 1024 / 1024
+                debugPrint("(・∀・) data.length = \(length) MB")
+                updatedStorageUserInfo(value: (userInfo?.storage ?? 0) + length)
                 let uploadTask = uploadRef.putData(data, metadata: metadata)
-                upload(task: uploadTask, success: { (path) in
+                observeUploadTask(task: uploadTask, success: { (path) in
                     uploadedPath?(path)
                 }) { (error) in
                     print(error ?? "error")
@@ -68,7 +71,7 @@ extension FirebaseService {
         return nil
     }
     
-    fileprivate func upload(task: StorageUploadTask, success:((String) -> Void)?, failure failureBlock : ((Error?) -> ())?) {
+    fileprivate func observeUploadTask(task: StorageUploadTask, success:((String) -> Void)?, failure failureBlock : ((Error?) -> ())?) {
         
         // Listen for state changes, errors, and completion of the upload.
         task.observe(.resume) { snapshot in

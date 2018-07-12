@@ -45,9 +45,10 @@ class FirebaseService: NSObject,
             return currentUser != nil
         }
     }
-    var signInObservation: NSKeyValueObservation!
+    var signInObservations = [String: NSKeyValueObservation]()
     //var harvests = [Harvest]()
     var harvests = initHarvestArray()
+    var userInfo: UserInfo?
 
     class func initHarvestArray() -> [[Harvest]] {
         return [[Harvest]](repeating: [], count: Harvest.Section.max.rawValue)
@@ -64,7 +65,7 @@ class FirebaseService: NSObject,
         database = Database.database()
         ref = database.reference()
         observeReachability()
-        observeDatabaseHandle()
+        startToObservingDatabase()
         
         storage = Storage.storage()
         storageRef = storage.reference()
@@ -95,11 +96,14 @@ class FirebaseService: NSObject,
         }
     }
     
-    fileprivate func observeDatabaseHandle() {
+    fileprivate func startToObservingDatabase() {
         databaseHandle = ref.observe(DataEventType.value, with: { (snapshot) in
             let value = snapshot.value as! [String : AnyObject]
             print("ovserveDatabaseHandle = \(value)")
         })
+        observeUserInfo { (info) in
+            self.userInfo = info
+        }
     }
     
     fileprivate func signInByKeychain() {

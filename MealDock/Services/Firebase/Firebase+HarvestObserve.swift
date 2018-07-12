@@ -91,10 +91,11 @@ extension FirebaseService {
         if let user = currentUser {
             observeDishes(user: user, success: success)
         } else {
-            signInObservation = observe(\.currentUser) { (user, change) in
+            let handle = observe(\.currentUser) { (user, change) in
                 self.observeDishes(user: self.currentUser!, success: success)
-                self.signInObservation.invalidate()
+                self.signInObservations["observeDishes"]?.invalidate()
             }
+            signInObservations.updateValue(handle, forKey: "observeDishes")
         }
     }
     
