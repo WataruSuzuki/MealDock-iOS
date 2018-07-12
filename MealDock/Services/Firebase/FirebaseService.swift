@@ -47,7 +47,7 @@ class FirebaseService: NSObject,
     }
     var signInObservations = [String: NSKeyValueObservation]()
     //var harvests = [Harvest]()
-    var harvests = initHarvestArray()
+    //var harvests = initHarvestArray()
     var userInfo: UserInfo?
 
     class func initHarvestArray() -> [[Harvest]] {

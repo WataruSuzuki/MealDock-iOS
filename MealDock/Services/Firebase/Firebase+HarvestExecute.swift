@@ -68,8 +68,15 @@ extension FirebaseService {
         }
     }
     
+    func removeAllHarvests() {
+        
+    }
+    
     func addDish(dish: Dish) {
         addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish)
+        for harvest in dish.harvests {
+            removeHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvest: harvest)
+        }
     }
     
     fileprivate func addDish(itemId: String, dish: Dish) {

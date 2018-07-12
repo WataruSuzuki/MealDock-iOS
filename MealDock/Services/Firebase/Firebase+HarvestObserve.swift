@@ -80,7 +80,7 @@ extension FirebaseService {
                 }
             }
         }
-        for i in 0..<self.harvests.count {
+        for i in 0..<items.count {
             items[i].sort(by: {$0.section < $1.section})
         }
         
