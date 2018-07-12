@@ -15,6 +15,7 @@ import MaterialComponents.MaterialTypographyScheme
 private let reuseIdentifier = "DishCollectionCell"
 
 class DishListViewController: UICollectionViewController,
+    UICollectionViewDelegateFlowLayout,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     var colorScheme = MDCSemanticColorScheme()
@@ -81,6 +82,30 @@ class DishListViewController: UICollectionViewController,
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cardSize = (collectionView.bounds.size.width / 2) - 12
+        return CGSize(width: cardSize, height: cardSize)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
     // MARK: UICollectionViewDelegate
 
     /*
