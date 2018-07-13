@@ -4,3 +4,4 @@
 
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "FirebaseUIAuthInjection.h"
+#import <AppAuth/AppAuth.h>
