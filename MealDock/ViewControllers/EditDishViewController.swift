@@ -206,17 +206,17 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     @objc func tapDone() {
-        if let image = capturePhotoView?.image {
-            FirebaseService.shared.uploadDishPhoto(image: image, uploadedPath: { (path) in
-                FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
-                self.dismiss(animated: true, completion: nil)
-            }) { (error) in
-                //TODO error message for user
-            }
-        } else {
+//        if let image = capturePhotoView?.image {
+//            FirebaseService.shared.uploadDishPhoto(image: image, uploadedPath: { (path) in
+//                FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
+//                self.dismiss(animated: true, completion: nil)
+//            }) { (error) in
+//                //TODO error message for user
+//            }
+//        } else {
             FirebaseService.shared.addDish(dish: generateDishData(path: ""))
             dismiss(animated: true, completion: nil)
-        }
+//        }
     }
     
     fileprivate func generateDishData(path: String) -> Dish {

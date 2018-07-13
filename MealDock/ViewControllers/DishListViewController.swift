@@ -73,11 +73,11 @@ class DishListViewController: UICollectionViewController,
         // Configure the cell
         cardCell.configure(title: dishes[indexPath.row].title, imageName: "baseline_help_black_48pt")
         
-        FirebaseService.shared.downloadURL(path: dishes[indexPath.row].imagePath, success: { (url) in
-            cardCell.imageView.setImageByAlamofire(with: url)
-        }) { (error) in
-            
-        }
+//        FirebaseService.shared.downloadURL(path: dishes[indexPath.row].imagePath, success: { (url) in
+//            cardCell.imageView.setImageByAlamofire(with: url)
+//        }) { (error) in
+//            
+//        }
     
         return cell
     }
