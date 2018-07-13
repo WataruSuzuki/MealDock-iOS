@@ -7,23 +7,13 @@
 //
 
 #import "FUIPasswordSignInViewController+Injection.h"
-#import <objc/runtime.h>
-#import <SimpleKeychain/SimpleKeychain.h>
-
-NSString * const emailFUIAuth = @"user-email";
-NSString * const passwordFUIAuth = @"user-password";
+#import "FirebaseUIAuthInjection.h"
 
 @implementation FUIPasswordSignInViewController (Injection)
 
 + (void)switchMethodInjection {
-    [self switchInstanceMethodFrom:@selector(signInWithDefaultValue:andPassword:)
+    [FirebaseUIAuthInjection switchInstanceMethodFrom:@selector(signInWithDefaultValue:andPassword:)
                                 To:@selector(signInAndSaveWithDefaultValue:andPassword:)];
-}
-
-+ (void)switchInstanceMethodFrom:(SEL)from To:(SEL)to {
-    Method fromMethod = class_getInstanceMethod(self, from);
-    Method toMethod = class_getInstanceMethod(self, to);
-    method_exchangeImplementations(fromMethod, toMethod);
 }
 
 - (void)signInAndSaveWithDefaultValue:(NSString *)email andPassword:(NSString *)password {

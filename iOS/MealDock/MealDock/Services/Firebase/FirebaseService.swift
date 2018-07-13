@@ -37,7 +37,7 @@ class FirebaseService: NSObject,
     
     private override init() {
         FirebaseApp.configure()
-        FUIPasswordSignInViewController.switchMethodInjection()
+        FirebaseUIAuthInjection.kakushiAzi()
         
         super.init()
         loadDefaultAuthUI()

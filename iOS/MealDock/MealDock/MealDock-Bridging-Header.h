@@ -3,4 +3,4 @@
 //
 
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
-#import "FUIPasswordSignInViewController+Injection.h"
+#import "FirebaseUIAuthInjection.h"
