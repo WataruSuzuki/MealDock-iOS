@@ -88,6 +88,7 @@ class FirebaseService: NSObject,
                 print("auth = \(auth)")
                 self.currentUser = user
                 if let user = self.currentUser {
+                    AuthService.shared.oauth2()
                     print("user = \(user)")
                 } else {
                     self.requestAuthUI()
@@ -121,6 +122,7 @@ class FirebaseService: NSObject,
                 print(error)
             } else {
                 self.currentUser = result?.user
+                AuthService.shared.oauth2()
             }
             self.regsiterStateListener()
         }
@@ -144,6 +146,7 @@ class FirebaseService: NSObject,
                 registerDefaultMarketItems()
                 A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
             }
+            AuthService.shared.oauth2()
         } else {
             print(error?.localizedDescription ?? "error")
             signOut(authUI)
