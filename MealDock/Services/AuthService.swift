@@ -21,7 +21,7 @@ class AuthService: NSObject {
     //var currentExternalUserAgentSession: OIDExternalUserAgentSession?
     var authState: OIDAuthState?
 
-    func oauth2() {
+    func requestOAuth2() {
         let authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth"
         let tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token"
         
@@ -51,27 +51,60 @@ class AuthService: NSObject {
                         print(error)
                     } else {
                         self.authState = state
-                        if let accessToken = self.authState?.lastTokenResponse?.accessToken {
-                            self.saveTokenInfo(key: "accessToken", value: accessToken)
-                        }
-                        if let idToken = self.authState?.lastTokenResponse?.idToken {
-                            self.saveTokenInfo(key: "idToken", value: idToken)
-                        }
-                        if let refreshToken = self.authState?.lastTokenResponse?.refreshToken {
-                            self.saveTokenInfo(key: "refreshToken", value: refreshToken)
-                        }
-                        if let accessTokenExpirationDate = self.authState?.lastTokenResponse?.accessTokenExpirationDate {
-                            self.saveTokenInfo(key: "accessTokenExpirationDate", value: String(describing: accessTokenExpirationDate.timeIntervalSince1970))
-                        }
+                        self.saveLastTokenResponse()
                     }
                 })
             }
         }
     }
     
-    fileprivate func saveTokenInfo(key: String, value: String) {
-        debugPrint("(・∀・) \(key):\(value)")
-        A0SimpleKeychain().setString(value, forKey: key + "_" + clientId)
+    func freshToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
+        guard let authState = self.authState else {
+            requestOAuth2()
+            return
+        }
+        
+        if let accessToken = authState.lastTokenResponse?.accessToken,
+            let expirationDate = loadTokenInfo(key: "accessTokenExpirationDate"),
+            TimeInterval(expirationDate)! >= NSDate().timeIntervalSince1970 {
+            token?(accessToken)
+        }
+        authState.performAction { (accessToken, refreshToken, error) in
+            if let error = error {
+                print(error)
+                failure?(error)
+            } else {
+                self.saveTokenInfo(key: "accessToken", value: accessToken)
+                self.saveTokenInfo(key: "refreshToken", value: refreshToken)
+                self.freshToken(token: token, failure: failure)
+            }
+        }
+    }
+    
+    fileprivate func saveLastTokenResponse() {
+        guard let lastTokenResponse = self.authState?.lastTokenResponse else {
+            print("Not found last token response...")
+            return
+        }
+        self.saveTokenInfo(key: "accessToken", value: lastTokenResponse.accessToken)
+        self.saveTokenInfo(key: "idToken", value: lastTokenResponse.idToken)
+        self.saveTokenInfo(key: "refreshToken", value: lastTokenResponse.refreshToken)
+        if let accessTokenExpirationDate = lastTokenResponse.accessTokenExpirationDate {
+            self.saveTokenInfo(key: "accessTokenExpirationDate", value: String(describing: accessTokenExpirationDate.timeIntervalSince1970))
+        }
+    }
+    
+    fileprivate func saveTokenInfo(key: String, value: String?) {
+        guard let tokenValue = value else {
+            print("(・A・) \(key) is not found.")
+            return
+        }
+        debugPrint("(・∀・) \(key):\(tokenValue)")
+        A0SimpleKeychain().setString(tokenValue, forKey: key + "_" + clientId)
+    }
+    
+    fileprivate func loadTokenInfo(key: String) -> String? {
+        return A0SimpleKeychain().string(forKey: key + "_" + clientId)
     }
 
     func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
