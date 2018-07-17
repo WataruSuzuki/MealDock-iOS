@@ -18,7 +18,7 @@ target "MealDock" do
     # pod 'ZFDragableModalTransition'
     pod 'GoogleMobileAdsMediationNend'
     pod 'DZNEmptyDataSet'
-    # pod 'KeychainAccess'
+    pod 'MaterialComponents'
     pod "SimpleKeychain"
 end
 
