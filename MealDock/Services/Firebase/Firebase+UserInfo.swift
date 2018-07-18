@@ -65,6 +65,9 @@ extension FirebaseService {
             deleteMyDockGroup()
             ref.child("users/\(user.uid)").removeValue()
             removeAllMyDishes()
+            removeAllInFridgeHarvest()
+            removeAllCartedHarvest()
+            removeAllMarketItems()
             signOut()
         }
     }

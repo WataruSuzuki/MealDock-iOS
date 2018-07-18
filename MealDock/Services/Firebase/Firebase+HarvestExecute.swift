@@ -68,8 +68,22 @@ extension FirebaseService {
         }
     }
     
-    func removeAllHarvests() {
-        
+    fileprivate func removeAllHarvests(itemId: String) {
+        if let user = currentUser {
+            ref.child(itemId).child(user.uid).removeValue()
+        }
+    }
+    
+    func removeAllMarketItems() {
+        removeAllHarvests(itemId: FirebaseService.ID_MARKET_ITEMS)
+    }
+    
+    func removeAllCartedHarvest() {
+        removeAllHarvests(itemId: FirebaseService.ID_CARTED_ITEMS)
+    }
+    
+    func removeAllInFridgeHarvest() {
+        removeAllHarvests(itemId: FirebaseService.ID_DISH_ITEMS)
     }
     
     func addDish(dish: Dish) {
