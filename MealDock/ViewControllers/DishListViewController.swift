@@ -36,6 +36,8 @@ class DishListViewController: UICollectionViewController,
         FirebaseService.shared.observeDishes { (dishes) in
             self.dishes = dishes
             self.collectionView!.reloadData()
+            
+            //AuthService.shared.getMediaItem()
         }
     }
 
@@ -78,6 +80,7 @@ class DishListViewController: UICollectionViewController,
 //        }) { (error) in
 //            
 //        }
+        cardCell.imageView.setImageByAlamofire(with: URL(string: AuthService.shared.getSampleUrl())!)
     
         return cell
     }
