@@ -21,6 +21,7 @@
 		96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96317C9B210F56FD00F81F22 /* LaunchScreen.storyboard */; };
 		96317CA8210F56FD00F81F22 /* MealDockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CA7210F56FD00F81F22 /* MealDockTests.swift */; };
 		96317CB3210F56FD00F81F22 /* MealDockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CB2210F56FD00F81F22 /* MealDockUITests.swift */; };
+		964C00BC214E22FB0099689B /* PackedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00BB214E22FB0099689B /* PackedListViewController.swift */; };
 		965460FC21109252005AC0B3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 965460FB21109252005AC0B3 /* Settings.bundle */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserGroup.swift */; };
 		96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* SecondViewController.swift */; };
@@ -74,6 +75,7 @@
 		96317CAE210F56FD00F81F22 /* MealDockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MealDockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96317CB2210F56FD00F81F22 /* MealDockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockUITests.swift; sourceTree = "<group>"; };
 		96317CB4210F56FD00F81F22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		964C00BB214E22FB0099689B /* PackedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackedListViewController.swift; sourceTree = "<group>"; };
 		965460FB21109252005AC0B3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserGroup.swift"; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				96E5F242212459E000C2F09E /* FreezedListViewController.swift */,
 				CCDC94E1214B813B007FBAB0 /* InitViewController.swift */,
 				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
+				964C00BB214E22FB0099689B /* PackedListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				9696B4A6214C8E28001DFB60 /* Firebase+UserGroup.swift in Sources */,
 				9615BDFC214E0F1A001801D5 /* FUIPasswordSignUpViewController+Injection.m in Sources */,
 				96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */,
+				964C00BC214E22FB0099689B /* PackedListViewController.swift in Sources */,
 				CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */,
 				96E5F243212459E000C2F09E /* FreezedListViewController.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
