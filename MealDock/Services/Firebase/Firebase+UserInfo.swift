@@ -62,6 +62,7 @@ extension FirebaseService {
         if let user = currentUser {
             deleteMyDockGroup()
             ref.child("users/\(user.uid)").removeValue()
+            removeAllMyDishes()
             signOut()
         }
     }

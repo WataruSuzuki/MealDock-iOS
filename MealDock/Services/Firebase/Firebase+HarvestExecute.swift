@@ -81,7 +81,7 @@ extension FirebaseService {
     
     fileprivate func addDish(itemId: String, dish: Dish) {
         if let user = currentUser {
-            let dishRef = ref.child(itemId).child(user.uid).childByAutoId()
+            let dishRef = ref.child(itemId).child(user.uid).child(dish.title)
             var harvestArray = [Any]()
             for harvest in dish.harvests {
                 harvestArray.append(try! harvest.asDictionary())
@@ -94,6 +94,18 @@ extension FirebaseService {
                 "timeStamp": dish.timeStamp
                 ])
             
+        }
+    }
+    
+    func removeAllMyDishes() {
+        if let user = currentUser {
+            ref.child(FirebaseService.ID_DISH_ITEMS).child(user.uid).removeValue()
+        }
+    }
+    
+    fileprivate func removeDish(dish: Dish) {
+        if let user = currentUser {
+            ref.child(FirebaseService.ID_DISH_ITEMS).child(user.uid).child(dish.title).removeValue()
         }
     }
 }
