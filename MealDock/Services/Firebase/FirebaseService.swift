@@ -88,11 +88,6 @@ class FirebaseService: NSObject,
                 print("auth = \(auth)")
                 self.currentUser = user
                 if let user = self.currentUser {
-                    GooglePhotosService.shared.freshToken(token: { (token) in
-                        
-                    }) { (error) in
-                        
-                    }
                     print("user = \(user)")
                 } else {
                     self.requestAuthUI()
@@ -126,11 +121,6 @@ class FirebaseService: NSObject,
                 print(error)
             } else {
                 self.currentUser = result?.user
-                GooglePhotosService.shared.freshToken(token: { (token) in
-                    
-                }) { (error) in
-                    
-                }
             }
             self.regsiterStateListener()
         }
@@ -153,11 +143,6 @@ class FirebaseService: NSObject,
             if !A0SimpleKeychain().hasValue(forKey: initializedFUIAuth) {
                 registerDefaultMarketItems()
                 A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
-            }
-            GooglePhotosService.shared.freshToken(token: { (token) in
-                
-            }) { (error) in
-                
             }
         } else {
             print(error?.localizedDescription ?? "error")

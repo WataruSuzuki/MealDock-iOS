@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AAF866B9EDA2688DD2D9E58 /* Pods_MealDockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4497431E10628292717D8C /* Pods_MealDockTests.framework */; };
 		9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615BDE7214CA79C001801D5 /* SettingsViewController.swift */; };
 		9615BDEB214CA7E0001801D5 /* InFridgeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */; };
 		9615BDEE214CA822001801D5 /* CartedItemList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDEC214CA822001801D5 /* CartedItemList.storyboard */; };
@@ -82,6 +83,8 @@
 
 /* Begin PBXFileReference section */
 		21C49D9CEEE8533906C5B8C0 /* Pods-MealDock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.debug.xcconfig"; sourceTree = "<group>"; };
+		7D6BE5948D8EA7618B433155 /* Pods-MealDockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.release.xcconfig"; sourceTree = "<group>"; };
+		89D3F00AACEC7B628F851B1A /* Pods-MealDockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9615BDE7214CA79C001801D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9615BDEA214CA7E0001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InFridgeList.storyboard; sourceTree = "<group>"; };
 		9615BDED214CA822001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CartedItemList.storyboard; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 		96FC04E921690B8D00533529 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCardCollectionCell.swift; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
+		BE4497431E10628292717D8C /* Pods_MealDockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
 		CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AAF866B9EDA2688DD2D9E58 /* Pods_MealDockTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +185,8 @@
 			children = (
 				21C49D9CEEE8533906C5B8C0 /* Pods-MealDock.debug.xcconfig */,
 				A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */,
+				89D3F00AACEC7B628F851B1A /* Pods-MealDockTests.debug.xcconfig */,
+				7D6BE5948D8EA7618B433155 /* Pods-MealDockTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -270,6 +277,14 @@
 			path = Extends;
 			sourceTree = "<group>";
 		};
+		967146C0216E353000DDA65E /* GooglePhotos */ = {
+			isa = PBXGroup;
+			children = (
+				967146BD216CF02700DDA65E /* GooglePhotosService.swift */,
+			);
+			path = GooglePhotos;
+			sourceTree = "<group>";
+		};
 		9696B4A4214C8DAF001DFB60 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */,
+				BE4497431E10628292717D8C /* Pods_MealDockTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -367,7 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				9696B4A4214C8DAF001DFB60 /* Firebase */,
-				967146BD216CF02700DDA65E /* GooglePhotosService.swift */,
+				967146C0216E353000DDA65E /* GooglePhotos */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -411,6 +427,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96317CBA210F56FD00F81F22 /* Build configuration list for PBXNativeTarget "MealDockTests" */;
 			buildPhases = (
+				6760871FB25645313E16A674 /* [CP] Check Pods Manifest.lock */,
 				96317C9F210F56FD00F81F22 /* Sources */,
 				96317CA0210F56FD00F81F22 /* Frameworks */,
 				96317CA1210F56FD00F81F22 /* Resources */,
@@ -577,6 +594,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealDock/Pods-MealDock-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6760871FB25645313E16A674 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MealDockTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		965460FD211093F2005AC0B3 /* Auto Increments Build Number */ = {
@@ -991,6 +1026,7 @@
 		};
 		96317CBB210F56FD00F81F22 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89D3F00AACEC7B628F851B1A /* Pods-MealDockTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1012,6 +1048,7 @@
 		};
 		96317CBC210F56FD00F81F22 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D6BE5948D8EA7618B433155 /* Pods-MealDockTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

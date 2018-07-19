@@ -28,6 +28,11 @@ target "MealDock" do
 
     platform :ios, '10.0'
         pod 'OAuthSwift', '~> 1.2.0'
+
+    target 'MealDockTests' do
+        inherit! :search_paths
+        # pod 'Firebase'
+    end
 end
 
 post_install do | installer |
