@@ -69,6 +69,11 @@ extension FirebaseService {
             removeAllCartedHarvest()
             removeAllMarketItems()
             signOut()
+            user.delete { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
         }
     }
 
