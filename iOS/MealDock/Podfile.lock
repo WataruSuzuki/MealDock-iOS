@@ -679,6 +679,7 @@ PODS:
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
   - SimpleKeychain (0.8.1)
+  - TinyConstraints (3.2.1)
   - TwitterCore (3.2.0)
   - TwitterKit (3.4.0):
     - TwitterCore (>= 3.1.0)
@@ -698,6 +699,7 @@ DEPENDENCIES:
   - MaterialComponents
   - PersonalizedAdConsent
   - SimpleKeychain
+  - TinyConstraints
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -744,6 +746,7 @@ SPEC REPOS:
     - Protobuf
     - SDWebImage
     - SimpleKeychain
+    - TinyConstraints
     - TwitterCore
     - TwitterKit
 
@@ -819,9 +822,10 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
+  TinyConstraints: 5ca700872f726c49d10829d7b00f31e4ec731f36
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
 
-PODFILE CHECKSUM: 14d7817848c9d8aee55e7ac4b60e98dac9c9838f
+PODFILE CHECKSUM: 335506bf815b44c262341e0393e1438034d051e6
 
 COCOAPODS: 1.5.3
