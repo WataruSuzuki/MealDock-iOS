@@ -21,7 +21,7 @@ extension FirebaseService {
                         for type in marketItems {
                             for harvest in type.items {
                                 debugPrint(harvest)
-                                self.addToMarketItem(harvest: harvest)
+                                //self.addToMarketItem(harvest: harvest)
                             }
                         }
                         
