@@ -9,18 +9,10 @@
 import UIKit
 import MaterialComponents.MaterialCollections
 
-private let reuseIdentifier = "cell"
-
-class PackedListViewController: MDCCollectionViewController {
+class PackedListViewController: MealDockBaseCollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
         styler.cellStyle = .card
@@ -44,8 +36,11 @@ class PackedListViewController: MDCCollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        let section = 0
+        if section == 0 {
+            updateEmptyMessage(section: section)
+        }
+        return section
     }
 
 
