@@ -675,6 +675,7 @@ PODS:
   - NendSDK_iOS (5.0.2)
   - PersonalizedAdConsent (1.0.3)
   - Protobuf (3.6.1)
+  - PureLayout (3.1.2)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
@@ -698,6 +699,7 @@ DEPENDENCIES:
   - GoogleMobileAdsMediationNend
   - MaterialComponents
   - PersonalizedAdConsent
+  - PureLayout
   - SimpleKeychain
   - TinyConstraints
 
@@ -744,6 +746,7 @@ SPEC REPOS:
     - NendSDK_iOS
     - PersonalizedAdConsent
     - Protobuf
+    - PureLayout
     - SDWebImage
     - SimpleKeychain
     - TinyConstraints
@@ -820,12 +823,13 @@ SPEC CHECKSUMS:
   NendSDK_iOS: 412b3d68be41227468d808e94f5e9aee8f6cb62c
   PersonalizedAdConsent: b50a8a5d6065b6db23121e8fcc0dce2ae983f6ea
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
   TinyConstraints: 5ca700872f726c49d10829d7b00f31e4ec731f36
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
 
-PODFILE CHECKSUM: 335506bf815b44c262341e0393e1438034d051e6
+PODFILE CHECKSUM: 53c415ed0d50bd11b90105e6f3be0d1837c820f4
 
 COCOAPODS: 1.5.3

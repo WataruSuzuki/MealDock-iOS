@@ -20,7 +20,7 @@ target "MealDock" do
     pod 'DZNEmptyDataSet'
     pod 'MaterialComponents'
     pod 'SimpleKeychain'
-    pod 'TinyConstraints'
+    pod 'PureLayout'
 end
 
 post_install do | installer |
