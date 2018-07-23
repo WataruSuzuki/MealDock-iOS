@@ -31,17 +31,51 @@ class PermissionTest: XCTestCase {
     }
 
     func testCorrectObserving() {        
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // I'll check at UI Test
+    }
+    
+    func testObservingViaWrongUid() {
+        let wrongId = "(=・∀・=)"
+        failObserve(wrongUid: wrongId, itemId: FirebaseService.ID_CARTED_ITEMS)
+        failObserve(wrongUid: wrongId, itemId: FirebaseService.ID_FRIDGE_ITEMS)
+        failObserve(wrongUid: wrongId, itemId: FirebaseService.ID_DISH_ITEMS)
+    }
+    
+    fileprivate func failObserve(wrongUid: String, itemId : String) {
+        let expectation = self.expectation(description: itemId)
+        ref.child(itemId).child(wrongUid).observe(.value, with: { (snapshot) in
+            print(snapshot)
+            XCTFail("(・A・)!! testFailToObserveRoots \(itemId)")
+        }) { (error) in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        self.waitForExpectations(timeout: 3.00, handler: nil)
+    }
+
+    func testObservingMealDockRoom() {
+        let itemId = FirebaseService.ID_MEAL_DOCKS
+        observeSuccess(itemId: itemId)
+    }
+    
+    fileprivate func observeSuccess(itemId : String) {
+        let expectation = self.expectation(description: itemId)
+        ref.child(itemId).observe(.value, with: { (snapshot) in
+            debugPrint(snapshot)
+            expectation.fulfill()
+        }) { (error) in
+            XCTFail("(・A・)!! testFailToObserveRoots \(itemId)")
+        }
+        self.waitForExpectations(timeout: 3.00, handler: nil)
     }
 
     func testFailToObserveRootItems() {
-        observeRoot(itemId: FirebaseService.ID_CARTED_ITEMS)
-        observeRoot(itemId: FirebaseService.ID_FRIDGE_ITEMS)
-        observeRoot(itemId: FirebaseService.ID_DISH_ITEMS)
+        failObserve(itemId: FirebaseService.ID_CARTED_ITEMS)
+        failObserve(itemId: FirebaseService.ID_FRIDGE_ITEMS)
+        failObserve(itemId: FirebaseService.ID_DISH_ITEMS)
     }
     
-    fileprivate func observeRoot(itemId : String) {
+    fileprivate func failObserve(itemId : String) {
         let expectation = self.expectation(description: itemId)
         ref.child(itemId).observe(.value, with: { (snapshot) in
             print(snapshot)

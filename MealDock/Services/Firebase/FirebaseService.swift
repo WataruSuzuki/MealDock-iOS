@@ -22,6 +22,7 @@ class FirebaseService: NSObject,
     static let ID_CARTED_ITEMS = "carted_items"
     static let ID_FRIDGE_ITEMS = "in_fridge_items"
     static let ID_DISH_ITEMS = "dishes"
+    static let ID_MEAL_DOCKS = "mealdocks"
 
     let providers: [FUIAuthProvider] = [
 //        FUIGoogleAuth(),
@@ -59,12 +60,12 @@ class FirebaseService: NSObject,
         FirebaseUIAuthInjection.kakushiAzi()
         
         super.init()
+        regsiterAuthStateListener()
         loadDefaultAuthUI()
         
         Database.database().isPersistenceEnabled = true
         database = Database.database()
         ref = database.reference()
-        observeReachability()
         startToObservingDatabase()
         
         storage = Storage.storage()
@@ -82,13 +83,17 @@ class FirebaseService: NSObject,
         }
     }
     
-    fileprivate func regsiterStateListener() {
+    fileprivate func regsiterAuthStateListener() {
         if authStateDidChangeListenerHandle == nil {
             authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { (auth, user) in
-                print("auth = \(auth)")
+                debugPrint("auth = \(auth.debugDescription)")
                 self.currentUser = user
                 if let user = self.currentUser {
-                    print("user = \(user)")
+                    self.printUserInfo(user: user)
+                    if !A0SimpleKeychain().hasValue(forKey: initializedFUIAuth) {
+                        A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
+                        self.createMyDockGroup()
+                    }
                 } else {
                     self.requestAuthUI()
                 }
@@ -97,10 +102,7 @@ class FirebaseService: NSObject,
     }
     
     fileprivate func startToObservingDatabase() {
-        databaseHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-            let value = snapshot.value as! [String : AnyObject]
-            print("ovserveDatabaseHandle = \(value)")
-        })
+        observeReachability()
         observeUserInfo { (info) in
             self.userInfo = info
         }
@@ -110,8 +112,6 @@ class FirebaseService: NSObject,
         if let email = A0SimpleKeychain().string(forKey: emailFUIAuth),
             let password = A0SimpleKeychain().string(forKey: passwordFUIAuth) {
             signIn(byEmail: email, password: password)
-        } else {
-            regsiterStateListener()
         }
     }
     
@@ -119,10 +119,7 @@ class FirebaseService: NSObject,
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print(error)
-            } else {
-                self.currentUser = result?.user
             }
-            self.regsiterStateListener()
         }
     }
     
@@ -138,14 +135,8 @@ class FirebaseService: NSObject,
     }
 
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        if let user = user {
-            currentUser = user
-            if !A0SimpleKeychain().hasValue(forKey: initializedFUIAuth) {
-                registerDefaultMarketItems()
-                A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
-            }
-        } else {
-            print(error?.localizedDescription ?? "error")
+        if let error = error {
+            print(error)
             signOut(authUI)
         }
     }

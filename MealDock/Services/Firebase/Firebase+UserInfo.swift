@@ -11,12 +11,10 @@ import CodableFirebase
 
 extension FirebaseService {
 
-    func printUserInfo() {
-        if let user = currentUser {
-            print("uid = \(user.uid)")
-            print("displayName = \(String(describing: user.displayName))")
-            print("email = \(String(describing: user.email))")
-        }
+    func printUserInfo(user: User) {
+        debugPrint("uid = \(user.uid)")
+        debugPrint("displayName = \(String(describing: user.displayName))")
+        debugPrint("email = \(String(describing: user.email))")
     }
     
     func observeUserInfo(info:((UserInfo) -> Void)?) {
@@ -80,15 +78,15 @@ extension FirebaseService {
     func createMyDockGroup() {
         if let user = currentUser {
             let group = [user.uid: "My Dock Group"]
-            ref.child("mealdocks").updateChildValues(group)
-            ref.child("users/\(user.uid)/mealdocks").setValue(group)
+            ref.child(FirebaseService.ID_MEAL_DOCKS).updateChildValues(group)
+            ref.child("users/\(user.uid)/\(FirebaseService.ID_MEAL_DOCKS)").setValue(group)
         }
     }
     
     func deleteMyDockGroup() {
         if let user = currentUser {
-            ref.child("users/\(user.uid)/mealdocks").removeValue()
-            ref.child("mealdocks/\(user.uid)").removeValue()
+            ref.child("users/\(user.uid)/\(FirebaseService.ID_MEAL_DOCKS)").removeValue()
+            ref.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.uid)").removeValue()
         }
         A0SimpleKeychain().deleteEntry(forKey: initializedFUIAuth)
         A0SimpleKeychain().deleteEntry(forKey: emailFUIAuth)

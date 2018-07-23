@@ -52,7 +52,8 @@ class SettingsViewController: UITableViewController {
         if let section = Sections(rawValue: indexPath.section) {
             switch section {
             case .accountInfo:
-                FirebaseService.shared.printUserInfo()
+                //FirebaseService.shared.printUserInfo()
+                break
 
             case .signOut:
                 FirebaseService.shared.signOut()
