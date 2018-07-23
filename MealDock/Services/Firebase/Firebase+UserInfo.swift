@@ -77,7 +77,8 @@ extension FirebaseService {
 
     func createMyDockGroup() {
         if let user = currentUser {
-            let group = [user.uid: "My Dock Group"]
+            let group = [user.uid: "My Dock"]
+            //let group = [user.uid: "My Dock", "groupUser.uid": "Group Dock"]
             ref.child(FirebaseService.ID_MEAL_DOCKS).updateChildValues(group)
             ref.child("users/\(user.uid)/\(FirebaseService.ID_MEAL_DOCKS)").setValue(group)
         }

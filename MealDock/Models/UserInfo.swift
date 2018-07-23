@@ -9,6 +9,7 @@
 import Foundation
 
 struct UserInfo: Codable {
+    var mealdocks: [[String: String]]
     let subscriptionPlan: Int
     let storage: Int
     let countOfCartedItems: Int
@@ -18,8 +19,9 @@ struct UserInfo: Codable {
 }
 
 extension UserInfo {
-    init(_ subscriptionPlan: Int, storage: Int,
+    init(_ mealdocks: [[String: String]], subscriptionPlan: Int, storage: Int,
          countOfCartedItem: Int, countOfInFridgeItems: Int, countOfErrandItems: Int, countOfDishes: Int) {
+        self.mealdocks = mealdocks
         self.subscriptionPlan = subscriptionPlan
         self.storage = storage
         self.countOfCartedItems = countOfCartedItem

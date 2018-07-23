@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 import CodableFirebase
 
 extension FirebaseService {
@@ -24,6 +25,33 @@ extension FirebaseService {
     }
     
     func loadMarketItems(success:(([MarketItems]) -> Void)?, failure failureBlock : ((Error) -> ())?) {
+        var mergedItems = [MarketItems]()
+        loadDefaultMarketItems { (defaultItems, error) in
+            if let error = error {
+                failureBlock?(error)
+            } else {
+                self.loadCustomMarketItems(result: { (customItems, error) in
+                    if let error = error {
+                        debugPrint(error)
+                        mergedItems = defaultItems
+                    } else {
+                        mergedItems.append(MarketItems(type: Harvest.Section.unknown.toString(), harvest: customItems[Harvest.Section.unknown.rawValue].items))
+                        for customItem in customItems {
+                            for defaultItem in defaultItems {
+                                if customItem.type == defaultItem.type {
+                                    mergedItems.append(MarketItems(type: customItem.type, harvest: customItem.items + defaultItem.items))
+                                }
+                            }
+                        }
+                    }
+                    mergedItems.sort(by: {Harvest.getRawValue(fromDescribing: $0.type) < Harvest.getRawValue(fromDescribing: $1.type)})
+                    success?(mergedItems)
+                })
+            }
+        }
+    }
+    
+    fileprivate func loadCustomMarketItems(result:(([MarketItems], Error?) -> Void)?) {
         if let user = currentUser {
             ref.child(FirebaseService.ID_MARKET_ITEMS)
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
@@ -39,12 +67,28 @@ extension FirebaseService {
                             print("Unknown section at harvest...")
                         }
                     }
-                    success?(items)
+                    result?(items, nil)
                 }) { (error) in
                     print(error.localizedDescription)
-                    failureBlock?(error)
+                    result?([MarketItems](), error)
             }
-            
+        }
+    }
+    
+    fileprivate func loadDefaultMarketItems(result:(([MarketItems], Error?) -> Void)?) {
+        let jsonUrl = "https://watarusuzuki.github.io/MealDock/default_market_items.json"
+        Alamofire.request(jsonUrl).responseJSON { (response) in
+            guard response.result.isSuccess, let jsonData = response.data else {
+                    result?([MarketItems](), response.result.error!)
+                    return
+            }
+            do {
+                let marketItems = try JSONDecoder().decode([MarketItems].self, from: jsonData)
+                result?(marketItems, nil)
+            } catch let error {
+                print(error)
+                result?([MarketItems](), error)
+            }
         }
     }
     
@@ -72,7 +116,7 @@ extension FirebaseService {
                         //let harvest = try JSONDecoder().decode(Harvest.self, from: jsonData)
                         let harvest = try FirebaseDecoder().decode(Harvest.self, from: childValue)
                         debugPrint(harvest)
-                        items[harvest.getRawValue(fromDescribing: harvest.section)].append(harvest)
+                        items[Harvest.getRawValue(fromDescribing: harvest.section)].append(harvest)
                     } catch let error {
                         //debugPrint(childValue)
                         print(error)
@@ -115,7 +159,6 @@ extension FirebaseService {
                                 let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
                                 items.append(dish)
                             } catch let error {
-                                //debugPrint(childValue)
                                 print(error)
                             }
                         }

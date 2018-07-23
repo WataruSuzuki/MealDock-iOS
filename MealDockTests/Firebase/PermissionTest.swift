@@ -15,6 +15,7 @@ class PermissionTest: XCTestCase {
     var user: User!
     
     override func setUp() {
+        ref = Database.database().reference()
         let expectation: XCTestExpectation? = self.expectation(description: "setUp")
         Auth.auth().signIn(withEmail: MealDockTests.email, password: MealDockTests.password) { (result, error) in
             if let signInUser = result?.user {
@@ -23,7 +24,6 @@ class PermissionTest: XCTestCase {
             }
         }
         self.waitForExpectations(timeout: 5.00, handler: nil)
-        ref = Database.database().reference()
     }
 
     override func tearDown() {
@@ -36,6 +36,7 @@ class PermissionTest: XCTestCase {
     
     func testObservingViaWrongUid() {
         let wrongId = "(=・∀・=)"
+        failObserve(wrongUid: wrongId, itemId: FirebaseService.ID_MARKET_ITEMS)
         failObserve(wrongUid: wrongId, itemId: FirebaseService.ID_CARTED_ITEMS)
         failObserve(wrongUid: wrongId, itemId: FirebaseService.ID_FRIDGE_ITEMS)
         failObserve(wrongUid: wrongId, itemId: FirebaseService.ID_DISH_ITEMS)
@@ -45,7 +46,7 @@ class PermissionTest: XCTestCase {
         let expectation = self.expectation(description: itemId)
         ref.child(itemId).child(wrongUid).observe(.value, with: { (snapshot) in
             print(snapshot)
-            XCTFail("(・A・)!! testFailToObserveRoots \(itemId)")
+            XCTFail("(・A・)!! failObserve \(itemId)")
         }) { (error) in
             XCTAssertNotNil(error)
             expectation.fulfill()
@@ -55,21 +56,24 @@ class PermissionTest: XCTestCase {
 
     func testObservingMealDockRoom() {
         let itemId = FirebaseService.ID_MEAL_DOCKS
-        observeSuccess(itemId: itemId)
-    }
-    
-    fileprivate func observeSuccess(itemId : String) {
         let expectation = self.expectation(description: itemId)
         ref.child(itemId).observe(.value, with: { (snapshot) in
             debugPrint(snapshot)
             expectation.fulfill()
+            if let value = snapshot.value as? [String: Any] {
+                XCTAssertEqual(value.count, 1)
+                XCTAssertEqual(value[self.user.uid] as! String, "My Dock Group")
+            } else {
+                XCTFail("(・A・)!! testObservingMealDockRoom \(itemId)")
+            }
         }) { (error) in
-            XCTFail("(・A・)!! testFailToObserveRoots \(itemId)")
+            XCTFail("(・A・)!! testObservingMealDockRoom \(error)")
         }
         self.waitForExpectations(timeout: 3.00, handler: nil)
     }
 
     func testFailToObserveRootItems() {
+        failObserve(itemId: FirebaseService.ID_MARKET_ITEMS)
         failObserve(itemId: FirebaseService.ID_CARTED_ITEMS)
         failObserve(itemId: FirebaseService.ID_FRIDGE_ITEMS)
         failObserve(itemId: FirebaseService.ID_DISH_ITEMS)
@@ -79,7 +83,7 @@ class PermissionTest: XCTestCase {
         let expectation = self.expectation(description: itemId)
         ref.child(itemId).observe(.value, with: { (snapshot) in
             print(snapshot)
-            XCTFail("(・A・)!! testFailToObserveRoots \(itemId)")
+            XCTFail("(・A・)!! failObserve \(itemId)")
         }) { (error) in
             XCTAssertNotNil(error)
             expectation.fulfill()

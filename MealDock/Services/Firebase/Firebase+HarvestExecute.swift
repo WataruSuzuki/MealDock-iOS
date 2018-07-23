@@ -7,31 +7,8 @@
 //
 
 import UIKit
-import Alamofire
 
 extension FirebaseService {
-    
-    func registerDefaultMarketItems() {
-        let jsonUrl = "https://watarusuzuki.github.io/MealDock/default_market_items.json"
-        Alamofire.request(jsonUrl).responseJSON { (response) in
-            if response.result.isSuccess {
-                if let jsonData = response.data {
-                    do {
-                        let marketItems = try JSONDecoder().decode([MarketItems].self, from: jsonData)
-                        for type in marketItems {
-                            for harvest in type.items {
-                                debugPrint(harvest)
-                                //self.addToMarketItem(harvest: harvest)
-                            }
-                        }
-                        
-                    } catch let error {
-                        print(error)
-                    }
-                }
-            }
-        }
-    }
     
     func addToMarketItem(harvest: Harvest) {
         addHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvest: harvest)

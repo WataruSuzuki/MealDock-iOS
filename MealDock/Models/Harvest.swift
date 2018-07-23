@@ -41,7 +41,7 @@ struct Harvest: Codable {
         }
     }
 
-    func getRawValue(fromDescribing described: String) -> Int {
+    static func getRawValue(fromDescribing described: String) -> Int {
         for i in 0..<Section.max.rawValue {
             if described == Section(rawValue: i)?.toString() {
                 return i
