@@ -21,7 +21,10 @@ class GooglePhotosService: NSObject {
     var currentAuthorizationFlow: OIDAuthorizationFlowSession?
     //var currentExternalUserAgentSession: OIDExternalUserAgentSession?
     var authState: OIDAuthState?
-
+    var hasAuthState: Bool {
+        return authState != nil
+    }
+    var albumId: String?
     
     private override init() {
         super.init()
@@ -71,18 +74,11 @@ class GooglePhotosService: NSObject {
             return
         }
         
-//        if let accessToken = authState.lastTokenResponse?.accessToken,
-//            let expirationDate = loadTokenInfo(key: "accessTokenExpirationDate"),
-//            TimeInterval(expirationDate)! >= NSDate().timeIntervalSince1970 {
-//            token?(accessToken)
-//        }
         authState.performAction { (accessToken, idToken, error) in
             if let error = error {
                 print(error)
                 failure?(error)
             } else {
-//                self.saveTokenInfo(key: "accessToken", value: accessToken)
-//                self.saveTokenInfo(key: "idToken", value: idToken)
                 token?(accessToken!)
             }
         }
@@ -93,6 +89,7 @@ class GooglePhotosService: NSObject {
             let data = NSKeyedArchiver.archivedData(withRootObject: authState)
             UserDefaults.standard.set(data, forKey: "authState")
             UserDefaults.standard.synchronize()
+            createMealDockAlbumIfNeed()
         }
     }
     
@@ -101,7 +98,9 @@ class GooglePhotosService: NSObject {
             return
         }
         self.authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState
+        self.createMealDockAlbumIfNeed()
     }
+    
     
 //    fileprivate func saveLastTokenResponse() {
 //        guard let lastTokenResponse = self.authState?.lastTokenResponse else {
@@ -139,92 +138,107 @@ class GooglePhotosService: NSObject {
         return false
     }
     
-    func createAlbum() {
+    func createMealDockAlbumIfNeed() {
+        albumId = A0SimpleKeychain().string(forKey: "albumId" + "_" + clientId)
+        guard albumId == nil else {
+            return
+        }
+
         let endpoint = "https://photoslibrary.googleapis.com/v1/albums"
-        let param = ["album": ["title": "New Album Title"]] as [String : Any]
+        let param = ["album": ["title": "Meal Dock"]] as [String : Any]
         freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse) in
-                guard dataResponse.result.error == nil, let json = dataResponse.result.value as? [String: Any] else  {
+                guard dataResponse.result.error == nil, let value = dataResponse.result.value as? [String : Any] else  {
                     print(dataResponse.result.error!)
                     return
                 }
-                debugPrint(json)
-                //print -> [
-                // "title": New Album Title,
-                // "productUrl": https://photos.google.com/lr/album/AId162mrLD6C0meIru3zSbat552DYzs_KVQr_rUTXV_ZnEwR7dQ0oyDYwjDZcXAm2QhSloueHs8O,
-                // "id": AId162mrLD6C0meIru3zSbat552DYzs_KVQr_rUTXV_ZnEwR7dQ0oyDYwjDZcXAm2QhSloueHs8O
-                //]
+                debugPrint(value)
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                    let result = try JSONDecoder().decode(GooglePhotosAlbum.self, from: jsonData)
+                    A0SimpleKeychain().setString(result.id, forKey: "albumId" + "_" + self.clientId)
+                    self.albumId = result.id
+                } catch let error {
+                    print(error)
+                }
             }
         }) { (error) in
             print(error)
         }
     }
     
-    func uploadMediaByteData() {
+    func uploadDishPhoto(image: UIImage, uploadedMediaId:((String) -> Void)?, failure :((Error?) -> ())?) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/uploads"
+        let timeIntervalStr = String(describing: Date().timeIntervalSince1970)
         freshToken(token: { (token) in
             let headers = [
                 "Authorization": "Bearer \(token)",
                 "Content-type": "application/octet-stream",
-                "X-Goog-Upload-File-Name": "Fuga.jpg",
+                "X-Goog-Upload-File-Name": "\(timeIntervalStr).jpg",
                 "X-Goog-Upload-Protocol": "raw"
             ]
-            let image = UIImage(named: "baseline_local_dining_black_36pt")!
-            if let data = UIImagePNGRepresentation(image) {
-                Alamofire.upload(data, to: URL(string: endpoint)!, method: HTTPMethod.post, headers: headers)
-                    .responseString(completionHandler: { (responseString) in
-                        debugPrint("(・∀・) \(responseString)")
-                        //print -> CAISiQMA7p/vKOLTIJYCsVjfPPWIU1TDOU6o0aHQguR0remytyxnWzj4uAhQhxFqqTQeyBEs8ZuHP3GTcz9CqSWdSbCJla88s9wrHvc5m8f3KEyx3CILqg/cDNMKcFYOrBk9xfDah6s67n734SohJQvBjZd9hRam8fiWFDyWyYQ2W6khxhXaBLkJc0iW8wn+NO7WWxWcHFwAwoqNH7jJ5/OkcWnolvKMmeGCbTFEAKTm55PkiBIpI3Z2RE8YLFGji8brcMBxl+x7mDugANFlr3SB/XaCFcMFG0xrPtQuVh8jLbA3ydM4yKzzIbBNfz5vDnQddjbbtSNsubdX1F6lgxpN4QWAcLNez2GOBRXVnkjmwzYmnAvxXCq+GElUqvXOYfZs/2Js0Zyl+QQ9paEhn92Dnpgz8a1Ee+917Muvu+LymnQSiobK1jsP+Lk2dOpsXAM7MyRfIIQOnkLDJj46f17ova1HI0xJyH6XGOWJPxlaaCx+pHIwKFKSpABTp0xtNxJJqtmi+JdZENkzGKw
-                    })
+            guard let data = UIImagePNGRepresentation(image) else {
+                failure?(NSError(domain: "errorメッセージ", code: -1, userInfo: nil))
+                return
             }
-        }) { (error) in
-            print(error)
-        }
-    }
-    
-    func creatingMediaItem() {
-        let endpoint = "https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate"
-        let uploadToken = "CAISiQMA7p/vKOLTIJYCsVjfPPWIU1TDOU6o0aHQguR0remytyxnWzj4uAhQhxFqqTQeyBEs8ZuHP3GTcz9CqSWdSbCJla88s9wrHvc5m8f3KEyx3CILqg/cDNMKcFYOrBk9xfDah6s67n734SohJQvBjZd9hRam8fiWFDyWyYQ2W6khxhXaBLkJc0iW8wn+NO7WWxWcHFwAwoqNH7jJ5/OkcWnolvKMmeGCbTFEAKTm55PkiBIpI3Z2RE8YLFGji8brcMBxl+x7mDugANFlr3SB/XaCFcMFG0xrPtQuVh8jLbA3ydM4yKzzIbBNfz5vDnQddjbbtSNsubdX1F6lgxpN4QWAcLNez2GOBRXVnkjmwzYmnAvxXCq+GElUqvXOYfZs/2Js0Zyl+QQ9paEhn92Dnpgz8a1Ee+917Muvu+LymnQSiobK1jsP+Lk2dOpsXAM7MyRfIIQOnkLDJj46f17ova1HI0xJyH6XGOWJPxlaaCx+pHIwKFKSpABTp0xtNxJJqtmi+JdZENkzGKw"
-        freshToken(token: { (token) in
-            let headers = ["Authorization": "Bearer \(token)"]
-            let param = ["newMediaItems": [
-                "description": "Hoge Fuga",
-                "simpleMediaItem" : ["uploadToken": uploadToken]
-                ]] as [String : Any]
-            Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
-                .responseJSON(completionHandler: { (data) in
-                    guard data.result.error == nil, let json = data.result.value else {
-                        print(data.result.error!)
+            Alamofire.upload(data, to: URL(string: endpoint)!, method: HTTPMethod.post, headers: headers)
+                .responseString(completionHandler: { (response) in
+                    debugPrint("(・∀・)uploadToken: \(response)")
+                    guard let uploadToken = response.value else {
+                        failure?(NSError(domain: "errorメッセージ", code: -1, userInfo: nil))
                         return
                     }
-                    debugPrint(json)
-                    //print -> {
-//                    newMediaItemResults =     (
-//                        {
-//                            mediaItem =             {
-//                                description = "Hoge Fuga";
-//                                filename = "Fuga.jpg";
-//                                id = "AId162nzuovH1DQDWcT6Xva2webr1RAEGzNE0CV7i_5lIa9p6o78njEXd8qdcywzXYkAaqmiQUK8tB6aLnxFoT6SvsBuOpokmg";
-//                                mediaMetadata =                 {
-//                                    creationTime = "2018-10-10T08:53:02Z";
-//                                    height = 72;
-//                                    width = 72;
-//                                };
-//                                mimeType = "image/png";
-//                                productUrl = "https://photos.google.com/lr/photo/AId162nzuovH1DQDWcT6Xva2webr1RAEGzNE0CV7i_5lIa9p6o78njEXd8qdcywzXYkAaqmiQUK8tB6aLnxFoT6SvsBuOpokmg";
-//                            };
-//                            status =             {
-//                                message = OK;
-//                            };
-//                            uploadToken = "CAISiQMA7p/vKOLTIJYCsVjfPPWIU1TDOU6o0aHQguR0remytyxnWzj4uAhQhxFqqTQeyBEs8ZuHP3GTcz9CqSWdSbCJla88s9wrHvc5m8f3KEyx3CILqg/cDNMKcFYOrBk9xfDah6s67n734SohJQvBjZd9hRam8fiWFDyWyYQ2W6khxhXaBLkJc0iW8wn+NO7WWxWcHFwAwoqNH7jJ5/OkcWnolvKMmeGCbTFEAKTm55PkiBIpI3Z2RE8YLFGji8brcMBxl+x7mDugANFlr3SB/XaCFcMFG0xrPtQuVh8jLbA3ydM4yKzzIbBNfz5vDnQddjbbtSNsubdX1F6lgxpN4QWAcLNez2GOBRXVnkjmwzYmnAvxXCq+GElUqvXOYfZs/2Js0Zyl+QQ9paEhn92Dnpgz8a1Ee+917Muvu+LymnQSiobK1jsP+Lk2dOpsXAM7MyRfIIQOnkLDJj46f17ova1HI0xJyH6XGOWJPxlaaCx+pHIwKFKSpABTp0xtNxJJqtmi+JdZENkzGKw";
-//                        }
-//                    );
-//            }
-
+                    self.creatingMediaItem(uploadToken: uploadToken, result: { (id, error) in
+                        if let error = error {
+                            print(error)
+                            failure?(error)
+                        } else {
+                            uploadedMediaId?(id)
+                        }
+                    })
                 })
         }) { (error) in
             print(error)
+            failure?(error)
+        }
+    }
+    
+    func creatingMediaItem(uploadToken:String, result:((String, Error?) -> Void)?) {
+        let endpoint = "https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate"
+        freshToken(token: { (token) in
+            let headers = ["Authorization": "Bearer \(token)"]
+            guard let albumId = self.albumId else {
+                result?("", NSError(domain: "errorメッセージ", code: -1, userInfo: nil))
+                return
+            }
+            let param = [
+                "albumId": "\(albumId)",
+                "newMediaItems": [
+                    "description": "Hoge Fuga",
+                    "simpleMediaItem" : ["uploadToken": uploadToken]
+                ]
+            ] as [String : Any]
+            Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON(completionHandler: { (data) in
+                    guard data.result.error == nil, let value = data.result.value as? [String : [Any]] else {
+                        print(data.result.error!)
+                        result?("", data.result.error!)
+                        return
+                    }
+                    debugPrint(value)
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                        let responseJson = try JSONDecoder().decode(GooglePhotosNewMediaItemResultResponse.self, from: jsonData)
+                        
+                        result?(responseJson.newMediaItemResults[0].mediaItem.id, nil)
+                    } catch let error {
+                        print(error)
+                        result?("", error)
+                    }
+                })
+        }) { (error) in
+            result?("", error)
         }
     }
     

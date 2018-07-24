@@ -195,9 +195,14 @@ class EditDishViewController: MDCCollectionViewController,
     // MARK: Actions
     
     @objc func tapCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+        #if arch(i386) || arch(x86_64)
+        let type = UIImagePickerController.SourceType.photoLibrary
+        #else
+        let type = UIImagePickerController.SourceType.camera
+        #endif
+        if UIImagePickerController.isSourceTypeAvailable(type) {
             let picker = UIImagePickerController()
-            picker.sourceType = .camera
+            picker.sourceType = type
             picker.allowsEditing = true
             picker.delegate = self
             
@@ -206,17 +211,17 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     @objc func tapDone() {
-//        if let image = capturePhotoView?.image {
-//            FirebaseService.shared.uploadDishPhoto(image: image, uploadedPath: { (path) in
-//                FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
-//                self.dismiss(animated: true, completion: nil)
-//            }) { (error) in
-//                //TODO error message for user
-//            }
-//        } else {
+        if let image = capturePhotoView?.image {
+            GooglePhotosService.shared.uploadDishPhoto(image: image, uploadedMediaId: { (path) in
+                FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
+                self.dismiss(animated: true, completion: nil)
+            }) { (error) in
+                //TODO error message for user
+            }
+        } else {
             FirebaseService.shared.addDish(dish: generateDishData(path: ""))
             dismiss(animated: true, completion: nil)
-//        }
+        }
     }
     
     fileprivate func generateDishData(path: String) -> Dish {
