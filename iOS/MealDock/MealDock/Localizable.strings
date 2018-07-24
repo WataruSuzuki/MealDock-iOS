@@ -8,3 +8,5 @@
 
 signIn = "Sign in";
 signOut = "Sign out";
+
+noData_packed = "No Foods in packed list.";

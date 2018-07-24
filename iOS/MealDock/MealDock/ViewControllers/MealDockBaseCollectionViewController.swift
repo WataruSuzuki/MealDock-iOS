@@ -8,11 +8,19 @@
 
 import UIKit
 import MaterialComponents.MaterialCollections
+import MaterialComponents.MaterialAppBar
+import MaterialComponents.MaterialBottomAppBar
+import MaterialComponents.MaterialBottomAppBar_ColorThemer
+import MaterialComponents.MaterialButtons_ButtonThemer
+import PureLayout
 
 class MealDockBaseCollectionViewController: MDCCollectionViewController,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     let reuseIdentifier = "MDCCollectionViewTextCell"
+    let bottomBarView = MDCBottomAppBarView()
+    let fab = MDCFloatingButton()
+    
     var emptyMessage: UIView!
 
     override func viewDidLoad() {
@@ -28,12 +36,25 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
         
-        emptyMessage = getEmptyView()
+//        emptyMessage = createEmptyView()
+//        emptyMessage.isHidden = true
+        instantiateFab()
+//        instatiateBottomBar()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        DispatchQueue.main.async {
+            //self.layoutBottomAppBar()
+        }
+        fab.autoPinEdge(.bottom, to: .top, of: (self.tabBarController?.tabBar)!, withOffset: -30)
+        fab.autoPinEdge(toSuperviewEdge: .trailing, withInset: 30)
     }
     
     // MARK: UICollectionViewDataSource
@@ -57,37 +78,78 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
 //        return cell
 //    }
 
-    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
-        return getEmptyView()
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "No Foods")
     }
     
-    fileprivate func getEmptyView() -> UIView {
-        let card = MDCCard(frame: self.view.bounds)
-        
-        let flatButton = MDCFlatButton()
-        flatButton.setTitleColor(.blue, for: .normal)
-        flatButton.setTitle("Flat Button", for: .normal)
-        flatButton.sizeToFit()
-        card.addSubview(flatButton)
-        flatButton.center(in: card)
-        
-        let label = UILabel()
-        label.text = "No foods"
-        card.addSubview(label)
-        label.centerX(to: card)
-        label.bottomToTop(of: flatButton)
-        
-        self.view.addSubview(card)
-        card.edges(to: self.view, insets: UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.height)!, left: 16, bottom: -((self.tabBarController?.tabBar.frame.height)!), right: -16))
-
-        return card
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "Let's start to add foods")
     }
+    
+//    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+//        return emptyMessage
+//    }
+    
+//    fileprivate func createEmptyView() -> UIView {
+//        let card = MDCCard(frame: self.view.bounds)
+//
+//        let label = UILabel()
+//        label.text = "No foods"
+//        card.addSubview(label)
+//        label.autoCenterInSuperview(in: card)
+//
+//        self.view.addSubview(card)
+//        card.edges(to: self.view, insets: UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.height)! * 2, left: 16, bottom: -((self.tabBarController?.tabBar.frame.height)! * 2), right: -16))
+//
+//        return card
+//    }
     
     func updateEmptyMessage(section: Int) {
         if section == 0 {
-            self.view.addSubview(emptyMessage)
+            //self.view.addSubview(emptyMessage)
+            //emptyMessage.isHidden = false
         } else {
-            emptyMessage.removeFromSuperview()
+            //emptyMessage.removeFromSuperview()
+            //emptyMessage.isHidden = true
         }
+    }
+    
+    func instantiateFab() {
+        fab.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
+        view.addSubview(fab)
+    }
+    
+    func instatiateBottomBar() {
+        bottomBarView.translatesAutoresizingMaskIntoConstraints = false
+        bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        view.addSubview(bottomBarView)
+        
+        bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
+        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
+        bottomBarView.floatingButtonPosition = .center
+        
+        let barButtonLeadingItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: nil)
+        let barButtonTrailingItem = UIBarButtonItem(title: "Dados Pessoais", style: .plain, target: self, action: nil)
+        
+        bottomBarView.floatingButton.addTarget(self, action: #selector(floatingButtonAction), for: .touchDown)
+        
+        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
+        bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
+    }
+    
+    @objc func floatingButtonAction(){
+        
+    }
+    
+    private func layoutBottomAppBar() {
+        let size = bottomBarView.sizeThatFits(view.bounds.size)
+        let bottomBarViewFrame = CGRect(x: 0, y: view.bounds.size.height - size.height - (self.tabBarController?.tabBar.frame.height)!, width: size.width, height: size.height)
+        bottomBarView.frame = bottomBarViewFrame
+    }
+    
+    @objc func onMenuButtonTapped() {
+    }
+    
+    func onSearchButtonTapped() {
     }
 }
