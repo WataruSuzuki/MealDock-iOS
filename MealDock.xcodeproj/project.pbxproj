@@ -32,6 +32,7 @@
 		966F5A46216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */; };
 		966F5A482170C40A00A47EDF /* GooglePhotosSharedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */; };
 		966F5A4A2170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */; };
+		966F5A4F2171878000A47EDF /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A4E2171878000A47EDF /* CustomError.swift */; };
 		967146B8216B807100DDA65E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UserInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -125,6 +126,7 @@
 		966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosNewMediaItemResultResponse.swift; sourceTree = "<group>"; };
 		966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosSharedInfo.swift; sourceTree = "<group>"; };
 		966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosSharedInfoResponse.swift; sourceTree = "<group>"; };
+		966F5A4E2171878000A47EDF /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				CCDC94F22150E829007FBAB0 /* Models */,
 				CCDC94E3214B81EB007FBAB0 /* Services */,
 				9615BDF5214D40BF001801D5 /* Storyboards */,
+				966F5A4D2171875400A47EDF /* Utilities */,
 				96EE887A2158802D00924490 /* Views */,
 				96E5F23D21109A7C00C2F09E /* ViewControllers */,
 				965460FB21109252005AC0B3 /* Settings.bundle */,
@@ -292,6 +295,14 @@
 				CC5C68D521636A830026441D /* MealDockListViewController.swift */,
 			);
 			path = Extends;
+			sourceTree = "<group>";
+		};
+		966F5A4D2171875400A47EDF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				966F5A4E2171878000A47EDF /* CustomError.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		967146C0216E353000DDA65E /* GooglePhotos */ = {
@@ -766,6 +777,7 @@
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
 				96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */,
 				967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */,
+				966F5A4F2171878000A47EDF /* CustomError.swift in Sources */,
 				96FC04DD2168599300533529 /* Firebase+HarvestObserve.swift in Sources */,
 				964C00CB214FFE350099689B /* AppBarContainerViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,

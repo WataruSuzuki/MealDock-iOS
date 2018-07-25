@@ -55,24 +55,29 @@ class GooglePhotosService: NSObject {
             responseType: OIDResponseTypeCode,
             additionalParameters: nil)
         
-        if let delegate = UIApplication.shared.delegate as? AppDelegate {
-            if let controller = delegate.window?.rootViewController {
-                currentExternalUserAgentSession = OIDAuthState.authState(byPresenting: request, presenting: controller, callback: { (state, error) in
-                    if let error = error {
-                        print(error)
-                    } else {
-                        switch scope {
-                        case self.executerScope:
-                            self.saveExecuterAuthState(state: state)
-                        case self.readScope:
-                            self.saveReadAuthState(state: state)
-                        default:
-                            break
-                        }
-                    }
-                })
-            }
+        let customError = CustomError(with: CustomError.ErrorType.cannotGetToken, userInfo: nil)
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate,
+            let controller = delegate.window?.rootViewController else {
+                failure?(customError)
+                return
         }
+        currentExternalUserAgentSession = OIDAuthState.authState(byPresenting: request, presenting: controller, callback: { (state, error) in
+            guard let accessToken = state?.lastTokenResponse?.accessToken else {
+                let presentError = (error != nil ? error! : customError)
+                print(presentError)
+                failure?(presentError)
+                return
+            }
+            token?(accessToken)
+            switch scope {
+            case self.executerScope:
+                self.saveExecuterAuthState(state: state)
+            case self.readScope:
+                self.saveReadAuthState(state: state)
+            default:
+                break
+            }
+        })
     }
     
     fileprivate func freshExecuterToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
