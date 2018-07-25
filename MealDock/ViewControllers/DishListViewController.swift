@@ -37,7 +37,7 @@ class DishListViewController: UICollectionViewController,
             self.dishes = dishes
             self.collectionView!.reloadData()
             
-            //AuthService.shared.getMediaItem()
+            let hoge = GooglePhotosService.shared
         }
     }
 

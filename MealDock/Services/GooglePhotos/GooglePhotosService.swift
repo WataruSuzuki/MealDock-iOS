@@ -15,7 +15,7 @@ class GooglePhotosService: NSObject {
     }()
     
     let clientId = "1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l.apps.googleusercontent.com"
-    let scope = "https://www.googleapis.com/auth/photoslibrary"
+    let scope = "https://www.googleapis.com/auth/photoslibrary.sharing"
     let redirect = "com.googleusercontent.apps.1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l:https://watarusuzuki.github.io/MealDock/index.html"
 
     var currentAuthorizationFlow: OIDAuthorizationFlowSession?
@@ -25,7 +25,9 @@ class GooglePhotosService: NSObject {
         return authState != nil
     }
     var albumId: String?
-    
+    var shareToken: String?
+    var shareableUrl: String?
+
     private override init() {
         super.init()
         loadAuthState()
@@ -140,12 +142,14 @@ class GooglePhotosService: NSObject {
     
     func createMealDockAlbumIfNeed() {
         albumId = A0SimpleKeychain().string(forKey: "albumId" + "_" + clientId)
-        guard albumId == nil else {
+        shareToken = A0SimpleKeychain().string(forKey: "shareToken" + "_" + self.clientId)
+        shareableUrl = A0SimpleKeychain().string(forKey: "shareableUrl" + "_" + self.clientId)
+        if albumId != nil && shareToken != nil && shareableUrl != nil {
             return
         }
 
         let endpoint = "https://photoslibrary.googleapis.com/v1/albums"
-        let param = ["album": ["title": "Meal Dock"]] as [String : Any]
+        let param = ["album": ["title": "Meal Dock Shared"]] as [String : Any]
         freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse) in
@@ -159,10 +163,39 @@ class GooglePhotosService: NSObject {
                     let result = try JSONDecoder().decode(GooglePhotosAlbum.self, from: jsonData)
                     A0SimpleKeychain().setString(result.id, forKey: "albumId" + "_" + self.clientId)
                     self.albumId = result.id
+                    self.sharingAlbum(ALBUM_ID: result.id)
                 } catch let error {
                     print(error)
                 }
             }
+        }) { (error) in
+            print(error)
+        }
+    }
+    
+    fileprivate func sharingAlbum(ALBUM_ID: String) {
+        let endpoint = "https://photoslibrary.googleapis.com/v1/albums/\(ALBUM_ID):share"
+        let param = ["sharedAlbumOptions": ["isCollaborative": true, "isCommentable": true]] as [String : Any]
+        freshToken(token: { (token) in
+            let headers = ["Authorization": "Bearer \(token)"]
+            Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON(completionHandler: { (dataResponse) in
+                    guard dataResponse.result.error == nil,
+                        let value = dataResponse.result.value as? [String : Any] else {
+                        print(dataResponse.result.error!)
+                        return
+                    }
+                    debugPrint(value)
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                        let responseJson = try JSONDecoder().decode(GooglePhotosSharedInfoResponse.self, from: jsonData)
+                        
+                        A0SimpleKeychain().setString(responseJson.shareInfo.shareToken, forKey: "shareToken" + "_" + self.clientId)
+                        A0SimpleKeychain().setString(responseJson.shareInfo.shareableUrl, forKey: "shareableUrl" + "_" + self.clientId)
+                    } catch let error {
+                        print(error)
+                    }
+                })
         }) { (error) in
             print(error)
         }
