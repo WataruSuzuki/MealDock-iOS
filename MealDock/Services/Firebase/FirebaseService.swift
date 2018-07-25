@@ -145,6 +145,7 @@ class FirebaseService: NSObject,
         if let authUI = defaultAuthUI {
             signOut(authUI)
         }
+        GooglePhotosService.removeAuthStatus()
     }
     
     fileprivate func signOut(_ authUI: FUIAuth) {

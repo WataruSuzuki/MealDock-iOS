@@ -15,24 +15,24 @@ class GooglePhotosService: NSObject {
     }()
     
     let clientId = "1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l.apps.googleusercontent.com"
-    let executerScope = "https://www.googleapis.com/auth/photoslibrary.sharing"
-    let readScope = "https://www.googleapis.com/auth/photoslibrary.readonly.appcreateddata"
     let redirect = "com.googleusercontent.apps.1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l:https://watarusuzuki.github.io/MealDock/index.html"
 
-    var currentAuthorizationFlow: OIDAuthorizationFlowSession?
-    //var currentExternalUserAgentSession: OIDExternalUserAgentSession?
+    let executerScope = "https://www.googleapis.com/auth/photoslibrary.sharing"
+    let readScope = "https://www.googleapis.com/auth/photoslibrary.readonly.appcreateddata"
+    var currentExternalUserAgentSession: OIDExternalUserAgentSession?
     var readAuthState: OIDAuthState?
     var handleAuthState: OIDAuthState?
     var albumId: String?
     var shareToken: String?
     var shareableUrl: String?
+    let mediaItemSize = 250
 
     private override init() {
         super.init()
         loadAuthState()
     }
     
-    func requestOAuth2(scope: String, token:((String)->Void)?, failure:((Error)->Void)?) {
+    fileprivate func requestOAuth2(scope: String, token:((String)->Void)?, failure:((Error)->Void)?) {
         let authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth"
         let tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token"
         
@@ -57,7 +57,7 @@ class GooglePhotosService: NSObject {
         
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
             if let controller = delegate.window?.rootViewController {
-                currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request, presenting: controller, callback: { (state, error) in
+                currentExternalUserAgentSession = OIDAuthState.authState(byPresenting: request, presenting: controller, callback: { (state, error) in
                     if let error = error {
                         print(error)
                     } else {
@@ -75,7 +75,7 @@ class GooglePhotosService: NSObject {
         }
     }
     
-    func freshExecuterToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
+    fileprivate func freshExecuterToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
         guard let authState = self.handleAuthState else {
             requestOAuth2(scope: executerScope, token: token, failure: failure)
             return
@@ -83,7 +83,7 @@ class GooglePhotosService: NSObject {
         freshToken(authState: authState, token: token, failure: failure)
     }
     
-    func freshReaderToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
+    fileprivate func freshReaderToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
         guard let authState = self.readAuthState else {
             requestOAuth2(scope: readScope, token: token, failure: failure)
             return
@@ -102,7 +102,7 @@ class GooglePhotosService: NSObject {
         }
     }
 
-    func saveExecuterAuthState(state: OIDAuthState?) {
+    fileprivate func saveExecuterAuthState(state: OIDAuthState?) {
         if let authState = state {
             self.handleAuthState = authState
             let data = NSKeyedArchiver.archivedData(withRootObject: authState)
@@ -112,7 +112,7 @@ class GooglePhotosService: NSObject {
         }
     }
     
-    func saveReadAuthState(state: OIDAuthState?) {
+    fileprivate func saveReadAuthState(state: OIDAuthState?) {
         if let authState = state {
             self.readAuthState = authState
             let data = NSKeyedArchiver.archivedData(withRootObject: authState)
@@ -120,7 +120,13 @@ class GooglePhotosService: NSObject {
             UserDefaults.standard.synchronize()
         }
     }
-    func loadAuthState() {
+    
+    class func removeAuthStatus()  {
+        UserDefaults.standard.removeObject(forKey: "readAuthState")
+        UserDefaults.standard.removeObject(forKey: "handleAuthState")
+    }
+    
+    fileprivate func loadAuthState() {
         if let handleAuthStateData = UserDefaults.standard.object(forKey: "handleAuthState") as? Data {
             self.handleAuthState = NSKeyedUnarchiver.unarchiveObject(with: handleAuthStateData) as? OIDAuthState
         }
@@ -131,16 +137,16 @@ class GooglePhotosService: NSObject {
     }
     
     func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        if let current = currentAuthorizationFlow {
-            if current.resumeAuthorizationFlow(with: url) {
-                currentAuthorizationFlow = nil
+        if let current = currentExternalUserAgentSession {
+            if current.resumeExternalUserAgentFlow(with: url) {
+                currentExternalUserAgentSession = nil
                 return true
             }
         }
         return false
     }
     
-    func createMealDockAlbumIfNeed() {
+    fileprivate func createMealDockAlbumIfNeed() {
         albumId = A0SimpleKeychain().string(forKey: "albumId" + "_" + clientId)
         shareToken = A0SimpleKeychain().string(forKey: "shareToken" + "_" + self.clientId)
         shareableUrl = A0SimpleKeychain().string(forKey: "shareableUrl" + "_" + self.clientId)
@@ -290,7 +296,7 @@ class GooglePhotosService: NSObject {
                         let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
                         let media = try JSONDecoder().decode(GooglePhotosMediaItem.self, from: jsonData)
                         
-                        result?(media.baseUrl! + "=w100-h100" , nil)
+                        result?(media.baseUrl! + "=w\(self.mediaItemSize)-h\(self.mediaItemSize)" , nil)
                     } catch let error {
                         print(error)
                         result?("", error)

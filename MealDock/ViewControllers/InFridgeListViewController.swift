@@ -22,7 +22,6 @@ class InFridgeListViewController: MealDockListViewController {
         FirebaseService.shared.observeInFridgeHarvest { (items) in
             self.harvests = items
             self.tableView.reloadData()
-            
         }
         activateFab(target: self, image: UIImage(named: "packed_food")!, selector: #selector(onFabTapped))
     }
