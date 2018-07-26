@@ -32,7 +32,11 @@
 		966F5A46216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */; };
 		966F5A482170C40A00A47EDF /* GooglePhotosSharedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */; };
 		966F5A4A2170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */; };
+		966F5A4C2171841600A47EDF /* GooglePhoto+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A4B2171841600A47EDF /* GooglePhoto+Upload.swift */; };
 		966F5A4F2171878000A47EDF /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A4E2171878000A47EDF /* CustomError.swift */; };
+		966F5A5121718D1100A47EDF /* GooglePhoto+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A5021718D1100A47EDF /* GooglePhoto+Token.swift */; };
+		966F5A53217190DD00A47EDF /* GooglePhoto+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */; };
+		966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A542171913000A47EDF /* GooglePhoto+Album.swift */; };
 		967146B8216B807100DDA65E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UserInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -126,7 +130,11 @@
 		966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosNewMediaItemResultResponse.swift; sourceTree = "<group>"; };
 		966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosSharedInfo.swift; sourceTree = "<group>"; };
 		966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosSharedInfoResponse.swift; sourceTree = "<group>"; };
+		966F5A4B2171841600A47EDF /* GooglePhoto+Upload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Upload.swift"; sourceTree = "<group>"; };
 		966F5A4E2171878000A47EDF /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		966F5A5021718D1100A47EDF /* GooglePhoto+Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Token.swift"; sourceTree = "<group>"; };
+		966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Access.swift"; sourceTree = "<group>"; };
+		966F5A542171913000A47EDF /* GooglePhoto+Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Album.swift"; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -309,6 +317,10 @@
 			isa = PBXGroup;
 			children = (
 				967146BD216CF02700DDA65E /* GooglePhotosService.swift */,
+				966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */,
+				966F5A542171913000A47EDF /* GooglePhoto+Album.swift */,
+				966F5A4B2171841600A47EDF /* GooglePhoto+Upload.swift */,
+				966F5A5021718D1100A47EDF /* GooglePhoto+Token.swift */,
 			);
 			path = GooglePhotos;
 			sourceTree = "<group>";
@@ -791,14 +803,17 @@
 				96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */,
 				96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */,
 				96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */,
+				966F5A5121718D1100A47EDF /* GooglePhoto+Token.swift in Sources */,
 				96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */,
 				964C00BC214E22FB0099689B /* DishListViewController.swift in Sources */,
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,
 				CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */,
 				CCCFAC34216F518F002279B3 /* GooglePhotosMediaItem.swift in Sources */,
+				966F5A53217190DD00A47EDF /* GooglePhoto+Access.swift in Sources */,
 				CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */,
 				96FC04E62168E5BB00533529 /* Firebase+Storage.swift in Sources */,
 				966F5A46216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift in Sources */,
+				966F5A4C2171841600A47EDF /* GooglePhoto+Upload.swift in Sources */,
 				CCCFAC36216F5295002279B3 /* GooglePhotosMediaMetadata.swift in Sources */,
 				CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */,
 				96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */,
@@ -806,6 +821,7 @@
 				96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */,
 				96FC04E8216900FD00533529 /* Dish.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
+				966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */,
 				966F5A4A2170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift in Sources */,
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+HarvestExecute.swift in Sources */,
