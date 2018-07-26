@@ -28,3 +28,6 @@ oil = "Oil";
 title = "Title";
 description = "Description";
 harvest = "Harvest";
+
+name = "Name";
+type = "Type";

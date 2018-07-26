@@ -109,7 +109,7 @@ class ErrandPagingViewController: UIViewController {
     }
 
     @objc func tapCamera() {
-        performSegue(withIdentifier: String(describing: CaptureBarcodeViewController.self), sender: self)
+        performSegue(withIdentifier: String(describing: AddNewMarketItemViewController.self), sender: self)
     }
     
     @objc func tapDone() {

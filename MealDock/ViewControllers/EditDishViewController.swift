@@ -9,8 +9,8 @@
 import UIKit
 import MaterialComponents.MaterialCollections
 
-private let reuseIdentifier = "EditDishCell"
-private let textCellIdentifier = "EditDishTextCell"
+//private let reuseIdentifier = "EditDishCell"
+//private let textCellIdentifier = "EditDishTextCell"
 
 class EditDishViewController: MDCCollectionViewController,
     UINavigationControllerDelegate, UIImagePickerControllerDelegate
@@ -24,8 +24,8 @@ class EditDishViewController: MDCCollectionViewController,
         super.viewDidLoad()
 
         // Register cell classes
-        self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView!.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: textCellIdentifier)
+        self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: MDCCollectionViewCell.self))
+        self.collectionView!.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: String(describing: MDCCollectionViewTextCell.self))
         self.collectionView!.register(TextFieldCell.self, forCellWithReuseIdentifier: String(describing: TextFieldCell.self))
         self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
@@ -76,7 +76,7 @@ class EditDishViewController: MDCCollectionViewController,
                 break
             }
         }
-        return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        return collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewCell.self), for: indexPath)
     }
     
     fileprivate func textFieldCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> TextFieldCell {
@@ -106,7 +106,7 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     fileprivate func photoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Section) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewCell.self), for: indexPath)
         
         switch section {
         case .photo:
@@ -132,7 +132,7 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     fileprivate func harvestCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MDCCollectionViewTextCell {
-        let textCell = collectionView.dequeueReusableCell(withReuseIdentifier: textCellIdentifier, for: indexPath) as! MDCCollectionViewTextCell
+        let textCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewTextCell.self), for: indexPath) as! MDCCollectionViewTextCell
         textCell.textLabel?.text = checkedItems[indexPath.row].name
         textCell.imageView?.image = UIImage(named: "harvest")
         textCell.imageView?.setImageByAlamofire(with: URL(string: checkedItems[indexPath.row].imageUrl)!)
