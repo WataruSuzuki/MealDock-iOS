@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import BarcodeScanner
 
-class CaptureBarcodeViewController: UIViewController {
+class CaptureBarcodeViewController: UIViewController,
+    BarcodeScannerCodeDelegate, BarcodeScannerErrorDelegate, BarcodeScannerDismissalDelegate
+{
 
+    var barcodeScanner: BarcodeScannerViewController? = BarcodeScannerViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,5 +27,29 @@ class CaptureBarcodeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let controller = barcodeScanner {
+            controller.codeDelegate = self
+            controller.errorDelegate = self
+            controller.dismissalDelegate = self
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+        print(code)
+        controller.reset()
+        controller.dismiss(animated: true, completion: nil)
+        barcodeScanner = nil
+    }
+    
+    func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
+        print(error)
+    }
+    
+    func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
+    }
 }
 
