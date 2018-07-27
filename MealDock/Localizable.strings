@@ -31,3 +31,4 @@ harvest = "Harvest";
 
 name = "Name";
 type = "Type";
+imageUrl = "Image URL";

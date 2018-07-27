@@ -10,8 +10,6 @@ import UIKit
 import MaterialComponents.MaterialCollections
 
 class TextFieldCell: MDCCollectionViewCell {
-    static let reuseIdentifier = String(describing: self)
-    
     let textField = MDCTextField(frame: .zero)
     let multiLineField = MDCMultilineTextField(frame: .zero)
     var inputController: MDCTextInputController?

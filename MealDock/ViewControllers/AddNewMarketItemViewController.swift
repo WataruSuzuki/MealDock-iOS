@@ -7,13 +7,16 @@
 //
 
 import UIKit
-
 import MaterialComponents.MaterialCollections
+import ActionSheetPicker_3_0
 
 class AddNewMarketItemViewController: MDCCollectionViewController {
 
     var capturePhotoView: UIImageView?
     var cameraButton: UIButton?
+    var typePicker: UIPickerView?
+    var selctedType = Harvest.Section.unknown
+    var items: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +28,13 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
         self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: MDCCollectionViewCell.self))
         self.collectionView!.register(MDCCollectionViewTextCell.self, forCellWithReuseIdentifier: String(describing: MDCCollectionViewTextCell.self))
         self.collectionView!.register(TextFieldCell.self, forCellWithReuseIdentifier: String(describing: TextFieldCell.self))
+        self.collectionView!.register(PickerCell.self, forCellWithReuseIdentifier: String(describing: PickerCell.self))
+        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(tapDismiss))
+        styler.cellStyle = .card
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(tapSave))
     }
 
     // MARK: UICollectionViewDataSource
@@ -51,8 +58,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
                 return textFieldCell(collectionView, cellForItemAt: indexPath, section: section)
                 
             case .type:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewTextCell.self), for: indexPath) as! MDCCollectionViewTextCell
-                return cell
+                return viewTextCell(collectionView, cellForItemAt: indexPath, section: section)
                 
             case .imageUrl:
                 return photoCell(collectionView, cellForItemAt: indexPath, section: section)
@@ -62,6 +68,12 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
             }
         }
         return collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
+    }
+    
+    fileprivate func viewTextCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Element) -> MDCCollectionViewTextCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewTextCell.self), for: indexPath) as! MDCCollectionViewTextCell
+        cell.textLabel?.text = selctedType.emoji()
+        return cell
     }
     
     fileprivate func textFieldCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Element) -> TextFieldCell {
@@ -77,29 +89,42 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
         return cell
     }
     
-    fileprivate func photoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Element) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewCell.self), for: indexPath)
+    fileprivate func photoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Element) -> MDCCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewCell.self), for: indexPath) as! MDCCollectionViewCell
         
         if capturePhotoView == nil {
             capturePhotoView = UIImageView(frame: .zero)
             capturePhotoView!.contentMode = .scaleAspectFit
             cell.addSubview(capturePhotoView!)
             capturePhotoView!.autoPinEdgesToSuperviewEdges()
+            capturePhotoView?.isHidden = true
         }
 
         return cell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: 0)
+    }
+    
     // MARK: UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let section = Element(rawValue: indexPath.section) {
             switch section {
             case .imageUrl:
-                return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight * 2)
+                return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.width / 2)
                 
             case .name:
                 return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight * 1.5)
+                
+            case .type:
+                if let cell = collectionView.cellForItem(at: indexPath) as? PickerCell {
+                    if !cell.picker.isHidden {
+                        return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight * 1.5 + cell.picker.frame.height)
+                    }
+                }
+                fallthrough
                 
             default:
                 break
@@ -108,10 +133,45 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
         return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == Element.type.rawValue {
+            if let cell = collectionView.cellForItem(at: indexPath) as? MDCCollectionViewTextCell {
+                if items == nil {
+                    items = [String]()
+                    for index in 0..<Harvest.Section.max.rawValue {
+                        let section = Harvest.Section(rawValue: index)!
+                        items!.append(section.emoji())
+                    }
+                }
+                ActionSheetStringPicker.show(withTitle: "(・∀・)", rows: items!, initialSelection: 1, doneBlock: {
+                    picker, value, index in
+                    DispatchQueue.main.async {
+                        self.selctedType = Harvest.Section(rawValue: value)!
+                        collectionView.reloadItems(at: [indexPath])
+                    }
+                }, cancel: { ActionStringCancelBlock in }, origin: cell)
+            }
+        }
+    }
+    
+    @objc func tapSave() {
+        guard let cell = collectionView!.cellForItem(at: IndexPath(item: 0, section: Element.name.rawValue)) as? TextFieldCell,
+            let name = cell.textField.text else {
+            return
+        }
+        let harvest = Harvest(name: name, section: selctedType.toString(), imageUrl: "")
+        FirebaseService.shared.addToMarketItem(harvest: harvest)
+        dismiss(animated: true, completion: nil)
+    }
+    
     enum Element: Int {
         case name = 0,
         type,
         imageUrl,
         max
+        
+        func toString() -> String {
+            return String(describing: self)
+        }
     }
 }

@@ -59,4 +59,11 @@ extension Harvest {
         }
         return dictionary
     }
+    
+    init(name: String, section: String, imageUrl: String) {
+        self.name = name
+        self.section = section
+        self.imageUrl = imageUrl
+        self.timeStamp = NSDate().timeIntervalSince1970
+    }
 }

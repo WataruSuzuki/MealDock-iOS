@@ -38,6 +38,7 @@
 		966F5A53217190DD00A47EDF /* GooglePhoto+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */; };
 		966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A542171913000A47EDF /* GooglePhoto+Album.swift */; };
 		966F5A572171D1FD00A47EDF /* AddNewMarketItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A562171D1FD00A47EDF /* AddNewMarketItemViewController.swift */; };
+		966F5A592171E20F00A47EDF /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A582171E20F00A47EDF /* PickerCell.swift */; };
 		967146B8216B807100DDA65E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UserInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -137,6 +138,7 @@
 		966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Access.swift"; sourceTree = "<group>"; };
 		966F5A542171913000A47EDF /* GooglePhoto+Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Album.swift"; sourceTree = "<group>"; };
 		966F5A562171D1FD00A47EDF /* AddNewMarketItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMarketItemViewController.swift; sourceTree = "<group>"; };
+		966F5A582171E20F00A47EDF /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */,
 				96FC04E921690B8D00533529 /* TextFieldCell.swift */,
 				96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */,
+				966F5A582171E20F00A47EDF /* PickerCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MealDock/Pods-MealDock-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
@@ -734,6 +738,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
@@ -804,6 +809,7 @@
 				96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */,
 				96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */,
 				96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */,
+				966F5A592171E20F00A47EDF /* PickerCell.swift in Sources */,
 				966F5A5121718D1100A47EDF /* GooglePhoto+Token.swift in Sources */,
 				96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */,
 				964C00BC214E22FB0099689B /* DishListViewController.swift in Sources */,

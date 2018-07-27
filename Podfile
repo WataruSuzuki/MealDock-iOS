@@ -25,6 +25,7 @@ target "MealDock" do
     pod 'Parchment'
     pod 'AppAuth'
     pod 'BarcodeScanner'
+    pod 'ActionSheetPicker-3.0'
 
     # platform :ios, '10.0'
     #     pod 'OAuthSwift', '~> 1.2.0'
