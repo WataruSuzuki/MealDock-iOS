@@ -76,7 +76,9 @@ class MealDockListViewController: UITableViewController,
         
         cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit
-        cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
+        if !harvests[indexPath.section][indexPath.row].imageUrl.isEmpty {
+            cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
+        }
         
         return cell
     }

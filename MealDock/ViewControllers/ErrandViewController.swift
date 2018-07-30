@@ -54,7 +54,9 @@ class ErrandViewController: UICollectionViewController,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ErrandCell
     
         // Configure the cell
-        cell.itemImage.setImageByAlamofire(with: URL(string: items[indexPath.row].imageUrl)!)
+        if !items[indexPath.row].imageUrl.isEmpty {
+            cell.itemImage.setImageByAlamofire(with: URL(string: items[indexPath.row].imageUrl)!)
+        }
 
         return cell
     }
