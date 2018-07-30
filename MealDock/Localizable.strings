@@ -8,6 +8,7 @@
 
 signIn = "Sign in";
 accountInfo = "Account Information";
+groupInfo = "Group Information";
 signOut = "Sign out";
 deleteAccount = "Delete account";
 

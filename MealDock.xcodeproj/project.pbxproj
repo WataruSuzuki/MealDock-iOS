@@ -39,6 +39,7 @@
 		966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A542171913000A47EDF /* GooglePhoto+Album.swift */; };
 		966F5A572171D1FD00A47EDF /* AddNewMarketItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A562171D1FD00A47EDF /* AddNewMarketItemViewController.swift */; };
 		966F5A592171E20F00A47EDF /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A582171E20F00A47EDF /* PickerCell.swift */; };
+		966F5A5D2173142C00A47EDF /* GroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */; };
 		967146B8216B807100DDA65E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UserInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -139,6 +140,7 @@
 		966F5A542171913000A47EDF /* GooglePhoto+Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Album.swift"; sourceTree = "<group>"; };
 		966F5A562171D1FD00A47EDF /* AddNewMarketItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMarketItemViewController.swift; sourceTree = "<group>"; };
 		966F5A582171E20F00A47EDF /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
+		966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoViewController.swift; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -317,6 +319,26 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		966F5A5A2173122400A47EDF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
+				966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		966F5A5B2173123600A47EDF /* Errands */ = {
+			isa = PBXGroup;
+			children = (
+				96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */,
+				964C00C5214FDBB10099689B /* ErrandViewController.swift */,
+				966F5A562171D1FD00A47EDF /* AddNewMarketItemViewController.swift */,
+				96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */,
+			);
+			path = Errands;
+			sourceTree = "<group>";
+		};
 		967146C0216E353000DDA65E /* GooglePhotos */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,17 +390,14 @@
 		96E5F23D21109A7C00C2F09E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				966F5A5B2173123600A47EDF /* Errands */,
+				966F5A5A2173122400A47EDF /* Settings */,
 				964C00C9214FF2A20099689B /* Extends */,
 				CCDC94E1214B813B007FBAB0 /* InitViewController.swift */,
-				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
-				96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */,
-				96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */,
 				964C00C3214FCC1A0099689B /* CartedItemListViewController.swift */,
 				96E5F242212459E000C2F09E /* InFridgeListViewController.swift */,
 				964C00BB214E22FB0099689B /* DishListViewController.swift */,
-				964C00C5214FDBB10099689B /* ErrandViewController.swift */,
 				96FC04DE21686D0B00533529 /* EditDishViewController.swift */,
-				966F5A562171D1FD00A47EDF /* AddNewMarketItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -807,6 +826,7 @@
 				CCCFAC38216F58FA002279B3 /* GooglePhotosAlbum.swift in Sources */,
 				967146B8216B807100DDA65E /* UserInfo.swift in Sources */,
 				96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */,
+				966F5A5D2173142C00A47EDF /* GroupInfoViewController.swift in Sources */,
 				96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */,
 				96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */,
 				966F5A592171E20F00A47EDF /* PickerCell.swift in Sources */,

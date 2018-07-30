@@ -54,7 +54,9 @@ class SettingsViewController: UITableViewController {
             case .accountInfo:
                 //FirebaseService.shared.printUserInfo()
                 break
-
+            case .groupInfo:
+                performSegue(withIdentifier: String(describing: GroupInfoViewController.self), sender: self)
+                GroupInfoViewController.description()
             case .signOut:
                 FirebaseService.shared.signOut()
                 
@@ -66,7 +68,7 @@ class SettingsViewController: UITableViewController {
             }
         }
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -74,10 +76,12 @@ class SettingsViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
     enum Sections: Int {
         case accountInfo = 0,
+        groupInfo,
+        help,
+        privacyPolicy,
         signOut,
         deleteAccount,
         max
