@@ -43,40 +43,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="0F2-zp-Lu6"/>
                     <connections>
-                        <segue destination="P37-ui-bXk" kind="show" identifier="GroupInfoViewController" id="UvL-Hj-LFi"/>
+                        <segue destination="vEe-5Y-5m6" kind="show" identifier="GroupInfoViewController" id="UvL-Hj-LFi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wgg-do-uUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1651" y="45"/>
-        </scene>
-        <!--Group Info View Controller-->
-        <scene sceneID="yqh-74-Mrl">
-            <objects>
-                <tableViewController storyboardIdentifier="GroupInfoViewController" id="P37-ui-bXk" customClass="GroupInfoViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="K0V-Ne-JaW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nnh-SC-PNk">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nnh-SC-PNk" id="R5T-qL-oCq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="P37-ui-bXk" id="fRM-yt-Bim"/>
-                            <outlet property="delegate" destination="P37-ui-bXk" id="uEJ-cO-a45"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1NG-Lt-KAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2426" y="45"/>
         </scene>
         <!--Settings-->
         <scene sceneID="jnj-EF-TT6">
@@ -94,6 +66,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Sv-iJ-Ud1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="698" y="45"/>
+        </scene>
+        <!--GroupInfoViewController-->
+        <scene sceneID="M5d-w2-mm7">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="GroupInfoViewController" storyboardName="GroupInfo" referencedIdentifier="GroupInfoViewController" id="vEe-5Y-5m6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fvA-0U-ut9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2426" y="45"/>
         </scene>
     </scenes>
     <resources>

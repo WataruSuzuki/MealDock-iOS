@@ -17,38 +17,64 @@ class GroupInfoViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return Sections.max.rawValue
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if let groupInfo = Sections(rawValue: section) {
+            switch groupInfo {
+            case .invitedMembers:
+                return 1
+                
+            case .manageGroupStatus:
+                return ManageStatus.max.rawValue
+                
+            default:
+                break
+            }
+        }
         return 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupInfoCell", for: indexPath)
 
         // Configure the cell...
+        if let groupInfo = Sections(rawValue: indexPath.section) {
+            switch groupInfo {
+            case .invitedMembers:
+                cell.textLabel?.text = "(=・∀・=)"
+                
+            case .manageGroupStatus:
+                if let managing = ManageStatus(rawValue: indexPath.row) {
+                    cell.textLabel?.text = NSLocalizedString(managing.description(), comment: "")
+                }
+
+            default:
+                break
+            }
+        }
 
         return cell
     }
-    */
-
-    /*
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let groupInfo = Sections(rawValue: section) {
+            return NSLocalizedString(groupInfo.description(), comment: "")
+        }
+        return nil
+    }
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        return indexPath.section == Sections.invitedMembers.rawValue
     }
-    */
 
     /*
     // Override to support editing the table view.
@@ -87,4 +113,15 @@ class GroupInfoViewController: UITableViewController {
     }
     */
 
+    enum Sections: Int {
+        case invitedMembers = 0,
+        manageGroupStatus,
+        max
+    }
+    
+    enum ManageStatus: Int {
+        case joinToInvitation = 0,
+        reaveFromInvitation,
+        max
+    }
 }

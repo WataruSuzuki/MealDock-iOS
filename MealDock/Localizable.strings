@@ -33,3 +33,8 @@ harvest = "Harvest";
 name = "Name";
 type = "Type";
 imageUrl = "Image URL";
+
+invatedMembers = "Invited members";
+manageGroupStatus = "Manage group status";
+joinToInvitation = "Join to Invitation";
+reaveFromInvitation = "Reave from invitation";
