@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import QRCodeReader
 
-class GroupInfoViewController: UITableViewController {
+class GroupInfoViewController: UITableViewController,
+    QRCodeReaderViewControllerDelegate
+{
 
+    lazy var qrReader: QRCodeReaderViewController = {
+        let builder = QRCodeReaderViewControllerBuilder {
+            $0.reader = QRCodeReader(metadataObjectTypes: [.qr], captureDevicePosition: .back)
+        }
+        
+        return QRCodeReaderViewController(builder: builder)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -107,7 +118,16 @@ class GroupInfoViewController: UITableViewController {
         if let groupInfo = Sections(rawValue: indexPath.section) {
             switch groupInfo {
             case .manageGroupStatus:
-                FirebaseService.shared.addMyDockGroupMember(memberId: "test2", name: "hoge")
+                if let managing = ManageStatus(rawValue: indexPath.row) {
+                    switch managing {
+                    case .joinToInvitation:
+                        scanQR()
+                    case .reaveFromInvitation:
+                        FirebaseService.shared.addMyDockGroupMember(memberId: "test2", name: "hoge")
+                    default:
+                        break
+                    }
+                }
             default:
                 break
             }
@@ -124,6 +144,39 @@ class GroupInfoViewController: UITableViewController {
     }
     */
 
+    // MARK: - QRCodeReaderViewControllerDelegate
+    
+    func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
+        debugPrint(result)
+    }
+    
+//    func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
+//        if let cameraName = newCaptureDevice.device.localizedName {
+//            print("Switching capturing to: \(cameraName)")
+//        }
+//    }
+    
+    func readerDidCancel(_ reader: QRCodeReaderViewController) {
+        reader.stopScanning()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func scanQR() {
+        // Retrieve the QRCode content
+        // By using the delegate pattern
+        qrReader.delegate = self
+        
+        // Or by using the closure pattern
+        qrReader.completionBlock = { (result: QRCodeReaderResult?) in
+            print(result)
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        // Presents the qrReader as modal form sheet
+        qrReader.modalPresentationStyle = .formSheet
+        present(qrReader, animated: true, completion: nil)
+    }
+    
     enum Sections: Int {
         case invitedMembers = 0,
         manageGroupStatus,
