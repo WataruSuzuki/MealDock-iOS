@@ -102,6 +102,17 @@ class GroupInfoViewController: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let groupInfo = Sections(rawValue: indexPath.section) {
+            switch groupInfo {
+            case .manageGroupStatus:
+                FirebaseService.shared.addMyDockGroupMember(memberId: "test2", name: "hoge")
+            default:
+                break
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

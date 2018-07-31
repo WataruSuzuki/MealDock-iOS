@@ -51,10 +51,8 @@ extension FirebaseService {
     
     func createUserInfo() {
         if let user = currentUser {
-            ref.child("users/\(user.uid)").setValue([
-                "username": user.displayName,
-                "email": user.email
-            ])
+            let group = [user.uid: "My Dock"]
+            ref.child("users/\(user.uid)/\(FirebaseService.ID_MEAL_DOCKS)").setValue(group)
         }
     }
     
@@ -76,11 +74,14 @@ extension FirebaseService {
     }
 
     func createMyDockGroup() {
+        let member = ["user.uid": "name"]
+        //let member = [user.uid: "My Dock"]
+        //addMyDockGroupMember(member: member)
+    }
+    
+    func addMyDockGroupMember(memberId: String, name: String) {
         if let user = currentUser {
-            let group = [user.uid: "My Dock"]
-            //let group = [user.uid: "My Dock", "groupUser.uid": "Group Dock"]
-            ref.child(FirebaseService.ID_MEAL_DOCKS).updateChildValues(group)
-            ref.child("users/\(user.uid)/\(FirebaseService.ID_MEAL_DOCKS)").setValue(group)
+            ref.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.uid)").child(memberId).setValue(name)
         }
     }
     
