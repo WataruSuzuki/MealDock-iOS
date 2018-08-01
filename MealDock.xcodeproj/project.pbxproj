@@ -26,8 +26,6 @@
 		964C00C2214FA8770099689B /* Firebase+HarvestExecute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C1214FA8770099689B /* Firebase+HarvestExecute.swift */; };
 		964C00C4214FCC1A0099689B /* CartedItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C3214FCC1A0099689B /* CartedItemListViewController.swift */; };
 		964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C5214FDBB10099689B /* ErrandViewController.swift */; };
-		964C00C8214FF2910099689B /* AppBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C7214FF2910099689B /* AppBarNavigationController.swift */; };
-		964C00CB214FFE350099689B /* AppBarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00CA214FFE350099689B /* AppBarContainerViewController.swift */; };
 		965460FC21109252005AC0B3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 965460FB21109252005AC0B3 /* Settings.bundle */; };
 		966F5A46216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */; };
 		966F5A482170C40A00A47EDF /* GooglePhotosSharedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */; };
@@ -43,6 +41,7 @@
 		966F5A5F217317F500A47EDF /* GroupInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F5A5E217317F500A47EDF /* GroupInfo.storyboard */; };
 		966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A6021731A6100A47EDF /* Enum+Description.swift */; };
 		966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A642173364B00A47EDF /* ShowQrViewController.swift */; };
+		966F5A672173614B00A47EDF /* AddMemberQR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A662173614B00A47EDF /* AddMemberQR.swift */; };
 		967146B8216B807100DDA65E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UserInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -130,8 +129,6 @@
 		964C00C1214FA8770099689B /* Firebase+HarvestExecute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+HarvestExecute.swift"; sourceTree = "<group>"; };
 		964C00C3214FCC1A0099689B /* CartedItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartedItemListViewController.swift; sourceTree = "<group>"; };
 		964C00C5214FDBB10099689B /* ErrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandViewController.swift; sourceTree = "<group>"; };
-		964C00C7214FF2910099689B /* AppBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarNavigationController.swift; sourceTree = "<group>"; };
-		964C00CA214FFE350099689B /* AppBarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarContainerViewController.swift; sourceTree = "<group>"; };
 		965460FB21109252005AC0B3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosNewMediaItemResultResponse.swift; sourceTree = "<group>"; };
 		966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosSharedInfo.swift; sourceTree = "<group>"; };
@@ -147,6 +144,7 @@
 		966F5A5E217317F500A47EDF /* GroupInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GroupInfo.storyboard; sourceTree = "<group>"; };
 		966F5A6021731A6100A47EDF /* Enum+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Description.swift"; sourceTree = "<group>"; };
 		966F5A642173364B00A47EDF /* ShowQrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowQrViewController.swift; sourceTree = "<group>"; };
+		966F5A662173614B00A47EDF /* AddMemberQR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberQR.swift; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
-				CC77E4FD2165E865002891BB /* Controllers */,
 				CCDC94F22150E829007FBAB0 /* Models */,
 				CCDC94E3214B81EB007FBAB0 /* Services */,
 				9615BDF5214D40BF001801D5 /* Storyboards */,
@@ -311,8 +308,6 @@
 			isa = PBXGroup;
 			children = (
 				96EE88842158D0A200924490 /* UIViewController+Transition.swift */,
-				964C00C7214FF2910099689B /* AppBarNavigationController.swift */,
-				964C00CA214FFE350099689B /* AppBarContainerViewController.swift */,
 				CC5C68D521636A830026441D /* MealDockListViewController.swift */,
 			);
 			path = Extends;
@@ -321,6 +316,7 @@
 		966F5A4D2171875400A47EDF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CC77E4FE2165E875002891BB /* Extensions */,
 				966F5A4E2171878000A47EDF /* CustomError.swift */,
 			);
 			path = Utilities;
@@ -444,14 +440,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CC77E4FD2165E865002891BB /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				CC77E4FE2165E875002891BB /* Extensions */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		CC77E4FE2165E875002891BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +472,7 @@
 				966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */,
 				966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */,
 				966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */,
+				966F5A662173614B00A47EDF /* AddMemberQR.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -830,7 +819,6 @@
 				967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */,
 				966F5A4F2171878000A47EDF /* CustomError.swift in Sources */,
 				96FC04DD2168599300533529 /* Firebase+HarvestObserve.swift in Sources */,
-				964C00CB214FFE350099689B /* AppBarContainerViewController.swift in Sources */,
 				966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,
 				96EE88802158951F00924490 /* ErrandCell.swift in Sources */,
@@ -856,6 +844,7 @@
 				966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */,
 				966F5A572171D1FD00A47EDF /* AddNewMarketItemViewController.swift in Sources */,
 				96FC04E62168E5BB00533529 /* Firebase+Storage.swift in Sources */,
+				966F5A672173614B00A47EDF /* AddMemberQR.swift in Sources */,
 				966F5A46216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift in Sources */,
 				966F5A4C2171841600A47EDF /* GooglePhoto+Upload.swift in Sources */,
 				CCCFAC36216F5295002279B3 /* GooglePhotosMediaMetadata.swift in Sources */,
@@ -870,7 +859,6 @@
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+HarvestExecute.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
-				964C00C8214FF2910099689B /* AppBarNavigationController.swift in Sources */,
 				96FC04EA21690B8D00533529 /* TextFieldCell.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,
 				9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */,

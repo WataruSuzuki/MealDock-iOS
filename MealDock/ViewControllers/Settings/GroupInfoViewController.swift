@@ -168,8 +168,15 @@ class GroupInfoViewController: UITableViewController,
         
         // Or by using the closure pattern
         qrReader.completionBlock = { (result: QRCodeReaderResult?) in
-            print(result)
-            FirebaseService.shared.addMyDockGroupMember(memberId: "test2", name: "hoge")
+            debugPrint(result ?? "not found QRCodeReaderResult")
+            if let value = result?.value, let data = value.data(using: .utf8) {
+                do {
+                    let requestQRData = try JSONDecoder().decode(AddMemberQR.self, from: data)
+                    FirebaseService.shared.addMyDockGroupMember(memberId: requestQRData.id, name: requestQRData.name)
+                } catch let error {
+                    print(error)
+                }
+            }
             self.dismiss(animated: true, completion: nil)
         }
         

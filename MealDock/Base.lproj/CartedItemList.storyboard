@@ -76,7 +76,7 @@
         <!--Carted-->
         <scene sceneID="IgO-30-8vJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d2z-JJ-j0C" customClass="AppBarNavigationController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d2z-JJ-j0C" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Carted" image="harvest" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OJG-h7-Nm3">

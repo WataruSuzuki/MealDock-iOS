@@ -18,7 +18,7 @@ class ShowQrViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if let user = FirebaseService.shared.currentUser {
-            let qrStr = "{ \(sha1(param: user.uid)) : \(user.displayName ?? "(・∀・)") }"
+            let qrStr = "{ id: \(sha1(param: user.uid)) , name : \(user.displayName ?? "(・∀・)") }"
             if let image = QRCode(qrStr)?.image {
                 qrImageView.image = image
                 view.addSubview(qrImageView)
