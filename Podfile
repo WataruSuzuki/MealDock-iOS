@@ -27,6 +27,7 @@ target "MealDock" do
     pod 'BarcodeScanner'
     pod 'ActionSheetPicker-3.0'
     pod 'QRCodeReader.swift', '~> 9.0.1'
+    pod 'QRCode'
 
     # platform :ios, '10.0'
     #     pod 'OAuthSwift', '~> 1.2.0'

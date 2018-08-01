@@ -43,7 +43,7 @@ class GroupInfoViewController: UITableViewController,
             case .invitedMembers:
                 return 1
                 
-            case .manageGroupStatus:
+            case .manageGrouping:
                 return ManageStatus.max.rawValue
                 
             default:
@@ -62,7 +62,7 @@ class GroupInfoViewController: UITableViewController,
             case .invitedMembers:
                 cell.textLabel?.text = "(=・∀・=)"
                 
-            case .manageGroupStatus:
+            case .manageGrouping:
                 if let managing = ManageStatus(rawValue: indexPath.row) {
                     cell.textLabel?.text = NSLocalizedString(managing.description(), comment: "")
                 }
@@ -117,13 +117,13 @@ class GroupInfoViewController: UITableViewController,
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let groupInfo = Sections(rawValue: indexPath.section) {
             switch groupInfo {
-            case .manageGroupStatus:
+            case .manageGrouping:
                 if let managing = ManageStatus(rawValue: indexPath.row) {
                     switch managing {
-                    case .joinToInvitation:
+                    case .addNewMember:
                         scanQR()
-                    case .reaveFromInvitation:
-                        FirebaseService.shared.addMyDockGroupMember(memberId: "test2", name: "hoge")
+                    case .requestToJoin:
+                        generateQR()
                     default:
                         break
                     }
@@ -169,6 +169,7 @@ class GroupInfoViewController: UITableViewController,
         // Or by using the closure pattern
         qrReader.completionBlock = { (result: QRCodeReaderResult?) in
             print(result)
+            FirebaseService.shared.addMyDockGroupMember(memberId: "test2", name: "hoge")
             self.dismiss(animated: true, completion: nil)
         }
         
@@ -177,15 +178,20 @@ class GroupInfoViewController: UITableViewController,
         present(qrReader, animated: true, completion: nil)
     }
     
+    func generateQR() {
+        performSegue(withIdentifier: String(describing: ShowQrViewController.self), sender: self)
+    }
+    
     enum Sections: Int {
         case invitedMembers = 0,
-        manageGroupStatus,
+        manageGrouping,
         max
     }
     
     enum ManageStatus: Int {
-        case joinToInvitation = 0,
-        reaveFromInvitation,
+        case addNewMember = 0,
+        requestToJoin,
+        leaveFromGroup,
         max
     }
 }

@@ -706,6 +706,7 @@ PODS:
   - PersonalizedAdConsent (1.0.3)
   - Protobuf (3.6.1)
   - PureLayout (3.1.2)
+  - QRCode (2.0)
   - QRCodeReader.swift (9.0.1)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
@@ -738,6 +739,7 @@ DEPENDENCIES:
   - Parchment
   - PersonalizedAdConsent
   - PureLayout
+  - QRCode
   - QRCodeReader.swift (~> 9.0.1)
   - SimpleKeychain
   - TinyConstraints
@@ -791,6 +793,7 @@ SPEC REPOS:
     - PersonalizedAdConsent
     - Protobuf
     - PureLayout
+    - QRCode
     - QRCodeReader.swift
     - SDWebImage
     - SimpleKeychain
@@ -874,6 +877,7 @@ SPEC CHECKSUMS:
   PersonalizedAdConsent: b50a8a5d6065b6db23121e8fcc0dce2ae983f6ea
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
+  QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   QRCodeReader.swift: 96292a5612fbc2fd9a0b26f93fa5164c8d02f59d
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
@@ -881,6 +885,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 054005edf5350aa9074af74b41456e5a61e3f322
 
-PODFILE CHECKSUM: 16bcf0e9300e31ff7ad41bd418033225ddcb18f6
+PODFILE CHECKSUM: 818a1bb536c03079e6534fd05aedb475f33142ac
 
 COCOAPODS: 1.5.3

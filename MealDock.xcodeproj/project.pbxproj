@@ -42,6 +42,7 @@
 		966F5A5D2173142C00A47EDF /* GroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */; };
 		966F5A5F217317F500A47EDF /* GroupInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F5A5E217317F500A47EDF /* GroupInfo.storyboard */; };
 		966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A6021731A6100A47EDF /* Enum+Description.swift */; };
+		966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A642173364B00A47EDF /* ShowQrViewController.swift */; };
 		967146B8216B807100DDA65E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UserInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -145,6 +146,7 @@
 		966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoViewController.swift; sourceTree = "<group>"; };
 		966F5A5E217317F500A47EDF /* GroupInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GroupInfo.storyboard; sourceTree = "<group>"; };
 		966F5A6021731A6100A47EDF /* Enum+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Description.swift"; sourceTree = "<group>"; };
+		966F5A642173364B00A47EDF /* ShowQrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowQrViewController.swift; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			children = (
 				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
 				966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */,
+				966F5A642173364B00A47EDF /* ShowQrViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				"${BUILT_PRODUCTS_DIR}/PersonalizedAdConsent/PersonalizedAdConsent.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
@@ -792,6 +796,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PersonalizedAdConsent.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
@@ -826,6 +831,7 @@
 				966F5A4F2171878000A47EDF /* CustomError.swift in Sources */,
 				96FC04DD2168599300533529 /* Firebase+HarvestObserve.swift in Sources */,
 				964C00CB214FFE350099689B /* AppBarContainerViewController.swift in Sources */,
+				966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,
 				96EE88802158951F00924490 /* ErrandCell.swift in Sources */,
 				9615BDFC214E0F1A001801D5 /* FUIPasswordSignUpViewController+Injection.m in Sources */,

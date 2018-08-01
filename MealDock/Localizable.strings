@@ -35,6 +35,7 @@ type = "Type";
 imageUrl = "Image URL";
 
 invatedMembers = "Invited members";
-manageGroupStatus = "Manage group status";
-joinToInvitation = "Join to Invitation";
-reaveFromInvitation = "Reave from invitation";
+manageGrouping = "Manage grouping";
+addNewMember = "Add new member";
+requestToJoin = "Request to join";
+leaveFromGroup = "Leave from group";
