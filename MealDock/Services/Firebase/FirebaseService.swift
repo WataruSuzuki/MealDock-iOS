@@ -23,6 +23,7 @@ class FirebaseService: NSObject,
     static let ID_FRIDGE_ITEMS = "in_fridge_items"
     static let ID_DISH_ITEMS = "dishes"
     static let ID_MEAL_DOCKS = "mealdocks"
+    static let ID_USAGE = "usage"
 
     let providers: [FUIAuthProvider] = [
 //        FUIGoogleAuth(),
@@ -49,7 +50,7 @@ class FirebaseService: NSObject,
     var signInObservations = [String: NSKeyValueObservation]()
     //var harvests = [Harvest]()
     //var harvests = initHarvestArray()
-    var userInfo: UserInfo?
+    var usageInfo: UsageInfo?
 
     class func initHarvestArray() -> [[Harvest]] {
         return [[Harvest]](repeating: [], count: Harvest.Section.max.rawValue)
@@ -92,7 +93,7 @@ class FirebaseService: NSObject,
                     self.printUserInfo(user: user)
                     if !A0SimpleKeychain().hasValue(forKey: initializedFUIAuth) {
                         A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
-                        self.createMyDockGroup()
+                        //self.createMyDockGroup()
                     }
                 } else {
                     self.requestAuthUI()
@@ -103,8 +104,8 @@ class FirebaseService: NSObject,
     
     fileprivate func startToObservingDatabase() {
         observeReachability()
-        observeUserInfo { (info) in
-            self.userInfo = info
+        observeUsageInfo { (info) in
+            self.usageInfo = info
         }
     }
     
