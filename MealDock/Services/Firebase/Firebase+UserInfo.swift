@@ -93,9 +93,9 @@ extension FirebaseService {
         A0SimpleKeychain().deleteEntry(forKey: usernameFUIAuth)
     }
     
-    func updateCurrentDock(dock: String) {
+    func joinToGroupDock(dock: String?) {
         if let user = currentUser {
-            ref.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentDock").setValue(dock)
+            ref.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentDock").setValue(dock ?? user.uid)
         }
     }
     

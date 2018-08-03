@@ -18,10 +18,12 @@ class ShowQrViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if let user = FirebaseService.shared.currentUser {
-            let qrStr = "{ id: \(sha1(param: user.uid)) , name : \(user.displayName ?? "(・∀・)") }"
+            let joinGroupDockId = sha1(param: user.uid)
+            let qrStr = "{ id: \(joinGroupDockId) , name : \(user.displayName ?? "(・∀・)") }"
             if let image = QRCode(qrStr)?.image {
                 qrImageView.image = image
                 view.addSubview(qrImageView)
+                FirebaseService.shared.joinToGroupDock(dock: joinGroupDockId)
                 return
             }
         }

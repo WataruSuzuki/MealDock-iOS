@@ -124,6 +124,8 @@ class GroupInfoViewController: UITableViewController,
                         scanQR()
                     case .requestToJoin:
                         generateQR()
+                    case .leaveFromGroup:
+                        FirebaseService.shared.joinToGroupDock(dock: nil)
                     default:
                         break
                     }
