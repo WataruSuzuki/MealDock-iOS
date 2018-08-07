@@ -64,6 +64,7 @@
 		96FC04F8216AF43B00533529 /* DishCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
+		CC6495062174934100580268 /* Firebase+Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6495052174934100580268 /* Firebase+Dock.swift */; };
 		CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */; };
 		CC77E5032165F9D5002891BB /* StrikethroughTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E5012165F9D5002891BB /* StrikethroughTableViewCell.swift */; };
 		CC77E5042165F9D5002891BB /* StrikethroughTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */; };
@@ -168,6 +169,7 @@
 		BE4497431E10628292717D8C /* Pods_MealDockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
+		CC6495052174934100580268 /* Firebase+Dock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Dock.swift"; sourceTree = "<group>"; };
 		CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		CC77E5012165F9D5002891BB /* StrikethroughTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrikethroughTableViewCell.swift; sourceTree = "<group>"; };
 		CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrikethroughTableViewCell.xib; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				9696B4A7214C91A3001DFB60 /* Injections */,
 				CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */,
 				CCA83D51214B45BF00226382 /* GoogleService-Info.plist */,
+				CC6495052174934100580268 /* Firebase+Dock.swift */,
 				9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */,
 				964C00C1214FA8770099689B /* Firebase+CommandHarvest.swift */,
 				96FC04DC2168599300533529 /* Firebase+QueryHarvest.swift */,
@@ -864,6 +867,7 @@
 				964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
 				96FC04EA21690B8D00533529 /* TextFieldCell.swift in Sources */,
+				CC6495062174934100580268 /* Firebase+Dock.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,
 				9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */,
 				966F5A482170C40A00A47EDF /* GooglePhotosSharedInfo.swift in Sources */,

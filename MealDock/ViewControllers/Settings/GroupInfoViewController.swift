@@ -27,6 +27,7 @@ class GroupInfoViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
+        FirebaseService.shared.observeMyDockMember()
     }
 
     // MARK: - Table view data source
@@ -85,17 +86,16 @@ class GroupInfoViewController: UITableViewController {
         return indexPath.section == Sections.invitedMembers.rawValue
     }
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            FirebaseService.shared.deleteDockMember(memberId: "hogefuga")
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
+        //} else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
