@@ -27,8 +27,9 @@ class FirebaseService: NSObject,
     
     var defaultAuthUI: FUIAuth!
     var currentUser: User?
-    var handle: AuthStateDidChangeListenerHandle!
+    var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
     var ref: DatabaseReference!
+    var databaseHandle: DatabaseHandle!
     var isSignOn: Bool {
         get {
             return currentUser != nil
@@ -42,6 +43,7 @@ class FirebaseService: NSObject,
         super.init()
         loadDefaultAuthUI()
         ref = Database.database().reference()
+        ovserveDatabaseHandle()
     }
     
     fileprivate func loadDefaultAuthUI() {
@@ -56,17 +58,24 @@ class FirebaseService: NSObject,
     }
     
     fileprivate func regsiterStateListener() {
-        if handle == nil {
-            handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+        if authStateDidChangeListenerHandle == nil {
+            authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { (auth, user) in
                 print("auth = \(auth)")
                 self.currentUser = user
                 if let user = self.currentUser {
-                    print("user = \(user.debugDescription)")
+                    print("user = \(user)")
                 } else {
                     self.requestAuthUI()
                 }
             }
         }
+    }
+    
+    fileprivate func ovserveDatabaseHandle() {
+        databaseHandle = ref.observe(DataEventType.value, with: { (snapshot) in
+            let value = snapshot.value as! [String : AnyObject]
+            print("ovserveDatabaseHandle = \(value)")
+        })
     }
     
     fileprivate func signInByKeychain() {

@@ -12,7 +12,7 @@ extension FirebaseService {
 
     func createUser() {
         if let user = currentUser {
-            self.ref.child("users").child(user.uid).setValue([
+            self.ref.child("users/\(user.uid)").setValue([
                 "username": user.displayName,
                 "email": user.email
             ])
@@ -21,52 +21,19 @@ extension FirebaseService {
     
     func createMyDockGroup() {
         if let user = currentUser {
-            self.ref.child("users/\(user.uid)/rooms").setValue([
-                "nzPmjoNg0XXGcNVRLNx6w2L3BZW2": "My Dock Group"
-                //user.uid: "My Dock Group"
+            self.ref.child("mealdocks").setValue([
+                user.uid: "My Dock Group"
+                ])
+            self.ref.child("users/\(user.uid)/mealdocks").setValue([
+                user.uid: "My Dock Group"
             ])
         }
     }
-    
-    func readInfo() {
-        if let user = currentUser {
-            self.ref.child("messages")
-                .child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
-                //.child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
-                //.child("message from \(String(describing: user.displayName))")
-                .observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot)
-            }) { (error) in
-                print(error.localizedDescription)
-            }
-            
-        }
-    }
-    
-    func addMessages()  {
-        if let user = currentUser {
-            self.ref.child("messages").child(user.uid)
-                .childByAutoId()
-//                .child("message from \(String(describing: user.displayName))")
-                .setValue([
-                "user": user.displayName ?? "Fuga",
-                "text": "Fugaaaa!",
-                "timestamp": 1435285206
-                ])
-        }
-    }
-    
+        
     func updatedUserName(username: String) {
         if let user = currentUser {
             self.ref.child("users/\(user.uid)/username").setValue(username)
         }
     }
     
-    func updatedUserRoom() {
-        if let user = currentUser {
-            self.ref.child("users/\(user.uid)/rooms").setValue([
-                user.uid: true
-            ])
-        }
-    }
 }
