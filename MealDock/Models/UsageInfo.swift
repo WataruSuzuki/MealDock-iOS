@@ -9,14 +9,16 @@
 import Foundation
 
 struct UsageInfo: Codable {
-    let currentDock: [[String: String]]
+    let currentDock: String
+    var currentID: String?
     let subscriptionPlan: Int
     let sizeOfItems: Int
 }
 
 extension UsageInfo {
-    init(_ currentDock: [[String: String]], subscriptionPlan: Int, sizeOfItems: Int) {
+    init(_ currentDock: String, currentID: String?, subscriptionPlan: Int, sizeOfItems: Int) {
         self.currentDock = currentDock
+        self.currentID = currentID
         self.subscriptionPlan = subscriptionPlan
         self.sizeOfItems = sizeOfItems
     }

@@ -9,9 +9,7 @@
 import UIKit
 import QRCodeReader
 
-class GroupInfoViewController: UITableViewController,
-    QRCodeReaderViewControllerDelegate
-{
+class GroupInfoViewController: UITableViewController {
 
     lazy var qrReader: QRCodeReaderViewController = {
         let builder = QRCodeReaderViewControllerBuilder {
@@ -125,7 +123,7 @@ class GroupInfoViewController: UITableViewController,
                     case .requestToJoin:
                         generateQR()
                     case .leaveFromGroup:
-                        FirebaseService.shared.joinToGroupDock(dock: nil)
+                        FirebaseService.shared.joinToGroupDock(dock: nil, id: nil)
                     default:
                         break
                     }
@@ -136,15 +134,22 @@ class GroupInfoViewController: UITableViewController,
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            switch identifier {
+            case String(describing: ShowQrViewController.self):
+                if let destination = segue.destination as? UINavigationController,
+                    let showQR = destination.viewControllers.last as? ShowQrViewController {
+                    showQR.qrType = ShowQrViewController.QrType.requestToJoin
+                }
+            default:
+                break
+            }
+        }
     }
-    */
 
     // MARK: - QRCodeReaderViewControllerDelegate
     
@@ -152,11 +157,6 @@ class GroupInfoViewController: UITableViewController,
         debugPrint(result)
     }
     
-//    func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
-//        if let cameraName = newCaptureDevice.device.localizedName {
-//            print("Switching capturing to: \(cameraName)")
-//        }
-//    }
     
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
         reader.stopScanning()
@@ -166,20 +166,29 @@ class GroupInfoViewController: UITableViewController,
     func scanQR() {
         // Retrieve the QRCode content
         // By using the delegate pattern
-        qrReader.delegate = self
+        // -> qrReader.delegate = self
         
         // Or by using the closure pattern
         qrReader.completionBlock = { (result: QRCodeReaderResult?) in
             debugPrint(result ?? "not found QRCodeReaderResult")
-            if let value = result?.value, let data = value.data(using: .utf8) {
-                do {
-                    let requestQRData = try JSONDecoder().decode(AddMemberQR.self, from: data)
-                    FirebaseService.shared.addMyDockGroupMember(memberId: requestQRData.id, name: requestQRData.name)
-                } catch let error {
-                    print(error)
-                }
+            guard let result = result else {
+                print("Not found QRCodeReaderResult")
+                self.dismiss(animated: true, completion: nil)
+                return
             }
-            self.dismiss(animated: true, completion: nil)
+            do {
+                let data = result.value.data(using: .utf8)!
+                let handshakeQR = try JSONDecoder().decode(GroupHandshakeQR.self, from: data)
+                FirebaseService.shared.addMyDockGroupMember(memberId: handshakeQR.id, name: handshakeQR.name ?? "(・∀・)")
+                let sb = UIStoryboard(name: "GroupInfo", bundle: Bundle.main)
+                if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ShowQrViewController.self)) as? ShowQrViewController {
+                    viewController.qrType = ShowQrViewController.QrType.tellDockId
+                    let navigation = UINavigationController.init(rootViewController: viewController)
+                    self.qrReader.present(navigation, animated: true, completion: nil)
+                }
+            } catch let error {
+                print(error)
+            }
         }
         
         // Presents the qrReader as modal form sheet

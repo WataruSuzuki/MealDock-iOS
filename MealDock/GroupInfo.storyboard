@@ -34,7 +34,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="aoc-J0-uyh" kind="show" identifier="ShowQrViewController" id="rog-E8-6hZ"/>
+                        <segue destination="3zV-Ge-FYO" kind="presentation" identifier="ShowQrViewController" modalPresentationStyle="formSheet" id="rog-E8-6hZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1NG-Lt-KAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -51,8 +51,27 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Y4n-ET-dP8"/>
                     </view>
+                    <navigationItem key="navigationItem" id="9LK-1K-NVt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQc-Zl-lZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4220" y="44.527736131934034"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Km9-q7-S4D">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3zV-Ge-FYO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LUF-Ct-hl5">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aoc-J0-uyh" kind="relationship" relationship="rootViewController" id="F4e-UO-0jZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FrY-jd-TUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3280.8000000000002" y="44.527736131934034"/>
         </scene>

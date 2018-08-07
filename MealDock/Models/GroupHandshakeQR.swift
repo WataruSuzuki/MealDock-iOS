@@ -1,5 +1,5 @@
 //
-//  AddMemberQR.swift
+//  GroupHandshakeQR.swift
 //  MealDock
 //
 //  Created by 鈴木 航 on 2018/10/14.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AddMemberQR: Codable {
+struct GroupHandshakeQR: Codable {
     let id : String
-    let name : String
+    var name : String?
 }
