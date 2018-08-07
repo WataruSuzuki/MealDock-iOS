@@ -42,6 +42,7 @@
 		966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A6021731A6100A47EDF /* Enum+Description.swift */; };
 		966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A642173364B00A47EDF /* ShowQrViewController.swift */; };
 		966F5A672173614B00A47EDF /* GroupHandshakeQR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A662173614B00A47EDF /* GroupHandshakeQR.swift */; };
+		966F5A6C2174B7D200A47EDF /* DockMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A6B2174B7D200A47EDF /* DockMember.swift */; };
 		967146B8216B807100DDA65E /* UsageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UsageInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -145,6 +146,7 @@
 		966F5A6021731A6100A47EDF /* Enum+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Description.swift"; sourceTree = "<group>"; };
 		966F5A642173364B00A47EDF /* ShowQrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowQrViewController.swift; sourceTree = "<group>"; };
 		966F5A662173614B00A47EDF /* GroupHandshakeQR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHandshakeQR.swift; sourceTree = "<group>"; };
+		966F5A6B2174B7D200A47EDF /* DockMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockMember.swift; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UsageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				CCDC94F32150E853007FBAB0 /* Harvest.swift */,
 				CC9B6D23215CB1CE00E49491 /* MarketItems.swift */,
 				967146B7216B807100DDA65E /* UsageInfo.swift */,
+				966F5A6B2174B7D200A47EDF /* DockMember.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				96FC04DD2168599300533529 /* Firebase+QueryHarvest.swift in Sources */,
 				966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,
+				966F5A6C2174B7D200A47EDF /* DockMember.swift in Sources */,
 				96EE88802158951F00924490 /* ErrandCell.swift in Sources */,
 				9615BDFC214E0F1A001801D5 /* FUIPasswordSignUpViewController+Injection.m in Sources */,
 				CC77E5062165FFBF002891BB /* UITableView+CustomNib.swift in Sources */,

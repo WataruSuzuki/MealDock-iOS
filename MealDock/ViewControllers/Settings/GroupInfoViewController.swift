@@ -18,16 +18,16 @@ class GroupInfoViewController: UITableViewController {
         
         return QRCodeReaderViewController(builder: builder)
     }()
+    var dockMembers = [DockMember]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        FirebaseService.shared.observeMyDockMember()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        FirebaseService.shared.observeMyDockMember { (members) in
+            self.dockMembers = members
+            self.tableView.reloadSections(IndexSet(integer: Sections.invitedMembers.rawValue), with: .automatic)
+        }
     }
 
     // MARK: - Table view data source
@@ -40,7 +40,7 @@ class GroupInfoViewController: UITableViewController {
         if let groupInfo = Sections(rawValue: section) {
             switch groupInfo {
             case .invitedMembers:
-                return 1
+                return dockMembers.count
                 
             case .manageGrouping:
                 return ManageStatus.max.rawValue
@@ -59,7 +59,7 @@ class GroupInfoViewController: UITableViewController {
         if let groupInfo = Sections(rawValue: indexPath.section) {
             switch groupInfo {
             case .invitedMembers:
-                cell.textLabel?.text = "(=・∀・=)"
+                cell.textLabel?.text = dockMembers[indexPath.row].name
                 
             case .manageGrouping:
                 if let managing = ManageStatus(rawValue: indexPath.row) {
@@ -164,11 +164,6 @@ class GroupInfoViewController: UITableViewController {
     }
     
     func scanQR() {
-        // Retrieve the QRCode content
-        // By using the delegate pattern
-        // -> qrReader.delegate = self
-        
-        // Or by using the closure pattern
         qrReader.completionBlock = { (result: QRCodeReaderResult?) in
             debugPrint(result ?? "not found QRCodeReaderResult")
             guard let result = result else {

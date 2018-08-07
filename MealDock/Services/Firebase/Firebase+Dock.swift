@@ -10,11 +10,19 @@ import Foundation
 
 extension FirebaseService {
     
-    func observeMyDockMember() {
+    func observeMyDockMember(success:(([DockMember]) -> Void)?) {
         if let user = currentUser {
             ref.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.uid)")
                 .observe(.value) { (snapshot) in
-                    debugPrint(snapshot)
+                    if let json = snapshot.value as? [String : String] {
+                        let memberIds = [String](json.keys)
+                        let memberNames = [String](json.values)
+                        var members = [DockMember]()
+                        for (index, id) in memberIds.enumerated() {
+                            members.append(DockMember(id: id, name: memberNames[index]))
+                        }
+                        success?(members)
+                    }
             }
         }
     }
