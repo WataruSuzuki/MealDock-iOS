@@ -14,7 +14,6 @@ extension FirebaseService {
             self.ref.child("harvests")
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
-                //.child("message from \(String(describing: user.displayName))")
                 .observeSingleEvent(of: .value, with: { (snapshot) in
                     print(snapshot)
                 }) { (error) in
