@@ -13,7 +13,7 @@ class DockUser: NSObject {
     
     private let user: User
     private var currentDockId: String?
-    var uid: String {
+    var dockID: String {
         get {
             if let currentId = currentDockId {
                 return currentId
@@ -22,6 +22,7 @@ class DockUser: NSObject {
             }
         }
     }
+    var uid: String { get { return user.uid } }
     var displayName: String? {
         get { return user.displayName }
     }

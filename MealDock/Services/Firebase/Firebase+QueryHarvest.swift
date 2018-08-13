@@ -54,7 +54,7 @@ extension FirebaseService {
     fileprivate func loadCustomMarketItems(result:(([MarketItems], Error?) -> Void)?) {
         if let user = currentUser {
             rootRef.child(FirebaseService.ID_MARKET_ITEMS)
-                .child(user.uid)
+                .child(user.dockID)
                 .observeSingleEvent(of: .value, with: { (snapshot) in
                     var items = [MarketItems]()
                     let harvests = self.snapshotToHarvests(snapshot: snapshot)
@@ -97,7 +97,7 @@ extension FirebaseService {
                 // Don't duplicate
                 return
             }
-            let newReference = rootRef.child("\(itemId)/\(user.uid)")
+            let newReference = rootRef.child("\(itemId)/\(user.dockID)")
             let newObserver = newReference.observe(.value, with: { (snapshot) in
                 success?(self.snapshotToHarvests(snapshot: snapshot))
             }, withCancel: { (error) in
@@ -153,7 +153,7 @@ extension FirebaseService {
             // Don't duplicate
             return
         }
-        let newReference = rootRef.child("\(itemId)/\(user.uid)")
+        let newReference = rootRef.child("\(itemId)/\(user.dockID)")
         let newObserver = newReference.observe(.value, with: { (snapshot) in
             var items = [Dish]()
             for child in snapshot.children {
