@@ -25,6 +25,11 @@ class GroupInfoViewController: UITableViewController {
 
         self.title = NSLocalizedString("groupInfo", comment: "")
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         FirebaseService.shared.observeMyDockMember { (members) in
             self.dockMembers = members
             self.tableView.reloadSections(IndexSet(integer: Sections.invitedMembers.rawValue), with: .automatic)

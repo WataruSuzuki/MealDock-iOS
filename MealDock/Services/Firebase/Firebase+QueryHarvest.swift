@@ -54,8 +54,7 @@ extension FirebaseService {
     fileprivate func loadCustomMarketItems(result:(([MarketItems], Error?) -> Void)?) {
         if let user = currentUser {
             rootRef.child(FirebaseService.ID_MARKET_ITEMS)
-                //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
-                .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
+                .child(user.uid)
                 .observeSingleEvent(of: .value, with: { (snapshot) in
                     var items = [MarketItems]()
                     let harvests = self.snapshotToHarvests(snapshot: snapshot)
@@ -94,9 +93,9 @@ extension FirebaseService {
     
     fileprivate func observeHarvest(itemId: String, success:(([[Harvest]]) -> Void)?) {
         if let user = currentUser {
-            if let previousObserver = observers[itemId] {
-                previousObserver.ref.removeObserver(withHandle: previousObserver.handle)
-                observers.removeValue(forKey: itemId)
+            guard observers[itemId] == nil else {
+                // Don't duplicate
+                return
             }
             let newReference = rootRef.child("\(itemId)/\(user.uid)")
             let newObserver = newReference.observe(.value, with: { (snapshot) in
@@ -150,9 +149,9 @@ extension FirebaseService {
     
     fileprivate func observeDishes(user: User, success:(([Dish]) -> Void)?) {
         let itemId = FirebaseService.ID_DISH_ITEMS
-        if let previousObserver = observers[itemId] {
-            previousObserver.ref.removeObserver(withHandle: previousObserver.handle)
-            observers.removeValue(forKey: itemId)
+        guard observers[itemId] == nil else {
+            // Don't duplicate
+            return
         }
         let newReference = rootRef.child("\(itemId)/\(user.uid)")
         let newObserver = newReference.observe(.value, with: { (snapshot) in

@@ -33,6 +33,10 @@ class DishListViewController: UICollectionViewController,
         // Do any additional setup after loading the view.
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         FirebaseService.shared.observeDishes { (dishes) in
             self.dishes = dishes

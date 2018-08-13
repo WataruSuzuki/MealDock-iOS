@@ -21,9 +21,9 @@ extension FirebaseService {
     func observeMyDockMember(success:(([DockMember]) -> Void)?) {
         if let user = currentUser {
             let itemId = FirebaseService.ID_MEAL_DOCKS
-            if let previousObserver = observers[itemId] {
-                previousObserver.ref.removeObserver(withHandle: previousObserver.handle)
-                observers.removeValue(forKey: itemId)
+            guard observers[itemId] == nil else {
+                // Don't duplicate
+                return
             }
             let newReference = rootRef.child("\(itemId)/\(user.uid)")
             let newObserver = newReference.observe(.value) { (snapshot) in

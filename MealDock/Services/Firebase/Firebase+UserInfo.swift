@@ -33,9 +33,9 @@ extension FirebaseService {
     
     fileprivate func observeUsageInfo(user: User, info:((UsageInfo) -> Void)?) {
         let itemId = FirebaseService.ID_USAGE
-        if let previousObserver = observers[itemId] {
-            previousObserver.ref.removeObserver(withHandle: previousObserver.handle)
-            observers.removeValue(forKey: itemId)
+        guard observers[itemId] == nil else {
+            // Don't duplicate
+            return
         }
         let newReference = rootRef.child("\(itemId)/\(user.uid)")
         let newObserver = newReference.observe(.value) { (snapshot) in

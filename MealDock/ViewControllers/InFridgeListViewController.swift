@@ -14,14 +14,16 @@ class InFridgeListViewController: MealDockListViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("inFridgeFoods", comment: "")
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        activateFab(target: self, image: UIImage(named: "packed_food")!, selector: #selector(onFabTapped))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         FirebaseService.shared.observeInFridgeHarvest { (items) in
             self.harvests = items
             self.tableView.reloadData()
         }
-        activateFab(target: self, image: UIImage(named: "packed_food")!, selector: #selector(onFabTapped))
     }
 
     override func didReceiveMemoryWarning() {
