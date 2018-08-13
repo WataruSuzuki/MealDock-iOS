@@ -137,17 +137,17 @@ extension FirebaseService {
         if let user = currentUser {
             observeDishes(user: user, success: success)
         } else {
-            let handle = observe(\.currentUser) { (user, change) in
+            let kvo = observe(\.currentUser) { (user, change) in
                 if let newUser = self.currentUser {
                     self.observeDishes(user: newUser, success: success)
                     self.signInObservations["observeDishes"]?.invalidate()
                 }
             }
-            signInObservations.updateValue(handle, forKey: "observeDishes")
+            signInObservations.updateValue(kvo, forKey: "observeDishes")
         }
     }
     
-    fileprivate func observeDishes(user: User, success:(([Dish]) -> Void)?) {
+    fileprivate func observeDishes(user: DockUser, success:(([Dish]) -> Void)?) {
         let itemId = FirebaseService.ID_DISH_ITEMS
         guard observers[itemId] == nil else {
             // Don't duplicate

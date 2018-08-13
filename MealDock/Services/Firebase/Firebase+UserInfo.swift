@@ -11,27 +11,21 @@ import CodableFirebase
 
 extension FirebaseService {
 
-    func printUserInfo(user: User) {
-        debugPrint("uid = \(user.uid)")
-        debugPrint("displayName = \(String(describing: user.displayName))")
-        debugPrint("email = \(String(describing: user.email))")
-    }
-    
     func observeUsageInfo(info:((UsageInfo) -> Void)?) {
         if let user = currentUser {
             observeUsageInfo(user: user, info: info)
         } else {
-            let handle = observe(\.currentUser) { (user, change) in
+            let kvo = observe(\.currentUser) { (user, change) in
                 if let newUser = self.currentUser {
                     self.observeUsageInfo(user: newUser, info: info)
                     self.signInObservations["observeUsageInfo"]?.invalidate()
                 }
             }
-            signInObservations.updateValue(handle, forKey: "observeUsageInfo")
+            signInObservations.updateValue(kvo, forKey: "observeUsageInfo")
         }
     }
     
-    fileprivate func observeUsageInfo(user: User, info:((UsageInfo) -> Void)?) {
+    fileprivate func observeUsageInfo(user: DockUser, info:((UsageInfo) -> Void)?) {
         let itemId = FirebaseService.ID_USAGE
         guard observers[itemId] == nil else {
             // Don't duplicate

@@ -55,7 +55,7 @@ class ShowQrViewController: UIViewController,
         qrImageView.autoCenterInSuperview()
     }
     
-    func generateQRMessage(user: User, type: QrType) -> String? {
+    func generateQRMessage(user: DockUser, type: QrType) -> String? {
         var jsonObj: [String : String]!
         switch type {
         case .requestToJoin:

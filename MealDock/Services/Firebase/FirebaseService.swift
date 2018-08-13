@@ -33,7 +33,7 @@ class FirebaseService: NSObject,
     ]
     
     var defaultAuthUI: FUIAuth!
-    @objc dynamic var currentUser: User?
+    @objc dynamic var currentUser: DockUser?
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
     var database: Database!
     var rootRef: DatabaseReference!
@@ -84,12 +84,13 @@ class FirebaseService: NSObject,
         if authStateDidChangeListenerHandle == nil {
             authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { (auth, user) in
                 debugPrint("auth = \(auth.debugDescription)")
-                self.currentUser = user
-                if let user = self.currentUser {
-                    self.printUserInfo(user: user)
+                if let user = user {
+                    self.currentUser = DockUser(user: user)
                 } else {
+                    self.currentUser = nil
                     self.requestAuthUI()
                 }
+                self.currentUser?.printUserInfo()
             }
         }
     }
