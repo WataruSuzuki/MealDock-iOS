@@ -40,6 +40,7 @@ settings = "Settings";
 
 invitedMembers = "Invited members";
 manageGrouping = "Manage grouping";
+groupOwner = "Group owner";
 addNewMember = "Add new member";
 requestToJoin = "Request to join";
 leaveFromGroup = "Leave from group";

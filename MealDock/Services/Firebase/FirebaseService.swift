@@ -49,7 +49,6 @@ class FirebaseService: NSObject,
     var signInObservations = [String: NSKeyValueObservation]()
     var observers = [String: FirebaseObserver]()
     //var harvests = initHarvestArray()
-    var usageInfo: UsageInfo?
 
     class func initHarvestArray() -> [[Harvest]] {
         return [[Harvest]](repeating: [], count: Harvest.Section.max.rawValue)
@@ -97,9 +96,6 @@ class FirebaseService: NSObject,
     
     fileprivate func startToObservingDatabase() {
         observeReachability()
-        observeUsageInfo { (info) in
-            self.usageInfo = info
-        }
     }
     
     fileprivate func signInByKeychain() {

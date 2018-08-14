@@ -66,13 +66,36 @@ class GroupInfoViewController: UITableViewController {
             switch groupInfo {
             case .invitedMembers:
                 cell.textLabel?.text = dockMembers[indexPath.row].name
-                cell.accessoryType = .none
 
             case .manageGrouping:
+                cell.accessoryType = .detailButton
                 if let managing = ManageStatus(rawValue: indexPath.row) {
                     cell.textLabel?.text = NSLocalizedString(managing.description(), comment: "")
+                    switch managing {
+                    case .groupOwner:
+                        cell.textLabel?.isEnabled = true
+                        cell.selectionStyle = .none
+                        cell.accessoryType = .none
+                        if cell.accessoryView == nil {
+                            let switching = UISwitch(frame: .zero)
+                            switching.isOn = isGroupOwnerNow()
+                            switching.addTarget(self, action: #selector(switchTriggered), for: .valueChanged)
+                            cell.accessoryView = switching
+                            FirebaseService.shared.currentUser?.switchingDock = { (dock) in
+                                self.tableView.reloadSections(IndexSet(integer: Sections.manageGrouping.rawValue), with: .automatic)
+                            }
+                        }
+
+                    case .addNewMember:
+                        cell.isUserInteractionEnabled = isGroupOwnerNow()
+                        cell.textLabel?.isEnabled = isGroupOwnerNow()
+                        cell.selectionStyle = (isGroupOwnerNow() ? .default : .none)
+                    default:
+                        cell.isUserInteractionEnabled = !isGroupOwnerNow()
+                        cell.textLabel?.isEnabled = !isGroupOwnerNow()
+                        cell.selectionStyle = (isGroupOwnerNow() ? .none : .default)
+                    }
                 }
-                cell.accessoryType = .detailButton
 
             default:
                 break
@@ -80,6 +103,21 @@ class GroupInfoViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    @objc func switchTriggered(sender: UISwitch){
+        if !sender.isOn {
+            FirebaseService.shared.joinToGroupDock(dock: "temp", id: "temp")
+        } else {
+            FirebaseService.shared.joinToGroupDock(dock: nil, id: nil)
+        }
+    }
+    
+    private func isGroupOwnerNow() -> Bool {
+        if let user = FirebaseService.shared.currentUser, user.isGroupOwnerMode {
+            return true
+        }
+        return false
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -128,11 +166,13 @@ class GroupInfoViewController: UITableViewController {
                 if let managing = ManageStatus(rawValue: indexPath.row) {
                     switch managing {
                     case .addNewMember:
-                        scanQR()
+                        if !isGroupOwnerNow() {
+                            scanQR()
+                        }
                     case .requestToJoin:
-                        generateQR()
-                    case .leaveFromGroup:
-                        FirebaseService.shared.joinToGroupDock(dock: nil, id: nil)
+                        if isGroupOwnerNow() {
+                            generateQR()
+                        }
                     default:
                         break
                     }
@@ -211,9 +251,9 @@ class GroupInfoViewController: UITableViewController {
     }
     
     enum ManageStatus: Int {
-        case addNewMember = 0,
+        case groupOwner = 0,
+        addNewMember,
         requestToJoin,
-        leaveFromGroup,
         max
     }
 }
