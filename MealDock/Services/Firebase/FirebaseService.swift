@@ -142,16 +142,25 @@ class FirebaseService: NSObject,
         do {
             try authUI.signOut()
             currentUser = nil
-            clearAllObservers()
+            clearAllObservers(evenUserInfo: true)
         } catch (let error) {
             print(error)
         }
     }
     
-    func clearAllObservers() {
+    func clearAllObservers(evenUserInfo: Bool) {
+        var userInfoObserver: FirebaseObserver?
+        if !evenUserInfo {
+            userInfoObserver = observers[FirebaseService.ID_USAGE]
+            observers.removeValue(forKey: FirebaseService.ID_USAGE)
+        }
         let observerValues = [FirebaseObserver](observers.values)
         for observer in observerValues {
             observer.ref.removeObserver(withHandle: observer.handle)
+        }
+        observers.removeAll()
+        if let temp = userInfoObserver {
+            observers.updateValue(temp, forKey: FirebaseService.ID_USAGE)
         }
     }
     

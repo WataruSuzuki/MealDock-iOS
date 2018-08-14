@@ -14,7 +14,7 @@ extension FirebaseService {
         if let user = currentUser {
             rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentDock").setValue(dock ?? user.uid)
             rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentID").setValue(id ?? user.uid)
-            clearAllObservers()
+            clearAllObservers(evenUserInfo: false)
         }
     }
     
