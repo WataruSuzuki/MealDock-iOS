@@ -14,6 +14,10 @@ import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
 import PureLayout
 
+protocol MealDockAdder {
+    func onAddFabTapped()
+}
+
 class MealDockBaseCollectionViewController: MDCCollectionViewController,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
@@ -116,7 +120,12 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
     
     func instantiateFab() {
         fab.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
+        addTargetToFab(target: self, action: #selector(onAddFabTapped))
         view.addSubview(fab)
+    }
+    
+    func addTargetToFab(target: Any?, action: Selector) {
+        fab.addTarget(target, action: action, for: .touchUpInside)
     }
     
     func instatiateBottomBar() {
@@ -131,13 +140,13 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         let barButtonLeadingItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: nil)
         let barButtonTrailingItem = UIBarButtonItem(title: "Dados Pessoais", style: .plain, target: self, action: nil)
         
-        bottomBarView.floatingButton.addTarget(self, action: #selector(floatingButtonAction), for: .touchDown)
+        bottomBarView.floatingButton.addTarget(self, action: #selector(onAddFabTapped), for: .touchDown)
         
         bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
         bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
     }
     
-    @objc func floatingButtonAction(){
+    @objc func onAddFabTapped() {
         
     }
     

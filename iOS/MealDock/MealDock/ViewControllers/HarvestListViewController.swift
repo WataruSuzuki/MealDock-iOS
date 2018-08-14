@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
 
-class HarvestListViewController: MealDockBaseCollectionViewController {
+class HarvestListViewController: MealDockBaseCollectionViewController,
+    MealDockAdder
+{
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         styler.cellStyle = .card
+        addTargetToFab(target: self, action: #selector(onAddFabTapped))
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,4 +88,13 @@ class HarvestListViewController: MealDockBaseCollectionViewController {
     }
     */
 
+    @objc override func onAddFabTapped() {
+        let sb = UIStoryboard(name: "HarvestList", bundle: Bundle.main)
+        if let viewController = sb.instantiateViewController(withIdentifier: "FirstViewController") as? FirstViewController {
+            // Initialize the bottom sheet with the view controller just created
+            let bottomSheet = MDCBottomSheetController(contentViewController: viewController)
+            // Present the bottom sheet
+            present(bottomSheet, animated: true, completion: nil)
+        }
+    }
 }
