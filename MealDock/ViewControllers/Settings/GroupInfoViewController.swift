@@ -19,6 +19,7 @@ class GroupInfoViewController: UITableViewController {
         return QRCodeReaderViewController(builder: builder)
     }()
     var dockMembers = [DockMember]()
+    //var groupOwnerSwitch: UISwitch?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,20 +78,22 @@ class GroupInfoViewController: UITableViewController {
                         cell.selectionStyle = .none
                         cell.accessoryType = .none
                         if cell.accessoryView == nil {
-                            let switching = UISwitch(frame: .zero)
-                            switching.isOn = isGroupOwnerNow()
-                            switching.addTarget(self, action: #selector(switchTriggered), for: .valueChanged)
-                            cell.accessoryView = switching
+                            let ownerSwitch = UISwitch(frame: .zero)
+                            ownerSwitch.isOn = isGroupOwnerNow()
+                            ownerSwitch.addTarget(self, action: #selector(switchTriggered), for: .valueChanged)
+                            cell.accessoryView = ownerSwitch
                             FirebaseService.shared.currentUser?.switchingDock = { (dock) in
                                 self.tableView.reloadSections(IndexSet(integer: Sections.manageGrouping.rawValue), with: .automatic)
                             }
                         }
 
                     case .addNewMember:
+                        cell.accessoryView = nil
                         cell.isUserInteractionEnabled = isGroupOwnerNow()
                         cell.textLabel?.isEnabled = isGroupOwnerNow()
                         cell.selectionStyle = (isGroupOwnerNow() ? .default : .none)
                     default:
+                        cell.accessoryView = nil
                         cell.isUserInteractionEnabled = !isGroupOwnerNow()
                         cell.textLabel?.isEnabled = !isGroupOwnerNow()
                         cell.selectionStyle = (isGroupOwnerNow() ? .none : .default)
@@ -109,7 +112,16 @@ class GroupInfoViewController: UITableViewController {
         if !sender.isOn {
             FirebaseService.shared.joinToGroupDock(dock: "temp", id: "temp")
         } else {
-            FirebaseService.shared.joinToGroupDock(dock: nil, id: nil)
+            let sheet = UIAlertController(title: "(・A・)", message: NSLocalizedString("msg_remove_joining_info", comment: ""), preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                self.tableView.reloadSections(IndexSet(integer: Sections.manageGrouping.rawValue), with: .automatic)
+            })
+            let removeAction = UIAlertAction(title: "Execute", style: .destructive) { (action) in
+                FirebaseService.shared.joinToGroupDock(dock: nil, id: nil)
+            }
+            sheet.addAction(cancelAction)
+            sheet.addAction(removeAction)
+            present(sheet, animated: true, completion: nil)
         }
     }
     

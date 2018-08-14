@@ -43,8 +43,9 @@ manageGrouping = "Manage grouping";
 groupOwner = "Group owner";
 addNewMember = "Add new member";
 requestToJoin = "Request to join";
-leaveFromGroup = "Leave from group";
 
 aboutThisApp = "About this app";
 help = "Help";
 privacyPolicy = "Privacy policy";
+
+msg_remove_joining_info = "Leave from group? Sharing information will be removed & please re-setup if you join to other group again";
