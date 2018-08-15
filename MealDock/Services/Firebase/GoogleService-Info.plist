@@ -6,6 +6,10 @@
 	<string>ca-app-pub-3940256099942544/2934735716</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
+    <key>AD_UNIT_ID_FOR_NATIVE_TEST</key>
+    <string>ca-app-pub-3940256099942544/3986624511</string>
+    <key>AD_UNIT_ID_FOR_REWARDED_TEST</key>
+    <string>ca-app-pub-3940256099942544/1712485313</string>
 	<key>CLIENT_ID</key>
 	<string>929638895717-60457p806v46c9ljjo7mpncqb1qrtsqf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>

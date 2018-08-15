@@ -19,7 +19,6 @@ class GroupInfoViewController: UITableViewController {
         return QRCodeReaderViewController(builder: builder)
     }()
     var dockMembers = [DockMember]()
-    //var groupOwnerSwitch: UISwitch?
     
     override func viewDidLoad() {
         super.viewDidLoad()

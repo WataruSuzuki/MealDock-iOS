@@ -64,6 +64,8 @@
 		96FC04E8216900FD00533529 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E7216900FD00533529 /* Dish.swift */; };
 		96FC04EA21690B8D00533529 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E921690B8D00533529 /* TextFieldCell.swift */; };
 		96FC04F8216AF43B00533529 /* DishCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */; };
+		CC095B472175E42D00BB7712 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B462175E42D00BB7712 /* AccountInfoViewController.swift */; };
+		CC095B492175E4C500BB7712 /* UsageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC6495062174934100580268 /* Firebase+Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6495052174934100580268 /* Firebase+Dock.swift */; };
@@ -172,6 +174,8 @@
 		96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCardCollectionCell.swift; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		BE4497431E10628292717D8C /* Pods_MealDockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC095B462175E42D00BB7712 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
+		CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfoViewController.swift; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
 		CC6495052174934100580268 /* Firebase+Dock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Dock.swift"; sourceTree = "<group>"; };
@@ -334,6 +338,8 @@
 				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
 				966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */,
 				966F5A642173364B00A47EDF /* ShowQrViewController.swift */,
+				CC095B462175E42D00BB7712 /* AccountInfoViewController.swift */,
+				CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -839,6 +845,7 @@
 				966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,
 				966F5A6C2174B7D200A47EDF /* DockMember.swift in Sources */,
+				CC095B472175E42D00BB7712 /* AccountInfoViewController.swift in Sources */,
 				96EE88802158951F00924490 /* ErrandCell.swift in Sources */,
 				9615BDFC214E0F1A001801D5 /* FUIPasswordSignUpViewController+Injection.m in Sources */,
 				CC77E5062165FFBF002891BB /* UITableView+CustomNib.swift in Sources */,
@@ -854,6 +861,7 @@
 				966F5A5121718D1100A47EDF /* GooglePhoto+Token.swift in Sources */,
 				96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */,
 				964C00BC214E22FB0099689B /* DishListViewController.swift in Sources */,
+				CC095B492175E4C500BB7712 /* UsageInfoViewController.swift in Sources */,
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,
 				CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */,
 				CCCFAC34216F518F002279B3 /* GooglePhotosMediaItem.swift in Sources */,

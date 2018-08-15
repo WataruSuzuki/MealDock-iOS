@@ -90,6 +90,8 @@ class SettingsViewController: UITableViewController {
             case .account:
                 if let accountRow = AccountRow(rawValue: indexPath.row) {
                     switch accountRow {
+                    case .userInfo:
+                        performSegue(withIdentifier: String(describing: UsageInfoViewController.self), sender: self)
                     case .groupInfo:
                         performSegue(withIdentifier: String(describing: GroupInfoViewController.self), sender: self)
                         GroupInfoViewController.description()
