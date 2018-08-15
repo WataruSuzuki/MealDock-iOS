@@ -88,6 +88,16 @@ extension FirebaseService {
         }
     }
     
+    func updateProfile(displayName: String) {
+        if let user = currentUser {
+            let request = user.core.createProfileChangeRequest()
+            request.displayName = displayName
+            request.commitChanges { (error) in
+                self.handleError(error: error, funcName: #function)
+            }
+        }
+    }
+    
     func sendPasswordReset() {
         if let auth = defaultAuthUI.auth, let email = currentUser?.email {
             auth.sendPasswordReset(withEmail: email) { (error) in
@@ -98,7 +108,7 @@ extension FirebaseService {
     
     func updateEmail(newEmail: String) {
         if let user = currentUser {
-            user.firUser.updateEmail(to: newEmail) { (error) in
+            user.core.updateEmail(to: newEmail) { (error) in
                 self.handleError(error: error, funcName: #function)
             }
         }

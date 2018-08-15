@@ -89,8 +89,9 @@ class UsageInfoViewController: UITableViewController {
                     switch editRow {
                     case .resetPassword:
                         FirebaseService.shared.sendPasswordReset()
-                    case .changeEmail:
-                        showInputNewEmailController()
+                    case .changeEmail: fallthrough
+                    case .changeDisplayName:
+                        showInputNewInfoController(row: editRow)
                     default:
                         break
                     }
@@ -103,32 +104,57 @@ class UsageInfoViewController: UITableViewController {
         }
     }
     
-    func showInputNewEmailController() {
-        let controller = UIAlertController(title: "(・∀・)", message: NSLocalizedString("msg_change_email", comment: ""), preferredStyle: .alert)
+    func showInputNewInfoController(row: EditAccount) {
+        var keyboard = UIKeyboardType.default
+        var content: UITextContentType!
+        var msg = "";
+        switch row {
+        case .changeEmail:
+            keyboard = .emailAddress
+            if #available(iOS 10.0, *) {
+                content = .emailAddress
+            }
+            msg = "msg_change_email"
+        case .changeDisplayName:
+            if #available(iOS 10.0, *) {
+                content = .nickname
+            }
+            msg = "msg_change_displayname"
+        default:
+            return
+        }
+        let controller = UIAlertController(title: "(・∀・)", message: NSLocalizedString(msg, comment: ""), preferredStyle: .alert)
         controller.addEmptyCancelAction()
         controller.addTextField(configurationHandler: {(text:UITextField!) -> Void in
-            text.keyboardType = .emailAddress
+            text.keyboardType = keyboard
             if #available(iOS 10.0, *) {
-                text.textContentType = .emailAddress
+                text.textContentType = content
             }
         })
         let completeAction:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            self.getNewEmailStr(alert: controller)
+            self.updateUserInfoByNewStr(row: row, alert: controller)
         }
         controller.addAction(completeAction)
         present(controller, animated: true, completion: nil)
     }
     
-    func getNewEmailStr(alert: UIAlertController) {
+    func updateUserInfoByNewStr(row: EditAccount, alert: UIAlertController) {
         if let textFields = alert.textFields {
             if textFields.count > 0 {
-                guard let newEmail = textFields[0].text else { return }
-                debugPrint(newEmail)
-                FirebaseService.shared.updateEmail(newEmail: newEmail)
+                guard let newStr = textFields[0].text else { return }
+                debugPrint(newStr)
+                switch row {
+                case .changeEmail:
+                    FirebaseService.shared.updateEmail(newEmail: newStr)
+                case .changeDisplayName:
+                    FirebaseService.shared.updateProfile(displayName: newStr)
+                default:
+                    break
+                }
             }
         }
     }
-
+    
     private func getUserInfoDetailStr(index: UserInfo) -> String {
         if let user = FirebaseService.shared.currentUser {
             switch index {

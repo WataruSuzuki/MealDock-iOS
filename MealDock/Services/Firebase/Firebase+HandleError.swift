@@ -23,6 +23,8 @@ extension FirebaseService {
                 self.alertErrorMessage(message: NSLocalizedString("requiresRecentLogin", comment: ""), actions: [action])
                 
             default:
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                self.alertErrorMessage(message: "(Φ人Φ) Error code: \(errorCode)", actions: [action])
                 break
             }
         }
