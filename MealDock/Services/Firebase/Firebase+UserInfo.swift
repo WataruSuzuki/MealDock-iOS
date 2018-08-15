@@ -72,20 +72,7 @@ extension FirebaseService {
             removeAllCartedHarvest()
             removeAllMarketItems()
             user.delete { (error) in
-                if let error = error {
-                    print(error)
-                    guard let errorCode = AuthErrorCode(rawValue: error._code) else { return }
-                    switch errorCode {
-                    case .requiresRecentLogin:
-                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                            self.signOut()
-                        })
-                        self.alertErrorMessage(message: NSLocalizedString("requiresRecentLogin", comment: ""), actions: [action])
-                        
-                    default:
-                        break
-                    }
-                }
+                self.handleError(error: error, funcName: #function)
             }
             A0SimpleKeychain().deleteEntry(forKey: initializedFUIAuth)
             A0SimpleKeychain().deleteEntry(forKey: emailFUIAuth)
@@ -104,9 +91,16 @@ extension FirebaseService {
     func sendPasswordReset() {
         if let auth = defaultAuthUI.auth, let email = currentUser?.email {
             auth.sendPasswordReset(withEmail: email) { (error) in
-                print(error ?? OptionalError.kaomojiErrorStr(funcName: #function))
+                self.handleError(error: error, funcName: #function)
             }
         }
     }
     
+    func updateEmail(newEmail: String) {
+        if let user = currentUser {
+            user.firUser.updateEmail(to: newEmail) { (error) in
+                self.handleError(error: error, funcName: #function)
+            }
+        }
+    }
 }

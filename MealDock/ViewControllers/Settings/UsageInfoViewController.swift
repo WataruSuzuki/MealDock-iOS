@@ -89,6 +89,8 @@ class UsageInfoViewController: UITableViewController {
                     switch editRow {
                     case .resetPassword:
                         FirebaseService.shared.sendPasswordReset()
+                    case .changeEmail:
+                        showInputNewEmailController()
                     default:
                         break
                     }
@@ -99,7 +101,32 @@ class UsageInfoViewController: UITableViewController {
                 break
             }
         }
-        
+    }
+    
+    func showInputNewEmailController() {
+        let controller = UIAlertController(title: "(・∀・)", message: NSLocalizedString("msg_change_email", comment: ""), preferredStyle: .alert)
+        controller.addEmptyCancelAction()
+        controller.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+            text.keyboardType = .emailAddress
+            if #available(iOS 10.0, *) {
+                text.textContentType = .emailAddress
+            }
+        })
+        let completeAction:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.getNewEmailStr(alert: controller)
+        }
+        controller.addAction(completeAction)
+        present(controller, animated: true, completion: nil)
+    }
+    
+    func getNewEmailStr(alert: UIAlertController) {
+        if let textFields = alert.textFields {
+            if textFields.count > 0 {
+                guard let newEmail = textFields[0].text else { return }
+                debugPrint(newEmail)
+                FirebaseService.shared.updateEmail(newEmail: newEmail)
+            }
+        }
     }
 
     private func getUserInfoDetailStr(index: UserInfo) -> String {
