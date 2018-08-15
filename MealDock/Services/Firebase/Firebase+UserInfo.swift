@@ -57,10 +57,16 @@ extension FirebaseService {
         }
     }
     
+    func deleteUsageInfo() {
+        if let user = currentUser {
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)").removeValue()
+        }
+    }
+    
     func deleteCurrentUser() {
         if let user = currentUser {
             deleteMyDockGroup()
-            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)").removeValue()
+            deleteUsageInfo()
             removeAllMyDishes()
             removeAllInFridgeHarvest()
             removeAllCartedHarvest()
