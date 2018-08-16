@@ -23,11 +23,8 @@ class DockUser: NSObject {
         }
     }
     var uid: String { get { return core.uid } }
-    var displayName: String? {
-        get { return core.displayName }
-    }
     var email: String? { get { return core.email } }
-    var usageInfo: UsageInfo?
+    private(set) var usageInfo: UsageInfo?
     private var idAsDock: String?
     var isJoiningSharingGroup: Bool {
         get {
@@ -68,4 +65,13 @@ class DockUser: NSObject {
         debugPrint("email = \(String(describing: core.email))")
     }
     
+    func hasCapacity(addingSize: Int) -> Bool {
+        guard let usage = usageInfo else {
+            return false
+        }
+        let counters = FirebaseService.shared.itemCounters.values
+        return usage.sizeOfItems > counters.reduce(addingSize, { (num1, num2) -> Int in
+            num1 + num2
+        })
+    }
 }

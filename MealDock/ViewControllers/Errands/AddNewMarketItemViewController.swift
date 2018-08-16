@@ -15,7 +15,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     var capturePhotoView: UIImageView?
     var cameraButton: UIButton?
     var typePicker: UIPickerView?
-    var selctedType = Harvest.Section.unknown
+    var selectedType = Harvest.Section.unknown
     var items: [String]?
     
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     
     fileprivate func viewTextCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Element) -> MDCCollectionViewTextCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewTextCell.self), for: indexPath) as! MDCCollectionViewTextCell
-        cell.textLabel?.text = selctedType.emoji()
+        cell.textLabel?.text = selectedType.emoji()
         return cell
     }
     
@@ -147,7 +147,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
                 ActionSheetStringPicker.show(withTitle: "(・∀・)", rows: items!, initialSelection: 1, doneBlock: {
                     picker, value, index in
                     DispatchQueue.main.async {
-                        self.selctedType = Harvest.Section(rawValue: value)!
+                        self.selectedType = Harvest.Section(rawValue: value)!
                         collectionView.reloadItems(at: [indexPath])
                     }
                 }, cancel: { ActionStringCancelBlock in }, origin: cell)
@@ -160,8 +160,8 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
             let name = cell.textField.text else {
             return
         }
-        let harvest = Harvest(name: name, section: selctedType.toString(), imageUrl: "")
-        FirebaseService.shared.addToMarketItem(harvest: harvest)
+        let harvest = Harvest(name: name, section: selectedType.toString(), imageUrl: "")
+        FirebaseService.shared.addToMarketItem(harvests: [harvest])
         dismiss(animated: true, completion: nil)
     }
     

@@ -159,7 +159,7 @@ class UsageInfoViewController: UITableViewController {
         if let user = FirebaseService.shared.currentUser {
             switch index {
             case .displayName:
-                return user.displayName ?? ""
+                return user.core.displayName ?? ""
             case .email:
                 return user.email ?? ""
             case .password:

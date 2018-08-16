@@ -63,18 +63,18 @@ class ShowQrViewController: UIViewController,
         switch type {
         case .requestToJoin:
             joinUid = sha1(param: user.uid)
-            jsonObj = ["id": joinUid, "name": user.displayName ?? "(・∀・)"]
+            jsonObj = ["id": joinUid, "name": user.core.displayName ?? "(・∀・)"]
         case .tellDockId:
-            jsonObj = ["id": user.uid, "name": user.displayName ?? "(・∀・)"]
+            jsonObj = ["id": user.uid, "name": user.core.displayName ?? "(・∀・)"]
         }
         
-//        do {
-//            let jsonData = try JSONSerialization.data(withJSONObject: jsonObj, options: [])
-//            return String(bytes: jsonData, encoding: .utf8)!
-//        } catch let error {
-//            print(error)
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonObj, options: [])
+            return String(bytes: jsonData, encoding: .utf8)!
+        } catch let error {
+            print(error)
             return nil
-//        }
+        }
     }
 
     private func sha1(param: String) -> String {

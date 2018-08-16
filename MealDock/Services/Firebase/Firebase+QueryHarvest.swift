@@ -99,7 +99,9 @@ extension FirebaseService {
             }
             let newReference = rootRef.child("\(itemId)/\(user.dockID)")
             let newObserver = newReference.observe(.value, with: { (snapshot) in
-                success?(self.snapshotToHarvests(snapshot: snapshot))
+                let items = self.snapshotToHarvests(snapshot: snapshot)
+                self.itemCounters.updateValue(items.count, forKey: itemId)
+                success?(items)
             }, withCancel: { (error) in
                 print(error.localizedDescription)
             })

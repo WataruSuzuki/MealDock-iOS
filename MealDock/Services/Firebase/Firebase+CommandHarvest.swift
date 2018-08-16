@@ -7,27 +7,40 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialSnackbar
 
 extension FirebaseService {
     
-    func addToMarketItem(harvest: Harvest) {
-        addHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvest: harvest)
+    func addToMarketItem(harvests: [Harvest]) {
+        if addHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvests: harvests) {
+        } else {
+            
+        }
     }
     
-    func addToErrand(harvest: Harvest) {
-        addHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvest: harvest)
+    func addToErrand(harvests: [Harvest]) {
+        if addHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests) {
+            snackBarMessage(text: "(=・∀・=)b")
+        } else {
+
+        }
     }
     
-    func addToFridge(harvest: Harvest) {
-        addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvest: harvest)
-        removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvest: harvest)
+    func addToFridge(harvests: [Harvest]) {
+        if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests) {
+            removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
+        } else {
+            
+        }
     }
     
-    fileprivate func addHarvest(itemId: String, harvest: Harvest) {
-        if let user = currentUser {
+    fileprivate func addHarvest(itemId: String, harvests: [Harvest]) -> Bool {
+        guard let user = currentUser, user.hasCapacity(addingSize: harvests.count) else { return false }
+        for harvest in harvests {
             let harvestRef = rootRef.child(itemId).child(user.dockID).child(harvest.name)
             setHarvestValue(ref: harvestRef, harvest: harvest)
         }
+        return true
     }
     
     fileprivate func setHarvestValue(ref: DatabaseReference, harvest: Harvest) {
@@ -39,9 +52,11 @@ extension FirebaseService {
             ])
     }
     
-    fileprivate func removeHarvest(itemId: String, harvest: Harvest) {
+    fileprivate func removeHarvest(itemId: String, harvests: [Harvest]) {
         if let user = currentUser {
-            rootRef.child(itemId).child(user.dockID).child(harvest.name).removeValue()
+            for harvest in harvests {
+                rootRef.child(itemId).child(user.dockID).child(harvest.name).removeValue()
+            }
         }
     }
     
@@ -64,28 +79,26 @@ extension FirebaseService {
     }
     
     func addDish(dish: Dish) {
-        addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish)
-        for harvest in dish.harvests {
-            removeHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvest: harvest)
+        if addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish) {
+            removeHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: dish.harvests)
         }
     }
     
-    fileprivate func addDish(itemId: String, dish: Dish) {
-        if let user = currentUser {
-            let dishRef = rootRef.child(itemId).child(user.dockID).child(dish.title)
-            var harvestArray = [Any]()
-            for harvest in dish.harvests {
-                harvestArray.append(try! harvest.asDictionary())
-            }
-            dishRef.setValue([
-                "title": dish.title,
-                "description": dish.description,
-                "imagePath": dish.imagePath,
-                "harvests": harvestArray,
-                "timeStamp": dish.timeStamp
-                ])
-            
+    fileprivate func addDish(itemId: String, dish: Dish) -> Bool {
+        guard let user = currentUser, user.hasCapacity(addingSize: 1) else { return false }
+        let dishRef = rootRef.child(itemId).child(user.dockID).child(dish.title)
+        var harvestArray = [Any]()
+        for harvest in dish.harvests {
+            harvestArray.append(try! harvest.asDictionary())
         }
+        dishRef.setValue([
+            "title": dish.title,
+            "description": dish.description,
+            "imagePath": dish.imagePath,
+            "harvests": harvestArray,
+            "timeStamp": dish.timeStamp
+            ])
+        return true
     }
     
     func removeAllMyDishes() {
@@ -96,7 +109,16 @@ extension FirebaseService {
     
     fileprivate func removeDish(dish: Dish) {
         if let user = currentUser {
-            rootRef.child(FirebaseService.ID_DISH_ITEMS).child(user.dockID).child(dish.title).removeValue()
+            rootRef.child(FirebaseService.ID_DISH_ITEMS)
+                .child(user.dockID)
+                .child(dish.title)
+                .removeValue()
         }
+    }
+    
+    func snackBarMessage(text: String) {
+        let message = MDCSnackbarMessage()
+        message.text = text
+        MDCSnackbarManager.show(message)
     }
 }

@@ -62,8 +62,6 @@ class CartedItemListViewController: MealDockListViewController {
     
     @objc func onFabTapped() {
         let items = [Harvest](checkedItems.values)
-        for item in items {
-            FirebaseService.shared.addToFridge(harvest: item)
-        }
+        FirebaseService.shared.addToFridge(harvests: items)
     }
 }
