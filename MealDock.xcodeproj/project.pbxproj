@@ -68,6 +68,7 @@
 		96FC04F8216AF43B00533529 /* DishCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */; };
 		CC095B492175E4C500BB7712 /* UsageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */; };
 		CC095B4B2176CF1000BB7712 /* AlertControl+Cancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */; };
+		CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B4C2177132900BB7712 /* UIViewController+Top.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC6495062174934100580268 /* Firebase+Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6495052174934100580268 /* Firebase+Dock.swift */; };
@@ -180,6 +181,7 @@
 		BE4497431E10628292717D8C /* Pods_MealDockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfoViewController.swift; sourceTree = "<group>"; };
 		CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertControl+Cancel.swift"; sourceTree = "<group>"; };
+		CC095B4C2177132900BB7712 /* UIViewController+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Top.swift"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
 		CC6495052174934100580268 /* Firebase+Dock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Dock.swift"; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				96EE88842158D0A200924490 /* UIViewController+Transition.swift */,
 				CC5C68D521636A830026441D /* MealDockListViewController.swift */,
 				CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */,
+				CC095B4C2177132900BB7712 /* UIViewController+Top.swift */,
 			);
 			path = Extends;
 			sourceTree = "<group>";
@@ -894,6 +897,7 @@
 				964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */,
 				966F5A6E2174D94E00A47EDF /* FirebaseObserver.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
+				CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */,
 				96FC04EA21690B8D00533529 /* TextFieldCell.swift in Sources */,
 				CC6495062174934100580268 /* Firebase+Dock.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,

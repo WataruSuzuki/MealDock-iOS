@@ -44,7 +44,10 @@ class ShowQrViewController: UIViewController,
                 return
             }
         }
-        dismiss(animated: true, completion: nil)
+        let failedAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        OptionalError.alertErrorMessage(message: NSLocalizedString("failed_generate_qr", comment: ""), actions: [failedAction])
     }
     
     override func viewWillLayoutSubviews() {
@@ -65,13 +68,13 @@ class ShowQrViewController: UIViewController,
             jsonObj = ["id": user.uid, "name": user.displayName ?? "(・∀・)"]
         }
         
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: jsonObj, options: [])
-            return String(bytes: jsonData, encoding: .utf8)!
-        } catch let error {
-            print(error)
+//        do {
+//            let jsonData = try JSONSerialization.data(withJSONObject: jsonObj, options: [])
+//            return String(bytes: jsonData, encoding: .utf8)!
+//        } catch let error {
+//            print(error)
             return nil
-        }
+//        }
     }
 
     private func sha1(param: String) -> String {
@@ -104,7 +107,7 @@ class ShowQrViewController: UIViewController,
                 self.dismiss(animated: false, completion: nil)
             })
         } catch let error {
-            print(error)
+            OptionalError.alertErrorMessage(error: error)
         }
     }
     

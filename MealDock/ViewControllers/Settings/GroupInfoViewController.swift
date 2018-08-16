@@ -241,7 +241,7 @@ class GroupInfoViewController: UITableViewController {
                     self.qrReader.present(navigation, animated: true, completion: nil)
                 }
             } catch let error {
-                print(error)
+                OptionalError.alertErrorMessage(error: error)
             }
         }
         

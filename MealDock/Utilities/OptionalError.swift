@@ -22,6 +22,29 @@ class OptionalError: NSError {
         return "(・A・)!! " + funcName
     }
     
+    static func alertErrorMessage(error: Error) {
+        print(error)
+        alertErrorMessage(message: error.localizedDescription, actions: nil)
+    }
+    
+    static func alertErrorMessage(message: String, actions: [UIAlertAction]?) {
+        let alert = UIAlertController(title: "(・A・)!!", message: message, preferredStyle: .alert)
+        if let actions = actions {
+            for action in actions {
+                alert.addAction(action)
+            }
+        } else {
+            let empty = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(empty)
+        }
+        if let delegate = UIApplication.shared.delegate as? AppDelegate,
+            let root = delegate.window?.rootViewController,
+            let top = root.currentTop()
+        {
+            top.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     enum ErrorType: Int {
         case unknown = 600,
         cannotGetToken

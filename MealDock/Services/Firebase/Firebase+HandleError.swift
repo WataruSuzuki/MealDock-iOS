@@ -35,8 +35,9 @@ extension FirebaseService {
         for action in actions {
             alert.addAction(action)
         }
-        if let delegate = UIApplication.shared.delegate as? AppDelegate, let root = delegate.window?.rootViewController {
-            root.present(alert, animated: true, completion: nil)
+        if let delegate = UIApplication.shared.delegate as? AppDelegate,
+            let root = delegate.window?.rootViewController, let top = root.currentTop() {
+            top.present(alert, animated: true, completion: nil)
         }
     }
 }
