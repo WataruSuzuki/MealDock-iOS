@@ -211,16 +211,15 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     @objc func tapDone() {
-        if let image = capturePhotoView?.image {
-            GooglePhotosService.shared.uploadDishPhoto(image: image, uploadedMediaId: { (path) in
-                FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
-                self.dismiss(animated: true, completion: nil)
-            }) { (error) in
-                //TODO error message for user
+        GooglePhotosService.shared.uploadDishPhoto(image: capturePhotoView?.image, uploadedMediaId: { (path) in
+            FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
+            self.dismiss(animated: true, completion: nil)
+        }) { (error) in
+            if let error = error {
+                OptionalError.alertErrorMessage(error: error)
+            } else {
+                OptionalError.alertErrorMessage(message: NSLocalizedString("failed_save_photo", comment: ""), actions: nil)
             }
-        } else {
-            FirebaseService.shared.addDish(dish: generateDishData(path: ""))
-            dismiss(animated: true, completion: nil)
         }
     }
     

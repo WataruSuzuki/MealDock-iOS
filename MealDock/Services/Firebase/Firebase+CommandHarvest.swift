@@ -11,26 +11,20 @@ import MaterialComponents.MaterialSnackbar
 
 extension FirebaseService {
     
-    func addToMarketItem(harvests: [Harvest]) {
-        if addHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvests: harvests) {
-        } else {
-            
-        }
+    func addToMarketItem(harvests: [Harvest]) -> Bool {
+        return addHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvests: harvests)
     }
     
-    func addToErrand(harvests: [Harvest]) {
-        if addHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests) {
-            snackBarMessage(text: "(=・∀・=)b")
-        } else {
-
-        }
+    func addToErrand(harvests: [Harvest]) -> Bool {
+        return addHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
     }
     
     func addToFridge(harvests: [Harvest]) {
         if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests) {
             removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
+            snackBarMessage(text: "(=・∀・=)b" + NSLocalizedString("msg_mission_completed", comment: ""))
         } else {
-            
+            OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
         }
     }
     

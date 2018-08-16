@@ -20,24 +20,13 @@ extension FirebaseService {
                 let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     self.signOut()
                 })
-                self.alertErrorMessage(message: NSLocalizedString("requiresRecentLogin", comment: ""), actions: [action])
+                OptionalError.alertErrorMessage(message: NSLocalizedString("requiresRecentLogin", comment: ""), actions: [action])
                 
             default:
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                self.alertErrorMessage(message: "(Φ人Φ) Error code: \(errorCode)", actions: [action])
+                OptionalError.alertErrorMessage(message: "(Φ人Φ) Error code: \(errorCode)", actions: [action])
                 break
             }
-        }
-    }
-    
-    private func alertErrorMessage(message: String, actions: [UIAlertAction]) {
-        let alert = UIAlertController(title: "(=・A・=)!!", message: message, preferredStyle: .alert)
-        for action in actions {
-            alert.addAction(action)
-        }
-        if let delegate = UIApplication.shared.delegate as? AppDelegate,
-            let root = delegate.window?.rootViewController, let top = root.currentTop() {
-            top.present(alert, animated: true, completion: nil)
         }
     }
 }

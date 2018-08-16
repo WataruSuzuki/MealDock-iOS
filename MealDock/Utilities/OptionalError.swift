@@ -10,7 +10,7 @@ import UIKit
 
 class OptionalError: NSError {
 
-    init(with type: ErrorType, userInfo: [String : Any]?) {
+    init(with type: Cause, userInfo: [String : Any]?) {
         super.init(domain: Bundle.main.bundleIdentifier ?? "(・w・)", code: type.rawValue, userInfo: userInfo)
     }
     
@@ -28,7 +28,7 @@ class OptionalError: NSError {
     }
     
     static func alertErrorMessage(message: String, actions: [UIAlertAction]?) {
-        let alert = UIAlertController(title: "(・A・)!!", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "(=・A・=)!!", message: message, preferredStyle: .alert)
         if let actions = actions {
             for action in actions {
                 alert.addAction(action)
@@ -45,8 +45,11 @@ class OptionalError: NSError {
         }
     }
     
-    enum ErrorType: Int {
+    enum Cause: Int {
         case unknown = 600,
-        cannotGetToken
+        failedToGetPhotoData,
+        failedToGetToken,
+        failedToCreatePhotoSaveSpace,
+        max
     }
 }

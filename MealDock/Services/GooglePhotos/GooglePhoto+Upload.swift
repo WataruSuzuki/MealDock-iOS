@@ -11,7 +11,11 @@ import Alamofire
 
 extension GooglePhotosService {
     
-    func uploadDishPhoto(image: UIImage, uploadedMediaId:((String) -> Void)?, failure :((Error?) -> ())?) {
+    func uploadDishPhoto(image: UIImage?, uploadedMediaId:((String) -> Void)?, failure :((Error?) -> ())?) {
+        guard let image = image else {
+            uploadedMediaId?("")
+            return
+        }
         let endpoint = "https://photoslibrary.googleapis.com/v1/uploads"
         let timeIntervalStr = String(describing: Date().timeIntervalSince1970)
         freshExecuterToken(token: { (token) in
@@ -22,14 +26,16 @@ extension GooglePhotosService {
                 "X-Goog-Upload-Protocol": "raw"
             ]
             guard let data = UIImagePNGRepresentation(image) else {
-                failure?(NSError(domain: "errorメッセージ", code: -1, userInfo: nil))
+                let optionalError = OptionalError(with: OptionalError.Cause.failedToGetPhotoData, userInfo: nil)
+                failure?(optionalError)
                 return
             }
             Alamofire.upload(data, to: URL(string: endpoint)!, method: HTTPMethod.post, headers: headers)
                 .responseString(completionHandler: { (response) in
                     debugPrint("(・∀・)uploadToken: \(response)")
                     guard let uploadToken = response.value else {
-                        failure?(NSError(domain: "errorメッセージ", code: -1, userInfo: nil))
+                        let optionalError = OptionalError(with: OptionalError.Cause.failedToGetToken, userInfo: nil)
+                        failure?(optionalError)
                         return
                     }
                     self.creatingMediaItem(uploadToken: uploadToken, result: { (id, error) in
@@ -52,13 +58,14 @@ extension GooglePhotosService {
         freshExecuterToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             guard let albumId = self.albumId else {
-                result?("", NSError(domain: "errorメッセージ", code: -1, userInfo: nil))
+                let optionalError = OptionalError(with: OptionalError.Cause.failedToCreatePhotoSaveSpace, userInfo: nil)
+                result?("", optionalError)
                 return
             }
             let param = [
                 "albumId": "\(albumId)",
                 "newMediaItems": [
-                    "description": "Hoge Fuga",
+                    "description": "Created by Meal Dock",
                     "simpleMediaItem" : ["uploadToken": uploadToken]
                 ]
                 ] as [String : Any]

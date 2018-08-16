@@ -34,7 +34,7 @@ extension GooglePhotosService {
             responseType: OIDResponseTypeCode,
             additionalParameters: nil)
         
-        let customError = OptionalError(with: OptionalError.ErrorType.cannotGetToken, userInfo: nil)
+        let customError = OptionalError(with: OptionalError.Cause.failedToGetToken, userInfo: nil)
         guard let delegate = UIApplication.shared.delegate as? AppDelegate,
             let controller = delegate.window?.rootViewController else {
                 failure?(customError)
