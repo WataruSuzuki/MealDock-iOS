@@ -87,6 +87,7 @@
 		CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */; };
 		CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */; };
 		CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94F32150E853007FBAB0 /* Harvest.swift */; };
+		CCE4CED7217812A300AB999D /* OIDAuthState+Joiner.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE4CED6217812A300AB999D /* OIDAuthState+Joiner.m */; };
 		EAA25D2ED327EDD0EA90FDC7 /* Pods_MealDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -202,6 +203,8 @@
 		CCDC94EE214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FUIPasswordSignInViewController+Injection.h"; sourceTree = "<group>"; };
 		CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FUIPasswordSignInViewController+Injection.m"; sourceTree = "<group>"; };
 		CCDC94F32150E853007FBAB0 /* Harvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvest.swift; sourceTree = "<group>"; };
+		CCE4CED5217812A300AB999D /* OIDAuthState+Joiner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OIDAuthState+Joiner.h"; sourceTree = "<group>"; };
+		CCE4CED6217812A300AB999D /* OIDAuthState+Joiner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OIDAuthState+Joiner.m"; sourceTree = "<group>"; };
 		D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -380,6 +383,7 @@
 		967146C0216E353000DDA65E /* GooglePhotos */ = {
 			isa = PBXGroup;
 			children = (
+				CCE4CED42178126E00AB999D /* Categories */,
 				967146BD216CF02700DDA65E /* GooglePhotosService.swift */,
 				966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */,
 				966F5A542171913000A47EDF /* GooglePhoto+Album.swift */,
@@ -507,6 +511,15 @@
 				966F5A6D2174D94E00A47EDF /* FirebaseObserver.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CCE4CED42178126E00AB999D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				CCE4CED5217812A300AB999D /* OIDAuthState+Joiner.h */,
+				CCE4CED6217812A300AB999D /* OIDAuthState+Joiner.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -892,6 +905,7 @@
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
 				966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */,
 				CC64950921759B6200580268 /* DockUser.swift in Sources */,
+				CCE4CED7217812A300AB999D /* OIDAuthState+Joiner.m in Sources */,
 				966F5A4A2170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift in Sources */,
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */,
