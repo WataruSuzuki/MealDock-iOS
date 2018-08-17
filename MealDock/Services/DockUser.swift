@@ -50,6 +50,16 @@ class DockUser: NSObject {
                 self.currentDock = usageInfo.currentDock
                 self.switchingDock?(self.currentDock)
                 self.idAsDock = usageInfo.currentID
+                if self.isGroupOwnerMode {
+                    if let observer = FirebaseService.shared.observers[FirebaseService.ID_PHOTOS] {
+                        observer.ref.removeObserver(withHandle: observer.handle)
+                        FirebaseService.shared.observers.removeValue(forKey: FirebaseService.ID_PHOTOS)
+                    }
+                } else {
+                    FirebaseService.shared.observePhotosToken(token: { (photoToken) in
+                        GooglePhotosService.shared.initSharingAuthState(token: photoToken)
+                    })
+                }
             }
         }
     }

@@ -18,14 +18,14 @@ class GooglePhotosService: NSObject {
     let clientId = "1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l.apps.googleusercontent.com"
     let redirect = "com.googleusercontent.apps.1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l:https://watarusuzuki.github.io/MealDock/index.html"
 
-    let sharingScope = "https://www.googleapis.com/auth/photoslibrary"
+    let ownScope = "https://www.googleapis.com/auth/photoslibrary"
     var currentExternalUserAgentSession: OIDExternalUserAgentSession?
     private(set) var ownAuthState: OIDAuthState?
     private(set) var sharingAuthState: OIDAuthState?
     
     var albumId: String?
-    var shareToken: String?
-    var shareableUrl: String?
+//    var shareToken: String?
+//    var shareableUrl: String?
     let mediaItemSize = 250
     
     let authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth"
@@ -41,7 +41,7 @@ class GooglePhotosService: NSObject {
             return OIDAuthorizationRequest(
                 configuration: serviceConfiguration,
                 clientId: clientId,
-                scopes: [OIDScopeProfile, sharingScope],
+                scopes: [OIDScopeProfile, ownScope],
                 redirectURL: URL(string: redirect)!,
                 responseType: OIDResponseTypeCode,
                 additionalParameters: nil)

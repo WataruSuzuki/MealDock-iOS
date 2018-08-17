@@ -21,9 +21,8 @@ extension FirebaseService {
             let newObserver = newReference.observe(.value, with: { (snapshot) in
                 debugPrint(snapshot)
                 if let value = snapshot.value as? String {
-                    
+                    token?(value)
                 }
-                token?("")
             }, withCancel: { (error) in
                 print(error.localizedDescription)
             })
