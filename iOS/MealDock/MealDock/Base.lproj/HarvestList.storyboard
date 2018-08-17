@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1689" y="-321"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Errand View Controller-->
         <scene sceneID="6oQ-b1-GWc">
             <objects>
-                <collectionViewController id="uRX-Mi-xki" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ErrandViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uRX-Mi-xki" customClass="ErrandViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jWY-gO-hyf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,7 +97,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8Pt-zh-NrI">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MDCCollectionViewCell" id="8Pt-zh-NrI" customClass="MDCCollectionViewCell" customModule="MealDock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">

@@ -1,5 +1,5 @@
 //
-//  HarvestListViewController.swift
+//  ErrandViewController.swift
 //  MealDock
 //
 //  Created by 鈴木 航 on 2018/09/17.
@@ -7,18 +7,25 @@
 //
 
 import UIKit
-import MaterialComponents.MaterialBottomSheet
+import MaterialComponents.MaterialCollections
 
-class HarvestListViewController: MealDockBaseCollectionViewController,
-    MealDockAdder
-{
+private let reuseIdentifier = "MDCCollectionViewCell"
 
+class ErrandViewController: MDCCollectionViewController {
+
+    let bottomBarView = MDCBottomAppBarView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Register cell classes
+        self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+
         // Do any additional setup after loading the view.
-        styler.cellStyle = .card
-        addTargetToFab(target: self, action: #selector(onAddFabTapped))
+        instatiateBottomBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +33,11 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        self.layoutBottomAppBar()
+    }
     /*
     // MARK: - Navigation
 
@@ -40,17 +52,17 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return 100
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MDCCollectionViewCell
     
         // Configure the cell
     
@@ -88,14 +100,28 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
     }
     */
 
-    @objc override func onAddFabTapped() {
-        let sb = UIStoryboard(name: "HarvestList", bundle: Bundle.main)
-        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as? ErrandViewController {
-            // Initialize the bottom sheet with the view controller just created
-            let bottomSheet = MDCBottomSheetController(contentViewController: viewController)
-            bottomSheet.isScrimAccessibilityElement = true
-            // Present the bottom sheet
-            present(bottomSheet, animated: true, completion: nil)
-        }
+    func instatiateBottomBar() {
+        bottomBarView.translatesAutoresizingMaskIntoConstraints = false
+        bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        view.addSubview(bottomBarView)
+        
+        bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
+        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
+        bottomBarView.floatingButtonPosition = .center
+        
+        let barButtonLeadingItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: nil)
+        let barButtonTrailingItem = UIBarButtonItem(title: "Dados Pessoais", style: .plain, target: self, action: nil)
+        
+        //bottomBarView.floatingButton.addTarget(self, action: #selector(onAddFabTapped), for: .touchDown)
+        
+        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
+        bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
     }
+    
+    private func layoutBottomAppBar() {
+        let size = bottomBarView.sizeThatFits(view.bounds.size)
+        let bottomBarViewFrame = CGRect(x: 0, y: view.bounds.size.height - size.height, width: size.width, height: size.height)
+        bottomBarView.frame = bottomBarViewFrame
+    }
+    
 }

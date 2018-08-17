@@ -22,7 +22,6 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     let reuseIdentifier = "MDCCollectionViewTextCell"
-    let bottomBarView = MDCBottomAppBarView()
     let fab = MDCFloatingButton()
     
     var emptyMessage: UIView!
@@ -43,7 +42,6 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
 //        emptyMessage = createEmptyView()
 //        emptyMessage.isHidden = true
         instantiateFab()
-//        instatiateBottomBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,32 +126,8 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         fab.addTarget(target, action: action, for: .touchUpInside)
     }
     
-    func instatiateBottomBar() {
-        bottomBarView.translatesAutoresizingMaskIntoConstraints = false
-        bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
-        view.addSubview(bottomBarView)
-        
-        bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
-        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
-        bottomBarView.floatingButtonPosition = .center
-        
-        let barButtonLeadingItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: nil)
-        let barButtonTrailingItem = UIBarButtonItem(title: "Dados Pessoais", style: .plain, target: self, action: nil)
-        
-        bottomBarView.floatingButton.addTarget(self, action: #selector(onAddFabTapped), for: .touchDown)
-        
-        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
-        bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
-    }
-    
     @objc func onAddFabTapped() {
         
-    }
-    
-    private func layoutBottomAppBar() {
-        let size = bottomBarView.sizeThatFits(view.bounds.size)
-        let bottomBarViewFrame = CGRect(x: 0, y: view.bounds.size.height - size.height - (self.tabBarController?.tabBar.frame.height)!, width: size.width, height: size.height)
-        bottomBarView.frame = bottomBarViewFrame
     }
     
     @objc func onMenuButtonTapped() {
