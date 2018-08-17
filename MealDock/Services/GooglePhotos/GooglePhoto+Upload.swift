@@ -18,7 +18,7 @@ extension GooglePhotosService {
         }
         let endpoint = "https://photoslibrary.googleapis.com/v1/uploads"
         let timeIntervalStr = String(describing: Date().timeIntervalSince1970)
-        freshExecuterToken(token: { (token) in
+        freshToken(token: { (token) in
             let headers = [
                 "Authorization": "Bearer \(token)",
                 "Content-type": "application/octet-stream",
@@ -55,7 +55,7 @@ extension GooglePhotosService {
     
     private func creatingMediaItem(uploadToken:String, result:((String, Error?) -> Void)?) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate"
-        freshExecuterToken(token: { (token) in
+        freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             guard let albumId = self.albumId else {
                 let optionalError = OptionalError(with: OptionalError.Cause.failedToCreatePhotoSaveSpace, userInfo: nil)

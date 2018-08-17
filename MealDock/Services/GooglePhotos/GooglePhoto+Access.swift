@@ -13,7 +13,7 @@ extension GooglePhotosService {
     
     func getMediaItemUrl(MEDIA_ITEM_ID: String, result:((String, Error?) -> Void)?) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/mediaItems/" + MEDIA_ITEM_ID
-        freshReaderToken(token: { (token) in
+        freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
                 .responseJSON(completionHandler: { (dataResponse) in

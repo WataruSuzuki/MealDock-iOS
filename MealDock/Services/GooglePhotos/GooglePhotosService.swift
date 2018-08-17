@@ -13,17 +13,16 @@ class GooglePhotosService: NSObject {
     static let shared: GooglePhotosService = {
         return GooglePhotosService()
     }()
-    static let keySharingState = "sharingAuthState"
-    static let keyReadingState = "readingAuthState"
+    static let keyAuthState = "sharingAuthState"
 
     let clientId = "1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l.apps.googleusercontent.com"
     let redirect = "com.googleusercontent.apps.1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l:https://watarusuzuki.github.io/MealDock/index.html"
 
     let sharingScope = "https://www.googleapis.com/auth/photoslibrary"
-    //let readingScope = "https://www.googleapis.com/auth/photoslibrary.readonly.appcreateddata"
     var currentExternalUserAgentSession: OIDExternalUserAgentSession?
-    private(set) var readingAuthState: OIDAuthState?
+    private(set) var ownAuthState: OIDAuthState?
     private(set) var sharingAuthState: OIDAuthState?
+    
     var albumId: String?
     var shareToken: String?
     var shareableUrl: String?
@@ -56,40 +55,30 @@ class GooglePhotosService: NSObject {
     
     func saveSharingAuthState(state: OIDAuthState?) {
         if let authState = state {
-            self.sharingAuthState = authState
+            self.ownAuthState = authState
             let data = NSKeyedArchiver.archivedData(withRootObject: authState)
-            UserDefaults.standard.set(data, forKey: GooglePhotosService.keySharingState)
+            UserDefaults.standard.set(data, forKey: GooglePhotosService.keyAuthState)
             UserDefaults.standard.synchronize()
             createMealDockAlbumIfNeed()
         }
     }
     
-    func saveReadingAuthState(state: OIDAuthState?) {
-        if let authState = state {
-            self.readingAuthState = authState
-            let data = NSKeyedArchiver.archivedData(withRootObject: authState)
-            UserDefaults.standard.set(data, forKey: GooglePhotosService.keyReadingState)
-            UserDefaults.standard.synchronize()
-        }
-    }
-    
     func loadAuthState() {
-        if let handleAuthStateData = UserDefaults.standard.object(forKey: GooglePhotosService.keySharingState) as? Data {
-            self.sharingAuthState = NSKeyedUnarchiver.unarchiveObject(with: handleAuthStateData) as? OIDAuthState
+        if let handleAuthStateData = UserDefaults.standard.object(forKey: GooglePhotosService.keyAuthState) as? Data {
+            ownAuthState = NSKeyedUnarchiver.unarchiveObject(with: handleAuthStateData) as? OIDAuthState
         }
-//        if let readAuthStateData = UserDefaults.standard.object(forKey: GooglePhotosService.keyReadingState) as? Data {
-//            self.readingAuthState = NSKeyedUnarchiver.unarchiveObject(with: readAuthStateData) as? OIDAuthState
-//        }
-        let token = "your token"
-        let response = OIDAuthorizationResponse(request: authorizationRequest, parameters: [:])
-        self.readingAuthState = OIDAuthState(refreshToken: token, andFakeResponse: response)
-        self.createMealDockAlbumIfNeed()
+        createMealDockAlbumIfNeed()
     }
     
+    func initSharingAuthState(token: String) {
+        let fakeResponse = OIDAuthorizationResponse(request: authorizationRequest, parameters: [:])
+        sharingAuthState = OIDAuthState(refreshToken: token, andResponse: fakeResponse)
+    }
 
-    class func removeAuthStatus()  {
-        UserDefaults.standard.removeObject(forKey: keyReadingState)
-        UserDefaults.standard.removeObject(forKey: keySharingState)
+    func removeAuthStatus() {
+        ownAuthState = nil
+        sharingAuthState = nil
+        UserDefaults.standard.removeObject(forKey: GooglePhotosService.keyAuthState)
     }
     
     func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {

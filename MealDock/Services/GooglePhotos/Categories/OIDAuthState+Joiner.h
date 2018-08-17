@@ -12,7 +12,7 @@
 @interface OIDAuthState (JoinUser)
 
 - (instancetype)initWithRefreshToken:(NSString *)token
-                     andFakeResponse:(OIDAuthorizationResponse *)response;
+                     andResponse:(OIDAuthorizationResponse *)response;
 
 @end
 

@@ -11,7 +11,7 @@
 @implementation OIDAuthState (Joiner)
 
 - (instancetype)initWithRefreshToken:(NSString *)token
-                     andFakeResponse:(OIDAuthorizationResponse *)response
+                     andResponse:(OIDAuthorizationResponse *)response
 {
     self = [super init];
     if (self) {

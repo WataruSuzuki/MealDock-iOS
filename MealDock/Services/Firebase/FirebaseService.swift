@@ -24,6 +24,7 @@ class FirebaseService: NSObject,
     static let ID_DISH_ITEMS = "dishes"
     static let ID_MEAL_DOCKS = "mealdocks"
     static let ID_USAGE = "usage"
+    static let ID_PHOTOS = "photos"
 
     let providers: [FUIAuthProvider] = [
 //        FUIGoogleAuth(),
@@ -135,7 +136,7 @@ class FirebaseService: NSObject,
         if let authUI = defaultAuthUI {
             signOut(authUI)
         }
-        GooglePhotosService.removeAuthStatus()
+        GooglePhotosService.shared.removeAuthStatus()
     }
     
     fileprivate func signOut(_ authUI: FUIAuth) {

@@ -31,32 +31,27 @@ extension GooglePhotosService {
             switch scope {
             case self.sharingScope:
                 self.saveSharingAuthState(state: state)
-//            case self.readingScope:
-//                self.saveReadingAuthState(state: state)
+                if let refreshToken = state?.refreshToken {
+                    FirebaseService.shared.updatePhotosApiToken(token: refreshToken)
+                }
             default:
                 break
             }
         })
     }
     
-    func freshExecuterToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
-        guard let authState = self.sharingAuthState else {
+    func freshToken(token:((String)->Void)?, failure:((Error)->Void)?) {
+        var targetAuthState = ownAuthState
+        if let user = FirebaseService.shared.currentUser, user.core.uid != user.dockID {
+            targetAuthState = sharingAuthState
+        }
+        guard let authState = targetAuthState else {
             requestOAuth2(scope: sharingScope, token: token, failure: failure)
             return
         }
-        freshToken(authState: authState, token: token, failure: failure)
     }
     
-    func freshReaderToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
-        guard let authState = self.readingAuthState else {
-            requestOAuth2(scope: sharingScope, token: token, failure: failure)
-            //requestOAuth2(scope: readingScope, token: token, failure: failure)
-            return
-        }
-        freshToken(authState: authState, token: token, failure: failure)
-    }
-    
-    func freshToken(authState: OIDAuthState, token:((String)->Void)?, failure:((Error)->Void)?) {
+    private func performFreshToken(authState: OIDAuthState, token:((String)->Void)?, failure:((Error)->Void)?) {
         authState.performAction { (accessToken, idToken, error) in
             if let error = error {
                 print(error)

@@ -13,15 +13,18 @@ extension GooglePhotosService {
     
     func createMealDockAlbumIfNeed() {
         albumId = A0SimpleKeychain().string(forKey: "albumId" + "_" + clientId)
-        shareToken = A0SimpleKeychain().string(forKey: "shareToken" + "_" + self.clientId)
-        shareableUrl = A0SimpleKeychain().string(forKey: "shareableUrl" + "_" + self.clientId)
-        if albumId != nil && shareToken != nil && shareableUrl != nil {
+//        shareToken = A0SimpleKeychain().string(forKey: "shareToken" + "_" + self.clientId)
+//        shareableUrl = A0SimpleKeychain().string(forKey: "shareableUrl" + "_" + self.clientId)
+        if albumId != nil
+//            && shareToken != nil && shareableUrl != nil
+            || FirebaseService.shared.currentUser == nil
+        {
             return
         }
         
         let endpoint = "https://photoslibrary.googleapis.com/v1/albums"
-        let param = ["album": ["title": "Meal Dock Shared"]] as [String : Any]
-        freshExecuterToken(token: { (token) in
+        let param = ["album": ["title": "Meal Dock"]] as [String : Any]
+        freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse) in
                 guard dataResponse.result.error == nil, let value = dataResponse.result.value as? [String : Any] else  {
@@ -34,7 +37,7 @@ extension GooglePhotosService {
                     let result = try JSONDecoder().decode(GooglePhotosAlbum.self, from: jsonData)
                     A0SimpleKeychain().setString(result.id, forKey: "albumId" + "_" + self.clientId)
                     self.albumId = result.id
-                    self.sharingAlbum(ALBUM_ID: result.id)
+                    //self.sharingAlbum(ALBUM_ID: result.id)
                 } catch let error {
                     print(error)
                 }
@@ -43,11 +46,11 @@ extension GooglePhotosService {
             print(error)
         }
     }
-    
+    /*
     private func sharingAlbum(ALBUM_ID: String) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/albums/\(ALBUM_ID):share"
         let param = ["sharedAlbumOptions": ["isCollaborative": true, "isCommentable": true]] as [String : Any]
-        freshExecuterToken(token: { (token) in
+        freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .responseJSON(completionHandler: { (dataResponse) in
@@ -71,5 +74,5 @@ extension GooglePhotosService {
             print(error)
         }
     }
-    
+    */
 }
