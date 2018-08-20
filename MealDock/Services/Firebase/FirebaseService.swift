@@ -35,6 +35,7 @@ class FirebaseService: NSObject,
     
     var defaultAuthUI: FUIAuth!
     @objc dynamic var currentUser: DockUser?
+    @objc dynamic var usageInfoKVO: NSString?
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
     var database: Database!
     var rootRef: DatabaseReference!

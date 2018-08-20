@@ -60,6 +60,7 @@ class DockUser: NSObject {
                         GooglePhotosService.shared.initSharingAuthState(token: photoToken)
                     })
                 }
+                FirebaseService.shared.usageInfoKVO = "(・w・)b"
             }
         }
     }
