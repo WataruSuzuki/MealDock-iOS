@@ -23,15 +23,20 @@ class DishListViewController: UICollectionViewController,
     var typographyScheme = MDCTypographyScheme()
     let cardScheme = MDCCardScheme()
     let fab = MDCFloatingButton()
+    
     var checkedItems = [String : Dish]()
-
     var dishes = [Dish]()
     
+    var checkBarButton: UIBarButtonItem!
+    var cancelBarButton: UIBarButtonItem!
+    var isSelectMode = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(fab)
         fab.isHidden = true
+        activateFab(fab: fab, target: self, image: UIImage(named: "baseline_local_dining_black_36pt")!, selector: #selector(onFabTapped))
         
         self.title = NSLocalizedString("dishes", comment: "")
         self.collectionView!.register(DishCardCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -39,7 +44,8 @@ class DishListViewController: UICollectionViewController,
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
         
-        activateFab(fab: fab, target: self, image: UIImage(named: "baseline_local_dining_black_36pt")!, selector: #selector(onFabTapped))
+        checkBarButton = UIBarButtonItem(image: UIImage(named: "baseline_check_box_black_36pt")!, style: .plain, target: self, action: #selector(changeSelectingMode))
+        cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(changeSelectingMode))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +53,11 @@ class DishListViewController: UICollectionViewController,
 
         FirebaseService.shared.observeDishes { (dishes) in
             self.dishes = dishes
+            if dishes.count > 0 {
+                self.navigationItem.rightBarButtonItem = (self.isSelectMode ? self.cancelBarButton : self.checkBarButton)
+            } else {
+                self.navigationItem.rightBarButtonItem = nil
+            }
             self.collectionView!.reloadData()
         }
     }
@@ -96,6 +107,7 @@ class DishListViewController: UICollectionViewController,
             guard error == nil else { return }
             cardCell.imageView.setImageByAlamofire(with: URL(string: url)!)
         }
+        cardCell.selectingMode = isSelectMode
     
         return cell
     }
@@ -157,13 +169,14 @@ class DishListViewController: UICollectionViewController,
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DishCardCollectionCell
         let dish = dishes[indexPath.row]
-        cell.isChecked = !cell.isChecked
-        if cell.isChecked {
-            checkedItems.updateValue(dish, forKey: dish.title)
-        } else {
-            checkedItems.removeValue(forKey: dish.title)
+        if isSelectMode {
+            cell.isChecked = !cell.isChecked
+            if cell.isChecked {
+                checkedItems.updateValue(dish, forKey: dish.title)
+            } else {
+                checkedItems.removeValue(forKey: dish.title)
+            }
         }
-        fab.isHidden = 0 == checkedItems.count
     }
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
@@ -178,8 +191,25 @@ class DishListViewController: UICollectionViewController,
         return NSAttributedString(string: "Let's start to add foods")
     }
     
+    @objc func changeSelectingMode() {
+        fab.isHidden = isSelectMode
+        isSelectMode = !isSelectMode
+        self.collectionView?.reloadData()
+        if !isSelectMode {
+            checkedItems.removeAll()
+            self.navigationItem.rightBarButtonItem = checkBarButton
+        } else {
+            self.navigationItem.rightBarButtonItem = cancelBarButton
+        }
+    }
+    
     @objc func onFabTapped() {
         let items = [Dish](checkedItems.values)
-        FirebaseService.shared.removeDishes(dishes: items)
+        if items.count > 0 {
+            FirebaseService.shared.removeDishes(dishes: items)
+            UIViewController.snackBarMessage(text: "(=^ ω ^=)" + NSLocalizedString("gochi_sou_sama", comment: ""))
+        } else {
+            UIViewController.snackBarMessage(text: "(=・∀・=)??")
+        }
     }
 }

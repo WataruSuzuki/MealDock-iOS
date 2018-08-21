@@ -34,11 +34,18 @@ class DishCardCollectionCell: MDCCardCollectionCell {
     
     var isChecked = false {
         didSet {
-            checkmarkBackgroundView.isHidden = !isChecked
+            checkImageView.image = (isChecked ? checkImage : uncheckImage)
         }
     }
-    fileprivate let checkmarkImage = UIImageView(image: UIImage(named: "outline_check_black_36pt"))
-    fileprivate var checkmarkBackgroundView: UIView!
+    var selectingMode = false {
+        didSet {
+            checkmarkBackgroundView.isHidden = !selectingMode
+        }
+    }
+    private let checkImageView = UIImageView(frame: .zero)
+    private let checkImage = UIImage(named: "baseline_check_box_black_36pt")!
+    private let uncheckImage = UIImage(named: "baseline_check_box_outline_blank_black_36pt")!
+    private var checkmarkBackgroundView: UIView!
 
     func configure(title: String, imageName: String) {
         let bundle = Bundle(for: DishCardCollectionCell.self)
@@ -83,8 +90,10 @@ class DishCardCollectionCell: MDCCardCollectionCell {
         checkmarkBackgroundView.autoPinEdgesToSuperviewEdges()
         checkmarkBackgroundView.isHidden = true
         
-        checkmarkImage.contentMode = .scaleAspectFit
-        checkmarkBackgroundView.addSubview(checkmarkImage)
-        checkmarkImage.autoCenterInSuperview()
+        checkImageView.contentMode = .scaleAspectFit
+        checkImageView.image = uncheckImage
+        checkmarkBackgroundView.addSubview(checkImageView)
+        checkImageView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10)
+        checkImageView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
     }
 }

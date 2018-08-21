@@ -9,6 +9,7 @@
 import UIKit
 import MaterialComponents.MaterialBottomSheet
 import MaterialComponents.MaterialAppBar
+import MaterialComponents.MaterialSnackbar
 
 extension UIViewController {
     @objc func tapDismiss() {
@@ -30,4 +31,9 @@ extension UIViewController {
         present(bottomSheet, animated: true, completion: nil)
     }
 
+    static func snackBarMessage(text: String) {
+        let message = MDCSnackbarMessage()
+        message.text = text
+        MDCSnackbarManager.show(message)
+    }
 }
