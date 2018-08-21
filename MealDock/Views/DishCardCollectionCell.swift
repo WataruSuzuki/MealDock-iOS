@@ -32,8 +32,15 @@ class DishCardCollectionCell: MDCCardCollectionCell {
         return label
     }()
     
+    var isChecked = false {
+        didSet {
+            checkmarkBackgroundView.isHidden = !isChecked
+        }
+    }
+    fileprivate let checkmarkImage = UIImageView(image: UIImage(named: "outline_check_black_36pt"))
+    fileprivate var checkmarkBackgroundView: UIView!
+
     func configure(title: String, imageName: String) {
-        
         let bundle = Bundle(for: DishCardCollectionCell.self)
         
         self.imageView.image  = UIImage(named: imageName, in: bundle, compatibleWith: nil)
@@ -43,6 +50,7 @@ class DishCardCollectionCell: MDCCardCollectionCell {
         self.contentView.addSubview(titleLabel)
         titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 800), for: .vertical)
         
+        addCheckmarks()
         addConstraints()
     }
     
@@ -65,5 +73,18 @@ class DishCardCollectionCell: MDCCardCollectionCell {
                     withVisualFormat: "H:|-(margin)-[label]|",
                     options: [], metrics: metrics, views: views)
         );
+    }
+    
+    func addCheckmarks() {
+        checkmarkBackgroundView = UIView(frame: frame)
+        checkmarkBackgroundView.backgroundColor = .darkGray
+        checkmarkBackgroundView.alpha = 0.8
+        self.contentView.addSubview(checkmarkBackgroundView)
+        checkmarkBackgroundView.autoPinEdgesToSuperviewEdges()
+        checkmarkBackgroundView.isHidden = true
+        
+        checkmarkImage.contentMode = .scaleAspectFit
+        checkmarkBackgroundView.addSubview(checkmarkImage)
+        checkmarkImage.autoCenterInSuperview()
     }
 }

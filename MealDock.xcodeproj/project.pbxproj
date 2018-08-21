@@ -71,6 +71,7 @@
 		CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B4C2177132900BB7712 /* UIViewController+Top.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC54D95D2178523500E42F28 /* Firebase+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95C2178523500E42F28 /* Firebase+Photos.swift */; };
+		CC54D95F21787E3500E42F28 /* UIViewController+FAB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95E21787E3500E42F28 /* UIViewController+FAB.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC6495062174934100580268 /* Firebase+Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6495052174934100580268 /* Firebase+Dock.swift */; };
 		CC64950921759B6200580268 /* DockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64950821759B6200580268 /* DockUser.swift */; };
@@ -186,6 +187,7 @@
 		CC095B4C2177132900BB7712 /* UIViewController+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Top.swift"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC54D95C2178523500E42F28 /* Firebase+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Photos.swift"; sourceTree = "<group>"; };
+		CC54D95E21787E3500E42F28 /* UIViewController+FAB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FAB.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
 		CC6495052174934100580268 /* Firebase+Dock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Dock.swift"; sourceTree = "<group>"; };
 		CC64950821759B6200580268 /* DockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockUser.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				CC5C68D521636A830026441D /* MealDockListViewController.swift */,
 				CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */,
 				CC095B4C2177132900BB7712 /* UIViewController+Top.swift */,
+				CC54D95E21787E3500E42F28 /* UIViewController+FAB.swift */,
 			);
 			path = Extends;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */,
 				966F5A6E2174D94E00A47EDF /* FirebaseObserver.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
+				CC54D95F21787E3500E42F28 /* UIViewController+FAB.swift in Sources */,
 				CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */,
 				96FC04EA21690B8D00533529 /* TextFieldCell.swift in Sources */,
 				CC6495062174934100580268 /* Firebase+Dock.swift in Sources */,

@@ -101,6 +101,15 @@ extension FirebaseService {
         }
     }
     
+    func removeDishes(dishes: [Dish]) {
+        if let user = currentUser {
+            for dish in dishes {
+                rootRef.child(FirebaseService.ID_DISH_ITEMS)
+                    .child(user.dockID).child(dish.title).removeValue()
+            }
+        }
+    }
+    
     fileprivate func removeDish(dish: Dish) {
         if let user = currentUser {
             rootRef.child(FirebaseService.ID_DISH_ITEMS)

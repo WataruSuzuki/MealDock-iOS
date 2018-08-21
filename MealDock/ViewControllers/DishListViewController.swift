@@ -22,17 +22,24 @@ class DishListViewController: UICollectionViewController,
     var shapeScheme = MDCShapeScheme()
     var typographyScheme = MDCTypographyScheme()
     let cardScheme = MDCCardScheme()
+    let fab = MDCFloatingButton()
+    var checkedItems = [String : Dish]()
 
     var dishes = [Dish]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(fab)
+        fab.isHidden = true
+        
         self.title = NSLocalizedString("dishes", comment: "")
         self.collectionView!.register(DishCardCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         // Do any additional setup after loading the view.
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
+        
+        activateFab(fab: fab, target: self, image: UIImage(named: "baseline_local_dining_black_36pt")!, selector: #selector(onFabTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +51,14 @@ class DishListViewController: UICollectionViewController,
         }
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        DispatchQueue.main.async {
+            self.layout(fab: self.fab)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -139,6 +154,17 @@ class DishListViewController: UICollectionViewController,
     
     }
     */
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! DishCardCollectionCell
+        let dish = dishes[indexPath.row]
+        cell.isChecked = !cell.isChecked
+        if cell.isChecked {
+            checkedItems.updateValue(dish, forKey: dish.title)
+        } else {
+            checkedItems.removeValue(forKey: dish.title)
+        }
+        fab.isHidden = 0 == checkedItems.count
+    }
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return -100.0
@@ -152,4 +178,8 @@ class DishListViewController: UICollectionViewController,
         return NSAttributedString(string: "Let's start to add foods")
     }
     
+    @objc func onFabTapped() {
+        let items = [Dish](checkedItems.values)
+        FirebaseService.shared.removeDishes(dishes: items)
+    }
 }

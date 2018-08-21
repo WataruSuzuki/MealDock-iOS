@@ -18,7 +18,7 @@ class CartedItemListViewController: MealDockListViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
         
-        activateFab(target: self, image: UIImage(named: "freezer")!, selector: #selector(onFabTapped))
+        activateFab(fab: fab, target: self, image: UIImage(named: "freezer")!, selector: #selector(onFabTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
