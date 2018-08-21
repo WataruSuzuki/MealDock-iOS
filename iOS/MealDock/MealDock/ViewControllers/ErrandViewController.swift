@@ -101,7 +101,7 @@ class ErrandViewController: MDCCollectionViewController {
     */
 
     func instatiateBottomBar() {
-        bottomBarView.translatesAutoresizingMaskIntoConstraints = false
+        //bottomBarView.translatesAutoresizingMaskIntoConstraints = false
         bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
         view.addSubview(bottomBarView)
         

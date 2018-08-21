@@ -92,8 +92,14 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
         let sb = UIStoryboard(name: "HarvestList", bundle: Bundle.main)
         if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as? ErrandViewController {
             // Initialize the bottom sheet with the view controller just created
-            let bottomSheet = MDCBottomSheetController(contentViewController: viewController)
-            bottomSheet.isScrimAccessibilityElement = true
+            let container = AppBarContainerViewController.init(contentViewController: viewController)
+            container.preferredContentSize = CGSize(width: 500, height: 200)
+            container.appBarViewController.headerView.trackingScrollView =
+                viewController.collectionView
+            container.isTopLayoutGuideAdjustmentEnabled = true
+            
+            let bottomSheet = MDCBottomSheetController(contentViewController: container)
+            bottomSheet.trackingScrollView = viewController.collectionView;
             // Present the bottom sheet
             present(bottomSheet, animated: true, completion: nil)
         }

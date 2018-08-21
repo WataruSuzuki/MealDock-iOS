@@ -85,7 +85,7 @@
         <!--Packed-->
         <scene sceneID="Apt-bQ-8LS">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1c8-5B-QIN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1c8-5B-QIN" customClass="AppBarNavigationController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Packed" image="packed_food" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="av6-Pl-22G">

@@ -26,6 +26,8 @@
 		964C00C2214FA8770099689B /* Firebase+Harvests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C1214FA8770099689B /* Firebase+Harvests.swift */; };
 		964C00C4214FCC1A0099689B /* HarvestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C3214FCC1A0099689B /* HarvestListViewController.swift */; };
 		964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C5214FDBB10099689B /* ErrandViewController.swift */; };
+		964C00C8214FF2910099689B /* AppBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C7214FF2910099689B /* AppBarNavigationController.swift */; };
+		964C00CB214FFE350099689B /* AppBarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00CA214FFE350099689B /* AppBarContainerViewController.swift */; };
 		965460FC21109252005AC0B3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 965460FB21109252005AC0B3 /* Settings.bundle */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserGroup.swift */; };
 		96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* SecondViewController.swift */; };
@@ -84,6 +86,8 @@
 		964C00C1214FA8770099689B /* Firebase+Harvests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Harvests.swift"; sourceTree = "<group>"; };
 		964C00C3214FCC1A0099689B /* HarvestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestListViewController.swift; sourceTree = "<group>"; };
 		964C00C5214FDBB10099689B /* ErrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandViewController.swift; sourceTree = "<group>"; };
+		964C00C7214FF2910099689B /* AppBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarNavigationController.swift; sourceTree = "<group>"; };
+		964C00CA214FFE350099689B /* AppBarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarContainerViewController.swift; sourceTree = "<group>"; };
 		965460FB21109252005AC0B3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserGroup.swift"; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +207,16 @@
 			path = MealDockUITests;
 			sourceTree = "<group>";
 		};
+		964C00C9214FF2A20099689B /* Extends */ = {
+			isa = PBXGroup;
+			children = (
+				964C00C7214FF2910099689B /* AppBarNavigationController.swift */,
+				964C00BF214E33610099689B /* MealDockBaseCollectionViewController.swift */,
+				964C00CA214FFE350099689B /* AppBarContainerViewController.swift */,
+			);
+			path = Extends;
+			sourceTree = "<group>";
+		};
 		9696B4A4214C8DAF001DFB60 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,11 +245,11 @@
 		96E5F23D21109A7C00C2F09E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				964C00C9214FF2A20099689B /* Extends */,
 				CCDC94E1214B813B007FBAB0 /* InitViewController.swift */,
 				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
 				96E5F23F21244FBF00C2F09E /* FirstViewController.swift */,
 				96E5F23E21244FBF00C2F09E /* SecondViewController.swift */,
-				964C00BF214E33610099689B /* MealDockBaseCollectionViewController.swift */,
 				964C00C3214FCC1A0099689B /* HarvestListViewController.swift */,
 				96E5F242212459E000C2F09E /* FreezedListViewController.swift */,
 				964C00BB214E22FB0099689B /* PackedListViewController.swift */,
@@ -556,6 +570,7 @@
 			files = (
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
 				96E5F24121244FBF00C2F09E /* FirstViewController.swift in Sources */,
+				964C00CB214FFE350099689B /* AppBarContainerViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserGroup.swift in Sources */,
 				9615BDFC214E0F1A001801D5 /* FUIPasswordSignUpViewController+Injection.m in Sources */,
 				96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */,
@@ -567,6 +582,7 @@
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+Harvests.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
+				964C00C8214FF2910099689B /* AppBarNavigationController.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,
 				9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */,
 				964C00C4214FCC1A0099689B /* HarvestListViewController.swift in Sources */,
