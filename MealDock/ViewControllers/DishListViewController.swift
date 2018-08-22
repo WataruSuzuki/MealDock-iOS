@@ -30,7 +30,7 @@ class DishListViewController: UICollectionViewController,
     var checkBarButton: UIBarButtonItem!
     var cancelBarButton: UIBarButtonItem!
     var isSelectMode = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -70,6 +70,14 @@ class DishListViewController: UICollectionViewController,
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (_) in
+            self.collectionView?.setNeedsLayout()
+        }, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -103,7 +111,9 @@ class DishListViewController: UICollectionViewController,
         cardCell.apply(cardScheme: cardScheme, typographyScheme: typographyScheme)
         // Configure the cell
         cardCell.configure(title: dishes[indexPath.row].title, imageName: "baseline_help_black_48pt")
+        let indicator = cardCell.startIndicator()
         GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dishes[indexPath.row].imagePath) { (url, error) in
+            cardCell.stopIndicator(view: indicator)
             guard error == nil else { return }
             cardCell.imageView.setImageByAlamofire(with: URL(string: url)!)
         }
@@ -115,8 +125,7 @@ class DishListViewController: UICollectionViewController,
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cardSize = (collectionView.bounds.size.width / 2) - 12
-        return CGSize(width: cardSize, height: cardSize)
+        return collectionView.getCellSize(baseCellNum: 2)
     }
     
     func collectionView(_ collectionView: UICollectionView,

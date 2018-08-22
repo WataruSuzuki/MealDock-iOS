@@ -144,4 +144,9 @@ class MealDockListViewController: UITableViewController,
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: "Let's start to add foods")
     }
+    
+    func onFabTapped() {
+        self.fab.isHidden = true
+        checkedItems.removeAll()
+    }
 }

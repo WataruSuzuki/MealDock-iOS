@@ -73,3 +73,6 @@ requiresRecentLogin = "Your login is too old. Please login again.";
 failed_generate_qr = "Failed to generate QR";
 failed_of_limit_capacity = "Failed to update because your capacity has been limited. Please delete unnecessary old data then try again.";
 failed_save_photo = "Failed save photo";
+
+connected_to_database = "Connected to database";
+disconnected_network = "Disconnect network";

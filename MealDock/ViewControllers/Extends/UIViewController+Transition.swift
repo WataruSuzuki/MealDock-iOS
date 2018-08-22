@@ -9,7 +9,6 @@
 import UIKit
 import MaterialComponents.MaterialBottomSheet
 import MaterialComponents.MaterialAppBar
-import MaterialComponents.MaterialSnackbar
 
 extension UIViewController {
     @objc func tapDismiss() {
@@ -29,11 +28,5 @@ extension UIViewController {
         bottomSheet.trackingScrollView = viewController.collectionView;
         // Present the bottom sheet
         present(bottomSheet, animated: true, completion: nil)
-    }
-
-    static func snackBarMessage(text: String) {
-        let message = MDCSnackbarMessage()
-        message.text = text
-        MDCSnackbarManager.show(message)
     }
 }

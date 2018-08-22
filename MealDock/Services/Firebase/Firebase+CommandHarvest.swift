@@ -22,7 +22,7 @@ extension FirebaseService {
     func addToFridge(harvests: [Harvest]) {
         if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests) {
             removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
-            UIViewController.snackBarMessage(text: "(=・∀・=)b" + NSLocalizedString("msg_mission_completed", comment: ""))
+            UIViewController.snackBarMessage(text: "(=・∀・=)b \n" + NSLocalizedString("msg_mission_completed", comment: ""))
         } else {
             OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
         }

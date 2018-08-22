@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    func currentTop() -> UIViewController? {
+    static func currentTop() -> UIViewController? {
         if var topController = UIApplication.shared.keyWindow?.rootViewController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController

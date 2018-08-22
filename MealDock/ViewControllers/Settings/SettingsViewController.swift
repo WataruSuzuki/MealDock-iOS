@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UITableViewController {
 
@@ -100,6 +101,15 @@ class SettingsViewController: UITableViewController {
                     }
                 }
                 break
+            case .aboutThisApp:
+                if let aboutThis = AboutThisApp(rawValue: indexPath.row) {
+                    switch aboutThis {
+                    case .privacyPolicy:
+                        present(SFSafariViewController(url: URL(string: "https://watarusuzuki.github.io/MealDock/index.html")!), animated: true, completion: nil)
+                    default:
+                        break
+                    }
+                }
             case .signOut:
                 FirebaseService.shared.signOut()
                 

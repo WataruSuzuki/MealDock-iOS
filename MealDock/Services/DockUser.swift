@@ -77,12 +77,14 @@ class DockUser: NSObject {
     }
     
     func hasCapacity(addingSize: Int) -> Bool {
-        guard let usage = usageInfo else {
+        guard let usage = usageInfo, let limit = UsageInfo.LimitSize(rawValue: usage.purchasePlan) else {
             return false
         }
         let counters = FirebaseService.shared.itemCounters.values
-        return usage.sizeOfItems > counters.reduce(addingSize, { (num1, num2) -> Int in
+        let currentSize = counters.reduce(addingSize, { (num1, num2) -> Int in
             num1 + num2
         })
+        debugPrint("currentSize = \(currentSize)")
+        return limit.rawValue > currentSize
     }
 }

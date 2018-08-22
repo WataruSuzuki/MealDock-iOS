@@ -37,10 +37,7 @@ class OptionalError: NSError {
             let empty = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(empty)
         }
-        if let delegate = UIApplication.shared.delegate as? AppDelegate,
-            let root = delegate.window?.rootViewController,
-            let top = root.currentTop()
-        {
+        if let top = UIViewController.currentTop() {
             top.present(alert, animated: true, completion: nil)
         }
     }

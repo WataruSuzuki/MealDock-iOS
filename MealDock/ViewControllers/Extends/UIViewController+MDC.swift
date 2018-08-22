@@ -27,4 +27,9 @@ extension UIViewController {
         view.bringSubview(toFront: fab)
     }
 
+    static func snackBarMessage(text: String) {
+        let message = MDCSnackbarMessage()
+        message.text = text
+        MDCSnackbarManager.show(message)
+    }
 }
