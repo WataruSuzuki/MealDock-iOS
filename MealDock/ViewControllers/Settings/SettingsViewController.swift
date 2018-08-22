@@ -40,6 +40,8 @@ class SettingsViewController: UITableViewController {
                 return AccountRow.max.rawValue
             case .aboutThisApp:
                 return AboutThisApp.max.rawValue
+            case .ticket:
+                return TicketMenu.max.rawValue
             case .signOut:
                 return 1
             default:
@@ -63,6 +65,10 @@ class SettingsViewController: UITableViewController {
             case .aboutThisApp:
                 if let aboutThisRow = AboutThisApp(rawValue: indexPath.row) {
                     cell.textLabel?.text = NSLocalizedString(aboutThisRow.description(), comment: "")
+                }
+            case .ticket:
+                if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
+                    cell.textLabel?.text = NSLocalizedString(ticketMenu.description(), comment: "")
                 }
             case .signOut:
                 cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
@@ -110,6 +116,18 @@ class SettingsViewController: UITableViewController {
                         break
                     }
                 }
+            case .ticket:
+                if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
+                    switch ticketMenu {
+                    case .rewared:
+                        break
+                    case .unlockAd:
+                        PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.unlockAd.description()])
+                        
+                    default:
+                        break
+                    }
+                }
             case .signOut:
                 FirebaseService.shared.signOut()
                 
@@ -130,6 +148,7 @@ class SettingsViewController: UITableViewController {
     enum Sections: Int {
         case account = 0,
         aboutThisApp,
+        ticket,
         signOut,
         max
     }
@@ -143,6 +162,13 @@ class SettingsViewController: UITableViewController {
     enum AboutThisApp: Int {
         case help = 0,
         privacyPolicy,
+        max
+    }
+    
+    enum TicketMenu: Int {
+        case rewared = 0,
+        unlockAd,
+        subscription,
         max
     }
 }

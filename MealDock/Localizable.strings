@@ -76,3 +76,17 @@ failed_save_photo = "Failed save photo";
 
 connected_to_database = "Connected to database";
 disconnected_network = "Disconnect network";
+
+ticket = "Ticket";
+rewared = "Get ticket by reward";
+unlockAd = "Unlock Ad";
+subscription = "Premium Plan";
+
+//InAppPurchase...
+cannot_pay = "Cannot pay";
+fail_validation = "Fail validation";
+not_available = "Not available";
+restrict_in_app_purchase = "Restrict this item";
+comp_restore = "Restore item";
+cannot_find_pay_history = "Cannot find pay history";
+

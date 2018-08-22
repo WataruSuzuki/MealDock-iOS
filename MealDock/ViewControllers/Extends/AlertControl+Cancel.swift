@@ -18,4 +18,9 @@ extension UIAlertController {
     func addEmptyCancelAction() {
         addCancelAction(handler: nil)
     }
+    
+    func addEmptyOkAction() {
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
+        self.addAction(action)
+    }
 }

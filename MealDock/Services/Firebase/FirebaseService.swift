@@ -41,8 +41,8 @@ class FirebaseService: NSObject,
     var rootRef: DatabaseReference!
     var connectedRef: DatabaseReference!
     var presenceRef: DatabaseReference!
-    var storage: Storage!
-    var storageRef: StorageReference!
+    //var storage: Storage!
+    //var storageRef: StorageReference!
     var isSignOn: Bool {
         get {
             return currentUser != nil

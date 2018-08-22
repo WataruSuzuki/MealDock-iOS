@@ -52,6 +52,7 @@
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */; };
+		96D6501C217A260400A1458C /* TicketMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501B217A260400A1458C /* TicketMenuViewController.swift */; };
 		96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */; };
 		96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */; };
 		96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F242212459E000C2F09E /* InFridgeListViewController.swift */; };
@@ -76,6 +77,7 @@
 		CC54D95F21787E3500E42F28 /* UIViewController+MDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */; };
 		CC54D9622179792800E42F28 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D9612179792800E42F28 /* PurchaseService.swift */; };
 		CC54D9652179821F00E42F28 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC54D9642179821F00E42F28 /* UnifiedNativeAdView.xib */; };
+		CC54D9682179BD1100E42F28 /* Purchase+Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D9672179BD1100E42F28 /* Purchase+Store.swift */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC6495062174934100580268 /* Firebase+Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6495052174934100580268 /* Firebase+Dock.swift */; };
 		CC64950921759B6200580268 /* DockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64950821759B6200580268 /* DockUser.swift */; };
@@ -170,6 +172,7 @@
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
+		96D6501B217A260400A1458C /* TicketMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMenuViewController.swift; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrandPagingViewController.swift; sourceTree = "<group>"; };
 		96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureBarcodeViewController.swift; sourceTree = "<group>"; };
 		96E5F242212459E000C2F09E /* InFridgeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFridgeListViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 		CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MDC.swift"; sourceTree = "<group>"; };
 		CC54D9612179792800E42F28 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
 		CC54D9642179821F00E42F28 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
+		CC54D9672179BD1100E42F28 /* Purchase+Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+Store.swift"; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
 		CC6495052174934100580268 /* Firebase+Dock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Dock.swift"; sourceTree = "<group>"; };
 		CC64950821759B6200580268 /* DockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockUser.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */,
 				966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */,
 				966F5A642173364B00A47EDF /* ShowQrViewController.swift */,
+				96D6501B217A260400A1458C /* TicketMenuViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				CC54D9612179792800E42F28 /* PurchaseService.swift */,
+				CC54D9662179BCD600E42F28 /* InAppPurchase */,
 				CC54D963217981EB00E42F28 /* GoogleAds */,
 			);
 			path = Purchase;
@@ -510,6 +516,14 @@
 				CC54D9642179821F00E42F28 /* UnifiedNativeAdView.xib */,
 			);
 			path = GoogleAds;
+			sourceTree = "<group>";
+		};
+		CC54D9662179BCD600E42F28 /* InAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				CC54D9672179BD1100E42F28 /* Purchase+Store.swift */,
+			);
+			path = InAppPurchase;
 			sourceTree = "<group>";
 		};
 		CC77E4FE2165E875002891BB /* Extensions */ = {
@@ -898,6 +912,7 @@
 				CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */,
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
 				96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */,
+				CC54D9682179BD1100E42F28 /* Purchase+Store.swift in Sources */,
 				966F5A7A2178D0A200A47EDF /* UICollectionView+CellSize.swift in Sources */,
 				967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */,
 				966F5A4F2171878000A47EDF /* OptionalError.swift in Sources */,
@@ -938,6 +953,7 @@
 				96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */,
 				CC77E5032165F9D5002891BB /* StrikethroughTableViewCell.swift in Sources */,
 				96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */,
+				96D6501C217A260400A1458C /* TicketMenuViewController.swift in Sources */,
 				96FC04E8216900FD00533529 /* Dish.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
 				966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */,

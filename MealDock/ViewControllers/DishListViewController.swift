@@ -111,22 +111,26 @@ class DishListViewController: UICollectionViewController,
 
         cardCell.apply(cardScheme: cardScheme, typographyScheme: typographyScheme)
         // Configure the cell
-        cardCell.configure(title: dishes[indexPath.row].title, imageName: "baseline_help_black_48pt")
+        let dish = dishes[indexPath.row]
+        cardCell.configure(title: dish.title, imageName: "baseline_help_black_48pt")
         let indicator = cardCell.startIndicator()
-        GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dishes[indexPath.row].imagePath) { (url, error) in
+        GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dish.imagePath) { (url, error) in
             cardCell.stopIndicator(view: indicator)
             guard error == nil else { return }
             cardCell.imageView.setImageByAlamofire(with: URL(string: url)!)
         }
-        cardCell.selectingMode = isSelectMode
-        
-        if indexPath.row == 1 {
+        if dish.title == "💩" {
             if let nativeView = PurchaseService.shared.nativeView() {
                 nativeView.frame = cardCell.frame
                 cardCell.addSubview(nativeView)
                 nativeView.autoPinEdgesToSuperviewEdges()
-                PurchaseService.shared.applyNativeAd(view: nativeView)
+                if !PurchaseService.shared.applyNativeAd(view: nativeView) {
+                    debugPrint("Ad is not applied now")
+                }
             }
+            cardCell.selectingMode = false
+        } else {
+            cardCell.selectingMode = isSelectMode
         }
     
         return cell
@@ -188,7 +192,7 @@ class DishListViewController: UICollectionViewController,
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DishCardCollectionCell
         let dish = dishes[indexPath.row]
-        if isSelectMode {
+        if cell.selectingMode {
             cell.isChecked = !cell.isChecked
             if cell.isChecked {
                 checkedItems.updateValue(dish, forKey: dish.title)
