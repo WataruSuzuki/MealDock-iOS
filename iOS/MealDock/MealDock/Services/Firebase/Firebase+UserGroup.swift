@@ -19,14 +19,26 @@ extension FirebaseService {
         }
     }
     
+    func deleteCurrentUser() {
+        if let user = currentUser {
+            deleteMyDockGroup()
+            self.ref.child("users/\(user.uid)").removeValue()
+            signOut()
+        }
+    }
+
     func createMyDockGroup() {
         if let user = currentUser {
-            self.ref.child("mealdocks").setValue([
-                user.uid: "My Dock Group"
-                ])
-            self.ref.child("users/\(user.uid)/mealdocks").setValue([
-                user.uid: "My Dock Group"
-            ])
+            let group = [user.uid: "My Dock Group"]
+            self.ref.child("mealdocks").updateChildValues(group)
+            self.ref.child("users/\(user.uid)/mealdocks").setValue(group)
+        }
+    }
+    
+    func deleteMyDockGroup() {
+        if let user = currentUser {
+            self.ref.child("users/\(user.uid)/mealdocks").removeValue()
+            self.ref.child("mealdocks/\(user.uid)").removeValue()
         }
     }
         

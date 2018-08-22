@@ -8,5 +8,6 @@
 
 signIn = "Sign in";
 signOut = "Sign out";
+deleteAccount = "Delete account";
 
 noData_packed = "No Foods in packed list.";

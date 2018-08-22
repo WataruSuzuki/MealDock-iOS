@@ -53,8 +53,13 @@ class SettingsViewController: UITableViewController {
             switch section {
             case .signIn:
                 FirebaseService.shared.requestAuthUI()
+
             case .signOut:
                 FirebaseService.shared.signOut()
+                
+            case .deleteAccount:
+                FirebaseService.shared.deleteCurrentUser()
+                
             default:
                 break
             }
@@ -73,6 +78,7 @@ class SettingsViewController: UITableViewController {
     enum Sections: Int {
         case signIn = 0,
         signOut,
+        deleteAccount,
         max
         
         func toString() -> String {
