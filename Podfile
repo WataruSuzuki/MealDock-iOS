@@ -8,7 +8,6 @@ target "MealDock" do
     pod 'DJKFlatIconAuthors', :git => 'https://github.com/WataruSuzuki/DJKFlatIconAuthors.git'
     pod 'DJKUtilities', :git => 'https://github.com/WataruSuzuki/DJKUtilities.git'
     pod 'DJKUtilAdMob', :git => 'https://github.com/WataruSuzuki/DJKUtilAdMob.git'#, :configuration => ["Release"]
-    pod 'DJKInAppPurchase', :git => 'https://github.com/WataruSuzuki/DJKInAppPurchase.git'#, :configuration => ["Release"]
     pod 'Firebase/AdMob'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
@@ -28,6 +27,7 @@ target "MealDock" do
     pod 'ActionSheetPicker-3.0'
     pod 'QRCodeReader.swift', '~> 9.0.1'
     pod 'QRCode'
+    pod 'SwiftyStoreKit'
 
     # platform :ios, '10.0'
     #     pod 'OAuthSwift', '~> 1.2.0'
