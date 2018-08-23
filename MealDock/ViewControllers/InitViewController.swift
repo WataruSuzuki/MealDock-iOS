@@ -9,9 +9,7 @@
 import UIKit
 import FirebaseUI
 
-class InitViewController: UITabBarController,
-    FUIAuthDelegate
-{
+class InitViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

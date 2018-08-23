@@ -74,6 +74,8 @@
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC54D95D2178523500E42F28 /* Firebase+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95C2178523500E42F28 /* Firebase+Photos.swift */; };
 		CC54D95F21787E3500E42F28 /* UIViewController+MDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */; };
+		CC54D9622179792800E42F28 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D9612179792800E42F28 /* PurchaseService.swift */; };
+		CC54D9652179821F00E42F28 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC54D9642179821F00E42F28 /* UnifiedNativeAdView.xib */; };
 		CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5C68D521636A830026441D /* MealDockListViewController.swift */; };
 		CC6495062174934100580268 /* Firebase+Dock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6495052174934100580268 /* Firebase+Dock.swift */; };
 		CC64950921759B6200580268 /* DockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64950821759B6200580268 /* DockUser.swift */; };
@@ -192,6 +194,8 @@
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC54D95C2178523500E42F28 /* Firebase+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Photos.swift"; sourceTree = "<group>"; };
 		CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MDC.swift"; sourceTree = "<group>"; };
+		CC54D9612179792800E42F28 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
+		CC54D9642179821F00E42F28 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
 		CC5C68D521636A830026441D /* MealDockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockListViewController.swift; sourceTree = "<group>"; };
 		CC6495052174934100580268 /* Firebase+Dock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Dock.swift"; sourceTree = "<group>"; };
 		CC64950821759B6200580268 /* DockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockUser.swift; sourceTree = "<group>"; };
@@ -491,6 +495,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CC54D960217978F000E42F28 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				CC54D9612179792800E42F28 /* PurchaseService.swift */,
+				CC54D963217981EB00E42F28 /* GoogleAds */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		CC54D963217981EB00E42F28 /* GoogleAds */ = {
+			isa = PBXGroup;
+			children = (
+				CC54D9642179821F00E42F28 /* UnifiedNativeAdView.xib */,
+			);
+			path = GoogleAds;
+			sourceTree = "<group>";
+		};
 		CC77E4FE2165E875002891BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +527,7 @@
 				CC64950821759B6200580268 /* DockUser.swift */,
 				9696B4A4214C8DAF001DFB60 /* Firebase */,
 				967146C0216E353000DDA65E /* GooglePhotos */,
+				CC54D960217978F000E42F28 /* Purchase */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -651,6 +673,7 @@
 				96FC04E42168D6D200533529 /* InfoPlist.strings in Resources */,
 				96317C9A210F56FD00F81F22 /* Assets.xcassets in Resources */,
 				9615BDF7214D42E7001801D5 /* Localizable.strings in Resources */,
+				CC54D9652179821F00E42F28 /* UnifiedNativeAdView.xib in Resources */,
 				966F5A742176289100A47EDF /* GroupInfo.storyboard in Resources */,
 				9615BDEB214CA7E0001801D5 /* InFridgeList.storyboard in Resources */,
 				966F5A71217627F700A47EDF /* UsageInfo.storyboard in Resources */,
@@ -918,6 +941,7 @@
 				96FC04E8216900FD00533529 /* Dish.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
 				966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */,
+				CC54D9622179792800E42F28 /* PurchaseService.swift in Sources */,
 				CC64950921759B6200580268 /* DockUser.swift in Sources */,
 				CCE4CED7217812A300AB999D /* OIDAuthState+Joiner.m in Sources */,
 				966F5A4A2170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift in Sources */,

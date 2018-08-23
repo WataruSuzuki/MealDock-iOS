@@ -33,6 +33,7 @@ class DishListViewController: UICollectionViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PurchaseService.shared.load(unitId: "YOUR_AD_UNIT_ID_FOR_NATIVE", controller: self)
 
         view.addSubview(fab)
         fab.isHidden = true
@@ -118,6 +119,15 @@ class DishListViewController: UICollectionViewController,
             cardCell.imageView.setImageByAlamofire(with: URL(string: url)!)
         }
         cardCell.selectingMode = isSelectMode
+        
+        if indexPath.row == 1 {
+            if let nativeView = PurchaseService.shared.nativeView() {
+                nativeView.frame = cardCell.frame
+                cardCell.addSubview(nativeView)
+                nativeView.autoPinEdgesToSuperviewEdges()
+                PurchaseService.shared.applyNativeAd(view: nativeView)
+            }
+        }
     
         return cell
     }
