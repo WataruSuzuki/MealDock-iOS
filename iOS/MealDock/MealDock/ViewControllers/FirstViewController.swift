@@ -23,7 +23,6 @@ class FirstViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        FirebaseService.shared.observeHarvestSingleEvent()
         FirebaseService.shared.addHarvests()
     }
     

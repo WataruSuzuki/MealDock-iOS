@@ -9,28 +9,30 @@
 import UIKit
 
 extension FirebaseService {
-    func observeHarvestSingleEvent() {
+    
+    func observeHarvest() {
         if let user = currentUser {
             self.ref.child("harvests")
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
-                .observeSingleEvent(of: .value, with: { (snapshot) in
+                .observe(.value, with: { (snapshot) in
                     print(snapshot)
-                }) { (error) in
+                }, withCancel: { (error) in
                     print(error.localizedDescription)
-            }
-            
+                })
         }
     }
     
     func addHarvests()  {
         if let user = currentUser {
+            let timeStamp = String(NSDate().timeIntervalSince1970)
+            let imageUrl = "https://raw.githubusercontent.com/fmn/alfred-engineer-homeru-neko-workflow/master/images/08.png"
             self.ref.child("harvests").child(user.uid)
                 .childByAutoId()
                 .setValue([
-                    "user": user.displayName ?? "Fuga",
-                    "text": "Fugaaaa!",
-                    "timestamp": 1435285206
+                    "type": "HogeFuga",
+                    "image_url": imageUrl,
+                    "time_stamp": timeStamp
                     ])
         }
     }
