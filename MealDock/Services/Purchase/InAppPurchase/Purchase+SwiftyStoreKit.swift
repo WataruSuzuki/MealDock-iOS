@@ -129,15 +129,64 @@ extension PurchaseService {
         }
     }
     
-    func fetchReceipt(force: Bool) {
+    func fetchReceipt(force: Bool, completion: @escaping (String?) -> Void) {
         SwiftyStoreKit.fetchReceipt(forceRefresh: force) { result in
             switch result {
             case .success(let receiptData):
                 let encryptedReceipt = receiptData.base64EncodedString(options: [])
-                print("Fetch receipt success:\n\(encryptedReceipt)")
+                debugPrint("Fetch receipt success:\n\(encryptedReceipt)")
+                completion(encryptedReceipt)
             case .error(let error):
                 print("Fetch receipt failed: \(error)")
+                completion(nil)
             }
+        }
+    }
+    
+    func verifyReceipt() {
+        fetchReceipt(force: false) { (base64EncodedReceipt) in
+            #if DEBUG
+            let type = AppleReceiptValidator.VerifyReceiptURLType.sandbox
+            #else
+            let type = AppleReceiptValidator.VerifyReceiptURLType.production
+            #endif
+            let appleValidator = AppleReceiptValidator(service: type, sharedSecret: "your-shared-secret")
+            SwiftyStoreKit.verifyReceipt(using: appleValidator, forceRefresh: false) { result in
+                switch result {
+                case .success(let receipt):
+                    debugPrint("Verify receipt success: \(receipt)")
+                    
+                    //self.verifySubscriptions(productIds: ["jp.co.JchanKchan.MealDock.subscription"], receipt: receipt)
+                case .error(let error):
+                    print("Verify receipt failed: \(error)")
+                }
+            }
+        }
+    }
+    
+    func verifyPurchase(productId: String, receipt: ReceiptInfo) {
+        // Verify the purchase of Consumable or NonConsumable
+        let purchaseResult = SwiftyStoreKit.verifyPurchase(
+            productId: productId,
+            inReceipt: receipt)
+        
+        switch purchaseResult {
+        case .purchased(let receiptItem):
+            print("\(productId) is purchased: \(receiptItem)")
+        case .notPurchased:
+            print("The user has never purchased \(productId)")
+        }
+    }
+    
+    func verifySubscriptions(productIds: Set<String>, receipt: ReceiptInfo) {
+        let purchaseResult = SwiftyStoreKit.verifySubscriptions(productIds: productIds, inReceipt: receipt)
+        switch purchaseResult {
+        case .purchased(let expiryDate, let items):
+            print("\(productIds) are valid until \(expiryDate)\n\(items)\n")
+        case .expired(let expiryDate, let items):
+            print("\(productIds) are expired since \(expiryDate)\n\(items)\n")
+        case .notPurchased:
+            print("The user has never purchased \(productIds)")
         }
     }
 }

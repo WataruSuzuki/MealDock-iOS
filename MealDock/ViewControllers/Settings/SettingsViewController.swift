@@ -120,6 +120,7 @@ class SettingsViewController: UITableViewController {
                 if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
                     switch ticketMenu {
                     case .rewared:
+                        PurchaseService.shared.verifyReceipt()
                         break
                     case .unlockAd:
                         PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.unlockAd.description()])
