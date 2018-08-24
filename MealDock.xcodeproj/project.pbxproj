@@ -52,7 +52,7 @@
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */; };
-		96D6501C217A260400A1458C /* TicketMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501B217A260400A1458C /* TicketMenuViewController.swift */; };
+		96D6501C217A260400A1458C /* PurchaseMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */; };
 		96D6501E217AD09F00A1458C /* Purchase+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501D217AD09F00A1458C /* Purchase+AdMob.swift */; };
 		96D65020217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */; };
 		96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */; };
@@ -174,7 +174,7 @@
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
-		96D6501B217A260400A1458C /* TicketMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMenuViewController.swift; sourceTree = "<group>"; };
+		96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuViewController.swift; sourceTree = "<group>"; };
 		96D6501D217AD09F00A1458C /* Purchase+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMob.swift"; sourceTree = "<group>"; };
 		96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+SwiftyStoreKit.swift"; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrandPagingViewController.swift; sourceTree = "<group>"; };
@@ -372,7 +372,7 @@
 				CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */,
 				966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */,
 				966F5A642173364B00A47EDF /* ShowQrViewController.swift */,
-				96D6501B217A260400A1458C /* TicketMenuViewController.swift */,
+				96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -960,7 +960,7 @@
 				96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */,
 				CC77E5032165F9D5002891BB /* StrikethroughTableViewCell.swift in Sources */,
 				96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */,
-				96D6501C217A260400A1458C /* TicketMenuViewController.swift in Sources */,
+				96D6501C217A260400A1458C /* PurchaseMenuViewController.swift in Sources */,
 				96FC04E8216900FD00533529 /* Dish.swift in Sources */,
 				96D6501E217AD09F00A1458C /* Purchase+AdMob.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
@@ -1228,7 +1228,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1250,7 +1250,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

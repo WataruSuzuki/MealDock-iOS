@@ -37,7 +37,7 @@ extension PurchaseService {
             if let result = result {
                 for product in result.retrievedProducts {
                     if productID.contains(product.productIdentifier) {
-                        
+                        self.purchaseProduct(with: product, atomically: false)
                     }
                 }
             }
@@ -109,8 +109,13 @@ extension PurchaseService {
     
     func restorePurchases() {
         SwiftyStoreKit.restorePurchases(atomically: false) { results in
-            guard results.restoreFailedPurchases.count > 0 else {
+            guard results.restoreFailedPurchases.count == 0 else {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
+                var message = "Restore Failed:"
+                for restoreFailed in results.restoreFailedPurchases {
+                    message.append("\n - \(restoreFailed)")
+                }
+                OptionalError.alertErrorMessage(message: message, actions: nil)
                 return
             }
             if results.restoredPurchases.count > 0 {

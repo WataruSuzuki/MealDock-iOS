@@ -42,6 +42,7 @@ class SettingsViewController: UITableViewController {
                 return AboutThisApp.max.rawValue
             case .ticket:
                 return TicketMenu.max.rawValue
+            case .purchase: fallthrough
             case .signOut:
                 return 1
             default:
@@ -69,7 +70,9 @@ class SettingsViewController: UITableViewController {
             case .ticket:
                 if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
                     cell.textLabel?.text = NSLocalizedString(ticketMenu.description(), comment: "")
+                    cell.accessoryType = .none
                 }
+            case .purchase: fallthrough
             case .signOut:
                 cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
                 fallthrough
@@ -84,8 +87,17 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = Sections(rawValue: section) {
-            if sections != .signOut {
+            if sections != .signOut || sections != .purchase {
                 return NSLocalizedString(sections.description(), comment: "")
+            }
+        }
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if let sections = Sections(rawValue: section) {
+            if sections == .ticket {
+                return NSLocalizedString("footer_reward", comment: "")
             }
         }
         return nil
@@ -120,16 +132,13 @@ class SettingsViewController: UITableViewController {
                 if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
                     switch ticketMenu {
                     case .rewared:
-                        PurchaseService.shared.verifyReceipt()
                         break
-                    case .unlockAd:
-                        PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.unlockAd.description()])
-                    case .subscription:
-                        PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.subscription.description()])
                     default:
                         break
                     }
                 }
+            case .purchase:
+                performSegue(withIdentifier: String(describing: PurchaseMenuViewController.self), sender: self)
             case .signOut:
                 FirebaseService.shared.signOut()
                 
@@ -151,6 +160,7 @@ class SettingsViewController: UITableViewController {
         case account = 0,
         aboutThisApp,
         ticket,
+        purchase,
         signOut,
         max
     }
@@ -169,8 +179,6 @@ class SettingsViewController: UITableViewController {
     
     enum TicketMenu: Int {
         case rewared = 0,
-        unlockAd,
-        subscription,
         max
     }
 }
