@@ -74,7 +74,7 @@ extension PurchaseService: SKProductsRequestDelegate, SKPaymentTransactionObserv
         }
         
         if result {
-            UIViewController.snackBarMessage(text: "m(_ _)m")
+            UIViewController.snackBarMessage(text: NSLocalizedString("comp_restore", comment: ""))
         } else {
             OptionalError.alertErrorMessage(message: "cannot_find_paid_history", actions: nil)
         }

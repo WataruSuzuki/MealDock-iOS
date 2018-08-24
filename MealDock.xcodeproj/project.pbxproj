@@ -54,6 +54,7 @@
 		9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */; };
 		96D6501C217A260400A1458C /* TicketMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501B217A260400A1458C /* TicketMenuViewController.swift */; };
 		96D6501E217AD09F00A1458C /* Purchase+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501D217AD09F00A1458C /* Purchase+AdMob.swift */; };
+		96D65020217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */; };
 		96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */; };
 		96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */; };
 		96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F242212459E000C2F09E /* InFridgeListViewController.swift */; };
@@ -175,6 +176,7 @@
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
 		96D6501B217A260400A1458C /* TicketMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketMenuViewController.swift; sourceTree = "<group>"; };
 		96D6501D217AD09F00A1458C /* Purchase+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMob.swift"; sourceTree = "<group>"; };
+		96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+SwiftyStoreKit.swift"; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrandPagingViewController.swift; sourceTree = "<group>"; };
 		96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureBarcodeViewController.swift; sourceTree = "<group>"; };
 		96E5F242212459E000C2F09E /* InFridgeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFridgeListViewController.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 			isa = PBXGroup;
 			children = (
 				CC54D9672179BD1100E42F28 /* Purchase+Store.swift */,
+				96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */,
 			);
 			path = InAppPurchase;
 			sourceTree = "<group>";
@@ -921,6 +924,7 @@
 				966F5A4F2171878000A47EDF /* OptionalError.swift in Sources */,
 				96FC04DD2168599300533529 /* Firebase+QueryHarvest.swift in Sources */,
 				966F5A762176313900A47EDF /* Firebase+HandleError.swift in Sources */,
+				96D65020217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift in Sources */,
 				966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,
 				966F5A6C2174B7D200A47EDF /* DockMember.swift in Sources */,

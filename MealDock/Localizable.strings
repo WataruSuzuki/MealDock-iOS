@@ -88,5 +88,6 @@ fail_validation = "Fail validation";
 not_available = "Not available";
 restrict_in_app_purchase = "Restrict this item";
 comp_restore = "Restore item";
-cannot_find_pay_history = "Cannot find pay history";
+thank_you_for_purchase = "Thank you for purchase";
+cannot_find_paid_history = "Cannot find paid history";
 

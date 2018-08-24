@@ -123,7 +123,8 @@ class SettingsViewController: UITableViewController {
                         break
                     case .unlockAd:
                         PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.unlockAd.description()])
-                        
+                    case .subscription:
+                        PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.subscription.description()])
                     default:
                         break
                     }
