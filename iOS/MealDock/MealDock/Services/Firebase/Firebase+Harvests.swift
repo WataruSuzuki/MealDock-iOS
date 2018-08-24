@@ -10,13 +10,20 @@ import UIKit
 
 extension FirebaseService {
     
-    func observeHarvest() {
+    func observeHarvest(success:((DataSnapshot) -> Void)?) {
         if let user = currentUser {
             self.ref.child("harvests")
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observe(.value, with: { (snapshot) in
-                    print(snapshot)
+                    debugPrint(snapshot)
+//                    if let value = snapshot.value {
+//                        let data = NSKeyedArchiver.archivedData(withRootObject: value)
+//                        self.allHarvests = try! JSONDecoder().decode(Array<Harvest>.self, from: data)
+//                        //self.allHarvests.sort(by: {$0.type < $1.type})
+//                        self.targetHarvests = self.allHarvests
+//                    }
+                    success?(snapshot)
                 }, withCancel: { (error) in
                     print(error.localizedDescription)
                 })

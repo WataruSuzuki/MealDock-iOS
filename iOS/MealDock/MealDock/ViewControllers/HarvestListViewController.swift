@@ -19,7 +19,9 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
         // Do any additional setup after loading the view.
         styler.cellStyle = .card
         addTargetToFab(target: self, action: #selector(onAddFabTapped))
-        FirebaseService.shared.observeHarvest()
+        FirebaseService.shared.observeHarvest { (snapshot) in
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
