@@ -56,6 +56,26 @@ extension FirebaseService {
         }
     }
     
+    func updateUnlockAdInfo(unlock: Bool) {
+        if let user = currentUser {
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/unlockedAd").setValue(unlock)
+            updateSubscriptionPlanInfo(plan: (unlock ? .unlockAd : .free), expiryDate: nil)
+        }
+    }
+    
+    func updateSubscriptionPlanInfo(plan: UsageInfo.PurchasePlan, expiryDate: TimeInterval?) {
+        if let user = currentUser {
+            if let date = expiryDate {
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/expireDate").setValue(date)
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/purchasePlan").setValue(plan.rawValue)
+            } else if let unlockAd = user.usageInfo?.unlockedAd, unlockAd {
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/purchasePlan").setValue(UsageInfo.PurchasePlan.unlockAd.rawValue)
+            } else {
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/purchasePlan").setValue(UsageInfo.PurchasePlan.free.rawValue)
+            }
+        }
+    }
+    
     func deleteUsageInfo() {
         if let user = currentUser {
             rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)").removeValue()

@@ -11,6 +11,7 @@ import StoreKit
 import SwiftyStoreKit
 
 extension PurchaseService {
+    static let sharedSecret = "your-shared-secret"
     
     //Note that completeTransactions() should only be called once in your code
     func completeTransactions() {
@@ -87,7 +88,25 @@ extension PurchaseService {
                 SwiftyStoreKit.finishTransaction(product.transaction)
             }
             debugPrint("Purchase Success: \(product.productId)")
-            UIViewController.snackBarMessage(text: NSLocalizedString("thank_you_for_purchase", comment: ""))
+            if product.productId == Bundle.main.bundleIdentifier! + "." + UsageInfo.PurchasePlan.unlockAd.description() {
+                verifyPurchase(productId: product.productId) { (verified) in
+                    switch verified {
+                    case .purchased( _):
+                        UIViewController.snackBarMessage(text: NSLocalizedString("thank_you_for_purchase", comment: ""))
+                    default:
+                        break
+                    }
+                }
+            } else {
+                verifySubscriptions(productIds: [product.productId]) { (verified) in
+                    switch verified {
+                    case .purchased( _, _):
+                        UIViewController.snackBarMessage(text: NSLocalizedString("thank_you_for_purchase", comment: ""))
+                    default:
+                        break
+                    }
+                }
+            }
             
         case .error(let error):
             switch error.code {
@@ -188,7 +207,7 @@ extension PurchaseService {
     }
     
     func validateReceipt(type: AppleReceiptValidator.VerifyReceiptURLType, isRetrySandBox: Bool = false, completion: @escaping (ReceiptInfo?) -> Void) {
-        let appleValidator = AppleReceiptValidator(service: type, sharedSecret: "your-shared-secret")
+        let appleValidator = AppleReceiptValidator(service: type, sharedSecret: PurchaseService.sharedSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator, forceRefresh: false) { result in
             switch result {
             case .success(let receipt):
@@ -214,7 +233,8 @@ extension PurchaseService {
             
             switch purchaseResult {
             case .purchased(let receiptItem):
-                print("\(productId) is purchased: \(receiptItem)")
+                debugPrint("\(productId) is purchased: \(receiptItem)")
+                FirebaseService.shared.updateUnlockAdInfo(unlock: true)
             case .notPurchased:
                 print("The user has never purchased \(productId)")
             }
@@ -231,9 +251,13 @@ extension PurchaseService {
             let purchaseResult = SwiftyStoreKit.verifySubscriptions(productIds: productIds, inReceipt: receipt)
             switch purchaseResult {
             case .purchased(let expiryDate, let items):
-                print("\(productIds) are valid until \(expiryDate)\n\(items)\n")
+                debugPrint("\(productIds) are valid until \(expiryDate)\n\(items)\n")
+                FirebaseService.shared.updateSubscriptionPlanInfo(plan: .subscription, expiryDate: expiryDate.timeIntervalSince1970)
+                
             case .expired(let expiryDate, let items):
                 print("\(productIds) are expired since \(expiryDate)\n\(items)\n")
+                FirebaseService.shared.updateSubscriptionPlanInfo(plan: .free, expiryDate: nil)
+                
             case .notPurchased:
                 print("The user has never purchased \(productIds)")
             }
