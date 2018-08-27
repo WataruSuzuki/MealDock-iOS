@@ -62,10 +62,10 @@ class ShowQrViewController: UIViewController,
         var jsonObj: [String : String]!
         switch type {
         case .requestToJoin:
-            joinUid = sha1(param: user.uid)
+            joinUid = sha1(param: user.core.uid)
             jsonObj = ["id": joinUid, "name": user.core.displayName ?? "(・∀・)"]
         case .tellDockId:
-            jsonObj = ["id": user.uid, "name": user.core.displayName ?? "(・∀・)"]
+            jsonObj = ["id": user.core.uid, "name": user.core.displayName ?? "(・∀・)"]
         }
         
         do {

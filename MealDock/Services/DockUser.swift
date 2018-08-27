@@ -22,8 +22,6 @@ class DockUser: NSObject {
             }
         }
     }
-    var uid: String { get { return core.uid } }
-    var email: String? { get { return core.email } }
     private(set) var usageInfo: UsageInfo?
     private var idAsDock: String?
     var isJoiningSharingGroup: Bool {
@@ -34,6 +32,15 @@ class DockUser: NSObject {
     var isGroupOwnerMode: Bool {
         get {
             return currentDock == core.uid
+        }
+    }
+    var isPurchased: Bool {
+        get {
+            guard let info = usageInfo,
+                let plan = UsageInfo.PurchasePlan(rawValue: info.purchasePlan) else {
+                return false
+            }
+            return plan != .free
         }
     }
 

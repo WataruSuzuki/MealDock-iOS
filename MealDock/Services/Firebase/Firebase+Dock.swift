@@ -12,8 +12,8 @@ extension FirebaseService {
     
     func joinToGroupDock(dock: String?, id: String?) {
         if let user = currentUser {
-            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentDock").setValue(dock ?? user.uid)
-            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentID").setValue(id ?? user.uid)
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/currentDock").setValue(dock ?? user.core.uid)
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/currentID").setValue(id ?? user.core.uid)
             clearAllObservers(evenUserInfo: false)
         }
     }
@@ -25,7 +25,7 @@ extension FirebaseService {
                 // Don't duplicate
                 return
             }
-            let newReference = rootRef.child("\(itemId)/\(user.uid)")
+            let newReference = rootRef.child("\(itemId)/\(user.core.uid)")
             let newObserver = newReference.observe(.value) { (snapshot) in
                 if let json = snapshot.value as? [String : String] {
                     let memberIds = [String](json.keys)
@@ -43,13 +43,13 @@ extension FirebaseService {
     
     func addMyDockGroupMember(memberId: String, name: String) {
         if let user = currentUser {
-            rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.uid)").child(memberId).setValue(name)
+            rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.core.uid)").child(memberId).setValue(name)
         }
     }
     
     func deleteDockMember(memberId: String) {
         if let user = currentUser {
-            rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.uid)/\(memberId)").removeValue()
+            rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.core.uid)/\(memberId)").removeValue()
         }
     }
 }

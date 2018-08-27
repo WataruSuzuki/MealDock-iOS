@@ -161,7 +161,7 @@ class UsageInfoViewController: UITableViewController {
             case .displayName:
                 return user.core.displayName ?? ""
             case .email:
-                return user.email ?? ""
+                return user.core.email ?? ""
             case .password:
                 return "*****************"
             default:

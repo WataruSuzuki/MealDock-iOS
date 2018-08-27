@@ -31,7 +31,7 @@ extension FirebaseService {
             // Don't duplicate
             return
         }
-        let newReference = rootRef.child("\(itemId)/\(user.uid)")
+        let newReference = rootRef.child("\(itemId)/\(user.core.uid)")
         let newObserver = newReference.observe(.value) { (snapshot) in
             guard let data = snapshot.value! as? [String: Any] else {
                 self.InitializedUsageInfo()
@@ -48,17 +48,17 @@ extension FirebaseService {
     
     func InitializedUsageInfo() {
         if let user = currentUser {
-            addMyDockGroupMember(memberId: user.uid, name: user.core.displayName ?? "Dock Owner")
-            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)").setValue([
+            addMyDockGroupMember(memberId: user.core.uid, name: user.core.displayName ?? "Dock Owner")
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)").setValue([
                 "purchasePlan": UsageInfo.PurchasePlan.free.rawValue,
-                "currentDock": user.uid
+                "currentDock": user.core.uid
                 ])
         }
     }
     
     func updateUnlockAdInfo(unlock: Bool) {
         if let user = currentUser {
-            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/unlockedAd").setValue(unlock)
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/unlockedAd").setValue(unlock)
             updateSubscriptionPlanInfo(plan: (unlock ? .unlockAd : .free), expiryDate: nil)
         }
     }
@@ -66,19 +66,19 @@ extension FirebaseService {
     func updateSubscriptionPlanInfo(plan: UsageInfo.PurchasePlan, expiryDate: TimeInterval?) {
         if let user = currentUser {
             if let date = expiryDate {
-                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/expireDate").setValue(date)
-                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/purchasePlan").setValue(plan.rawValue)
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/expireDate").setValue(date)
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/purchasePlan").setValue(plan.rawValue)
             } else if let unlockAd = user.usageInfo?.unlockedAd, unlockAd {
-                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/purchasePlan").setValue(UsageInfo.PurchasePlan.unlockAd.rawValue)
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/purchasePlan").setValue(UsageInfo.PurchasePlan.unlockAd.rawValue)
             } else {
-                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/purchasePlan").setValue(UsageInfo.PurchasePlan.free.rawValue)
+                rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/purchasePlan").setValue(UsageInfo.PurchasePlan.free.rawValue)
             }
         }
     }
     
     func deleteUsageInfo() {
         if let user = currentUser {
-            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)").removeValue()
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)").removeValue()
         }
     }
     
@@ -102,8 +102,8 @@ extension FirebaseService {
 
     func deleteMyDockGroup() {
         if let user = currentUser {
-            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentDock").removeValue()
-            rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.uid)").removeValue()
+            rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)/currentDock").removeValue()
+            rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.core.uid)").removeValue()
         }
     }
     
@@ -118,7 +118,7 @@ extension FirebaseService {
     }
     
     func sendPasswordReset() {
-        if let auth = defaultAuthUI.auth, let email = currentUser?.email {
+        if let auth = defaultAuthUI.auth, let email = currentUser?.core.email {
             auth.sendPasswordReset(withEmail: email) { (error) in
                 self.handleError(error: error, funcName: #function)
             }

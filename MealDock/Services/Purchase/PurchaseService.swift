@@ -17,11 +17,6 @@ class PurchaseService: NSObject {
     var loadedNativeAd = [GADUnifiedNativeAd]()
     var nativeViews = Set<GADUnifiedNativeAdView>()
     
-    var isPurchased: Bool {
-        get {
-            return false
-        }
-    }
 //    var productRequest: SKProductsRequest?
 //    var productResponse: SKProductsResponse?
 //    var productIDs = Set<String>()

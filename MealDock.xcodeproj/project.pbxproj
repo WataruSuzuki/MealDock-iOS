@@ -1228,7 +1228,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1250,7 +1250,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
