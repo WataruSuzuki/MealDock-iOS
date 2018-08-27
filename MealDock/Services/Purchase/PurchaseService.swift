@@ -22,8 +22,8 @@ class PurchaseService: NSObject {
             return false
         }
     }
-    var productRequest: SKProductsRequest?
-    var productResponse: SKProductsResponse?
-    var productIDs = Set<String>()
+//    var productRequest: SKProductsRequest?
+//    var productResponse: SKProductsResponse?
+//    var productIDs = Set<String>()
     
 }

@@ -42,9 +42,9 @@ class PurchaseMenuViewController: UITableViewController {
                 PurchaseService.shared.restorePurchases()
                 break
             case .unlockAd:
-                PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.unlockAd.description()])
+                PurchaseService.shared.validateProduct(productID: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.unlockAd.description()], atomically: false)
             case .subscription:
-                PurchaseService.shared.validateProduct(with: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.subscription.description()])
+                PurchaseService.shared.validateProduct(productID: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.subscription.description()], atomically: false)
             default:
                 break
             }

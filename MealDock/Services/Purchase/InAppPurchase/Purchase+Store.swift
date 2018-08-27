@@ -8,7 +8,7 @@
 
 import Foundation
 import StoreKit
-
+/*
 extension PurchaseService: SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     func validateProduct(with productIdentifiers: Set<String>) {
@@ -124,3 +124,4 @@ extension PurchaseService: SKProductsRequestDelegate, SKPaymentTransactionObserv
         OptionalError.alertErrorMessage(error: error)
     }
 }
+*/
