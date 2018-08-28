@@ -72,7 +72,8 @@ class SettingsViewController: UITableViewController {
                     cell.textLabel?.text = NSLocalizedString(ticketMenu.description(), comment: "")
                     cell.accessoryType = .none
                 }
-            case .purchase: fallthrough
+            case .purchase:
+                cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
             case .signOut:
                 cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
                 fallthrough
@@ -87,7 +88,7 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = Sections(rawValue: section) {
-            if sections != .signOut || sections != .purchase {
+            if sections != .signOut && sections != .purchase {
                 return NSLocalizedString(sections.description(), comment: "")
             }
         }

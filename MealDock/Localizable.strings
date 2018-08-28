@@ -67,7 +67,7 @@ msg_mission_completed = "Mission completed!!";
 msg_change_displayname = "Please input new display name";
 msg_change_email = "Please input new Email";
 msg_remove_joining_info = "Leave from group? Sharing information will be removed & please re-setup if you join to other group again";
-
+msg_delete_account = "This operation can not be undone. If you continue it, please input your email";
 requiresRecentLogin = "Your login is too old. Please login again.";
 
 failed_generate_qr = "Failed to generate QR";
