@@ -7,23 +7,34 @@
 //
 
 import UIKit
+import CodableFirebase
 
 extension FirebaseService {
     
-    func observeHarvest(success:((DataSnapshot) -> Void)?) {
+    func observeHarvest(success:(([Harvest]) -> Void)?) {
         if let user = currentUser {
             self.ref.child("harvests")
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observe(.value, with: { (snapshot) in
-                    debugPrint(snapshot)
-//                    if let value = snapshot.value {
-//                        let data = NSKeyedArchiver.archivedData(withRootObject: value)
-//                        self.allHarvests = try! JSONDecoder().decode(Array<Harvest>.self, from: data)
-//                        //self.allHarvests.sort(by: {$0.type < $1.type})
-//                        self.targetHarvests = self.allHarvests
-//                    }
-                    success?(snapshot)
+                    for child in snapshot.children {
+                        if let data = child as? DataSnapshot {
+                            if let childValue = data.value! as? [String: Any] {
+                                do {
+                                    //let jsonData = try JSONSerialization.data(withJSONObject: childValue, options: [])
+                                    //let harvest = try JSONDecoder().decode(Harvest.self, from: jsonData)
+                                    let harvest = try FirebaseDecoder().decode(Harvest.self, from: childValue)
+                                    debugPrint(harvest)
+                                    self.harvests.append(harvest)
+                                } catch let error {
+                                    //debugPrint(childValue)
+                                    print(error)
+                                }
+                            }
+                        }
+                    }
+                    self.harvests.sort(by: {$0.type < $1.type})
+                    success?(self.harvests)
                 }, withCancel: { (error) in
                     print(error.localizedDescription)
                 })

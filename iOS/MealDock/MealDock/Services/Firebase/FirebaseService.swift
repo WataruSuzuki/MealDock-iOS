@@ -35,8 +35,7 @@ class FirebaseService: NSObject,
             return currentUser != nil
         }
     }
-    var targetHarvests: [Harvest]!
-    var allHarvests: [Harvest]!
+    var harvests = [Harvest]()
     
     private override init() {
         FirebaseApp.configure()

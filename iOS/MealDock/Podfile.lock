@@ -12,6 +12,7 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
+  - CodableFirebase (0.2.0)
   - DJKFlatIconAuthors (0.0.2)
   - DJKInAppPurchase (0.1.0)
   - DJKUtilAdMob (0.4.1):
@@ -686,6 +687,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - CodableFirebase
   - DJKFlatIconAuthors (from `https://github.com/WataruSuzuki/DJKFlatIconAuthors.git`)
   - DJKInAppPurchase (from `https://github.com/WataruSuzuki/DJKInAppPurchase.git`)
   - DJKUtilAdMob (from `https://github.com/WataruSuzuki/DJKUtilAdMob.git`)
@@ -706,6 +708,7 @@ SPEC REPOS:
     - Alamofire
     - Bolts
     - BoringSSL
+    - CodableFirebase
     - DZNEmptyDataSet
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -778,6 +781,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
+  CodableFirebase: 4b865f58c583a6c0ef8c81c6b12c6bf15ebd9181
   DJKFlatIconAuthors: eb488fab9ee7c961401aec3552bfbaea6763088c
   DJKInAppPurchase: d106040dc239d754a8f786fe91599f309e55998a
   DJKUtilAdMob: 1847c3474cd1ebc294e1b0db70186c7e79fc273a
@@ -826,6 +830,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
 
-PODFILE CHECKSUM: 3622587c78c51f27043f3b76f4b11f9973bc22e8
+PODFILE CHECKSUM: f4acaf04f58996cfaf2600254c32cdd437f27244
 
 COCOAPODS: 1.5.3

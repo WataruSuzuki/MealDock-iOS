@@ -13,7 +13,7 @@ target "MealDock" do
     pod 'Firebase/AdMob'
     pod 'FirebaseUI'
     # pod 'BubbleTransition-objc'
-    # pod 'RMPZoomTransitionAnimator'
+    pod 'CodableFirebase'
     pod 'PersonalizedAdConsent'
     # pod 'ZFDragableModalTransition'
     pod 'GoogleMobileAdsMediationNend'
