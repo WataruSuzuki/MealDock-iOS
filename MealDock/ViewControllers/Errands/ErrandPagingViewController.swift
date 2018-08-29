@@ -77,6 +77,7 @@ class ErrandPagingViewController: UIViewController {
         bottomBarView.floatingButton.setImage(UIImage(named: "baseline_mic_white_48pt"), for: .normal)
         bottomBarView.floatingButton.addTarget(self, action: #selector(tapMicToSpeech), for: .touchUpInside)
         bottomBarView.floatingButtonPosition = .center
+        bottomBarView.setFloatingButtonHidden(true, animated: true)
         
         let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_search_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapSearch))
         let barButtonTrailingItem = UIBarButtonItem(image: UIImage(named:"baseline_photo_camera_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapCamera))
