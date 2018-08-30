@@ -9,6 +9,7 @@
 import UIKit
 
 struct Harvest: Codable {
+    let name: String
     let type: String
     let image_url: String
     let time_stamp: String

@@ -48,7 +48,8 @@ extension FirebaseService {
             self.ref.child("harvests").child(user.uid)
                 .childByAutoId()
                 .setValue([
-                    "type": "HogeFuga",
+                    "name": "HogeHoge",
+                    "type": "FugaFuga",
                     "image_url": imageUrl,
                     "time_stamp": timeStamp
                     ])

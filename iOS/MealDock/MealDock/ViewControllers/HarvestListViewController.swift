@@ -12,6 +12,7 @@ import MaterialComponents.MaterialBottomSheet
 class HarvestListViewController: MealDockBaseCollectionViewController,
     MealDockAdder
 {
+    var harvests = [Harvest]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,8 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
         styler.cellStyle = .card
         addTargetToFab(target: self, action: #selector(onAddFabTapped))
         FirebaseService.shared.observeHarvest { (harvests) in
-            
+            self.harvests = harvests
+            self.collectionView?.reloadData()
         }
     }
 
@@ -43,19 +45,20 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return harvests.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
+        let cell = degueueCollectionViewTextCell(cellForItemAt: indexPath)
+
         // Configure the cell
+        cell.textLabel?.text = harvests[indexPath.row].name
     
         return cell
     }

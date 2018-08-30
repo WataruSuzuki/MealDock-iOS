@@ -58,14 +58,16 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         fab.autoPinEdge(.bottom, to: .top, of: (self.tabBarController?.tabBar)!, withOffset: -30)
         fab.autoPinEdge(toSuperviewEdge: .trailing, withInset: 30)
     }
-    
+
+    func degueueCollectionViewTextCell(cellForItemAt indexPath: IndexPath) -> MDCCollectionViewTextCell {
+        return self.collectionView!.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MDCCollectionViewTextCell
+    }
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
     }
-
 
 //    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        // #warning Incomplete implementation, return the number of items

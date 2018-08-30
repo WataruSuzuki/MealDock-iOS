@@ -50,8 +50,8 @@ class PackedListViewController: MealDockBaseCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MDCCollectionViewTextCell
-    
+        let cell = degueueCollectionViewTextCell(cellForItemAt: indexPath)
+
         // Configure the cell
         cell.textLabel?.text = "MDCCollectionViewTextCell"
     
