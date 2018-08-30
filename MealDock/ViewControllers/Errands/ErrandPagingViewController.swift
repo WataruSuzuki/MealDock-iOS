@@ -79,11 +79,11 @@ class ErrandPagingViewController: UIViewController {
         bottomBarView.floatingButtonPosition = .center
         bottomBarView.setFloatingButtonHidden(true, animated: true)
         
-        let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_search_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapSearch))
+//        let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_search_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapSearch))
         let barButtonTrailingItem = UIBarButtonItem(title: NSLocalizedString("addNewMarketItem", comment: ""), style: .plain, target: self, action: #selector(tapCamera))
             //UIBarButtonItem(image: UIImage(named:"baseline_photo_camera_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapCamera))
         
-        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
+//        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
         bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
     }
     
