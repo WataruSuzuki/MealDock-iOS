@@ -63,6 +63,7 @@ privacyPolicy = "Privacy policy";
 
 cancel = "Cancel";
 
+msg_saving_data = "Saving new data...";
 msg_mission_completed = "Mission completed!!";
 msg_change_displayname = "Please input new display name";
 msg_change_email = "Please input new Email";
