@@ -61,8 +61,8 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
             case .type:
                 return viewTextCell(collectionView, cellForItemAt: indexPath, section: section)
                 
-            case .imageUrl:
-                return photoCell(collectionView, cellForItemAt: indexPath, section: section)
+//            case .imageUrl:
+//                return photoCell(collectionView, cellForItemAt: indexPath, section: section)
                 
             default:
                 break
@@ -113,8 +113,8 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let section = Element(rawValue: indexPath.section) {
             switch section {
-            case .imageUrl:
-                return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.width / 2)
+//            case .imageUrl:
+//                return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.width / 2)
                 
             case .name:
                 return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight * 1.5)
@@ -171,7 +171,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     enum Element: Int {
         case name = 0,
         type,
-        imageUrl,
+        //imageUrl,
         max
         
         func toString() -> String {
