@@ -84,7 +84,7 @@ class DishCardCollectionCell: MDCCardCollectionCell {
     
     func addCheckmarks() {
         checkmarkBackgroundView = UIView(frame: frame)
-        checkmarkBackgroundView.backgroundColor = .darkGray
+        checkmarkBackgroundView.backgroundColor = .white
         checkmarkBackgroundView.alpha = 0.8
         self.contentView.addSubview(checkmarkBackgroundView)
         checkmarkBackgroundView.autoPinEdgesToSuperviewEdges()
