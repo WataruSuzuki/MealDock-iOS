@@ -50,9 +50,9 @@ extension FirebaseService {
         if let user = currentUser {
             addMyDockGroupMember(memberId: user.core.uid, name: user.core.displayName ?? "Dock Owner")
             rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)").setValue([
-                "purchasePlan": UsageInfo.PurchasePlan.free.rawValue,
-                "currentDock": user.core.uid
+                "purchasePlan": UsageInfo.PurchasePlan.free.rawValue
                 ])
+            joinToGroupDock(dock: user.core.uid, id: user.core.uid)
         }
     }
     
