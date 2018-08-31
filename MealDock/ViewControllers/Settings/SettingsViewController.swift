@@ -173,8 +173,8 @@ class SettingsViewController: UITableViewController {
     }
     
     enum AboutThisApp: Int {
-        case help = 0,
-        privacyPolicy,
+        case privacyPolicy = 0,
+        //help,
         max
     }
     
