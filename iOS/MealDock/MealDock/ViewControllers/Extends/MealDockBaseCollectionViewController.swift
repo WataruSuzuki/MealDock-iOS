@@ -54,9 +54,10 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         
         DispatchQueue.main.async {
             //self.layoutBottomAppBar()
+            self.fab.autoPinEdge(toSuperviewEdge: .bottom, withInset: (self.tabBarController?.tabBar.frame.height)! + 30)
+            self.fab.autoPinEdge(toSuperviewEdge: .trailing, withInset: 30)
+            self.view.bringSubview(toFront: self.fab)
         }
-        fab.autoPinEdge(.bottom, to: .top, of: (self.tabBarController?.tabBar)!, withOffset: -30)
-        fab.autoPinEdge(toSuperviewEdge: .trailing, withInset: 30)
     }
 
     func degueueCollectionViewTextCell(cellForItemAt indexPath: IndexPath) -> MDCCollectionViewTextCell {
