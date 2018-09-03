@@ -34,6 +34,7 @@ extension FirebaseService {
         let newReference = rootRef.child("\(itemId)/\(user.core.uid)")
         let newObserver = newReference.observe(.value) { (snapshot) in
             guard let data = snapshot.value! as? [String: Any] else {
+                debugPrint(snapshot)
                 self.InitializedUsageInfo()
                 return
             }

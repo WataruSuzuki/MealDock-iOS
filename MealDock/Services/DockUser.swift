@@ -87,8 +87,15 @@ class DockUser: NSObject {
         guard let usage = usageInfo, let plan = UsageInfo.PurchasePlan(rawValue: usage.purchasePlan) else {
             return false
         }
-        let counters = FirebaseService.shared.itemCounters.values
-        let currentSize = counters.reduce(addingSize, { (num1, num2) -> Int in
+        let counterKeys = FirebaseService.shared.itemCounters.keys
+        for key in counterKeys {
+            debugPrint(key)
+        }
+        let counterValues = FirebaseService.shared.itemCounters.values
+        for value in counterValues {
+            debugPrint(value)
+        }
+        let currentSize = counterValues.reduce(addingSize, { (num1, num2) -> Int in
             num1 + num2
         })
         debugPrint("currentSize = \(currentSize)")
