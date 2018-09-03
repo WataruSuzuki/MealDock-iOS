@@ -84,12 +84,12 @@ extension FirebaseService {
     
     func deleteCurrentUser() {
         if let user = currentUser {
-            deleteMyDockGroup()
             deleteUsageInfo()
             removeAllMyDishes()
             removeAllInFridgeHarvest()
             removeAllCartedHarvest()
             removeAllMarketItems()
+            deleteMyDockGroup()
             user.delete { (error) in
                 self.handleError(error: error, funcName: #function)
             }
