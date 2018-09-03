@@ -83,8 +83,12 @@ class FirebaseService: NSObject,
     
     fileprivate func regsiterAuthStateListener() {
         if authStateDidChangeListenerHandle == nil {
+            let indicator = UIViewController.topIndicatorStart()
             authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { (auth, user) in
                 debugPrint("auth = \(auth.debugDescription)")
+                if let indicator = indicator {
+                    UIViewController.topIndicatorStop(view: indicator)
+                }
                 if let user = user {
                     self.currentUser = DockUser(user: user)
                 } else {
@@ -145,6 +149,7 @@ class FirebaseService: NSObject,
             try authUI.signOut()
             currentUser = nil
             clearAllObservers(evenUserInfo: true)
+            itemCounters.removeAll()
         } catch (let error) {
             print(error)
         }
