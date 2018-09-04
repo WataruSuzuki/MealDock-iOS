@@ -11,7 +11,7 @@ import CodableFirebase
 
 extension FirebaseService {
     
-    func observeHarvest(success:(([Harvest]) -> Void)?) {
+    func observeHarvest(success:(([[Harvest]]) -> Void)?) {
         if let user = currentUser {
             self.ref.child("harvests")
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
@@ -25,7 +25,7 @@ extension FirebaseService {
                                     //let harvest = try JSONDecoder().decode(Harvest.self, from: jsonData)
                                     let harvest = try FirebaseDecoder().decode(Harvest.self, from: childValue)
                                     debugPrint(harvest)
-                                    self.harvests.append(harvest)
+                                    self.harvests[harvest.section].append(harvest)
                                 } catch let error {
                                     //debugPrint(childValue)
                                     print(error)
@@ -33,7 +33,9 @@ extension FirebaseService {
                             }
                         }
                     }
-                    self.harvests.sort(by: {$0.type < $1.type})
+                    for i in 0..<self.harvests.count {
+                        self.harvests[i].sort(by: {$0.section < $1.section})
+                    }
                     success?(self.harvests)
                 }, withCancel: { (error) in
                     print(error.localizedDescription)
@@ -48,10 +50,10 @@ extension FirebaseService {
             self.ref.child("harvests").child(user.uid)
                 .childByAutoId()
                 .setValue([
-                    "name": "HogeHoge",
-                    "type": "FugaFuga",
-                    "image_url": imageUrl,
-                    "time_stamp": timeStamp
+                    "name": "HogeFuga",
+                    "section": Harvest.Section.unknown.rawValue,
+                    "imageUrl": imageUrl,
+                    "timeStamp": timeStamp
                     ])
         }
     }

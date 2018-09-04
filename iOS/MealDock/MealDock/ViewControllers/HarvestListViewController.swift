@@ -12,7 +12,7 @@ import MaterialComponents.MaterialBottomSheet
 class HarvestListViewController: MealDockBaseCollectionViewController,
     MealDockAdder
 {
-    var harvests = [Harvest]()
+    var harvests = [[Harvest]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,24 +45,24 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return harvests.count
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return harvests.count
+        return harvests[section].count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = degueueCollectionViewTextCell(cellForItemAt: indexPath)
 
         // Configure the cell
-        cell.textLabel?.text = harvests[indexPath.row].name
+        cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
     
         return cell
     }
-
+    
+    
     // MARK: UICollectionViewDelegate
 
     /*

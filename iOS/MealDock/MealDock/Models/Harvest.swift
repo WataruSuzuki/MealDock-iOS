@@ -10,7 +10,14 @@ import UIKit
 
 struct Harvest: Codable {
     let name: String
-    let type: String
-    let image_url: String
-    let time_stamp: String
+    let section: Int
+    let imageUrl: String
+    let timeStamp: String
+
+    enum Section: Int {
+        case unknown = 0,
+        meat,
+        fish,
+        max
+    }
 }
