@@ -81,6 +81,8 @@ disconnected_network = "Disconnect network";
 ticket = "Ticket";
 rewared = "Get ticket by reward";
 footer_reward = "In free using, you need to register data by ticket. \nYou can get ticket after watched ad as reward.";
+please_wait = "Please wait...";
+current_ticket = "Current ticket";
 
 purchase = "Purchase";
 unlockAd = "Unlock Ad";

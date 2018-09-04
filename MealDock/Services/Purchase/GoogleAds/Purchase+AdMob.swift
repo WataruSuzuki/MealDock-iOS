@@ -12,15 +12,9 @@ import GoogleMobileAds
 extension PurchaseService: GADUnifiedNativeAdDelegate,
     GADVideoControllerDelegate,
     GADUnifiedNativeAdLoaderDelegate,
-    GADRewardBasedVideoAdDelegate,
     GADInterstitialDelegate,
     GADAdLoaderDelegate
 {
-    // MARK: - GADRewardBasedVideoAdDelegate
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
-        //TODO
-    }
-    
     // MARK: - GADUnifiedNativeAdLoaderDelegate
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
         loadedNativeAd.append(nativeAd)
