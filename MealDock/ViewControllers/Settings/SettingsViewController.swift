@@ -48,7 +48,8 @@ class SettingsViewController: UITableViewController {
             case .aboutThisApp:
                 return AboutThisApp.max.rawValue
             case .ticket:
-                return TicketMenu.max.rawValue
+                let isFreeUser = !(FirebaseService.shared.currentUser?.isPurchased ?? true)
+                return (isFreeUser ? TicketMenu.max.rawValue : 0)
             case .purchase: fallthrough
             case .signOut:
                 return 1
@@ -95,7 +96,10 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = Sections(rawValue: section) {
-            if sections != .signOut && sections != .purchase {
+            let isPurchased = (FirebaseService.shared.currentUser?.isPurchased ?? true)
+            if sections != .signOut && sections != .purchase
+                && !(sections == .ticket && isPurchased)
+            {
                 return NSLocalizedString(sections.description(), comment: "")
             }
         }
@@ -104,7 +108,8 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if let sections = Sections(rawValue: section) {
-            if sections == .ticket {
+            let isFreeUser = !(FirebaseService.shared.currentUser?.isPurchased ?? true)
+            if sections == .ticket && isFreeUser {
                 return NSLocalizedString("footer_reward", comment: "")
             }
         }
