@@ -9,13 +9,12 @@
 import Foundation
 import GoogleMobileAds
 
-extension PurchaseService: GADAdLoaderDelegate,
-    GADUnifiedNativeAdDelegate,
+extension PurchaseService: GADUnifiedNativeAdDelegate,
     GADVideoControllerDelegate,
     GADUnifiedNativeAdLoaderDelegate,
     GADRewardBasedVideoAdDelegate,
     GADInterstitialDelegate,
-    GADBannerViewDelegate
+    GADAdLoaderDelegate
 {
     // MARK: - GADRewardBasedVideoAdDelegate
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {

@@ -74,6 +74,7 @@
 		CC095B492175E4C500BB7712 /* UsageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */; };
 		CC095B4B2176CF1000BB7712 /* AlertControl+Cancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */; };
 		CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B4C2177132900BB7712 /* UIViewController+Top.swift */; };
+		CC39A1A7217D701300074342 /* Purchase+AdMobBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1A6217D701300074342 /* Purchase+AdMobBanner.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC54D95D2178523500E42F28 /* Firebase+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95C2178523500E42F28 /* Firebase+Photos.swift */; };
 		CC54D95F21787E3500E42F28 /* UIViewController+MDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */; };
@@ -198,6 +199,7 @@
 		CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfoViewController.swift; sourceTree = "<group>"; };
 		CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertControl+Cancel.swift"; sourceTree = "<group>"; };
 		CC095B4C2177132900BB7712 /* UIViewController+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Top.swift"; sourceTree = "<group>"; };
+		CC39A1A6217D701300074342 /* Purchase+AdMobBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMobBanner.swift"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC54D95C2178523500E42F28 /* Firebase+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Photos.swift"; sourceTree = "<group>"; };
 		CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MDC.swift"; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 			children = (
 				CC54D9642179821F00E42F28 /* UnifiedNativeAdView.xib */,
 				96D6501D217AD09F00A1458C /* Purchase+AdMob.swift */,
+				CC39A1A6217D701300074342 /* Purchase+AdMobBanner.swift */,
 			);
 			path = GoogleAds;
 			sourceTree = "<group>";
@@ -951,6 +954,7 @@
 				CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */,
 				966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */,
 				966F5A572171D1FD00A47EDF /* AddNewMarketItemViewController.swift in Sources */,
+				CC39A1A7217D701300074342 /* Purchase+AdMobBanner.swift in Sources */,
 				966F5A672173614B00A47EDF /* GroupHandshakeQR.swift in Sources */,
 				966F5A46216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift in Sources */,
 				966F5A4C2171841600A47EDF /* GooglePhoto+Upload.swift in Sources */,

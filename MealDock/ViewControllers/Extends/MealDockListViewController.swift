@@ -68,6 +68,24 @@ class MealDockListViewController: UITableViewController,
         return nil
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if 0 < harvests[section].count {
+            if let user = FirebaseService.shared.currentUser, !user.isPurchased {
+                return PurchaseService.shared.bannerView(unitId: "your_banner_unit_id", rootViewController: self)
+            }
+        }
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if 0 < harvests[section].count {
+            if let user = FirebaseService.shared.currentUser, !user.isPurchased {
+                return 50
+            }
+        }
+        return 0
+    }
+    
     fileprivate func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
         

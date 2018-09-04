@@ -14,6 +14,7 @@ class PurchaseService: NSObject {
         return PurchaseService()
     }()
     var adLoader: GADAdLoader?
+    var bannerViews = Set<GADBannerView>()
     var loadedNativeAd = [GADUnifiedNativeAd]()
     var nativeViews = Set<GADUnifiedNativeAdView>()
     
