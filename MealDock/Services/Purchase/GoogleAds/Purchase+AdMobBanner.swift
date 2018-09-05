@@ -19,7 +19,7 @@ extension PurchaseService: GADBannerViewDelegate {
         bannerView.adUnitID = unitId
         #endif
         bannerView.rootViewController = rootViewController
-        bannerView.load(GADRequest())
+        bannerView.load(adRequest())
         
         //bannerViews.update(with: bannerView)
         return bannerView

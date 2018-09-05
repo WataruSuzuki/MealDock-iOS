@@ -142,7 +142,7 @@ class SettingsViewController: UITableViewController {
                 if let aboutThis = AboutThisApp(rawValue: indexPath.row) {
                     switch aboutThis {
                     case .privacyPolicy:
-                        present(SFSafariViewController(url: URL(string: "https://watarusuzuki.github.io/MealDock/privacy_policy.html")!), animated: true, completion: nil)
+                        present(SFSafariViewController(url: URL(string: AppDelegate.privacyPolicyUrl)!), animated: true, completion: nil)
                     default:
                         break
                     }

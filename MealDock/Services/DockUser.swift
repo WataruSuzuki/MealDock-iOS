@@ -69,7 +69,11 @@ class DockUser: NSObject {
                 }
                 FirebaseService.shared.usageInfoKVO = "(・w・)b"
                 if !self.isPurchased {
-                    PurchaseService.shared.loadReward(unitId: "your_reward_unit_id")
+                    PurchaseService.shared.confirmedPersonalizedConsent(publisherIds: ["your_pub_id"], completion: { (confirmed) in
+                        if confirmed {
+                            PurchaseService.shared.loadReward(unitId: "your_reward_unit_id")
+                        }
+                    })
                 }
             }
         }

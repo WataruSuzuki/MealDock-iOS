@@ -16,9 +16,9 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
         UserDefaults.standard.register(defaults: [PurchaseService.keyTicket : 1])
         GADRewardBasedVideoAd.sharedInstance().delegate = self
         #if DEBUG
-        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+        GADRewardBasedVideoAd.sharedInstance().load(adRequest(), withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
         #else
-        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: unitId)
+        GADRewardBasedVideoAd.sharedInstance().load(adRequest(), withAdUnitID: unitId)
         #endif
     }
     
