@@ -113,7 +113,7 @@ extension FirebaseService {
             let request = user.core.createProfileChangeRequest()
             request.displayName = displayName
             request.commitChanges { (error) in
-                self.handleError(error: error, funcName: #function)
+                self.handleResult(funcName: #function, error: error)
             }
         }
     }
@@ -121,7 +121,7 @@ extension FirebaseService {
     func sendPasswordReset() {
         if let auth = defaultAuthUI.auth, let email = currentUser?.core.email {
             auth.sendPasswordReset(withEmail: email) { (error) in
-                self.handleError(error: error, funcName: #function)
+                self.handleResult(funcName: #function, error: error)
             }
         }
     }
@@ -129,8 +129,16 @@ extension FirebaseService {
     func updateEmail(newEmail: String) {
         if let user = currentUser {
             user.core.updateEmail(to: newEmail) { (error) in
-                self.handleError(error: error, funcName: #function)
+                self.handleResult(funcName: #function, error: error)
             }
         }
+    }
+    
+    private func handleResult(funcName: String, error: Error?) {
+        guard error == nil else {
+            self.handleError(error: error, funcName: funcName)
+            return
+        }
+        UIViewController.snackBarMessage(text: NSLocalizedString("receive_your_change_request", comment: ""))
     }
 }

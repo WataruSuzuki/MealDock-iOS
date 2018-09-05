@@ -50,6 +50,7 @@ password = "Password";
 changeDisplayName = "Change Display name";
 changeEmail = "Change Email";
 resetPassword = "Reset password";
+receive_your_change_request = "Receive your change request";
 
 invitedMembers = "Invited members";
 manageGrouping = "Manage grouping";
