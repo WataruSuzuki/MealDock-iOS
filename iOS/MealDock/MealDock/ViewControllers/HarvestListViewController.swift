@@ -17,6 +17,8 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
+
         // Do any additional setup after loading the view.
         styler.cellStyle = .card
         addTargetToFab(target: self, action: #selector(onAddFabTapped))
@@ -62,7 +64,17 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
+        if kind == UICollectionElementKindSectionHeader {
+            view.textLabel?.text = "Example header"
+        }
+        return view
+    }
     
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
+    }
     // MARK: UICollectionViewDelegate
 
     /*
