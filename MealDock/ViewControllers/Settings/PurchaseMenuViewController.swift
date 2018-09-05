@@ -35,6 +35,13 @@ class PurchaseMenuViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if let menu = Menu(rawValue: section) {
+            return NSLocalizedString("footer_" + menu.description(), comment: "")
+        }
+        return nil
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let menu = Menu(rawValue: indexPath.section) {
             switch menu {
@@ -42,9 +49,9 @@ class PurchaseMenuViewController: UITableViewController {
                 PurchaseService.shared.restorePurchases()
                 break
             case .unlockAd:
-                PurchaseService.shared.validateProduct(productID: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.unlockAd.description()], atomically: false)
+                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockAd.productId()], atomically: false)
             case .subscription:
-                PurchaseService.shared.validateProduct(productID: [Bundle.main.bundleIdentifier! + "." +  UsageInfo.PurchasePlan.subscription.description()], atomically: false)
+                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.subscription.productId()], atomically: false)
             default:
                 break
             }

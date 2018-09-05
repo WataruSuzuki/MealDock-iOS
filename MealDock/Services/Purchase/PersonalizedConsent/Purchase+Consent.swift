@@ -12,7 +12,7 @@ import AdSupport
 
 extension PurchaseService {
 
-    func confirmedPersonalizedConsent(publisherIds: [String], completion: @escaping (Bool) -> Void) {
+    func confirmPersonalizedConsent(publisherIds: [String], completion: @escaping (Bool) -> Void) {
         let info = PACConsentInformation.sharedInstance
         
         #if DEBUG
@@ -79,7 +79,7 @@ extension PurchaseService {
                     return
                 }
                 if userPrefersAdFree {
-                    self.validateProduct(productID: [Bundle.main.bundleIdentifier! + "." + UsageInfo.PurchasePlan.unlockAd.description()], atomically: false)
+                    self.validateProduct(productID: [UsageInfo.PurchasePlan.unlockAd.productId()], atomically: false)
                     completion(false)
                 } else {
                     let status = PACConsentInformation.sharedInstance.consentStatus

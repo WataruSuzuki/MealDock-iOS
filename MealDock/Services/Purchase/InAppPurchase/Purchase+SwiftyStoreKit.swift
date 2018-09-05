@@ -88,7 +88,7 @@ extension PurchaseService {
                 SwiftyStoreKit.finishTransaction(product.transaction)
             }
             debugPrint("Purchase Success: \(product.productId)")
-            if product.productId == Bundle.main.bundleIdentifier! + "." + UsageInfo.PurchasePlan.unlockAd.description() {
+            if product.productId == UsageInfo.PurchasePlan.unlockAd.productId() {
                 verifyPurchase(productId: product.productId) { (verified) in
                     switch verified {
                     case .purchased( _):
@@ -144,7 +144,7 @@ extension PurchaseService {
                     if purchase.needsFinishTransaction {
                         SwiftyStoreKit.finishTransaction(purchase.transaction)
                     }
-                    if purchase.productId == Bundle.main.bundleIdentifier! + "." + UsageInfo.PurchasePlan.unlockAd.description() {
+                    if purchase.productId == UsageInfo.PurchasePlan.unlockAd.productId() {
                         self.verifyPurchase(productId: purchase.productId, completion: { (verified) in
                             switch verified {
                             case .purchased(let item):
