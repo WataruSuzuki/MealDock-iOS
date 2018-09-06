@@ -26,6 +26,8 @@ class ErrandViewController: MDCCollectionViewController {
 
         // Do any additional setup after loading the view.
         instatiateBottomBar()
+        self.navigationItem.rightBarButtonItem =
+            UIBarButtonItem(title: "Right", style: .done, target: nil, action: nil)
     }
 
     override func didReceiveMemoryWarning() {
