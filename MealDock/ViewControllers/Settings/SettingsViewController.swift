@@ -23,10 +23,14 @@ class SettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tableView.reloadRows(at: [IndexPath(item: 0, section: Sections.ticket.rawValue)], with: .automatic)
-
-        guard FirebaseService.shared.currentUser == nil else { return }
-        FirebaseService.shared.requestAuthUI()
+        guard let user = FirebaseService.shared.currentUser else {
+            FirebaseService.shared.requestAuthUI()
+            return
+        }
+        
+        if !user.isPurchased {
+            self.tableView.reloadRows(at: [IndexPath(item: 0, section: Sections.ticket.rawValue)], with: .automatic)
+        }        
     }
 
     override func didReceiveMemoryWarning() {
