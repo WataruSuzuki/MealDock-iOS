@@ -37,8 +37,8 @@ class ShowQrViewController: UIViewController,
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
         }
         if let user = FirebaseService.shared.currentUser,
-            let qrStr = generateQRMessage(user: user, type: qrType) {
-            if let image = QRCode(qrStr)?.image {
+            let qrStr = generateQRData(user: user, type: qrType) {
+            if let image = QRCode(qrStr).image {
                 qrImageView.image = image
                 view.addSubview(qrImageView)
                 return
@@ -53,12 +53,14 @@ class ShowQrViewController: UIViewController,
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        qrImageView.autoSetDimension(.height, toSize: fmin(view.frame.width, view.frame.height))
-        qrImageView.autoSetDimension(.width, toSize: fmin(view.frame.width, view.frame.height))
-        qrImageView.autoCenterInSuperview()
+        if qrImageView.superview != nil {
+            qrImageView.autoSetDimension(.height, toSize: fmin(view.frame.width, view.frame.height))
+            qrImageView.autoSetDimension(.width, toSize: fmin(view.frame.width, view.frame.height))
+            qrImageView.autoCenterInSuperview()
+        }
     }
     
-    func generateQRMessage(user: DockUser, type: QrType) -> String? {
+    func generateQRData(user: DockUser, type: QrType) -> Data? {
         var jsonObj: [String : String]!
         switch type {
         case .requestToJoin:
@@ -69,8 +71,7 @@ class ShowQrViewController: UIViewController,
         }
         
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: jsonObj, options: [])
-            return String(bytes: jsonData, encoding: .utf8)!
+            return try JSONSerialization.data(withJSONObject: jsonObj, options: [])
         } catch let error {
             print(error)
             return nil
