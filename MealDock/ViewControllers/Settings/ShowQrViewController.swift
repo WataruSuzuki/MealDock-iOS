@@ -13,7 +13,7 @@ import QRCodeReader
 class ShowQrViewController: UIViewController,
     QRCodeReaderViewControllerDelegate
 {
-
+    let label = UILabel(frame: .zero)
     let qrImageView = UIImageView(frame: .zero)
     lazy var qrReader: QRCodeReaderViewController = {
         let builder = QRCodeReaderViewControllerBuilder {
@@ -29,18 +29,21 @@ class ShowQrViewController: UIViewController,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(tapDismiss))
         switch qrType! {
         case .requestToJoin:
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanQR))
+            label.text = NSLocalizedString("msg_show_qr_to_owner", comment: "")
         case .tellDockId:
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
+            label.text = NSLocalizedString("msg_show_qr_to_member", comment: "")
         }
         if let user = FirebaseService.shared.currentUser,
             let qrStr = generateQRData(user: user, type: qrType) {
             if let image = QRCode(qrStr).image {
                 qrImageView.image = image
                 view.addSubview(qrImageView)
+                view.addSubview(label)
                 return
             }
         }
@@ -57,6 +60,8 @@ class ShowQrViewController: UIViewController,
             qrImageView.autoSetDimension(.height, toSize: fmin(view.frame.width, view.frame.height))
             qrImageView.autoSetDimension(.width, toSize: fmin(view.frame.width, view.frame.height))
             qrImageView.autoCenterInSuperview()
+            label.centerXToSuperview()
+            label.autoPinEdge(.top, to: .bottom, of: qrImageView)
         }
     }
     
