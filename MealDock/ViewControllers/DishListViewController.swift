@@ -207,18 +207,18 @@ class DishListViewController: UICollectionViewController,
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "No Foods")
+        return NSAttributedString(string: NSLocalizedString("no_dishes", comment: ""))
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "Let's start to add foods")
+        return NSAttributedString(string: NSLocalizedString("msg_add_dishes", comment: ""))
     }
     
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         if let _ =  FirebaseService.shared.currentUser {
             return NSAttributedString()
         } else {
-            return NSAttributedString(string: "Sign In")
+            return NSAttributedString(string: NSLocalizedString("signIn", comment: ""))
         }
     }
     

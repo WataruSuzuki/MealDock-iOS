@@ -12,6 +12,12 @@ cartedFoods = "Carted Foods";
 errandFoods = "Errand Foods";
 addNewMarketItem = "Add new Market Item";
 
+no_dishes = "No Dishes";
+no_foods = "No Foods";
+
+msg_add_dishes = "Let's cook & add dish";
+msg_add_foods = "Let's start to add foods";
+
 signIn = "Sign in";
 account = "Account";
 userInfo = "User Information";
