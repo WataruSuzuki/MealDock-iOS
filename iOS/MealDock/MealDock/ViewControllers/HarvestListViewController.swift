@@ -13,6 +13,7 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
     MealDockAdder
 {
     var harvests = [[Harvest]]()
+    let shapeScheme = MDCShapeScheme()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,19 +108,24 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
     */
 
     @objc override func onAddFabTapped() {
-        let sb = UIStoryboard(name: "HarvestList", bundle: Bundle.main)
-        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as? ErrandViewController {
-            // Initialize the bottom sheet with the view controller just created
-            let container = AppBarContainerViewController.init(contentViewController: viewController)
-            container.preferredContentSize = CGSize(width: 500, height: 200)
-            container.appBarViewController.headerView.trackingScrollView =
-                viewController.collectionView
-            container.isTopLayoutGuideAdjustmentEnabled = true
-            
-            let bottomSheet = MDCBottomSheetController(contentViewController: container)
-            bottomSheet.trackingScrollView = viewController.collectionView;
-            // Present the bottom sheet
-            present(bottomSheet, animated: true, completion: nil)
+        let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
+        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ErrandPageViewController.self)) as? ErrandPageViewController {
+            present(viewController, animated: true, completion: nil)
         }
+    }
+    
+    func showViaBottomSheet(viewController: UICollectionViewController) {
+        // Initialize the bottom sheet with the view controller just created
+        let container = AppBarContainerViewController.init(contentViewController: viewController)
+        container.preferredContentSize = CGSize(width: 500, height: 200)
+        container.appBarViewController.headerView.trackingScrollView = viewController.collectionView
+        container.isTopLayoutGuideAdjustmentEnabled = true
+        MDCAppBarColorThemer.applyColorScheme(MDCSemanticColorScheme(), to: container.appBarViewController)
+        
+        let bottomSheet = MDCBottomSheetController(contentViewController: container)
+        MDCBottomSheetControllerShapeThemer.applyShapeScheme(MDCShapeScheme(), to: bottomSheet)
+        bottomSheet.trackingScrollView = viewController.collectionView;
+        // Present the bottom sheet
+        present(bottomSheet, animated: true, completion: nil)
     }
 }

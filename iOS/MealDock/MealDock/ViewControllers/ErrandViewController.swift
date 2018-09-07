@@ -13,8 +13,6 @@ private let reuseIdentifier = "MDCCollectionViewCell"
 
 class ErrandViewController: MDCCollectionViewController {
 
-    let bottomBarView = MDCBottomAppBarView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +23,6 @@ class ErrandViewController: MDCCollectionViewController {
         self.collectionView!.register(MDCCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
-        instatiateBottomBar()
         self.navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: "Right", style: .done, target: nil, action: nil)
     }
@@ -38,7 +35,6 @@ class ErrandViewController: MDCCollectionViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        self.layoutBottomAppBar()
     }
     /*
     // MARK: - Navigation
@@ -102,28 +98,5 @@ class ErrandViewController: MDCCollectionViewController {
     }
     */
 
-    func instatiateBottomBar() {
-        //bottomBarView.translatesAutoresizingMaskIntoConstraints = false
-        bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
-        view.addSubview(bottomBarView)
-        
-        bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
-        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
-        bottomBarView.floatingButtonPosition = .center
-        
-        let barButtonLeadingItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: nil)
-        let barButtonTrailingItem = UIBarButtonItem(title: "Dados Pessoais", style: .plain, target: self, action: nil)
-        
-        //bottomBarView.floatingButton.addTarget(self, action: #selector(onAddFabTapped), for: .touchDown)
-        
-        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
-        bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
-    }
-    
-    private func layoutBottomAppBar() {
-        let size = bottomBarView.sizeThatFits(view.bounds.size)
-        let bottomBarViewFrame = CGRect(x: 0, y: view.bounds.size.height - size.height, width: size.width, height: size.height)
-        bottomBarView.frame = bottomBarViewFrame
-    }
     
 }

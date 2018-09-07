@@ -33,6 +33,8 @@
 		96E5F24021244FBF00C2F09E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* SecondViewController.swift */; };
 		96E5F24121244FBF00C2F09E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* FirstViewController.swift */; };
 		96E5F243212459E000C2F09E /* FreezedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F242212459E000C2F09E /* FreezedListViewController.swift */; };
+		96EE887521565AE500924490 /* ErrandPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE887421565AE500924490 /* ErrandPageViewController.swift */; };
+		96EE887821565CED00924490 /* Errand.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96EE887621565CED00924490 /* Errand.storyboard */; };
 		CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCA83D51214B45BF00226382 /* GoogleService-Info.plist */; };
 		CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E1214B813B007FBAB0 /* InitViewController.swift */; };
 		CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */; };
@@ -94,6 +96,8 @@
 		96E5F23E21244FBF00C2F09E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		96E5F23F21244FBF00C2F09E /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		96E5F242212459E000C2F09E /* FreezedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezedListViewController.swift; sourceTree = "<group>"; };
+		96EE887421565AE500924490 /* ErrandPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandPageViewController.swift; sourceTree = "<group>"; };
+		96EE887721565CED00924490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Errand.storyboard; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		CC7A3DC6214A2D6600F50AB0 /* MealDock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MealDock-Bridging-Header.h"; sourceTree = "<group>"; };
 		CCA83D51214B45BF00226382 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				9615BDEF214CA855001801D5 /* PackedList.storyboard */,
 				9615BDEC214CA822001801D5 /* HarvestList.storyboard */,
 				9615BDE9214CA7E0001801D5 /* FreezedList.storyboard */,
+				96EE887621565CED00924490 /* Errand.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				96E5F242212459E000C2F09E /* FreezedListViewController.swift */,
 				964C00BB214E22FB0099689B /* PackedListViewController.swift */,
 				964C00C5214FDBB10099689B /* ErrandViewController.swift */,
+				96EE887421565AE500924490 /* ErrandPageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				9615BDEB214CA7E0001801D5 /* FreezedList.storyboard in Resources */,
 				9615BDF4214D3605001801D5 /* Settings.storyboard in Resources */,
 				96317C98210F56FC00F81F22 /* Main.storyboard in Resources */,
+				96EE887821565CED00924490 /* Errand.storyboard in Resources */,
 				9615BDEE214CA822001801D5 /* HarvestList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +599,7 @@
 				96E5F243212459E000C2F09E /* FreezedListViewController.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
+				96EE887521565AE500924490 /* ErrandPageViewController.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+Harvests.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
 				964C00C8214FF2910099689B /* AppBarNavigationController.swift in Sources */,
@@ -679,6 +687,14 @@
 				96317C9C210F56FD00F81F22 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		96EE887621565CED00924490 /* Errand.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96EE887721565CED00924490 /* Base */,
+			);
+			name = Errand.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

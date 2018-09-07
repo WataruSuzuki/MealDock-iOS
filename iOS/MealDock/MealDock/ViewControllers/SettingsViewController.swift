@@ -29,7 +29,7 @@ class SettingsViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return Sections.max.hashValue
+        return Sections.max.rawValue
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,8 +51,8 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let section = Sections(rawValue: indexPath.section) {
             switch section {
-            case .signIn:
-                FirebaseService.shared.requestAuthUI()
+            case .accountInfo:
+                FirebaseService.shared.printUserInfo()
 
             case .signOut:
                 FirebaseService.shared.signOut()
@@ -76,7 +76,7 @@ class SettingsViewController: UITableViewController {
     */
 
     enum Sections: Int {
-        case signIn = 0,
+        case accountInfo = 0,
         signOut,
         deleteAccount,
         max

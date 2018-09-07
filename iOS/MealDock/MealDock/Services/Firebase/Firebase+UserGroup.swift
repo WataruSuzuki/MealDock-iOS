@@ -10,6 +10,14 @@ import UIKit
 
 extension FirebaseService {
 
+    func printUserInfo() {
+        if let user = currentUser {
+            print("uid = \(user.uid)")
+            print("displayName = \(String(describing: user.displayName))")
+            print("email = \(String(describing: user.email))")
+        }
+    }
+    
     func createUser() {
         if let user = currentUser {
             self.ref.child("users/\(user.uid)").setValue([
@@ -40,6 +48,9 @@ extension FirebaseService {
             self.ref.child("users/\(user.uid)/mealdocks").removeValue()
             self.ref.child("mealdocks/\(user.uid)").removeValue()
         }
+        A0SimpleKeychain().setString("", forKey: emailFUIAuth)
+        A0SimpleKeychain().setString("", forKey: passwordFUIAuth)
+        A0SimpleKeychain().setString("", forKey: usernameFUIAuth)
     }
         
     func updatedUserName(username: String) {

@@ -23,8 +23,10 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
 {
     let reuseIdentifier = "MDCCollectionViewTextCell"
     let fab = MDCFloatingButton()
+    let bottomBarView = MDCBottomAppBarView()
     
-    var emptyMessage: UIView!
+    var bottomAction = BottomActionType.unknown
+//    var emptyMessage: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,15 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         
 //        emptyMessage = createEmptyView()
 //        emptyMessage.isHidden = true
-        instantiateFab()
+        
+        switch bottomAction {
+        case .sheet:
+            instatiateBottomBar()
+        case .fab:
+            instantiateFab()
+        default:
+            break
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,10 +63,14 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         super.viewWillLayoutSubviews()
         
         DispatchQueue.main.async {
-            //self.layoutBottomAppBar()
-            self.fab.autoPinEdge(toSuperviewEdge: .bottom, withInset: (self.tabBarController?.tabBar.frame.height)! + 30)
-            self.fab.autoPinEdge(toSuperviewEdge: .trailing, withInset: 30)
-            self.view.bringSubview(toFront: self.fab)
+            switch self.bottomAction {
+            case .sheet:
+                self.layoutBottomAppBar()
+            case .fab:
+                self.layoutFab()
+            default:
+                break
+            }
         }
     }
 
@@ -83,6 +97,10 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
 //        return cell
 //    }
 
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return -100.0
+    }
+    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: "No Foods")
     }
@@ -125,6 +143,12 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         view.addSubview(fab)
     }
     
+    func layoutFab() {
+        self.fab.autoPinEdge(toSuperviewEdge: .bottom, withInset: (self.tabBarController?.tabBar.frame.height)! + 30)
+        self.fab.autoPinEdge(toSuperviewEdge: .trailing, withInset: 30)
+        self.view.bringSubview(toFront: self.fab)
+    }
+    
     func addTargetToFab(target: Any?, action: Selector) {
         fab.addTarget(target, action: action, for: .touchUpInside)
     }
@@ -134,9 +158,44 @@ class MealDockBaseCollectionViewController: MDCCollectionViewController,
         FirebaseService.shared.addHarvests()
     }
     
+    func instatiateBottomBar() {
+        bottomBarView.translatesAutoresizingMaskIntoConstraints = false
+        bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        view.addSubview(bottomBarView)
+        
+        bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
+        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_add_black_24pt"), for: .normal)
+        bottomBarView.floatingButtonPosition = .center
+        
+        let barButtonLeadingItem = UIBarButtonItem(title: "Left", style: .plain, target: self, action: nil)
+        let barButtonTrailingItem = UIBarButtonItem(title: "Right", style: .plain, target: self, action: nil)
+        
+        //bottomBarView.floatingButton.addTarget(self, action: #selector(onAddFabTapped), for: .touchDown)
+        
+        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
+        bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
+    }
+    
+    private func layoutBottomAppBar() {
+        let size = bottomBarView.sizeThatFits(view.bounds.size)
+        let offset = (self.tabBarController != nil
+            ? self.tabBarController!.tabBar.frame.height
+            : 0)
+        let bottomBarViewFrame = CGRect(
+            x: 0,
+            y: self.view.frame.height - (size.height + offset),
+            width: size.width, height: size.height)
+        bottomBarView.frame = bottomBarViewFrame
+        //self.view.bringSubview(toFront: self.bottomBarView)
+    }
+    
     @objc func onMenuButtonTapped() {
     }
     
     func onSearchButtonTapped() {
+    }
+    
+    enum BottomActionType {
+        case unknown, fab, sheet
     }
 }
