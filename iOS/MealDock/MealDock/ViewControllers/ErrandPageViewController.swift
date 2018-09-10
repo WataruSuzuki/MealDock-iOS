@@ -19,7 +19,7 @@ class ErrandPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if viewController.isKind(of: SecondViewController.self) {
+        if viewController.isKind(of: FirstViewController.self) {
             return getFirst()
         } else {
             return nil
@@ -28,7 +28,7 @@ class ErrandPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if viewController.isKind(of: FirstViewController.self) {
-            return getSecond()
+            return getFirst()
         } else {
             return nil
         }

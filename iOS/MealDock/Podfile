@@ -12,7 +12,6 @@ target "MealDock" do
     pod 'Firebase/Messaging'
     pod 'Firebase/AdMob'
     pod 'FirebaseUI'
-    # pod 'BubbleTransition-objc'
     pod 'CodableFirebase'
     pod 'PersonalizedAdConsent'
     # pod 'ZFDragableModalTransition'
@@ -21,6 +20,7 @@ target "MealDock" do
     pod 'MaterialComponents'
     pod 'SimpleKeychain'
     pod 'PureLayout'
+    pod 'Parchment'
 end
 
 post_install do | installer |

@@ -22,7 +22,8 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
 
         // Do any additional setup after loading the view.
         styler.cellStyle = .card
-        addTargetToFab(target: self, action: #selector(onAddFabTapped))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddFabTapped))
+        //addTargetToFab(target: self, action: #selector(onAddFabTapped))
         FirebaseService.shared.observeHarvest { (harvests) in
             self.harvests = harvests
             self.collectionView?.reloadData()
@@ -109,7 +110,7 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
 
     @objc override func onAddFabTapped() {
         let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
-        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ErrandPageViewController.self)) as? ErrandPageViewController {
+        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: SecondViewController.self)) as? SecondViewController {
             present(viewController, animated: true, completion: nil)
         }
     }
