@@ -8,3 +8,4 @@
 CFBundleDisplayName = "MealDock";
 NSCameraUsageDescription = "For saving new dish photo";
 NSPhotoLibraryAddUsageDescription = "For saving new dish photo";
+NSPhotoLibraryUsageDescription = "For saving new dish photo";
