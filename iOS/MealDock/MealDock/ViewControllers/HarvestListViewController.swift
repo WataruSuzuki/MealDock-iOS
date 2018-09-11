@@ -110,8 +110,9 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
 
     @objc override func onAddFabTapped() {
         let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
-        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: SecondViewController.self)) as? SecondViewController {
-            present(viewController, animated: true, completion: nil)
+        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: ErrandPagingViewController.self)) as? ErrandPagingViewController {
+            let navigation = UINavigationController.init(rootViewController: viewController)
+            present(navigation, animated: true, completion: nil)
         }
     }
     
