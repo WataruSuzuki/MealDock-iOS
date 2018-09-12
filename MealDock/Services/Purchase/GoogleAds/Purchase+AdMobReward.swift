@@ -26,7 +26,14 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
         if GADRewardBasedVideoAd.sharedInstance().isReady {
             GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: rootViewController)
         } else {
-            OptionalError.alertErrorMessage(message: NSLocalizedString("please_wait", comment: ""), actions: nil)
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.confirmPersonalizedConsent(publisherIds: ["your_pub_id"], completion: { (confirmed) in
+                    if confirmed {
+                        self.loadReward(unitId: "your_reward_unit_id")
+                    }
+                })
+            }
+            OptionalError.alertErrorMessage(message: NSLocalizedString("please_wait", comment: ""), actions: [action])
         }
     }
     
