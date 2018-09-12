@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.7.3)
+  - AlamofireImage (3.4.1):
+    - Alamofire (~> 4.7)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -688,6 +690,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - AlamofireImage (~> 3.4)
   - CodableFirebase
   - DJKFlatIconAuthors (from `https://github.com/WataruSuzuki/DJKFlatIconAuthors.git`)
   - DJKInAppPurchase (from `https://github.com/WataruSuzuki/DJKInAppPurchase.git`)
@@ -708,6 +711,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AlamofireImage
     - Bolts
     - BoringSSL
     - CodableFirebase
@@ -782,6 +786,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireImage: 78d67ccbb763d87ba44b21583d2153500a195630
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   CodableFirebase: 4b865f58c583a6c0ef8c81c6b12c6bf15ebd9181
@@ -834,6 +839,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
 
-PODFILE CHECKSUM: 8920eae4124fd898862793fa1de4530bff6b9dc3
+PODFILE CHECKSUM: d14d04e56d91ab7dfcca4be3fb55ddafc3f656c2
 
 COCOAPODS: 1.5.3
