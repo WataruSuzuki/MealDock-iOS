@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -318,6 +318,7 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
+				96B49BA721836AAE00657702 /* MealDock.entitlements */,
 				CCDC94F22150E829007FBAB0 /* Models */,
 				CCDC94E3214B81EB007FBAB0 /* Services */,
 				9615BDF5214D40BF001801D5 /* Storyboards */,
@@ -673,6 +674,14 @@
 					96317C8C210F56FC00F81F22 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					96317CA2210F56FD00F81F22 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -685,7 +694,7 @@
 				};
 			};
 			buildConfigurationList = 96317C88210F56FC00F81F22 /* Build configuration list for PBXProject "MealDock" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1249,6 +1258,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MealDock/MealDock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F35G39V2UB;
 				INFOPLIST_FILE = MealDock/Info.plist;
@@ -1271,6 +1281,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MealDock/MealDock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F35G39V2UB;
 				INFOPLIST_FILE = MealDock/Info.plist;
