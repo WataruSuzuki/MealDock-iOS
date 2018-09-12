@@ -179,6 +179,7 @@
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
+		96B49BA92184518200657702 /* development.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = development.entitlements; sourceTree = "<group>"; };
 		96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuViewController.swift; sourceTree = "<group>"; };
 		96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMobNative.swift"; sourceTree = "<group>"; };
 		96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+SwiftyStoreKit.swift"; sourceTree = "<group>"; };
@@ -318,7 +319,7 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
-				96B49BA721836AAE00657702 /* MealDock.entitlements */,
+				96B49BA92184518200657702 /* development.entitlements */,
 				CCDC94F22150E829007FBAB0 /* Models */,
 				CCDC94E3214B81EB007FBAB0 /* Services */,
 				9615BDF5214D40BF001801D5 /* Storyboards */,
@@ -1258,7 +1259,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = MealDock/MealDock.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MealDock/development.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F35G39V2UB;
 				INFOPLIST_FILE = MealDock/Info.plist;
@@ -1281,7 +1282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = MealDock/MealDock.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MealDock/development.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F35G39V2UB;
 				INFOPLIST_FILE = MealDock/Info.plist;
