@@ -11,6 +11,11 @@ import Alamofire
 
 extension GooglePhotosService {
     
+    func forceRecreateAlbum() {
+        A0SimpleKeychain().deleteEntry(forKey: "albumId" + "_" + clientId)
+        createMealDockAlbumIfNeed()
+    }
+    
     func createMealDockAlbumIfNeed() {
         albumId = A0SimpleKeychain().string(forKey: "albumId" + "_" + clientId)
 //        shareToken = A0SimpleKeychain().string(forKey: "shareToken" + "_" + self.clientId)

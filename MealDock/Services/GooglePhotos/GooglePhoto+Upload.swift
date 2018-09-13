@@ -58,6 +58,7 @@ extension GooglePhotosService {
         freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             guard let albumId = self.albumId else {
+                self.createMealDockAlbumIfNeed()
                 let optionalError = OptionalError(with: .failedToCreatePhotoSaveSpace, userInfo: nil)
                 result?("", optionalError)
                 return
@@ -75,6 +76,11 @@ extension GooglePhotosService {
                         let error = (data.result.error != nil ? data.result.error!
                             : OptionalError(with: .failedToCreatePhotoSaveSpace, userInfo: nil)
                             )
+                        if let errorData = data.data, let errorJson = try? JSONDecoder().decode(GooglePhotosErrorMediaItem.self, from: errorData) {
+                            if errorJson.error.code == 400 {
+                                self.forceRecreateAlbum()
+                            }
+                        }
                         print(error)
                         result?("", error)
                         return

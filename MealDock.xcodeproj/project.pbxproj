@@ -180,6 +180,7 @@
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
 		96B49BA92184518200657702 /* development.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = development.entitlements; sourceTree = "<group>"; };
+		96B49BAD2184961800657702 /* GooglePhotosErrorMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosErrorMediaItem.swift; sourceTree = "<group>"; };
 		96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuViewController.swift; sourceTree = "<group>"; };
 		96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMobNative.swift"; sourceTree = "<group>"; };
 		96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+SwiftyStoreKit.swift"; sourceTree = "<group>"; };
@@ -410,6 +411,7 @@
 				966F5A45216F968D00A47EDF /* GooglePhotosNewMediaItemResultResponse.swift */,
 				966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */,
 				966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */,
+				96B49BAD2184961800657702 /* GooglePhotosErrorMediaItem.swift */,
 			);
 			path = GooglePhotos;
 			sourceTree = "<group>";
@@ -997,6 +999,7 @@
 				96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */,
 				96D6501C217A260400A1458C /* PurchaseMenuViewController.swift in Sources */,
 				96FC04E8216900FD00533529 /* Dish.swift in Sources */,
+				96B49BAE2184961800657702 /* GooglePhotosErrorMediaItem.swift in Sources */,
 				96D6501E217AD09F00A1458C /* Purchase+AdMobNative.swift in Sources */,
 				CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */,
 				966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */,
