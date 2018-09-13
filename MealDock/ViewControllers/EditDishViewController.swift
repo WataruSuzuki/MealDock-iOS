@@ -221,12 +221,13 @@ class EditDishViewController: MDCCollectionViewController,
                 self.dismiss(animated: true, completion: nil)
             })
         }) { (error) in
-            alert.dismiss(animated: false, completion: nil)
-            if let error = error {
-                OptionalError.alertErrorMessage(error: error)
-            } else {
-                OptionalError.alertErrorMessage(message: NSLocalizedString("failed_save_photo", comment: ""), actions: nil)
-            }
+            alert.dismiss(animated: true, completion: {
+                if let error = error {
+                    OptionalError.alertErrorMessage(error: error)
+                } else {
+                    OptionalError.alertErrorMessage(message: NSLocalizedString("failed_save_photo", comment: ""), actions: nil)
+                }
+            })
         }
     }
     
