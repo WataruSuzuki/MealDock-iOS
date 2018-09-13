@@ -26,7 +26,7 @@ extension GooglePhotosService {
                 "X-Goog-Upload-Protocol": "raw"
             ]
             guard let data = UIImagePNGRepresentation(image) else {
-                let optionalError = OptionalError(with: OptionalError.Cause.failedToGetPhotoData, userInfo: nil)
+                let optionalError = OptionalError(with: .failedToGetPhotoData, userInfo: nil)
                 failure?(optionalError)
                 return
             }
@@ -34,7 +34,7 @@ extension GooglePhotosService {
                 .responseString(completionHandler: { (response) in
                     debugPrint("(・∀・)uploadToken: \(response)")
                     guard let uploadToken = response.value else {
-                        let optionalError = OptionalError(with: OptionalError.Cause.failedToGetToken, userInfo: nil)
+                        let optionalError = OptionalError(with: .failedToGetToken, userInfo: nil)
                         failure?(optionalError)
                         return
                     }
@@ -58,7 +58,7 @@ extension GooglePhotosService {
         freshToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             guard let albumId = self.albumId else {
-                let optionalError = OptionalError(with: OptionalError.Cause.failedToCreatePhotoSaveSpace, userInfo: nil)
+                let optionalError = OptionalError(with: .failedToCreatePhotoSaveSpace, userInfo: nil)
                 result?("", optionalError)
                 return
             }
@@ -71,9 +71,12 @@ extension GooglePhotosService {
                 ] as [String : Any]
             Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .responseJSON(completionHandler: { (data) in
-                    guard data.result.error == nil, let value = data.result.value as? [String : [Any]] else {
-                        print(data.result.error!)
-                        result?("", data.result.error!)
+                    guard let value = data.result.value as? [String : [Any]] else {
+                        let error = (data.result.error != nil ? data.result.error!
+                            : OptionalError(with: .failedToCreatePhotoSaveSpace, userInfo: nil)
+                            )
+                        print(error)
+                        result?("", error)
                         return
                     }
                     debugPrint(value)
