@@ -11,17 +11,25 @@ import Foundation
 extension FirebaseService {
     
     func observePhotosToken(token:((String)->Void)?) {
+        observePhotosAccessKey(childItem: "token", completion: token)
+    }
+    
+    func observePhotosAlbumId(id:((String)->Void)?) {
+        observePhotosAccessKey(childItem: "albumId", completion: id)
+    }
+    
+    private func observePhotosAccessKey(childItem: String, completion:((String)->Void)?) {
         let itemId = FirebaseService.ID_PHOTOS
         if let user = currentUser {
             guard observers[itemId] == nil else {
                 // Don't duplicate
                 return
             }
-            let newReference = rootRef.child("\(itemId)/\(user.dockID)")
+            let newReference = rootRef.child("\(itemId)/\(user.dockID)/\(childItem)")
             let newObserver = newReference.observe(.value, with: { (snapshot) in
                 debugPrint(snapshot)
                 if let value = snapshot.value as? String {
-                    token?(value)
+                    completion?(value)
                 }
             }, withCancel: { (error) in
                 print(error.localizedDescription)
@@ -32,8 +40,13 @@ extension FirebaseService {
     
     func updatePhotosApiToken(token: String) {
         if let user = currentUser {
-            let photoRef = rootRef.child(FirebaseService.ID_PHOTOS).child(user.core.uid)
-            photoRef.setValue(token)
+            rootRef.child("\(FirebaseService.ID_PHOTOS)/\(user.core.uid)/token").setValue(token)
+        }
+    }
+    
+    func updatePhotosAlbumId(id: String) {
+        if let user = currentUser {
+            rootRef.child("\(FirebaseService.ID_PHOTOS)/\(user.core.uid)/albumId").setValue(id)
         }
     }
 }

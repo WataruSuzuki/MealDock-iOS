@@ -66,6 +66,9 @@ class DockUser: NSObject {
                     FirebaseService.shared.observePhotosToken(token: { (photoToken) in
                         GooglePhotosService.shared.initSharingAuthState(token: photoToken)
                     })
+                    FirebaseService.shared.observePhotosAlbumId(id: { (id) in
+                        GooglePhotosService.shared.saveAlbumId(id: id)
+                    })
                 }
                 FirebaseService.shared.usageInfoKVO = "(・w・)b"
                 if !self.isPurchased {
