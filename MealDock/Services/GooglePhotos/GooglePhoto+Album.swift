@@ -40,8 +40,7 @@ extension GooglePhotosService {
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
                     let result = try JSONDecoder().decode(GooglePhotosAlbum.self, from: jsonData)
-                    A0SimpleKeychain().setString(result.id, forKey: "albumId" + "_" + self.clientId)
-                    self.albumId = result.id
+                    self.saveAlbumId(id: result.id)
                     //self.sharingAlbum(ALBUM_ID: result.id)
                 } catch let error {
                     print(error)
@@ -80,4 +79,12 @@ extension GooglePhotosService {
         }
     }
     */
+    
+    func saveAlbumId(id: String) {
+        A0SimpleKeychain().setString(id, forKey: "albumId" + "_" + clientId)
+        albumId = id
+        if let user = FirebaseService.shared.currentUser, user.isGroupOwnerMode {
+            FirebaseService.shared.updatePhotosAlbumId(id: id)
+        }
+    }
 }
