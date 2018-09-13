@@ -21,11 +21,10 @@ class ErrandViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(ErrandCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.registerCustomCell(String(describing: ErrandCell.self))
 
         // Do any additional setup after loading the view.
-        self.navigationItem.rightBarButtonItem =
-            UIBarButtonItem(title: "Right", style: .done, target: nil, action: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,23 +60,11 @@ class ErrandViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ErrandCell
     
         // Configure the cell
-        let imageView = UIImageView(frame: cell.frame)
-        imageView.contentMode = .scaleAspectFit
-        cell.addSubview(imageView)
-        imageView.autoPinEdgesToSuperviewEdges()
-        
-        let label = UILabel(frame: cell.frame)
-        label.text = "帰宅"
-        label.sizeToFit()
-        cell.addSubview(label)
-        label.autoCenterInSuperview()
-        
         let imageUrl = "https://raw.githubusercontent.com/fmn/alfred-engineer-homeru-neko-workflow/master/images/08.png"
-        imageView.setImageByAlamofire(with: URL(string: imageUrl)!)
-
+        cell.imageView.setImageByAlamofire(with: URL(string: imageUrl)!)
 
         return cell
     }

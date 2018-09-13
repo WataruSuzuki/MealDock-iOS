@@ -20,6 +20,7 @@ target "MealDock" do
     pod 'MaterialComponents'
     pod 'SimpleKeychain'
     pod 'PureLayout'
+    pod 'TinyConstraints'
     pod 'Parchment'
 end
 

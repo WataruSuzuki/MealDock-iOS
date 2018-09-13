@@ -8,6 +8,7 @@
 
 import UIKit
 import Parchment
+import MaterialComponents.MaterialBottomAppBar
 
 class ErrandPagingViewController: UIViewController {
 
