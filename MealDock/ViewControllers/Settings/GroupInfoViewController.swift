@@ -37,6 +37,12 @@ class GroupInfoViewController: UITableViewController {
             self.tableView.reloadSections(IndexSet(integer: Sections.invitedMembers.rawValue), with: .automatic)
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        FirebaseService.shared.removeMemberObsever()
+    }
 
     // MARK: - Table view data source
 

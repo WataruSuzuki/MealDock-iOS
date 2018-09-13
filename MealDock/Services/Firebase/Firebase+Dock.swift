@@ -41,6 +41,13 @@ extension FirebaseService {
         }
     }
     
+    func removeMemberObsever() {
+        if let observer = observers[FirebaseService.ID_MEAL_DOCKS] {
+            observer.ref.removeObserver(withHandle: observer.handle)
+            observers.removeValue(forKey: FirebaseService.ID_MEAL_DOCKS)
+        }
+    }
+    
     func addMyDockGroupMember(memberId: String, name: String) {
         if let user = currentUser {
             rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.core.uid)").child(memberId).setValue(name)
