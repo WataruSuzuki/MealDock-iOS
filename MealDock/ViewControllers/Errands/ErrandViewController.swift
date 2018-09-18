@@ -56,7 +56,11 @@ class ErrandViewController: UICollectionViewController,
     
         // Configure the cell
         if !items[indexPath.row].imageUrl.isEmpty {
-            cell.itemImage.setImageByAlamofire(with: URL(string: items[indexPath.row].imageUrl)!)
+            if let url = URL(string: items[indexPath.row].imageUrl) {
+                cell.itemImage.setImageByAlamofire(with: url)
+            } else {
+                print("(・A・) cannot create URL: \(items[indexPath.row].imageUrl)")
+            }
         }
 
         return cell

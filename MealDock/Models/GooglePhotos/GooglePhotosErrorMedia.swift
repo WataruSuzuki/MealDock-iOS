@@ -11,3 +11,10 @@ import Foundation
 struct GooglePhotosErrorMedia: Codable {
     let error: ErrorMedia
 }
+
+struct ErrorMedia: Codable {
+    let code: Int
+    let status: String
+    var message: String?
+}
+
