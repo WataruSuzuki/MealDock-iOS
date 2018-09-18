@@ -53,6 +53,7 @@
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */; };
 		96B49BB42185608A00657702 /* GooglePhotosErrorMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B49BB32185608A00657702 /* GooglePhotosErrorMedia.swift */; };
+		96B49BB821859CAC00657702 /* DetailDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B49BB721859CAC00657702 /* DetailDishViewController.swift */; };
 		96D6501C217A260400A1458C /* PurchaseMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */; };
 		96D6501E217AD09F00A1458C /* Purchase+AdMobNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */; };
 		96D65020217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */; };
@@ -182,6 +183,7 @@
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
 		96B49BA92184518200657702 /* development.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = development.entitlements; sourceTree = "<group>"; };
 		96B49BB32185608A00657702 /* GooglePhotosErrorMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosErrorMedia.swift; sourceTree = "<group>"; };
+		96B49BB721859CAC00657702 /* DetailDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDishViewController.swift; sourceTree = "<group>"; };
 		96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuViewController.swift; sourceTree = "<group>"; };
 		96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMobNative.swift"; sourceTree = "<group>"; };
 		96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+SwiftyStoreKit.swift"; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				96E5F242212459E000C2F09E /* InFridgeListViewController.swift */,
 				964C00BB214E22FB0099689B /* DishListViewController.swift */,
 				96FC04DE21686D0B00533529 /* EditDishViewController.swift */,
+				96B49BB721859CAC00657702 /* DetailDishViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -952,6 +955,7 @@
 				CC095B4B2176CF1000BB7712 /* AlertControl+Cancel.swift in Sources */,
 				CCCFAC32216F4FE9002279B3 /* GooglePhotosNewMediaItemResult.swift in Sources */,
 				CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */,
+				96B49BB821859CAC00657702 /* DetailDishViewController.swift in Sources */,
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
 				96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */,
 				CC54D9682179BD1100E42F28 /* Purchase+Store.swift in Sources */,

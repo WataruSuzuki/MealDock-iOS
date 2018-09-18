@@ -197,6 +197,22 @@ class DishListViewController: UICollectionViewController,
             } else {
                 checkedItems.removeValue(forKey: dish.title)
             }
+        } else {
+            performSegue(withIdentifier: String(describing: DetailDishViewController.self), sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case String(describing: DetailDishViewController.self):
+                if let detail = segue.destination as? DetailDishViewController,
+                    let indexPaths = self.collectionView?.indexPathsForSelectedItems {
+                    detail.dish = dishes[indexPaths[0].row]
+                }
+            default:
+                break
+            }
         }
     }
 
