@@ -18,8 +18,6 @@ class DishListViewController: UICollectionViewController,
     UICollectionViewDelegateFlowLayout,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
-    var colorScheme = MDCSemanticColorScheme()
-    var shapeScheme = MDCShapeScheme()
     var typographyScheme = MDCTypographyScheme()
     let cardScheme = MDCCardScheme()
     let fab = MDCFloatingButton()

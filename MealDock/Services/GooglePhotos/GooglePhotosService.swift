@@ -15,8 +15,8 @@ class GooglePhotosService: NSObject {
     }()
     static let keyAuthState = "sharingAuthState"
 
-    let clientId = "1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l.apps.googleusercontent.com"
-    let redirect = "com.googleusercontent.apps.1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l:https://watarusuzuki.github.io/MealDock/index.html"
+    let clientId = "your_client_id"
+    let redirect = "your_redirect_url"
 
     let ownScope = "https://www.googleapis.com/auth/photoslibrary"
     var currentExternalUserAgentSession: OIDExternalUserAgentSession?
