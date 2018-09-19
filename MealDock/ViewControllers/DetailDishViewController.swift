@@ -14,6 +14,7 @@ import TinyConstraints
 class DetailDishViewController: UIViewController {
 
     var dish: Dish!
+    var loadedImage: UIImage?
     
     let card = MDCCard()
     let imageView = CardImageView(image: UIImage(named: "baseline_help_black_48pt")!)
@@ -46,10 +47,16 @@ class DetailDishViewController: UIViewController {
         
         imageView.isAccessibilityElement = true
         imageView.accessibilityLabel = "Missing Dish"
-        GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dish.imagePath) { (url, error) in
-            guard error == nil else { return }
-            self.imageView.setImageByAlamofire(with: URL(string: url)!)
+        imageView.contentMode = .scaleAspectFit
+        if let image = loadedImage {
+            imageView.image = image
+        } else {
+            GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dish.imagePath) { (url, error) in
+                guard error == nil else { return }
+                self.imageView.setImageByAlamofire(with: URL(string: url)!)
+            }
         }
+        imageView.backgroundColor = .gray
         
         descriptionTextView.text = dish.description
     }

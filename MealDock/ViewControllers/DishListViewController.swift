@@ -209,6 +209,9 @@ class DishListViewController: UICollectionViewController,
                 if let detail = segue.destination as? DetailDishViewController,
                     let indexPaths = self.collectionView?.indexPathsForSelectedItems {
                     detail.dish = dishes[indexPaths[0].row]
+                    if let cell = self.collectionView?.cellForItem(at: indexPaths[0]) as? DishCardCollectionCell {
+                        detail.loadedImage = cell.imageView.image
+                    }
                 }
             default:
                 break
