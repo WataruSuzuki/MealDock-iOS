@@ -231,14 +231,18 @@ class EditDishViewController: MDCCollectionViewController,
         }
     }
     
-    fileprivate func generateDishData(path: String) -> Dish {
-        var title = ""
+    private func generateDishData(path: String) -> Dish {
+        var title: String!
         var description: String!
         for section in Section.allCases {
             if let cell = collectionView?.cellForItem(at: IndexPath(row: 0, section: section.rawValue)) as? TextFieldCell {
                 switch section {
                 case .title:
-                    title = cell.textField.text ?? ""
+                    if let text = cell.textField.text, !text.isEmpty {
+                        title = text
+                    } else {
+                        title = getCurrentTimeStr()
+                    }
                 case .description:
                     description = cell.multiLineField.text
                 default:
@@ -247,6 +251,14 @@ class EditDishViewController: MDCCollectionViewController,
             }
         }
         return Dish(title: title, description: description, imagePath: path, harvest: checkedItems)
+    }
+    
+    private func getCurrentTimeStr() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        formatter.locale = Locale.current
+        return formatter.string(from: Date())
     }
     
     enum Section: Int, CaseIterable {
