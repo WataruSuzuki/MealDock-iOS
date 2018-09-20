@@ -28,7 +28,10 @@ class FirebaseService: NSObject,
     var defaultAuthUI: FUIAuth!
     var currentUser: User?
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
+    var database: Database!
     var ref: DatabaseReference!
+    var connectedRef: DatabaseReference!
+    var presenceRef: DatabaseReference!
     var databaseHandle: DatabaseHandle!
     var isSignOn: Bool {
         get {
@@ -44,8 +47,12 @@ class FirebaseService: NSObject,
         
         super.init()
         loadDefaultAuthUI()
-        ref = Database.database().reference()
-        ovserveDatabaseHandle()
+        
+        Database.database().isPersistenceEnabled = true
+        database = Database.database()
+        ref = database.reference()
+        observeReachability()
+        observeDatabaseHandle()
     }
     
     fileprivate func loadDefaultAuthUI() {
@@ -73,7 +80,7 @@ class FirebaseService: NSObject,
         }
     }
     
-    fileprivate func ovserveDatabaseHandle() {
+    fileprivate func observeDatabaseHandle() {
         databaseHandle = ref.observe(DataEventType.value, with: { (snapshot) in
             let value = snapshot.value as! [String : AnyObject]
             print("ovserveDatabaseHandle = \(value)")
