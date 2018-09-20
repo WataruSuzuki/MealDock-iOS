@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import FirebaseDatabase
 import SimpleKeychain
 
 class FirebaseService: NSObject,

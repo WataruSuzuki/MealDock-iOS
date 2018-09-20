@@ -6,7 +6,7 @@
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
-#import <FirebaseUI/FirebaseUI.h>
+#import <FirebaseUI/FirebaseAuthUI.h>
 #import <SimpleKeychain/SimpleKeychain.h>
 
 extern NSString * const initializedFUIAuth;

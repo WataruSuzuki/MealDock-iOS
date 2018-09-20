@@ -6,7 +6,7 @@
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
-import UIKit
+import Firebase
 import MaterialComponents.MaterialSnackbar
 
 extension FirebaseService {
