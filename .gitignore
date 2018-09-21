@@ -21,6 +21,7 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-Pods/
+# Pods/
+Pods/Google-Mobile-Ads-SDK/
 out_archives/
 out_ipa/
