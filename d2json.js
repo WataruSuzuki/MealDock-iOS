@@ -41,6 +41,7 @@ var walk = function(p, callback){
 
 walk(dir, function(err, results) {
 	if (err) throw err;
-	var data = {name:'root', children:results};
+	var data = results;
+	//var data = {name:'root', children:results};
 	console.log(JSON.stringify(data)); //一覧出力
 });

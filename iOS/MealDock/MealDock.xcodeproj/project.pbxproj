@@ -40,6 +40,7 @@
 		96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE888221589AAA00924490 /* UICollectionView+CustomNib.swift */; };
 		96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE88842158D0A200924490 /* UIViewController+Transition.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
+		CC9B6D24215CB1CE00E49491 /* DefalutMarketItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B6D23215CB1CE00E49491 /* DefalutMarketItems.swift */; };
 		CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCA83D51214B45BF00226382 /* GoogleService-Info.plist */; };
 		CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E1214B813B007FBAB0 /* InitViewController.swift */; };
 		CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */; };
@@ -110,6 +111,7 @@
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC7A3DC6214A2D6600F50AB0 /* MealDock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MealDock-Bridging-Header.h"; sourceTree = "<group>"; };
+		CC9B6D23215CB1CE00E49491 /* DefalutMarketItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefalutMarketItems.swift; sourceTree = "<group>"; };
 		CCA83D51214B45BF00226382 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CCDC94E1214B813B007FBAB0 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				CCDC94F32150E853007FBAB0 /* Harvest.swift */,
+				CC9B6D23215CB1CE00E49491 /* DefalutMarketItems.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -527,7 +530,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ./auto_increments_build_no.sh;
+			shellScript = "./auto_increments_build_no.sh\n";
 		};
 		A453649339ECB2BDDC675D29 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -630,6 +633,7 @@
 				9696B4A6214C8E28001DFB60 /* Firebase+UserGroup.swift in Sources */,
 				96EE88802158951F00924490 /* ErrandCell.swift in Sources */,
 				9615BDFC214E0F1A001801D5 /* FUIPasswordSignUpViewController+Injection.m in Sources */,
+				CC9B6D24215CB1CE00E49491 /* DefalutMarketItems.swift in Sources */,
 				96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */,
 				96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */,
 				96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */,

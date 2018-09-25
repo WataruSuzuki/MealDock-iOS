@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import CodableFirebase
 
 extension FirebaseService {
@@ -40,6 +41,22 @@ extension FirebaseService {
                 }, withCancel: { (error) in
                     print(error.localizedDescription)
                 })
+        }
+    }
+    
+    func addDefaultErrands()  {
+        let jsonUrl = "https://watarusuzuki.github.io/MealDock/default_market_items.json"
+        Alamofire.request(jsonUrl).responseJSON { (response) in
+            if response.result.isSuccess {
+                if let jsonData = response.data {
+                    do {
+                        let marketItems = try JSONDecoder().decode([DefalutMarketItems].self, from: jsonData)
+                        debugPrint(marketItems)
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            }
         }
     }
     

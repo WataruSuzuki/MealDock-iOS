@@ -1,7 +1,6 @@
 #!/bin/sh
 
 declare -a gabages=(
-    .DS_Store
     default_market_items.json
     d2json.js
 )
@@ -20,6 +19,7 @@ cd `dirname $0`
 DEFAULT_IMG_DIR="docs/images/"
 cp d2json.js ${DEFAULT_IMG_DIR}d2json.js
 cd ${DEFAULT_IMG_DIR}
+find . -name ".DS_Store" | xargs rm
 node d2json > default_market_items.json
 cd -
 mv ${DEFAULT_IMG_DIR}default_market_items.json default_market_items.json
