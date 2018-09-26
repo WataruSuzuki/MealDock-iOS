@@ -17,6 +17,7 @@ class InitViewController: UITabBarController,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        FirebaseService.shared.addDefaultErrands()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,15 +35,4 @@ class InitViewController: UITabBarController,
         // Pass the selected object to the new view controller.
     }
     */
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        if let delegate = UIApplication.shared.delegate as? AppDelegate {
-//            if !delegate.firebaseService.isSignOn {
-//                delegate.firebaseService.fetchAuth(vc: self)
-//            }
-//        }
-    }
-    
 }

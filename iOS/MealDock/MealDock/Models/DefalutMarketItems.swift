@@ -9,13 +9,6 @@
 import Foundation
 
 struct DefalutMarketItems: Codable {
-    let name: String
-    let children: [Harvest]
-    
-    enum Section: Int {
-        case unknown = 0,
-        meat,
-        fish,
-        max
-    }
+    let type: String
+    let items: [Harvest]
 }

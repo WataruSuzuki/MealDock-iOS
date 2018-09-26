@@ -5,7 +5,7 @@
 
 var fs = require("fs")
 	, path = require("path")
-	, dir = process.argv[2] || '.'; //引数が無いときはカレントディレクトリを対象とする
+	, dir = process.argv[2] || '.';
 
 
 var walk = function(p, callback){
@@ -15,20 +15,26 @@ var walk = function(p, callback){
 		if (err) throw err;
 
 		var pending = files.length;
-		if (!pending) return callback(null, results); //全てのファイル取得が終わったらコールバックを呼び出す
+		if (!pending) return callback(null, results);
 
-		files.map(function (file) { //リスト取得
+		files.map(function (file) {
+			//Get lists
 			return path.join(p, file);
 		}).filter(function (file) {
-			if(fs.statSync(file).isDirectory()) walk(file, function(err, res) { //ディレクトリだったら再帰
-				results.push({name:path.basename(file), children:res});
+			if(fs.statSync(file).isDirectory()) walk(file, function(err, res) {
+				//Create types from directories
+				results.push({
+					type: path.basename(file),
+					items: res
+				});
 				if (!--pending) callback(null, results);
 			 });
 			return fs.statSync(file).isFile();
-		}).forEach(function (file) { //ファイル名を保存
+		}).forEach(function (file) {
+			//Create each harvests from files
 			var stat = fs.statSync(file);
 			results.push({
-				file: path.basename(file),
+				name: path.basename(file),
 				section: path.dirname(file),
 				imageUrl: "https://watarusuzuki.github.io/MealDock/images/" + path.dirname(file) + "/" + path.basename(file),
 				timeStamp: 0
@@ -43,5 +49,5 @@ walk(dir, function(err, results) {
 	if (err) throw err;
 	var data = results;
 	//var data = {name:'root', children:results};
-	console.log(JSON.stringify(data)); //一覧出力
+	console.log(JSON.stringify(data));
 });
