@@ -24,7 +24,7 @@ class PermissionTest: XCTestCase {
                 expectation?.fulfill()
             }
         }
-        self.waitForExpectations(timeout: 5.00, handler: nil)
+        self.waitForExpectations(timeout: 10.00, handler: nil)
     }
 
     override func tearDown() {

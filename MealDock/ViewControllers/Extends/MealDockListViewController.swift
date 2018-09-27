@@ -94,12 +94,13 @@ class MealDockListViewController: UITableViewController,
         let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
         
         // Configure the cell...
-        cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
+        let harvest = harvests[indexPath.section][indexPath.row]
+        cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
         
         cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit
-        if !harvests[indexPath.section][indexPath.row].imageUrl.isEmpty {
-            cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
+        if !harvest.imageUrl.isEmpty {
+            cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
         
         return cell
