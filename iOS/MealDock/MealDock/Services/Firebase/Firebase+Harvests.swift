@@ -26,7 +26,7 @@ extension FirebaseService {
                                     //let harvest = try JSONDecoder().decode(Harvest.self, from: jsonData)
                                     let harvest = try FirebaseDecoder().decode(Harvest.self, from: childValue)
                                     debugPrint(harvest)
-                                    self.harvests[harvest.section].append(harvest)
+                                    self.harvests[harvest.getRawValue(fromDescribing: harvest.section)].append(harvest)
                                 } catch let error {
                                     //debugPrint(childValue)
                                     print(error)
@@ -62,7 +62,7 @@ extension FirebaseService {
     
     func addHarvests()  {
         if let user = currentUser {
-            let timeStamp = String(NSDate().timeIntervalSince1970)
+            let timeStamp = NSDate().timeIntervalSince1970
             let imageUrl = "https://raw.githubusercontent.com/fmn/alfred-engineer-homeru-neko-workflow/master/images/08.png"
             self.ref.child("harvests").child(user.uid)
                 .childByAutoId()
