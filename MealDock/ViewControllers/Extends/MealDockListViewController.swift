@@ -94,7 +94,9 @@ class MealDockListViewController: UITableViewController,
         let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
         
         // Configure the cell...
-        let harvest = harvests[indexPath.section][indexPath.row]
+        cell.selectionStyle = .none
+        
+        var harvest = harvests[indexPath.section][indexPath.row]
         cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
         
         cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
@@ -102,10 +104,20 @@ class MealDockListViewController: UITableViewController,
         if !harvest.imageUrl.isEmpty {
             cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
-        
+        cell.stepperValue = harvest.count
+        cell.stepperValueChanged = { (value) in
+            harvest.count = value
+            if value > 0 {
+                self.checkedItems.updateValue(harvest, forKey: harvest.name)
+            } else {
+                self.checkedItems.removeValue(forKey: harvest.name)
+            }
+            self.fab.isHidden = 0 == self.checkedItems.count
+        }
+                
         return cell
     }
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -140,19 +152,6 @@ class MealDockListViewController: UITableViewController,
         return true
     }
     */
-    
-    // MARK: - Table view delegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! StrikethroughTableViewCell
-        let harvest = harvests[indexPath.section][indexPath.row]
-        cell.isChecked = !cell.isChecked
-        if cell.isChecked {
-            checkedItems.updateValue(harvest, forKey: harvest.name)
-        } else {
-            checkedItems.removeValue(forKey: harvest.name)
-        }
-        fab.isHidden = 0 == checkedItems.count
-    }
     
     // MARK: DZNEmptyDataSetSource
 

@@ -13,6 +13,7 @@ struct Harvest: Codable {
     let section: String
     let imageUrl: String
     let timeStamp: Double
+    var count: Int
 
     enum Section: Int {
         case unknown = 0,
@@ -64,6 +65,7 @@ extension Harvest {
         self.name = name
         self.section = section
         self.imageUrl = imageUrl
+        self.count = 1
         self.timeStamp = NSDate().timeIntervalSince1970
     }
 }

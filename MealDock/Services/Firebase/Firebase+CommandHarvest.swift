@@ -47,6 +47,7 @@ extension FirebaseService {
             "name": harvest.name,
             "section": harvest.section,
             "imageUrl": harvest.imageUrl,
+            "count": harvest.count,
             "timeStamp": harvest.timeStamp
             ])
     }
