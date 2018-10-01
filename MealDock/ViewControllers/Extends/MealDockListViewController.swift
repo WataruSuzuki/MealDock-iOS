@@ -90,7 +90,7 @@ class MealDockListViewController: UITableViewController,
         return 0
     }
     
-    fileprivate func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
+    private func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
         
         // Configure the cell...
@@ -104,18 +104,21 @@ class MealDockListViewController: UITableViewController,
         if !harvest.imageUrl.isEmpty {
             cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
-        cell.stepperValue = harvest.count
         cell.stepperValueChanged = { (value) in
             harvest.count = value
-            if value > 0 {
-                self.checkedItems.updateValue(harvest, forKey: harvest.name)
-            } else {
-                self.checkedItems.removeValue(forKey: harvest.name)
-            }
-            self.fab.isHidden = 0 == self.checkedItems.count
+            self.updateCheckedItems(value: value, harvest: harvest)
         }
                 
         return cell
+    }
+    
+    func updateCheckedItems(value: Int, harvest: Harvest) {
+        if value > 0 {
+            checkedItems.updateValue(harvest, forKey: harvest.name)
+        } else {
+            checkedItems.removeValue(forKey: harvest.name)
+        }
+        fab.isHidden = 0 == checkedItems.count
     }
     
     /*

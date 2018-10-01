@@ -35,6 +35,19 @@ class CartedItemListViewController: MealDockListViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if let customCell = cell as? StrikethroughTableViewCell {
+            let harvest = harvests[indexPath.section][indexPath.row]
+            customCell.stepperValue = harvest.count
+            updateCheckedItems(value: harvest.count, harvest: harvest)
+        }
+
+        return cell
+    }
     /*
     // MARK: - Navigation
 

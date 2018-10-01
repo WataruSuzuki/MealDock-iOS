@@ -15,6 +15,7 @@ class StrikethroughTableViewCell: UITableViewCell {
     var stepperValue = 0 {
         didSet {
             stepper.value = Double(stepperValue)
+            updateStrikethrough(isStrikethrough: stepperValue > 0)
             updateCount(value: stepperValue)
         }
     }
