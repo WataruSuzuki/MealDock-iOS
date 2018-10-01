@@ -36,20 +36,20 @@ extension FirebaseService {
         guard let user = currentUser else { return false }
         guard isInFridge || user.hasCapacity(addingSize: harvests.count) else { return false }
         for harvest in harvests {
-            let harvestRef = rootRef.child(itemId).child(user.dockID).child(harvest.name)
-            setHarvestValue(ref: harvestRef, harvest: harvest)
+            setHarvestValue(itemId: itemId, user: user, harvest: harvest)
         }
         return true
     }
     
-    fileprivate func setHarvestValue(ref: DatabaseReference, harvest: Harvest) {
-        ref.setValue([
-            "name": harvest.name,
-            "section": harvest.section,
-            "imageUrl": harvest.imageUrl,
-            "count": harvest.count,
-            "timeStamp": harvest.timeStamp
-            ])
+    fileprivate func setHarvestValue(itemId: String, user: DockUser, harvest: Harvest) {
+        let harvestRef = rootRef.child(itemId).child(user.dockID).child(harvest.name)
+        loadHarvestCount(itemId: itemId, harvestName: harvest.name) { (current) in
+            harvestRef.child("count").setValue(harvest.count + current)
+        }
+        harvestRef.child("name").setValue(harvest.name)
+        harvestRef.child("section").setValue(harvest.section)
+        harvestRef.child("imageUrl").setValue(harvest.imageUrl)
+        harvestRef.child("timeStamp").setValue(harvest.timeStamp)
     }
     
     fileprivate func removeHarvest(itemId: String, harvests: [Harvest]) {

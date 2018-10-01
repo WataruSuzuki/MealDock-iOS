@@ -113,6 +113,19 @@ extension FirebaseService {
         }
     }
 
+    func loadHarvestCount(itemId: String, harvestName: String, completion: @escaping ((Int)->Void)) {
+        guard let user = currentUser else {
+            completion(0)
+            return
+        }
+        rootRef.child("\(itemId)/\(user.dockID)/\(harvestName)/count/").observeSingleEvent(of: .value) { (snapshot) in
+            if let count = snapshot.value as? Int {
+                completion(count)
+            } else {
+                completion(0)
+            }
+        }
+    }
     
     fileprivate func snapshotToHarvests(snapshot: DataSnapshot) -> [[Harvest]] {
         var items = FirebaseService.initHarvestArray()
