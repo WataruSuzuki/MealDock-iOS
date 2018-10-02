@@ -10,9 +10,38 @@
     </dependencies>
     <scenes>
         <!--Harvest List View Controller-->
+        <scene sceneID="9D2-Ou-APi">
+            <objects>
+                <tableViewController id="Lcg-7S-edt" customClass="HarvestListViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xHl-za-frd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MealDockListCell" id="n43-0S-Nt2">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n43-0S-Nt2" id="Mwy-Rt-8bH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Lcg-7S-edt" id="Ceb-PQ-Z3I"/>
+                            <outlet property="delegate" destination="Lcg-7S-edt" id="bbG-w5-8jJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="G6X-xk-Xvb"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DEK-xa-zoa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1694" y="-321"/>
+        </scene>
+        <!--Collection View Controller-->
         <scene sceneID="RD2-35-AsR">
             <objects>
-                <collectionViewController id="dcd-ID-Npf" customClass="HarvestListViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="dcd-ID-Npf" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HrG-9e-8Mi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,7 +71,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krf-pH-DnG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689" y="-321"/>
+            <point key="canvasLocation" x="1694" y="430"/>
         </scene>
         <!--Harvest-->
         <scene sceneID="IgO-30-8vJ">
@@ -56,7 +85,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="dcd-ID-Npf" kind="relationship" relationship="rootViewController" id="gzW-XJ-cii"/>
+                        <segue destination="Lcg-7S-edt" kind="relationship" relationship="rootViewController" id="16S-rb-gKf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="juH-x4-lLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -65,6 +94,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="harvest" width="30" height="30"/>
+        <image name="harvest" width="48" height="48"/>
     </resources>
 </document>

@@ -11,6 +11,7 @@ import UIKit
 class MealDockListViewController: UITableViewController,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
+    let reuseIdentifier = "MealDockListCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()

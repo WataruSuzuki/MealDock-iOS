@@ -9,24 +9,22 @@
 import UIKit
 import MaterialComponents.MaterialBottomSheet
 
-class HarvestListViewController: MealDockBaseCollectionViewController,
-    MealDockAdder
-{
+class HarvestListViewController: MealDockListViewController {
     var harvests = [[Harvest]]()
     let shapeScheme = MDCShapeScheme()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
+//        self.collectionView!.register(MDCCollectionViewTextCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: UICollectionElementKindSectionHeader)
 
         // Do any additional setup after loading the view.
-        styler.cellStyle = .card
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddFabTapped))
+//        styler.cellStyle = .card
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
         //addTargetToFab(target: self, action: #selector(onAddFabTapped))
         FirebaseService.shared.observeHarvest { (harvests) in
             self.harvests = harvests
-            self.collectionView?.reloadData()
+            self.tableView.reloadData()
         }
     }
 
@@ -45,75 +43,44 @@ class HarvestListViewController: MealDockBaseCollectionViewController,
     }
     */
 
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return harvests.count
     }
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return harvests[section].count
     }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = degueueCollectionViewTextCell(cellForItemAt: indexPath)
-
-        // Configure the cell
-        cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        
+        // Configure the cell...
+        cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
+
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
-        if kind == UICollectionElementKindSectionHeader {
-            if let section = Harvest.Section(rawValue: indexPath.section) {
-                view.textLabel?.text = NSLocalizedString(section.toString(), comment: "")
-            }
-        }
-        return view
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if 0 == collectionView.numberOfItems(inSection: section) {
-            return CGSize(width: 0, height: 0)
-        } else {
-            return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
-        }
-    }
-    // MARK: UICollectionViewDelegate
+//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
+//        if kind == UICollectionElementKindSectionHeader {
+//            if let section = Harvest.Section(rawValue: indexPath.section) {
+//                view.textLabel?.text = NSLocalizedString(section.toString(), comment: "")
+//            }
+//        }
+//        return view
+//    }
+//
+//    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        if 0 == collectionView.numberOfItems(inSection: section) {
+//            return CGSize(width: 0, height: 0)
+//        } else {
+//            return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight)
+//        }
+//    }
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
-    @objc override func onAddFabTapped() {
+    @objc func onAddTapped() {
         FirebaseService.shared.loadMarketItems(success: { (items) in
             DispatchQueue.main.async {
                 let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
