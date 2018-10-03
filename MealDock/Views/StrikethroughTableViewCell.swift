@@ -22,6 +22,7 @@ class StrikethroughTableViewCell: UITableViewCell {
             case .incremental:
                 updateStrikethrough(isStrikethrough: stepperValue > 0)
             case .decremental:
+                updateStrikethrough(isStrikethrough: decrementValue > stepperValue)
                 stepper.minimumValue = Double(stepperValue)
                 stepper.maximumValue = Double(stepperValue * 2)
             }

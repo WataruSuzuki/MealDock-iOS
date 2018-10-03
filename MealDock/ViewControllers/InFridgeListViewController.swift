@@ -45,7 +45,6 @@ class InFridgeListViewController: MealDockListViewController {
                 self.updateCheckedItems(harvest: decrementalHarvest)
             }
             customCell.stepperValue = harvest.count
-            updateCheckedItems(harvest: harvest)
         }
         
         return cell
