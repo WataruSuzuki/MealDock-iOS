@@ -41,9 +41,13 @@ class CartedItemListViewController: MealDockListViewController {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if let customCell = cell as? StrikethroughTableViewCell {
-            let harvest = harvests[indexPath.section][indexPath.row]
+            var harvest = harvests[indexPath.section][indexPath.row]
+            customCell.stepperValueChanged = { (value) in
+                harvest.count = value
+                self.updateCheckedItems(harvest: harvest)
+            }
             customCell.stepperValue = harvest.count
-            updateCheckedItems(value: harvest.count, harvest: harvest)
+            updateCheckedItems(harvest: harvest)
         }
 
         return cell

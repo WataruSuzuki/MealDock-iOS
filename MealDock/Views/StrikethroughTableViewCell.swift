@@ -48,12 +48,15 @@ class StrikethroughTableViewCell: UITableViewCell {
 
     @objc private func changeStepper(sender: UIStepper) {
         let value = Int(sender.value)
-        stepperValueChanged?(value)
-        updateStrikethrough(isStrikethrough: (stepperMode == .decremental
-            ? value > stepperValue
-            : value > 0)
-        )
         updateCount(value: value)
+        switch stepperMode {
+        case .incremental:
+            stepperValueChanged?(value)
+            updateStrikethrough(isStrikethrough: value > 0)
+        case.decremental:
+            stepperValueChanged?(decrementValue)
+            updateStrikethrough(isStrikethrough: value > stepperValue)
+        }
     }
     
     private func updateStrikethrough(isStrikethrough: Bool) {

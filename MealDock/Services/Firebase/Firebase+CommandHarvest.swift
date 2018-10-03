@@ -21,7 +21,7 @@ extension FirebaseService {
     
     func addToFridge(harvests: [Harvest]) {
         if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests, isInFridge: true) {
-            removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
+            decrementHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
             UIViewController.snackBarMessage(text: "(=・∀・=)b \n" + NSLocalizedString("msg_mission_completed", comment: ""))
         } else {
             OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
@@ -52,10 +52,18 @@ extension FirebaseService {
         harvestRef.child("timeStamp").setValue(harvest.timeStamp)
     }
     
-    fileprivate func removeHarvest(itemId: String, harvests: [Harvest]) {
+    fileprivate func decrementHarvest(itemId: String, harvests: [Harvest]) {
         if let user = currentUser {
             for harvest in harvests {
-                rootRef.child(itemId).child(user.dockID).child(harvest.name).removeValue()
+                let ref = rootRef.child(itemId).child(user.dockID).child(harvest.name)
+                loadHarvestCount(itemId: itemId, harvestName: harvest.name) { (current) in
+                    let next = current - harvest.count
+                    if next > 0 {
+                        ref.child("count").setValue(next)
+                    } else {
+                        ref.removeValue()
+                    }
+                }
             }
         }
     }
@@ -80,13 +88,12 @@ extension FirebaseService {
     
     func addDish(dish: Dish) {
         if addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish) {
-            removeHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: dish.harvests)
+            decrementHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: dish.harvests)
         }
     }
     
     fileprivate func addDish(itemId: String, dish: Dish) -> Bool {
         guard let user = currentUser else { return false }
-//        guard let user = currentUser, user.hasCapacity(addingSize: 1) else { return false }
         let dishRef = rootRef.child(itemId).child(user.dockID).child(dish.title)
         var harvestArray = [Any]()
         for harvest in dish.harvests {

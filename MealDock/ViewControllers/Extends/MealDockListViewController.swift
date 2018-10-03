@@ -104,16 +104,12 @@ class MealDockListViewController: UITableViewController,
         if !harvest.imageUrl.isEmpty {
             cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
-        cell.stepperValueChanged = { (value) in
-            harvest.count = value
-            self.updateCheckedItems(value: value, harvest: harvest)
-        }
                 
         return cell
     }
     
-    func updateCheckedItems(value: Int, harvest: Harvest) {
-        if value > 0 {
+    func updateCheckedItems(harvest: Harvest) {
+        if harvest.count > 0 {
             checkedItems.updateValue(harvest, forKey: harvest.name)
         } else {
             checkedItems.removeValue(forKey: harvest.name)
