@@ -493,7 +493,7 @@
 		96EE887A2158802D00924490 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				96EE887B2158803B00924490 /* Extends */,
+				96EE887B2158803B00924490 /* Extensions */,
 				96EE887E2158951F00924490 /* ErrandCell.swift */,
 				96EE887F2158951F00924490 /* ErrandCell.xib */,
 				CC77E5012165F9D5002891BB /* StrikethroughTableViewCell.swift */,
@@ -505,7 +505,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		96EE887B2158803B00924490 /* Extends */ = {
+		96EE887B2158803B00924490 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				96EE887C2158806100924490 /* UIImageView+Alamofire.swift */,
@@ -514,7 +514,7 @@
 				966F5A772178C9E600A47EDF /* UIView+Indicator.swift */,
 				966F5A792178D0A200A47EDF /* UICollectionView+CellSize.swift */,
 			);
-			path = Extends;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		AA70B33A27ACF3C86E6A50F3 /* Frameworks */ = {
