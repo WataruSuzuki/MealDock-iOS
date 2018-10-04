@@ -2,7 +2,7 @@
 //  PermissionTest.swift
 //  MealDockTests
 //
-//  Created by 鈴木 航 on 2018/10/10.
+//  Created by Wataru Suzuki on 2018/10/10.
 //  Copyright © 2018 WataruSuzuki. All rights reserved.
 //
 

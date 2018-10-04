@@ -2,7 +2,7 @@
 //  DetailDishViewController.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/10/28.
+//  Created by Wataru Suzuki on 2018/10/28.
 //  Copyright © 2018 WataruSuzuki. All rights reserved.
 //
 
@@ -61,6 +61,7 @@ class DetailDishViewController: UIViewController {
         imageView.backgroundColor = .gray
         
         descriptionTextView.text = dish.description
+        descriptionTextView.isEditable = false
         
         card.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10))
         imageView.autoPinEdge(toSuperviewEdge: .top)

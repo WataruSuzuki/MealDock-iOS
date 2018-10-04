@@ -2,7 +2,7 @@
 //  MealDockUITests.swift
 //  MealDockUITests
 //
-//  Created by 鈴木 航 on 2018/07/30.
+//  Created by Wataru Suzuki on 2018/07/30.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
