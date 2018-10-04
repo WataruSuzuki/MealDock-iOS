@@ -37,7 +37,15 @@ class PurchaseMenuViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if let menu = Menu(rawValue: section) {
-            return NSLocalizedString("footer_" + menu.description(), comment: "")
+            let key = "footer_" + menu.description()
+            switch menu {
+            case .unlockAd:
+                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.unlockAd.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
+            case .subscription:
+                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.subscription.limitSize())
+            default:
+                return NSLocalizedString(key, comment: "")
+            }
         }
         return nil
     }
