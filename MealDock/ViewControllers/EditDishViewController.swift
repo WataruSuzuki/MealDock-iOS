@@ -133,9 +133,12 @@ class EditDishViewController: MDCCollectionViewController,
     
     fileprivate func harvestCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MDCCollectionViewTextCell {
         let textCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewTextCell.self), for: indexPath) as! MDCCollectionViewTextCell
-        textCell.textLabel?.text = checkedItems[indexPath.row].name
+        let harvest = checkedItems[indexPath.row]
+        textCell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
         textCell.imageView?.image = UIImage(named: "harvest")
-        textCell.imageView?.setImageByAlamofire(with: URL(string: checkedItems[indexPath.row].imageUrl)!)
+        if let url = URL(string: harvest.imageUrl) {
+            textCell.imageView?.setImageByAlamofire(with: url)
+        }
 
         return textCell
     }
