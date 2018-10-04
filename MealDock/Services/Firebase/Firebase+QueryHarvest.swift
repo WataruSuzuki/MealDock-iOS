@@ -153,14 +153,8 @@ extension FirebaseService {
     }
     
     func observeDishes(success:(([Dish]) -> Void)?) {
-        if let _ = usageInfoKVO {
-            observeDishes(user: currentUser!, success: success)
-        } else {
-            let kvo = observe(\.usageInfoKVO) { (value, change) in
-                self.signInObservations["observeDishes"]?.invalidate()
-                self.observeDishes(user: self.currentUser!, success: success)
-            }
-            signInObservations.updateValue(kvo, forKey: "observeDishes")
+        waitLoadUserInfo {
+            self.observeDishes(user: self.currentUser!, success: success)
         }
     }
     

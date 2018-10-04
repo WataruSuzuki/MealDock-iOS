@@ -43,6 +43,7 @@ class DockUser: NSObject {
             return plan != .free
         }
     }
+    var switchingDock :((String?) -> Void)?
 
     init(user: User) {
         self.core = user
@@ -81,7 +82,6 @@ class DockUser: NSObject {
             }
         }
     }
-    var switchingDock :((String?) -> Void)?
     
     func delete(completion: UserProfileChangeCallback?) {
         core.delete(completion: completion)

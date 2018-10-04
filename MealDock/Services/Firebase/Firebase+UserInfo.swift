@@ -12,16 +12,8 @@ import CodableFirebase
 extension FirebaseService {
 
     func observeUsageInfo(info:((UsageInfo) -> Void)?) {
-        if let user = currentUser {
-            observeUsageInfo(user: user, info: info)
-        } else {
-            let kvo = observe(\.currentUser) { (user, change) in
-                if let newUser = self.currentUser {
-                    self.observeUsageInfo(user: newUser, info: info)
-                    self.signInObservations["observeUsageInfo"]?.invalidate()
-                }
-            }
-            signInObservations.updateValue(kvo, forKey: "observeUsageInfo")
+        waitSignIn {
+            self.observeUsageInfo(user: self.currentUser!, info: info)
         }
     }
     

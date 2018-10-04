@@ -36,14 +36,22 @@ extension GooglePhotosService {
     }
     
     func freshToken(token:((String)->Void)?, failure:((Error)->Void)?) {
-        if let user = FirebaseService.shared.currentUser, user.core.uid != user.dockID, let sharing = sharingAuthState {
-            performFreshToken(authState: sharing, token: token, failure: failure)
-        } else {
-            guard let authState = ownAuthState else {
-                requestOAuth2(scope: ownScope, token: token, failure: failure)
-                return
+        FirebaseService.shared.waitLoadUserInfo {
+            if let user = FirebaseService.shared.currentUser, user.core.uid == user.dockID {
+                guard let authState = self.ownAuthState else {
+                    self.requestOAuth2(scope: self.ownScope, token: token, failure: failure)
+                    return
+                }
+                self.performFreshToken(authState: authState, token: token, failure: failure)
+            } else {
+                self.waitSharingAuthState {
+                    guard let sharing = self.sharingAuthState else {
+                        self.requestOAuth2(scope: self.ownScope, token: token, failure: failure)
+                        return
+                    }
+                    self.performFreshToken(authState: sharing, token: token, failure: failure)
+                }
             }
-            performFreshToken(authState: authState, token: token, failure: failure)
         }
     }
     

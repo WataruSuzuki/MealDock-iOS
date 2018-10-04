@@ -71,6 +71,30 @@ class FirebaseService: NSObject,
         startToObservingDatabase()
     }
     
+    func waitSignIn(completion: @escaping (()->Void)) {
+        guard currentUser == nil else {
+            completion()
+            return
+        }
+        let kvo = observe(\.currentUser) { (value, change) in
+            completion()
+            self.signInObservations["waitSignIn"]?.invalidate()
+        }
+        signInObservations.updateValue(kvo, forKey: "waitSignIn")
+    }
+    
+    func waitLoadUserInfo(completed: @escaping (()->Void)) {
+        guard usageInfoKVO == nil else {
+            completed()
+            return
+        }
+        let kvo = observe(\.usageInfoKVO) { (value, change) in
+            completed()
+            self.signInObservations["waitSignInProcess"]?.invalidate()
+        }
+        signInObservations.updateValue(kvo, forKey: "waitSignInProcess")
+    }
+    
     fileprivate func loadDefaultAuthUI() {
         if let authUI = FUIAuth.defaultAuthUI() {
             // You need to adopt a FUIAuthDelegate protocol to receive callback
