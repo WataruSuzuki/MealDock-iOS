@@ -55,8 +55,10 @@ class ErrandViewController: UICollectionViewController,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ErrandCell
     
         // Configure the cell
-        if !items[indexPath.row].imageUrl.isEmpty {
-            if let url = URL(string: items[indexPath.row].imageUrl) {
+        let item = items[indexPath.row]
+        cell.label.text = NSLocalizedString(item.name, tableName: "MarketItems", comment: "")
+        if !item.imageUrl.isEmpty {
+            if let url = URL(string: item.imageUrl) {
                 cell.itemImage.setImageByAlamofire(with: url)
             } else {
                 print("(・A・) cannot create URL: \(items[indexPath.row].imageUrl)")

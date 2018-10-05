@@ -30,10 +30,17 @@ class ErrandCell: UICollectionViewCell {
         itemImage.autoPinEdgesToSuperviewEdges()
         
         label = UILabel(frame: frame)
+        label.text = "???"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.sizeToFit()
+        label.backgroundColor = .black
+        label.alpha = 0.8
         addSubview(label)
-        label.centerYToSuperview()
-        label.isHidden = true
-        
+        label.autoPinEdge(toSuperviewEdge: .bottom)
+        label.autoPinEdge(toSuperviewEdge: .leading)
+        label.autoPinEdge(toSuperviewEdge: .trailing)
+
         checkmarkBackgroundView = UIView(frame: frame)
         checkmarkBackgroundView.backgroundColor = .darkGray
         checkmarkBackgroundView.alpha = 0.8
