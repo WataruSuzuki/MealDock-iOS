@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.7.3)
   - AlamofireImage (3.4.1):
     - Alamofire (~> 4.7)
+  - AppAuth (0.95.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -690,6 +691,10 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - NendSDK_iOS (5.0.2)
+  - OAuthSwift (1.2.2)
+  - OAuthSwiftAlamofire (0.2.0):
+    - Alamofire
+    - OAuthSwift
   - Parchment (1.4.1)
   - PersonalizedAdConsent (1.0.3)
   - Protobuf (3.6.1)
@@ -706,6 +711,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.4)
+  - AppAuth
   - CodableFirebase
   - DJKFlatIconAuthors (from `https://github.com/WataruSuzuki/DJKFlatIconAuthors.git`)
   - DJKInAppPurchase (from `https://github.com/WataruSuzuki/DJKInAppPurchase.git`)
@@ -719,6 +725,8 @@ DEPENDENCIES:
   - FirebaseUI
   - GoogleMobileAdsMediationNend
   - MaterialComponents
+  - OAuthSwift (~> 1.2.0)
+  - OAuthSwiftAlamofire
   - Parchment
   - PersonalizedAdConsent
   - PureLayout
@@ -729,6 +737,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
+    - AppAuth
     - Bolts
     - BoringSSL
     - CodableFirebase
@@ -767,6 +776,8 @@ SPEC REPOS:
     - MotionTransitioning
     - nanopb
     - NendSDK_iOS
+    - OAuthSwift
+    - OAuthSwiftAlamofire
     - Parchment
     - PersonalizedAdConsent
     - Protobuf
@@ -804,6 +815,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireImage: 78d67ccbb763d87ba44b21583d2153500a195630
+  AppAuth: 137f6bb6fc9dfbaf2cf9f6fcff1d336ff0163bc6
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
@@ -846,6 +858,8 @@ SPEC CHECKSUMS:
   MotionTransitioning: 23d25edc2f4606efb922403cbac6d81af37aa33a
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NendSDK_iOS: 412b3d68be41227468d808e94f5e9aee8f6cb62c
+  OAuthSwift: 27b34fe80b76b67cd8f45571e0be2432bc9f6de1
+  OAuthSwiftAlamofire: e51f11ff579dd4293bfe2a1a24c658caad4dac35
   Parchment: e6c2a3a0063739382dd207e21d48fe5e81f3324a
   PersonalizedAdConsent: b50a8a5d6065b6db23121e8fcc0dce2ae983f6ea
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
@@ -856,6 +870,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
 
-PODFILE CHECKSUM: 9fb08617c820dfab7a463d0203095fb4f58154de
+PODFILE CHECKSUM: 2c21a5c05c30aeceda850b72545039ae24ae0ec8
 
 COCOAPODS: 1.5.3

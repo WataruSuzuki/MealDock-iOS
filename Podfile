@@ -5,6 +5,7 @@ use_frameworks!
 target "MealDock" do
     pod 'Alamofire', '~> 4.7'
     pod 'AlamofireImage', '~> 3.4'
+    pod 'OAuthSwiftAlamofire'
     pod 'DJKFlatIconAuthors', :git => 'https://github.com/WataruSuzuki/DJKFlatIconAuthors.git'
     pod 'DJKUtilities', :git => 'https://github.com/WataruSuzuki/DJKUtilities.git'
     pod 'DJKUtilAdMob', :git => 'https://github.com/WataruSuzuki/DJKUtilAdMob.git'#, :configuration => ["Release"]
@@ -23,6 +24,10 @@ target "MealDock" do
     pod 'PureLayout'
     pod 'TinyConstraints'
     pod 'Parchment'
+    pod 'AppAuth'
+
+    platform :ios, '10.0'
+        pod 'OAuthSwift', '~> 1.2.0'
 end
 
 post_install do | installer |
