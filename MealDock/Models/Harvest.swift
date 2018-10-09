@@ -17,12 +17,14 @@ struct Harvest: Codable {
 
     enum Section: Int {
         case unknown = 0,
-        protein,
-        calcium,
-        vegetable,
-        fruit,
         carbohydrate,
-        oil,
+        dairy_soy,
+        fish,
+        fruit,
+        meat,
+        processed,
+        seasoning,
+        vegetable,
         max
         
         func toString() -> String {
@@ -31,13 +33,15 @@ struct Harvest: Codable {
         
         func emoji() -> String {
             switch self {
-            case .protein:      return "🍖🥩🐟🐠🍳"
-            case .calcium:      return "🥛🧀"
-            case .vegetable:    return "🍅🍆🌽🥒🥕🥔🥦"
-            case .fruit:        return "🍓🍊🍎🍒🍇🍌🥝🍍"
             case .carbohydrate: return "🍚🍞🍙🥖🍜🍝"
-            case .oil:          return "🍯🍰🍦🍨🍔🍟🍤"
-            default:            return "👻"
+            case .dairy_soy: return "🥛🧀🥚🍳"
+            case .fish: return "🐟🐠🐡"
+            case .meat: return "🍖🥩🍗🥓"
+            case .vegetable:    return "🍅🍆🌽🥒🥕🥔🥦🥬"
+            case .fruit:        return "🍓🍊🍎🍒🍇🍌🥝🍍"
+            case .seasoning: return "🧂🍯🌶🍶"
+            case .processed: return "🍯🍰🍦🍨🍔🍟🍤"
+            default: return "👻"
             }
         }
     }

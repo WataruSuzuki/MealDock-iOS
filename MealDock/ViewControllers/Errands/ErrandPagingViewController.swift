@@ -31,8 +31,10 @@ class ErrandPagingViewController: UIViewController {
         var controllers = [ErrandViewController]()
         for i in 0..<items.count {
             let controller = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
-            controller.title = NSLocalizedString(items[i].type, comment: "")
             controller.items = items[i].items
+            if let section = Harvest.Section(rawValue: i) {
+                controller.title = section.emoji()
+            }
             controllers.append(controller)
         }
         
