@@ -24,8 +24,10 @@ extension FirebaseService {
             observeUserInfo(user: user, info: info)
         } else {
             let handle = observe(\.currentUser) { (user, change) in
-                self.observeUserInfo(user: self.currentUser!, info: info)
-                self.signInObservations["observeUserInfo"]?.invalidate()
+                if let newUser = self.currentUser {
+                    self.observeUserInfo(user: newUser, info: info)
+                    self.signInObservations["observeUserInfo"]?.invalidate()
+                }
             }
             signInObservations.updateValue(handle, forKey: "observeUserInfo")
         }
