@@ -9,9 +9,9 @@
 import UIKit
 import Alamofire
 
-class AuthService: NSObject {
-    static let shared: AuthService = {
-        return AuthService()
+class GooglePhotosService: NSObject {
+    static let shared: GooglePhotosService = {
+        return GooglePhotosService()
     }()
     
     let clientId = "1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l.apps.googleusercontent.com"

@@ -88,7 +88,7 @@ class FirebaseService: NSObject,
                 print("auth = \(auth)")
                 self.currentUser = user
                 if let user = self.currentUser {
-                    AuthService.shared.freshToken(token: { (token) in
+                    GooglePhotosService.shared.freshToken(token: { (token) in
                         
                     }) { (error) in
                         
@@ -126,7 +126,7 @@ class FirebaseService: NSObject,
                 print(error)
             } else {
                 self.currentUser = result?.user
-                AuthService.shared.freshToken(token: { (token) in
+                GooglePhotosService.shared.freshToken(token: { (token) in
                     
                 }) { (error) in
                     
@@ -154,7 +154,7 @@ class FirebaseService: NSObject,
                 registerDefaultMarketItems()
                 A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
             }
-            AuthService.shared.freshToken(token: { (token) in
+            GooglePhotosService.shared.freshToken(token: { (token) in
                 
             }) { (error) in
                 

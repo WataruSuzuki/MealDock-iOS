@@ -80,7 +80,7 @@ class DishListViewController: UICollectionViewController,
 //        }) { (error) in
 //            
 //        }
-        cardCell.imageView.setImageByAlamofire(with: URL(string: AuthService.shared.getSampleUrl())!)
+        cardCell.imageView.setImageByAlamofire(with: URL(string: GooglePhotosService.shared.getSampleUrl())!)
     
         return cell
     }

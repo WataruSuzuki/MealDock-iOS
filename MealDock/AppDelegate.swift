@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        if AuthService.shared.isSourceApplication(url: url, options: options) {
+        if GooglePhotosService.shared.isSourceApplication(url: url, options: options) {
             return true
         }
         return FirebaseService.shared.isSourceApplication(url: url, options: options)
