@@ -145,6 +145,7 @@ class FirebaseService: NSObject,
         do {
             try authUI.signOut()
             currentUser = nil
+            clearAllObservers()
         } catch (let error) {
             print(error)
         }
