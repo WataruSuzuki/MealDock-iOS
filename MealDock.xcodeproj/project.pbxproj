@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4AAF866B9EDA2688DD2D9E58 /* Pods_MealDockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4497431E10628292717D8C /* Pods_MealDockTests.framework */; };
+		9601C8EA218EE0BF0034F045 /* AddingNewMarketItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9601C8E8218EE0BF0034F045 /* AddingNewMarketItem.storyboard */; };
 		9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615BDE7214CA79C001801D5 /* SettingsViewController.swift */; };
 		9615BDEB214CA7E0001801D5 /* InFridgeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */; };
 		9615BDEE214CA822001801D5 /* CartedItemList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDEC214CA822001801D5 /* CartedItemList.storyboard */; };
@@ -131,6 +132,7 @@
 		35F6AC2451E85004C94B3BFC /* Pods_MealDockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D6BE5948D8EA7618B433155 /* Pods-MealDockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.release.xcconfig"; sourceTree = "<group>"; };
 		89D3F00AACEC7B628F851B1A /* Pods-MealDockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9601C8E9218EE0BF0034F045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AddingNewMarketItem.storyboard; sourceTree = "<group>"; };
 		9615BDE7214CA79C001801D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9615BDEA214CA7E0001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InFridgeList.storyboard; sourceTree = "<group>"; };
 		9615BDED214CA822001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CartedItemList.storyboard; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */,
 				96FC04E0216892B500533529 /* EditDish.storyboard */,
 				96EE887621565CED00924490 /* Errand.storyboard */,
+				9601C8E8218EE0BF0034F045 /* AddingNewMarketItem.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */,
 				CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */,
 				96FC04E42168D6D200533529 /* InfoPlist.strings in Resources */,
+				9601C8EA218EE0BF0034F045 /* AddingNewMarketItem.storyboard in Resources */,
 				96317C9A210F56FD00F81F22 /* Assets.xcassets in Resources */,
 				9615BDF7214D42E7001801D5 /* Localizable.strings in Resources */,
 				CC54D9652179821F00E42F28 /* UnifiedNativeAdView.xib in Resources */,
@@ -1024,6 +1028,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9601C8E8218EE0BF0034F045 /* AddingNewMarketItem.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9601C8E9218EE0BF0034F045 /* Base */,
+			);
+			name = AddingNewMarketItem.storyboard;
+			sourceTree = "<group>";
+		};
 		9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

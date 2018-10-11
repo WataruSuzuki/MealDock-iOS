@@ -91,11 +91,11 @@ class ErrandPagingViewController: UIViewController,
         bottomBarView.floatingButtonPosition = .center
         bottomBarView.setFloatingButtonHidden(true, animated: true)
         
-//        let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_search_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapSearch))
+        let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_more_horiz_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapMore))
         let barButtonTrailingItem = UIBarButtonItem(title: NSLocalizedString("addNewMarketItem", comment: ""), style: .plain, target: self, action: #selector(tapCamera))
             //UIBarButtonItem(image: UIImage(named:"baseline_photo_camera_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapCamera))
         
-//        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
+        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
         bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
     }
     
@@ -133,7 +133,10 @@ class ErrandPagingViewController: UIViewController,
     @objc func tapMicToSpeech() {
     }
     
-    @objc func tapSearch() {
+    @objc func tapMore() {
+        let actionSheet = UIAlertController(title: NSLocalizedString("menu", comment: ""), message: nil, preferredStyle: .actionSheet)
+        actionSheet.addEmptyCancelAction()
+        present(actionSheet, animated: true, completion: nil)
     }
 
     @objc func tapCamera() {
