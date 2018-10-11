@@ -10,6 +10,10 @@ import UIKit
 import MaterialComponents.MaterialCollections
 import ActionSheetPicker_3_0
 
+protocol AddNewMarketItemDelegate {
+    func completedAddingNewItem()
+}
+
 class AddNewMarketItemViewController: MDCCollectionViewController {
 
     var capturePhotoView: UIImageView?
@@ -17,6 +21,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     var typePicker: UIPickerView?
     var selectedType = Harvest.Section.unknown
     var items: [String]?
+    var delegate: AddNewMarketItemDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,7 +170,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
             OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
             return
         }
-        dismiss(animated: true, completion: nil)
+        delegate?.completedAddingNewItem()
     }
     
     enum Element: Int {
