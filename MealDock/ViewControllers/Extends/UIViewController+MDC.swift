@@ -2,7 +2,7 @@
 //  UIViewController+FAB.swift
 //  MealDock
 //
-//  Created by 鈴木航 on 2018/10/18.
+//  Created by Wataru Suzuki 2018/10/18.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -17,12 +17,13 @@ extension UIViewController {
     }
     
     func layout(fab: MDCFloatingButton) {
+        fab.centerXToSuperview()
         if let targetOf = tabBarController?.tabBar {
-            fab.autoPinEdge(.trailing, to: .trailing, of: targetOf, withOffset: -30)
-            fab.autoPinEdge(.bottom, to: .top, of: targetOf, withOffset: -30)
+            //fab.autoPinEdge(.trailing, to: .trailing, of: targetOf, withOffset: -30)
+            fab.autoPinEdge(.bottom, to: .top, of: targetOf, withOffset: -20)
         } else {
-            fab.autoPinEdge(.trailing, to: .trailing, of: self.view, withOffset: -30)
-            fab.autoPinEdge(.bottom, to: .top, of: self.view, withOffset: -30)
+            //fab.autoPinEdge(.trailing, to: .trailing, of: self.view, withOffset: -30)
+            fab.autoPinEdge(.bottom, to: .top, of: self.view, withOffset: -20)
         }
         view.bringSubview(toFront: fab)
     }

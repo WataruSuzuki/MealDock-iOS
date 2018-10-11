@@ -39,12 +39,17 @@ class InFridgeListViewController: MealDockListViewController {
         if let customCell = cell as? StrikethroughTableViewCell {
             customCell.stepperMode = .decremental
             let harvest = harvests[indexPath.section][indexPath.row]
+            customCell.decrementMaxValue = harvest.count
             customCell.stepperValueChanged = { (value) in
                 var decrementalHarvest = Harvest(name: harvest.name, section: harvest.section, imageUrl: harvest.imageUrl)
                 decrementalHarvest.count = value
                 self.updateCheckedItems(harvest: decrementalHarvest)
             }
-            customCell.stepperValue = harvest.count
+            if let item = checkedItems[harvest.name] {
+                customCell.stepperValue = item.count
+            } else {
+                customCell.stepperValue = 0
+            }
         }
         
         return cell
