@@ -11,7 +11,15 @@ import GoogleMobileAds
 
 extension PurchaseService: GADBannerViewDelegate {
     func bannerView(unitId: String, rootViewController: UIViewController) -> UIView {
-        let bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        return bannerView(unitId: unitId, size: kGADAdSizeBanner, rootViewController: rootViewController)
+    }
+    
+    func middiumSizeBanner(unitId: String, rootViewController: UIViewController) -> UIView {
+        return bannerView(unitId: unitId, size: kGADAdSizeMediumRectangle, rootViewController: rootViewController)
+    }
+    
+    private func bannerView(unitId: String, size: GADAdSize, rootViewController: UIViewController) -> UIView {
+        let bannerView = GADBannerView(adSize: size)
         bannerView.delegate = self
         #if DEBUG
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
