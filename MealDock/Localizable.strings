@@ -90,11 +90,13 @@ current_ticket = "Current ticket";
 
 purchase = "Purchase";
 unlockAd = "Unlock Ad";
-subscription = "Premium Plan";
+unlockPremium = "Premium";
+subscriptionBasic = "Subscription";
 restore = "Restore purchase";
 
-footer_unlockAd = "Unlock ads, become to use without tickets. \nAnd your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
-footer_subscription = "This is monthly subscription. \nUnlock ads, become to use without tickets, and your limit of item counts will be upgrade to %d.";
+footer_unlockAd = "Unlock ads, become to use without tickets.";
+footer_unlockPremium = "Unlock ads, become to use without tickets. \nAnd your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
+footer_subscriptionBasic = "This is monthly subscription. \nUnlock ads, become to use without tickets, and your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
 footer_restore = "Will be restore your purchase \"at iOS\". \nCannot restore any other platform.";
 
 //InAppPurchase...

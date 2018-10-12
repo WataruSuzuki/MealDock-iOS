@@ -14,20 +14,22 @@ struct UsageInfo: Codable {
     let purchasePlan: Int
     var expireDate: Double?
     var unlockedAd: Bool?
-    
+    var unlockPremium: Bool?
+
     enum PurchasePlan: Int {
         case free = 0,
         unlockAd,
-        subscription,
+        unlockPremium,
+        subscriptionBasic,
         max
         
         func limitSize() -> Int {
             switch self {
-            case .unlockAd: return 50
-            case .subscription: return 100
-            case .free: fallthrough
-            default:
-                return 20
+            case .unlockAd: return 40
+            case .unlockPremium: return 100
+            case .subscriptionBasic: return 100
+            case .free: return 20
+            case .max: return 20
             }
         }
         

@@ -40,7 +40,10 @@ class DockUser: NSObject {
                 let plan = UsageInfo.PurchasePlan(rawValue: info.purchasePlan) else {
                 return false
             }
-            return plan != .free
+            debugPrint("plan: \(plan)")
+            debugPrint("unlockPremium: \(info.unlockPremium ?? false)")
+            debugPrint("unlockedAd: \(info.unlockedAd ?? false)")
+            return plan != .free || info.unlockPremium ?? false || info.unlockedAd ?? false
         }
     }
     var switchingDock :((String?) -> Void)?

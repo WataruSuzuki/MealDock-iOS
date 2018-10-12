@@ -88,7 +88,9 @@ extension PurchaseService {
                 SwiftyStoreKit.finishTransaction(product.transaction)
             }
             debugPrint("Purchase Success: \(product.productId)")
-            if product.productId == UsageInfo.PurchasePlan.unlockAd.productId() {
+            if product.productId == UsageInfo.PurchasePlan.unlockPremium.productId()
+                || product.productId == UsageInfo.PurchasePlan.unlockAd.productId()
+            {
                 verifyPurchase(productId: product.productId) { (verified) in
                     switch verified {
                     case .purchased( _):
@@ -144,7 +146,9 @@ extension PurchaseService {
                     if purchase.needsFinishTransaction {
                         SwiftyStoreKit.finishTransaction(purchase.transaction)
                     }
-                    if purchase.productId == UsageInfo.PurchasePlan.unlockAd.productId() {
+                    if purchase.productId == UsageInfo.PurchasePlan.unlockAd.productId()
+                        || purchase.productId == UsageInfo.PurchasePlan.unlockPremium.productId()
+                    {
                         self.verifyPurchase(productId: purchase.productId, completion: { (verified) in
                             switch verified {
                             case .purchased(let item):
@@ -234,9 +238,24 @@ extension PurchaseService {
             switch purchaseResult {
             case .purchased(let receiptItem):
                 debugPrint("\(productId) is purchased: \(receiptItem)")
-                FirebaseService.shared.updateUnlockAdInfo(unlock: true)
+                switch productId {
+                case UsageInfo.PurchasePlan.unlockAd.description():
+                    FirebaseService.shared.updateUnlockAdInfo(unlock: true)
+                case UsageInfo.PurchasePlan.unlockPremium.description():
+                    FirebaseService.shared.updateUnlockPremiumInfo(unlock: true)
+                default:
+                    break
+                }
             case .notPurchased:
                 print("The user has never purchased \(productId)")
+                switch productId {
+                case UsageInfo.PurchasePlan.unlockAd.description():
+                    FirebaseService.shared.updateUnlockAdInfo(unlock: false)
+                case UsageInfo.PurchasePlan.unlockPremium.description():
+                    FirebaseService.shared.updateUnlockPremiumInfo(unlock: false)
+                default:
+                    break
+                }
             }
             completion(purchaseResult)
         }
@@ -252,7 +271,7 @@ extension PurchaseService {
             switch purchaseResult {
             case .purchased(let expiryDate, let items):
                 debugPrint("\(productIds) are valid until \(expiryDate)\n\(items)\n")
-                FirebaseService.shared.updateSubscriptionPlanInfo(plan: .subscription, expiryDate: expiryDate.timeIntervalSince1970)
+                FirebaseService.shared.updateSubscriptionPlanInfo(plan: .subscriptionBasic, expiryDate: expiryDate.timeIntervalSince1970)
                 
             case .expired(let expiryDate, let items):
                 print("\(productIds) are expired since \(expiryDate)\n\(items)\n")
