@@ -36,8 +36,6 @@ class DishListViewController: UICollectionViewController,
         FirebaseService.shared.observeDishes { (dishes) in
             self.dishes = dishes
             self.collectionView!.reloadData()
-            
-            let hoge = GooglePhotosService.shared
         }
     }
 
@@ -74,13 +72,10 @@ class DishListViewController: UICollectionViewController,
         cardCell.apply(cardScheme: cardScheme, typographyScheme: typographyScheme)
         // Configure the cell
         cardCell.configure(title: dishes[indexPath.row].title, imageName: "baseline_help_black_48pt")
-        
-//        FirebaseService.shared.downloadURL(path: dishes[indexPath.row].imagePath, success: { (url) in
-//            cardCell.imageView.setImageByAlamofire(with: url)
-//        }) { (error) in
-//            
-//        }
-        cardCell.imageView.setImageByAlamofire(with: URL(string: GooglePhotosService.shared.getSampleUrl())!)
+        GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dishes[indexPath.row].imagePath) { (url, error) in
+            guard error == nil else { return }
+            cardCell.imageView.setImageByAlamofire(with: URL(string: url)!)
+        }
     
         return cell
     }

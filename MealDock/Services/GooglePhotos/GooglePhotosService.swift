@@ -15,15 +15,14 @@ class GooglePhotosService: NSObject {
     }()
     
     let clientId = "1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l.apps.googleusercontent.com"
-    let scope = "https://www.googleapis.com/auth/photoslibrary.sharing"
+    let executerScope = "https://www.googleapis.com/auth/photoslibrary.sharing"
+    let readScope = "https://www.googleapis.com/auth/photoslibrary.readonly.appcreateddata"
     let redirect = "com.googleusercontent.apps.1098918506603-thq4jv3habfc962r7p89r31a2h4kjt1l:https://watarusuzuki.github.io/MealDock/index.html"
 
     var currentAuthorizationFlow: OIDAuthorizationFlowSession?
     //var currentExternalUserAgentSession: OIDExternalUserAgentSession?
-    var authState: OIDAuthState?
-    var hasAuthState: Bool {
-        return authState != nil
-    }
+    var readAuthState: OIDAuthState?
+    var handleAuthState: OIDAuthState?
     var albumId: String?
     var shareToken: String?
     var shareableUrl: String?
@@ -33,7 +32,7 @@ class GooglePhotosService: NSObject {
         loadAuthState()
     }
     
-    func requestOAuth2(token:((String)->Void)?, failure:((Error)->Void)?) {
+    func requestOAuth2(scope: String, token:((String)->Void)?, failure:((Error)->Void)?) {
         let authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth"
         let tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token"
         
@@ -62,20 +61,37 @@ class GooglePhotosService: NSObject {
                     if let error = error {
                         print(error)
                     } else {
-                        self.authState = state
-                        self.saveAuthState()
+                        switch scope {
+                        case self.executerScope:
+                            self.saveExecuterAuthState(state: state)
+                        case self.readScope:
+                            self.saveReadAuthState(state: state)
+                        default:
+                            break
+                        }
                     }
                 })
             }
         }
     }
     
-    func freshToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
-        guard let authState = self.authState else {
-            requestOAuth2(token: token, failure: failure)
+    func freshExecuterToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
+        guard let authState = self.handleAuthState else {
+            requestOAuth2(scope: executerScope, token: token, failure: failure)
             return
         }
-        
+        freshToken(authState: authState, token: token, failure: failure)
+    }
+    
+    func freshReaderToken(token:((String)->Void)?, failure:((Error)->Void)?)  {
+        guard let authState = self.readAuthState else {
+            requestOAuth2(scope: readScope, token: token, failure: failure)
+            return
+        }
+        freshToken(authState: authState, token: token, failure: failure)
+    }
+    
+    fileprivate func freshToken(authState: OIDAuthState, token:((String)->Void)?, failure:((Error)->Void)?) {
         authState.performAction { (accessToken, idToken, error) in
             if let error = error {
                 print(error)
@@ -85,51 +101,35 @@ class GooglePhotosService: NSObject {
             }
         }
     }
-    
-    func saveAuthState() {
-        if let authState = self.authState {
+
+    func saveExecuterAuthState(state: OIDAuthState?) {
+        if let authState = state {
+            self.handleAuthState = authState
             let data = NSKeyedArchiver.archivedData(withRootObject: authState)
-            UserDefaults.standard.set(data, forKey: "authState")
+            UserDefaults.standard.set(data, forKey: "handleAuthState")
             UserDefaults.standard.synchronize()
             createMealDockAlbumIfNeed()
         }
     }
     
-    func loadAuthState() {
-        guard let data = UserDefaults.standard.object(forKey: "authState") as? Data else {
-            return
+    func saveReadAuthState(state: OIDAuthState?) {
+        if let authState = state {
+            self.readAuthState = authState
+            let data = NSKeyedArchiver.archivedData(withRootObject: authState)
+            UserDefaults.standard.set(data, forKey: "readAuthState")
+            UserDefaults.standard.synchronize()
         }
-        self.authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState
+    }
+    func loadAuthState() {
+        if let handleAuthStateData = UserDefaults.standard.object(forKey: "handleAuthState") as? Data {
+            self.handleAuthState = NSKeyedUnarchiver.unarchiveObject(with: handleAuthStateData) as? OIDAuthState
+        }
+        if let readAuthStateData = UserDefaults.standard.object(forKey: "readAuthState") as? Data {
+            self.readAuthState = NSKeyedUnarchiver.unarchiveObject(with: readAuthStateData) as? OIDAuthState
+        }
         self.createMealDockAlbumIfNeed()
     }
     
-    
-//    fileprivate func saveLastTokenResponse() {
-//        guard let lastTokenResponse = self.authState?.lastTokenResponse else {
-//            print("Not found last token response...")
-//            return
-//        }
-//        self.saveTokenInfo(key: "accessToken", value: lastTokenResponse.accessToken)
-//        self.saveTokenInfo(key: "idToken", value: lastTokenResponse.idToken)
-//        self.saveTokenInfo(key: "refreshToken", value: lastTokenResponse.refreshToken)
-//        if let accessTokenExpirationDate = lastTokenResponse.accessTokenExpirationDate {
-//            self.saveTokenInfo(key: "accessTokenExpirationDate", value: String(describing: accessTokenExpirationDate.timeIntervalSince1970))
-//        }
-//    }
-//
-//    fileprivate func saveTokenInfo(key: String, value: String?) {
-//        guard let tokenValue = value else {
-//            print("(・A・) \(key) is not found.")
-//            return
-//        }
-//        debugPrint("(・∀・) \(key):\(tokenValue)")
-//        A0SimpleKeychain().setString(tokenValue, forKey: key + "_" + clientId)
-//    }
-//
-//    fileprivate func loadTokenInfo(key: String) -> String? {
-//        return A0SimpleKeychain().string(forKey: key + "_" + clientId)
-//    }
-
     func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         if let current = currentAuthorizationFlow {
             if current.resumeAuthorizationFlow(with: url) {
@@ -150,7 +150,7 @@ class GooglePhotosService: NSObject {
 
         let endpoint = "https://photoslibrary.googleapis.com/v1/albums"
         let param = ["album": ["title": "Meal Dock Shared"]] as [String : Any]
-        freshToken(token: { (token) in
+        freshExecuterToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse) in
                 guard dataResponse.result.error == nil, let value = dataResponse.result.value as? [String : Any] else  {
@@ -176,7 +176,7 @@ class GooglePhotosService: NSObject {
     fileprivate func sharingAlbum(ALBUM_ID: String) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/albums/\(ALBUM_ID):share"
         let param = ["sharedAlbumOptions": ["isCollaborative": true, "isCommentable": true]] as [String : Any]
-        freshToken(token: { (token) in
+        freshExecuterToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .responseJSON(completionHandler: { (dataResponse) in
@@ -204,7 +204,7 @@ class GooglePhotosService: NSObject {
     func uploadDishPhoto(image: UIImage, uploadedMediaId:((String) -> Void)?, failure :((Error?) -> ())?) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/uploads"
         let timeIntervalStr = String(describing: Date().timeIntervalSince1970)
-        freshToken(token: { (token) in
+        freshExecuterToken(token: { (token) in
             let headers = [
                 "Authorization": "Bearer \(token)",
                 "Content-type": "application/octet-stream",
@@ -239,7 +239,7 @@ class GooglePhotosService: NSObject {
     
     func creatingMediaItem(uploadToken:String, result:((String, Error?) -> Void)?) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate"
-        freshToken(token: { (token) in
+        freshExecuterToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             guard let albumId = self.albumId else {
                 result?("", NSError(domain: "errorメッセージ", code: -1, userInfo: nil))
@@ -275,43 +275,30 @@ class GooglePhotosService: NSObject {
         }
     }
     
-    func getMediaItem() {
-        let MEDIA_ITEM_ID = "AId162nzuovH1DQDWcT6Xva2webr1RAEGzNE0CV7i_5lIa9p6o78njEXd8qdcywzXYkAaqmiQUK8tB6aLnxFoT6SvsBuOpokmg"
+    func getMediaItemUrl(MEDIA_ITEM_ID: String, result:((String, Error?) -> Void)?) {
         let endpoint = "https://photoslibrary.googleapis.com/v1/mediaItems/" + MEDIA_ITEM_ID
-        freshToken(token: { (token) in
+        freshReaderToken(token: { (token) in
             let headers = ["Authorization": "Bearer \(token)"]
             Alamofire.request(endpoint, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
                 .responseJSON(completionHandler: { (dataResponse) in
-                    guard dataResponse.result.error == nil, let json = dataResponse.result.value else {
+                    guard dataResponse.result.error == nil, let value = dataResponse.result.value else {
                         print(dataResponse.result.error!)
                         return
                     }
-                    debugPrint(json)
-                    // print ->
-//                    {
-//                        baseUrl = "https://lh3.googleusercontent.com/lr/AJ_cxPa9Jy4xcQ0DtCzW3_u7maoaCACwI3_tJf7koHp5r5l1BL0es9LM8jeyMg4YbEm6OvkN6V8rDBmgcZPIaEfdkwSCA1Nv2NzUD6h_xxc_Ziw-Ef5_cb4Jy9bHaRgEsBOzU96PGR8LNzjLyA5VQpxLCv2DvpYlQMKD-csGoJVojm5NRJefetcSL5RNzXkZxBzgN0N-4x8-FzoWaZv-QkUOmfyn1iWcanRLK2MZzFbk2qIKgSeoOV0VY-oGKvZVagjgMI89QHTaDZE9UkYmgtwB7SeWLu5Tr3MJxiJ8XfYYGgiPQJg2LcBh0dDJqJkphGkqyniK5VIgYK6O01HNMJZD3kZs6zR348P48_wfoAvT1IkowUnrKkbyxdUZFUYCfoPnluJIZjwEbr7f89y6JO7VgIS0KMJAuHk11YRhAF9FcmqVbwkM-ryJm34_vTFgsIm7LBSZqBCTYix5SZynnjfRp4FNZHVY5NF7QuDAaAr_UA2ILc6x-JW0IERwtxIaX3yQwwC6Hy-WhTda-soVDmPyIq51Cr88B_eqTNVR69HliI_sXzWEtt6EH25jQ-odXDqXXln1OMCKlz5_362nSCvEJKJ-XraPRMMfkJIVDBIDeP9ALTGCw-bn53NkDUfrHE56HQHJfWJzZnaSrQKhGtvDzuDkDln-SsMZ1p9rcAgEBcnXqKUvwALS_BtGq-Y6tCopkIvkchpYEHEITXIDPcVIIoKrW5XgDcjjQM1WYXfJbD0FRrErBFs797uN1ma53KtMvvdY3kvMB6BXNeWQik6EHmCdaBKEY2dotnVBsCIbKZ60rOa3-vmpnQnIkx5-BBiU9erS_iVm7YpDtjdo0ExdQnJSl5K8bcrPlTSe7kbiTcTjgg";
-//                        description = "Hoge Fuga";
-//                        filename = "Fuga.jpg";
-//                        id = "AId162nzuovH1DQDWcT6Xva2webr1RAEGzNE0CV7i_5lIa9p6o78njEXd8qdcywzXYkAaqmiQUK8tB6aLnxFoT6SvsBuOpokmg";
-//                        mediaMetadata =     {
-//                            creationTime = "2018-10-10T08:53:02Z";
-//                            height = 72;
-//                            photo =         {
-//                            };
-//                            width = 72;
-//                        };
-//                        mimeType = "image/png";
-//                        productUrl = "https://photos.google.com/lr/photo/AId162nzuovH1DQDWcT6Xva2webr1RAEGzNE0CV7i_5lIa9p6o78njEXd8qdcywzXYkAaqmiQUK8tB6aLnxFoT6SvsBuOpokmg";
-//                    }
-
+                    debugPrint(value)
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                        let media = try JSONDecoder().decode(GooglePhotosMediaItem.self, from: jsonData)
+                        
+                        result?(media.baseUrl! + "=w100-h100" , nil)
+                    } catch let error {
+                        print(error)
+                        result?("", error)
+                    }
                 })
         }) { (error) in
             print(error)
         }
     }
     
-    func getSampleUrl() -> String {
-        let sampleBaseUrl = "https://lh3.googleusercontent.com/lr/AJ_cxPa9Jy4xcQ0DtCzW3_u7maoaCACwI3_tJf7koHp5r5l1BL0es9LM8jeyMg4YbEm6OvkN6V8rDBmgcZPIaEfdkwSCA1Nv2NzUD6h_xxc_Ziw-Ef5_cb4Jy9bHaRgEsBOzU96PGR8LNzjLyA5VQpxLCv2DvpYlQMKD-csGoJVojm5NRJefetcSL5RNzXkZxBzgN0N-4x8-FzoWaZv-QkUOmfyn1iWcanRLK2MZzFbk2qIKgSeoOV0VY-oGKvZVagjgMI89QHTaDZE9UkYmgtwB7SeWLu5Tr3MJxiJ8XfYYGgiPQJg2LcBh0dDJqJkphGkqyniK5VIgYK6O01HNMJZD3kZs6zR348P48_wfoAvT1IkowUnrKkbyxdUZFUYCfoPnluJIZjwEbr7f89y6JO7VgIS0KMJAuHk11YRhAF9FcmqVbwkM-ryJm34_vTFgsIm7LBSZqBCTYix5SZynnjfRp4FNZHVY5NF7QuDAaAr_UA2ILc6x-JW0IERwtxIaX3yQwwC6Hy-WhTda-soVDmPyIq51Cr88B_eqTNVR69HliI_sXzWEtt6EH25jQ-odXDqXXln1OMCKlz5_362nSCvEJKJ-XraPRMMfkJIVDBIDeP9ALTGCw-bn53NkDUfrHE56HQHJfWJzZnaSrQKhGtvDzuDkDln-SsMZ1p9rcAgEBcnXqKUvwALS_BtGq-Y6tCopkIvkchpYEHEITXIDPcVIIoKrW5XgDcjjQM1WYXfJbD0FRrErBFs797uN1ma53KtMvvdY3kvMB6BXNeWQik6EHmCdaBKEY2dotnVBsCIbKZ60rOa3-vmpnQnIkx5-BBiU9erS_iVm7YpDtjdo0ExdQnJSl5K8bcrPlTSe7kbiTcTjgg"
-        return sampleBaseUrl + "=w100-h100"
-    }
 }
