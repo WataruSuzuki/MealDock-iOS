@@ -36,6 +36,9 @@ class DockUser: NSObject {
     }
     var isPurchased: Bool {
         get {
+            #if TEST || SIMULATING_PURCHASED
+            return true
+            #else
             guard let info = usageInfo,
                 let plan = UsageInfo.PurchasePlan(rawValue: info.purchasePlan) else {
                 return false
@@ -44,6 +47,7 @@ class DockUser: NSObject {
             debugPrint("unlockPremium: \(info.unlockPremium ?? false)")
             debugPrint("unlockedAd: \(info.unlockedAd ?? false)")
             return plan != .free || info.unlockPremium ?? false || info.unlockedAd ?? false
+            #endif
         }
     }
     var switchingDock :((String?) -> Void)?
