@@ -14,7 +14,7 @@ import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
 
 class ErrandPagingViewController: UIViewController,
-    AddNewMarketItemDelegate
+    UpdateCustomMarketItemDelegate
 {
 
     let bottomBarView = MDCBottomAppBarView()
@@ -117,7 +117,7 @@ class ErrandPagingViewController: UIViewController,
         bottomBarView.autoPinEdge(toSuperviewSafeArea: .bottom)
     }
     
-    func completedAddingNewItem() {
+    func updatedItem() {
         FirebaseService.shared.loadMarketItems(success: { (items) in
             self.items = items
             DispatchQueue.main.async {
@@ -136,6 +136,10 @@ class ErrandPagingViewController: UIViewController,
     @objc func tapMore() {
         let actionSheet = UIAlertController(title: NSLocalizedString("menu", comment: ""), message: nil, preferredStyle: .actionSheet)
         actionSheet.addEmptyCancelAction()
+        let editingCustomItems = UIAlertAction(title: NSLocalizedString("editCustomItem", comment: ""), style: .default) { (action) in
+            self.performSegue(withIdentifier: String(describing: EditCustomMarketItemsViewController.self), sender: self)
+        }
+        actionSheet.addAction(editingCustomItems)
         present(actionSheet, animated: true, completion: nil)
     }
 
@@ -157,14 +161,11 @@ class ErrandPagingViewController: UIViewController,
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let segueId = segue.identifier {
-            switch segueId {
-            case String(describing: AddNewMarketItemViewController.self):
-                if let navigation = segue.destination as? UINavigationController, let controller = navigation.viewControllers.last as? AddNewMarketItemViewController {
-                    controller.delegate = self
-                }
-            default:
-                break
+        if let navigation = segue.destination as? UINavigationController {
+            if let addNewItem = navigation.viewControllers.last as? AddNewMarketItemViewController {
+                addNewItem.delegate = self
+            } else if let editCustomItems = navigation.viewControllers.last as? EditCustomMarketItemsViewController {
+                editCustomItems.delegate = self
             }
         }
     }

@@ -44,6 +44,7 @@
                     <navigationItem key="navigationItem" id="6tL-Dm-Gef"/>
                     <connections>
                         <segue destination="L9T-pA-8dz" kind="presentation" identifier="AddNewMarketItemViewController" id="Bxo-Bf-Z1E"/>
+                        <segue destination="62c-Vx-0rF" kind="presentation" identifier="EditCustomMarketItemsViewController" id="5Kr-zW-Ou5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i63-DR-uzb" sceneMemberID="firstResponder"/>
@@ -145,7 +146,15 @@
                 <viewControllerPlaceholder storyboardName="AddingNewMarketItem" referencedIdentifier="Navi-NewMarketItem" id="L9T-pA-8dz" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c19-V1-2Pa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512.8" y="920.68965517241384"/>
+            <point key="canvasLocation" x="1513" y="658"/>
+        </scene>
+        <!--Navi-EditCustomMarketItemsViewController-->
+        <scene sceneID="cX3-Zm-PNo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EditCustomMarketItem" referencedIdentifier="Navi-EditCustomMarketItemsViewController" id="62c-Vx-0rF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="81Y-Ci-NSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2004" y="658"/>
         </scene>
     </scenes>
 </document>

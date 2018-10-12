@@ -11,6 +11,7 @@ inFridgeFoods = "In Fridge Foods";
 cartedFoods = "Carted Foods";
 errandFoods = "Errand Foods";
 addNewMarketItem = "Add new Market Item";
+editCustomItem = "Delete custom market item";
 
 no_dishes = "No Dishes";
 no_foods = "No Foods";

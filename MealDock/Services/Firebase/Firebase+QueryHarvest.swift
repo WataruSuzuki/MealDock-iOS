@@ -24,6 +24,19 @@ extension FirebaseService {
         }
     }
     
+    func observeCustomMarketItem(success:(([[Harvest]]) -> Void)?) {
+        observeHarvest(itemId: FirebaseService.ID_MARKET_ITEMS) { (items) in
+            success?(items)
+        }
+    }
+    
+    func removeCustomMarketItemObsever() {
+        if let observer = observers[FirebaseService.ID_MARKET_ITEMS] {
+            observer.ref.removeObserver(withHandle: observer.handle)
+            observers.removeValue(forKey: FirebaseService.ID_MARKET_ITEMS)
+        }
+    }
+    
     func loadMarketItems(success:(([MarketItems]) -> Void)?, failure failureBlock : ((Error) -> ())?) {
         var mergedItems = [MarketItems]()
         loadDefaultMarketItems { (defaultItems, error) in
