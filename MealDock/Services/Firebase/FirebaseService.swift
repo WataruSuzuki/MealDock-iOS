@@ -36,10 +36,9 @@ class FirebaseService: NSObject,
     @objc dynamic var currentUser: User?
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
     var database: Database!
-    var ref: DatabaseReference!
+    var rootRef: DatabaseReference!
     var connectedRef: DatabaseReference!
     var presenceRef: DatabaseReference!
-    var databaseHandle: DatabaseHandle!
     var storage: Storage!
     var storageRef: StorageReference!
     var isSignOn: Bool {
@@ -48,7 +47,7 @@ class FirebaseService: NSObject,
         }
     }
     var signInObservations = [String: NSKeyValueObservation]()
-    //var harvests = [Harvest]()
+    var observers = [String: FirebaseObserver]()
     //var harvests = initHarvestArray()
     var usageInfo: UsageInfo?
 
@@ -66,11 +65,8 @@ class FirebaseService: NSObject,
         
         Database.database().isPersistenceEnabled = true
         database = Database.database()
-        ref = database.reference()
+        rootRef = database.reference()
         startToObservingDatabase()
-        
-        storage = Storage.storage()
-        storageRef = storage.reference()
     }
     
     fileprivate func loadDefaultAuthUI() {
@@ -91,10 +87,6 @@ class FirebaseService: NSObject,
                 self.currentUser = user
                 if let user = self.currentUser {
                     self.printUserInfo(user: user)
-                    if !A0SimpleKeychain().hasValue(forKey: initializedFUIAuth) {
-                        A0SimpleKeychain().setString(initializedFUIAuth, forKey: initializedFUIAuth)
-                        //self.createMyDockGroup()
-                    }
                 } else {
                     self.requestAuthUI()
                 }
@@ -155,6 +147,13 @@ class FirebaseService: NSObject,
             currentUser = nil
         } catch (let error) {
             print(error)
+        }
+    }
+    
+    func clearAllObservers() {
+        let observerValues = [FirebaseObserver](observers.values)
+        for observer in observerValues {
+            observer.ref.removeObserver(withHandle: observer.handle)
         }
     }
     

@@ -25,7 +25,7 @@ extension FirebaseService {
     
     fileprivate func addHarvest(itemId: String, harvest: Harvest) {
         if let user = currentUser {
-            let harvestRef = ref.child(itemId).child(user.uid).child(harvest.name)
+            let harvestRef = rootRef.child(itemId).child(user.uid).child(harvest.name)
             setHarvestValue(ref: harvestRef, harvest: harvest)
         }
     }
@@ -41,13 +41,13 @@ extension FirebaseService {
     
     fileprivate func removeHarvest(itemId: String, harvest: Harvest) {
         if let user = currentUser {
-            ref.child(itemId).child(user.uid).child(harvest.name).removeValue()
+            rootRef.child(itemId).child(user.uid).child(harvest.name).removeValue()
         }
     }
     
     fileprivate func removeAllHarvests(itemId: String) {
         if let user = currentUser {
-            ref.child(itemId).child(user.uid).removeValue()
+            rootRef.child(itemId).child(user.uid).removeValue()
         }
     }
     
@@ -72,7 +72,7 @@ extension FirebaseService {
     
     fileprivate func addDish(itemId: String, dish: Dish) {
         if let user = currentUser {
-            let dishRef = ref.child(itemId).child(user.uid).child(dish.title)
+            let dishRef = rootRef.child(itemId).child(user.uid).child(dish.title)
             var harvestArray = [Any]()
             for harvest in dish.harvests {
                 harvestArray.append(try! harvest.asDictionary())
@@ -90,13 +90,13 @@ extension FirebaseService {
     
     func removeAllMyDishes() {
         if let user = currentUser {
-            ref.child(FirebaseService.ID_DISH_ITEMS).child(user.uid).removeValue()
+            rootRef.child(FirebaseService.ID_DISH_ITEMS).child(user.uid).removeValue()
         }
     }
     
     fileprivate func removeDish(dish: Dish) {
         if let user = currentUser {
-            ref.child(FirebaseService.ID_DISH_ITEMS).child(user.uid).child(dish.title).removeValue()
+            rootRef.child(FirebaseService.ID_DISH_ITEMS).child(user.uid).child(dish.title).removeValue()
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 extension FirebaseService {
     func observeReachability() {
-        ref.keepSynced(true)
+        rootRef.keepSynced(true)
         
         connectedRef = database.reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in

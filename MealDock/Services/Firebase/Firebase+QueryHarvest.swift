@@ -53,7 +53,7 @@ extension FirebaseService {
     
     fileprivate func loadCustomMarketItems(result:(([MarketItems], Error?) -> Void)?) {
         if let user = currentUser {
-            ref.child(FirebaseService.ID_MARKET_ITEMS)
+            rootRef.child(FirebaseService.ID_MARKET_ITEMS)
                 //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
                 .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
                 .observeSingleEvent(of: .value, with: { (snapshot) in
@@ -94,14 +94,17 @@ extension FirebaseService {
     
     fileprivate func observeHarvest(itemId: String, success:(([[Harvest]]) -> Void)?) {
         if let user = currentUser {
-            ref.child(itemId)
-                //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
-                .child(user.uid)//ここを指定しないとパーミッションによってはエラーになる
-                .observe(.value, with: { (snapshot) in
-                    success?(self.snapshotToHarvests(snapshot: snapshot))
-                }, withCancel: { (error) in
-                    print(error.localizedDescription)
-                })
+            if let previousObserver = observers[itemId] {
+                previousObserver.ref.removeObserver(withHandle: previousObserver.handle)
+                observers.removeValue(forKey: itemId)
+            }
+            let newReference = rootRef.child("\(itemId)/\(user.uid)")
+            let newObserver = newReference.observe(.value, with: { (snapshot) in
+                success?(self.snapshotToHarvests(snapshot: snapshot))
+            }, withCancel: { (error) in
+                print(error.localizedDescription)
+            })
+            observers.updateValue(FirebaseObserver(ref: newReference, handle: newObserver), forKey: itemId)
         }
     }
 
@@ -146,28 +149,32 @@ extension FirebaseService {
     }
     
     fileprivate func observeDishes(user: User, success:(([Dish]) -> Void)?) {
-        ref.child(FirebaseService.ID_DISH_ITEMS)
-            //.child("nzPmjoNg0XXGcNVRLNx6w2L3BZW2")
-            .child(user.uid)
-            .observe(.value, with: { (snapshot) in
-                var items = [Dish]()
-                for child in snapshot.children {
-                    debugPrint(child)
-                    if let data = child as? DataSnapshot {
-                        if let childValue = data.value! as? [String: Any] {
-                            do {
-                                let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
-                                items.append(dish)
-                            } catch let error {
-                                print(error)
-                            }
+        let itemId = FirebaseService.ID_DISH_ITEMS
+        if let previousObserver = observers[itemId] {
+            previousObserver.ref.removeObserver(withHandle: previousObserver.handle)
+            observers.removeValue(forKey: itemId)
+        }
+        let newReference = rootRef.child("\(itemId)/\(user.uid)")
+        let newObserver = newReference.observe(.value, with: { (snapshot) in
+            var items = [Dish]()
+            for child in snapshot.children {
+                debugPrint(child)
+                if let data = child as? DataSnapshot {
+                    if let childValue = data.value! as? [String: Any] {
+                        do {
+                            let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
+                            items.append(dish)
+                        } catch let error {
+                            print(error)
                         }
                     }
                 }
-                items.sort(by: {$0.timeStamp < $1.timeStamp})
-                success?(items)
-            }, withCancel: { (error) in
-                print(error.localizedDescription)
-            })
+            }
+            items.sort(by: {$0.timeStamp < $1.timeStamp})
+            success?(items)
+        }, withCancel: { (error) in
+            print(error.localizedDescription)
+        })
+        observers.updateValue(FirebaseObserver(ref: newReference, handle: newObserver), forKey: itemId)
     }
 }
