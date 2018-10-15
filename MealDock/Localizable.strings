@@ -5,19 +5,21 @@
   Created by 鈴木 航 on 2018/09/15.
   Copyright © 2018年 WataruSuzuki. All rights reserved.
 */
+dishes = "Dishes";
+inFridgeFoods = "In Fridge Foods";
+cartedFoods = "Carted Foods";
+errandFoods = "Errand Foods";
+addNewMarketItem = "Add new Market Item";
 
 signIn = "Sign in";
-accountInfo = "Account Information";
+account = "Account";
+userInfo = "User Information";
 groupInfo = "Group Information";
 signOut = "Sign out";
 deleteAccount = "Delete account";
 
 noFood = "No Foods";
 in_packed_list = "in packed list.";
-
-packed = "Packed";
-in_fridge = "In Fridge";
-carted = "Carted";
 
 protein = "Protein";
 calcium = "Calcium";
@@ -34,8 +36,14 @@ name = "Name";
 type = "Type";
 imageUrl = "Image URL";
 
-invatedMembers = "Invited members";
+settings = "Settings";
+
+invitedMembers = "Invited members";
 manageGrouping = "Manage grouping";
 addNewMember = "Add new member";
 requestToJoin = "Request to join";
 leaveFromGroup = "Leave from group";
+
+aboutThisApp = "About this app";
+help = "Help";
+privacyPolicy = "Privacy policy";

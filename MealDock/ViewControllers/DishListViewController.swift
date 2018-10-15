@@ -28,6 +28,7 @@ class DishListViewController: UICollectionViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = NSLocalizedString("dishes", comment: "")
         self.collectionView!.register(DishCardCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         // Do any additional setup after loading the view.
         self.collectionView!.emptyDataSetSource = self

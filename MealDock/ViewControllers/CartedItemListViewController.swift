@@ -13,7 +13,7 @@ class CartedItemListViewController: MealDockListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("carted", comment: "")
+        self.title = NSLocalizedString("cartedFoods", comment: "")
 
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))

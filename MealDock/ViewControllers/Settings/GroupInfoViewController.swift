@@ -23,6 +23,7 @@ class GroupInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = NSLocalizedString("groupInfo", comment: "")
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         FirebaseService.shared.observeMyDockMember { (members) in
             self.dockMembers = members
@@ -60,11 +61,13 @@ class GroupInfoViewController: UITableViewController {
             switch groupInfo {
             case .invitedMembers:
                 cell.textLabel?.text = dockMembers[indexPath.row].name
-                
+                cell.accessoryType = .none
+
             case .manageGrouping:
                 if let managing = ManageStatus(rawValue: indexPath.row) {
                     cell.textLabel?.text = NSLocalizedString(managing.description(), comment: "")
                 }
+                cell.accessoryType = .detailButton
 
             default:
                 break

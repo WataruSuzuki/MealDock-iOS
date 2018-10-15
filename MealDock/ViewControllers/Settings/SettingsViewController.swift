@@ -13,8 +13,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.title = NSLocalizedString("settings", comment: "")
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -34,7 +33,19 @@ class SettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        if let sections = Sections(rawValue: section) {
+            switch sections {
+            case .account:
+                return AccountRow.max.rawValue
+            case .aboutThisApp:
+                return AboutThisApp.max.rawValue
+            case .signOut:
+                return 1
+            default:
+                break
+            }
+        }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,26 +53,56 @@ class SettingsViewController: UITableViewController {
 
         // Configure the cell...
         if let section = Sections(rawValue: indexPath.section) {
-            cell.textLabel?.text = NSLocalizedString(section.toString(), comment: "")
+            cell.accessoryType = .disclosureIndicator
+            switch section {
+            case .account:
+                if let accountRow = AccountRow(rawValue: indexPath.row) {
+                    cell.textLabel?.text = NSLocalizedString(accountRow.description(), comment: "")
+                }
+            case .aboutThisApp:
+                if let aboutThisRow = AboutThisApp(rawValue: indexPath.row) {
+                    cell.textLabel?.text = NSLocalizedString(aboutThisRow.description(), comment: "")
+                }
+            case .signOut:
+                cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
+                fallthrough
+            default:
+                cell.accessoryType = .none
+                break
+            }
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let sections = Sections(rawValue: section) {
+            if sections != .signOut {
+                return NSLocalizedString(sections.description(), comment: "")
+            }
+        }
+        return nil
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let section = Sections(rawValue: indexPath.section) {
             switch section {
-            case .accountInfo:
-                //FirebaseService.shared.printUserInfo()
+            case .account:
+                if let accountRow = AccountRow(rawValue: indexPath.row) {
+                    switch accountRow {
+                    case .groupInfo:
+                        performSegue(withIdentifier: String(describing: GroupInfoViewController.self), sender: self)
+                        GroupInfoViewController.description()
+                    default:
+                        break
+                    }
+                }
                 break
-            case .groupInfo:
-                performSegue(withIdentifier: String(describing: GroupInfoViewController.self), sender: self)
-                GroupInfoViewController.description()
             case .signOut:
                 FirebaseService.shared.signOut()
                 
-            case .deleteAccount:
-                FirebaseService.shared.deleteCurrentUser()
+//            case .deleteAccount:
+//                FirebaseService.shared.deleteCurrentUser()
                 
             default:
                 break
@@ -78,16 +119,21 @@ class SettingsViewController: UITableViewController {
     }
 
     enum Sections: Int {
-        case accountInfo = 0,
-        groupInfo,
-        help,
-        privacyPolicy,
+        case account = 0,
+        aboutThisApp,
         signOut,
-        deleteAccount,
         max
-        
-        func toString() -> String {
-            return String(describing: self)
-        }
+    }
+    
+    enum AccountRow: Int {
+        case userInfo = 0,
+        groupInfo,
+        max
+    }
+    
+    enum AboutThisApp: Int {
+        case help = 0,
+        privacyPolicy,
+        max
     }
 }
