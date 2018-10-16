@@ -38,6 +38,18 @@ imageUrl = "Image URL";
 
 settings = "Settings";
 
+userInfo = "User information";
+editAccount = "Edit account";
+deleteAccount = "Delete account";
+
+displayName = "Display name";
+email = "Email";
+password = "Password";
+
+changeDisplayName = "Change Display name";
+changeEmail = "Change Email";
+resetPassword = "Reset password";
+
 invitedMembers = "Invited members";
 manageGrouping = "Manage grouping";
 groupOwner = "Group owner";

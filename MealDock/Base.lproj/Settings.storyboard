@@ -44,7 +44,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="0F2-zp-Lu6"/>
                     <connections>
                         <segue destination="vEe-5Y-5m6" kind="show" identifier="GroupInfoViewController" id="UvL-Hj-LFi"/>
-                        <segue destination="WLn-j5-hp0" kind="show" identifier="UsageInfoViewController" id="J2Y-G2-vdG"/>
+                        <segue destination="7Xz-TJ-DIw" kind="show" identifier="UsageInfoViewController" id="J2Y-G2-vdG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wgg-do-uUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -76,36 +76,16 @@
             </objects>
             <point key="canvasLocation" x="2426" y="45"/>
         </scene>
-        <!--Usage Info View Controller-->
-        <scene sceneID="Bup-Kk-rs4">
+        <!--UsageInfoViewController-->
+        <scene sceneID="6sd-MX-Pth">
             <objects>
-                <tableViewController storyboardIdentifier="UsageInfoViewController" id="WLn-j5-hp0" customClass="UsageInfoViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lhF-GN-Ysd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsageInfoCell" id="77h-na-iUF">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="77h-na-iUF" id="SZJ-ja-Xkf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="WLn-j5-hp0" id="77l-uN-g89"/>
-                            <outlet property="delegate" destination="WLn-j5-hp0" id="aBA-k9-bMq"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="efu-qr-0Xe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="UsageInfoViewController" storyboardName="UsageInfo" referencedIdentifier="UsageInfoViewController" id="7Xz-TJ-DIw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xTQ-bz-17d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642" y="-72"/>
+            <point key="canvasLocation" x="2580" y="-86"/>
         </scene>
     </scenes>
     <resources>
-        <image name="baseline_settings_black_36pt" width="36" height="36"/>
+        <image name="baseline_settings_black_36pt" width="72" height="72"/>
     </resources>
 </document>

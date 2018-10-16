@@ -34,7 +34,7 @@ class ShowQrViewController: UIViewController,
         case .requestToJoin:
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanQR))
         case .tellDockId:
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDismiss))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
         }
         if let user = FirebaseService.shared.currentUser,
             let qrStr = generateQRMessage(user: user, type: qrType) {
@@ -86,6 +86,11 @@ class ShowQrViewController: UIViewController,
         return crypt
     }
 
+    @objc func tapDone() {
+        self.presentingViewController?
+            .presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - QRCodeReaderViewControllerDelegate
     
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {

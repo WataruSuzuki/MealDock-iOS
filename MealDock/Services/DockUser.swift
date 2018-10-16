@@ -11,7 +11,7 @@ import Firebase
 
 class DockUser: NSObject {
     
-    private let user: User
+    let user: User
     private var currentDock: String?
     var dockID: String {
         get {
@@ -26,6 +26,7 @@ class DockUser: NSObject {
     var displayName: String? {
         get { return user.displayName }
     }
+    var email: String? { get { return user.email } }
     var usageInfo: UsageInfo?
     private var idAsDock: String?
     var isJoiningSharingGroup: Bool {

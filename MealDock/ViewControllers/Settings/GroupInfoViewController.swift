@@ -177,11 +177,11 @@ class GroupInfoViewController: UITableViewController {
                 if let managing = ManageStatus(rawValue: indexPath.row) {
                     switch managing {
                     case .addNewMember:
-                        if !isGroupOwnerNow() {
+                        if isGroupOwnerNow() {
                             scanQR()
                         }
                     case .requestToJoin:
-                        if isGroupOwnerNow() {
+                        if !isGroupOwnerNow() {
                             generateQR()
                         }
                     default:
@@ -225,12 +225,12 @@ class GroupInfoViewController: UITableViewController {
     
     func scanQR() {
         qrReader.completionBlock = { (result: QRCodeReaderResult?) in
-            debugPrint(result ?? "not found QRCodeReaderResult")
             guard let result = result else {
                 print("Not found QRCodeReaderResult")
                 self.dismiss(animated: true, completion: nil)
                 return
             }
+            debugPrint(result)
             do {
                 let data = result.value.data(using: .utf8)!
                 let handshakeQR = try JSONDecoder().decode(GroupHandshakeQR.self, from: data)

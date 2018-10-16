@@ -23,12 +23,22 @@ class UsageInfoViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return Sections.max.rawValue
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if let sections = Sections(rawValue: section) {
+            switch sections {
+            case .userInfo:
+                return UserInfo.max.rawValue
+            case .editAccount:
+                return EditAccount.max.rawValue
+            case .deleteAccount:
+                return 1
+            default:
+                break
+            }
+        }
         return 0
     }
 
@@ -36,53 +46,89 @@ class UsageInfoViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UsageInfoCell", for: indexPath)
 
         // Configure the cell...
+        if let sections = Sections(rawValue: indexPath.section) {
+            cell.textLabel?.textColor = .black
+            switch sections {
+            case .userInfo:
+                if let userInfoRow = UserInfo(rawValue: indexPath.row) {
+                    cell.textLabel?.text = NSLocalizedString(userInfoRow.description(), comment: "")
+                    cell.detailTextLabel?.text = getUserInfoDetailStr(index: userInfoRow)
+                }
+            case .editAccount:
+                if let editAccountRow = EditAccount(rawValue: indexPath.row) {
+                    cell.textLabel?.text = NSLocalizedString(editAccountRow.description(), comment: "")
+                }
+            case .deleteAccount:
+                cell.textLabel?.text = NSLocalizedString(sections.description(), comment: "")
+                cell.textLabel?.textColor = .red
+            default:
+                break
+            }
+        }
 
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let sections = Sections(rawValue: section) {
+            if sections != .deleteAccount {
+                return NSLocalizedString(sections.description(), comment: "")
+            }
+        }
+        return nil
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let sections = Sections(rawValue: indexPath.section) {
+            switch sections {
+            case .deleteAccount:
+                FirebaseService.shared.deleteCurrentUser()
+                
+            case .editAccount:
+                break
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            case .userInfo: fallthrough
+            default:
+                break
+            }
+        }
+        
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    private func getUserInfoDetailStr(index: UserInfo) -> String {
+        if let user = FirebaseService.shared.currentUser {
+            switch index {
+            case .displayName:
+                return user.displayName ?? ""
+            case .email:
+                return user.email ?? ""
+            case .password:
+                return "*****************"
+            default:
+                break
+            }
+        }
+        return ""
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    enum Sections: Int {
+        case userInfo = 0,
+        editAccount,
+        deleteAccount,
+        max
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    enum UserInfo: Int {
+        case displayName = 0,
+        email,
+        password,
+        max
     }
-    */
-
+    
+    enum EditAccount: Int {
+        case changeDisplayName = 0,
+        changeEmail,
+        resetPassword,
+        max
+    }
 }

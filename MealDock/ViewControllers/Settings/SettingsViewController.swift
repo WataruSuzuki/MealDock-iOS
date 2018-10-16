@@ -103,9 +103,6 @@ class SettingsViewController: UITableViewController {
             case .signOut:
                 FirebaseService.shared.signOut()
                 
-//            case .deleteAccount:
-//                FirebaseService.shared.deleteCurrentUser()
-                
             default:
                 break
             }
