@@ -85,7 +85,14 @@ class UsageInfoViewController: UITableViewController {
                 FirebaseService.shared.deleteCurrentUser()
                 
             case .editAccount:
-                break
+                if let editRow = EditAccount(rawValue: indexPath.row) {
+                    switch editRow {
+                    case .resetPassword:
+                        FirebaseService.shared.sendPasswordReset()
+                    default:
+                        break
+                    }
+                }
 
             case .userInfo: fallthrough
             default:
