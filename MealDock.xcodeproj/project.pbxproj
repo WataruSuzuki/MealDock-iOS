@@ -31,7 +31,7 @@
 		966F5A482170C40A00A47EDF /* GooglePhotosSharedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */; };
 		966F5A4A2170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */; };
 		966F5A4C2171841600A47EDF /* GooglePhoto+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A4B2171841600A47EDF /* GooglePhoto+Upload.swift */; };
-		966F5A4F2171878000A47EDF /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A4E2171878000A47EDF /* CustomError.swift */; };
+		966F5A4F2171878000A47EDF /* OptionalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A4E2171878000A47EDF /* OptionalError.swift */; };
 		966F5A5121718D1100A47EDF /* GooglePhoto+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A5021718D1100A47EDF /* GooglePhoto+Token.swift */; };
 		966F5A53217190DD00A47EDF /* GooglePhoto+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */; };
 		966F5A552171913000A47EDF /* GooglePhoto+Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A542171913000A47EDF /* GooglePhoto+Album.swift */; };
@@ -139,7 +139,7 @@
 		966F5A472170C40A00A47EDF /* GooglePhotosSharedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosSharedInfo.swift; sourceTree = "<group>"; };
 		966F5A492170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosSharedInfoResponse.swift; sourceTree = "<group>"; };
 		966F5A4B2171841600A47EDF /* GooglePhoto+Upload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Upload.swift"; sourceTree = "<group>"; };
-		966F5A4E2171878000A47EDF /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		966F5A4E2171878000A47EDF /* OptionalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalError.swift; sourceTree = "<group>"; };
 		966F5A5021718D1100A47EDF /* GooglePhoto+Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Token.swift"; sourceTree = "<group>"; };
 		966F5A52217190DD00A47EDF /* GooglePhoto+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Access.swift"; sourceTree = "<group>"; };
 		966F5A542171913000A47EDF /* GooglePhoto+Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GooglePhoto+Album.swift"; sourceTree = "<group>"; };
@@ -328,7 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				CC77E4FE2165E875002891BB /* Extensions */,
-				966F5A4E2171878000A47EDF /* CustomError.swift */,
+				966F5A4E2171878000A47EDF /* OptionalError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -337,9 +337,9 @@
 			isa = PBXGroup;
 			children = (
 				9615BDE7214CA79C001801D5 /* SettingsViewController.swift */,
+				CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */,
 				966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */,
 				966F5A642173364B00A47EDF /* ShowQrViewController.swift */,
-				CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -841,7 +841,7 @@
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
 				96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */,
 				967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */,
-				966F5A4F2171878000A47EDF /* CustomError.swift in Sources */,
+				966F5A4F2171878000A47EDF /* OptionalError.swift in Sources */,
 				96FC04DD2168599300533529 /* Firebase+QueryHarvest.swift in Sources */,
 				966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,

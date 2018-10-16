@@ -71,21 +71,26 @@ extension FirebaseService {
                     print(error)
                 }
             }
+            A0SimpleKeychain().deleteEntry(forKey: initializedFUIAuth)
+            A0SimpleKeychain().deleteEntry(forKey: emailFUIAuth)
+            A0SimpleKeychain().deleteEntry(forKey: passwordFUIAuth)
+            A0SimpleKeychain().deleteEntry(forKey: usernameFUIAuth)
         }
     }
 
-    func createMyDockGroup() {
-    }
-    
     func deleteMyDockGroup() {
         if let user = currentUser {
             rootRef.child("\(FirebaseService.ID_USAGE)/\(user.uid)/currentDock").removeValue()
             rootRef.child("\(FirebaseService.ID_MEAL_DOCKS)/\(user.uid)").removeValue()
         }
-        A0SimpleKeychain().deleteEntry(forKey: initializedFUIAuth)
-        A0SimpleKeychain().deleteEntry(forKey: emailFUIAuth)
-        A0SimpleKeychain().deleteEntry(forKey: passwordFUIAuth)
-        A0SimpleKeychain().deleteEntry(forKey: usernameFUIAuth)
+    }
+    
+    func sendPasswordReset() {
+        if let auth = defaultAuthUI.auth, let email = currentUser?.email {
+            auth.sendPasswordReset(withEmail: email) { (error) in
+                print(error ?? OptionalError.kaomojiErrorStr(funcName: #function))
+            }
+        }
     }
     
 }

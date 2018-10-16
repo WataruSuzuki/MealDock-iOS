@@ -11,37 +11,37 @@ import Firebase
 
 class DockUser: NSObject {
     
-    let user: User
+    let firUser: User
     private var currentDock: String?
     var dockID: String {
         get {
             if let currentId = currentDock {
                 return currentId
             } else {
-                return user.uid
+                return firUser.uid
             }
         }
     }
-    var uid: String { get { return user.uid } }
+    var uid: String { get { return firUser.uid } }
     var displayName: String? {
-        get { return user.displayName }
+        get { return firUser.displayName }
     }
-    var email: String? { get { return user.email } }
+    var email: String? { get { return firUser.email } }
     var usageInfo: UsageInfo?
     private var idAsDock: String?
     var isJoiningSharingGroup: Bool {
         get {
-            return idAsDock != nil && idAsDock != user.uid
+            return idAsDock != nil && idAsDock != firUser.uid
         }
     }
     var isGroupOwnerMode: Bool {
         get {
-            return currentDock == user.uid
+            return currentDock == firUser.uid
         }
     }
 
     init(user: User) {
-        self.user = user
+        self.firUser = user
         super.init()
         startObserving()
     }
@@ -59,13 +59,13 @@ class DockUser: NSObject {
     var switchingDock :((String?) -> Void)?
     
     func delete(completion: UserProfileChangeCallback?) {
-        user.delete(completion: completion)
+        firUser.delete(completion: completion)
     }
     
     func printUserInfo() {
-        debugPrint("uid = \(user.uid)")
-        debugPrint("displayName = \(String(describing: user.displayName))")
-        debugPrint("email = \(String(describing: user.email))")
+        debugPrint("uid = \(firUser.uid)")
+        debugPrint("displayName = \(String(describing: firUser.displayName))")
+        debugPrint("email = \(String(describing: firUser.email))")
     }
     
 }

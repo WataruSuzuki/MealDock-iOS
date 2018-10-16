@@ -1,5 +1,5 @@
 //
-//  CustomError.swift
+//  OptionalError.swift
 //  MealDock
 //
 //  Created by 鈴木 航 on 2018/10/13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomError: NSError {
+class OptionalError: NSError {
 
     init(with type: ErrorType, userInfo: [String : Any]?) {
         super.init(domain: Bundle.main.bundleIdentifier ?? "(・w・)", code: type.rawValue, userInfo: userInfo)
@@ -16,6 +16,10 @@ class CustomError: NSError {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func kaomojiErrorStr(funcName: String) -> String {
+        return "(・A・)!! " + funcName
     }
     
     enum ErrorType: Int {
