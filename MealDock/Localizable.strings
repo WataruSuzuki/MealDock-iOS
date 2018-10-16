@@ -61,3 +61,4 @@ help = "Help";
 privacyPolicy = "Privacy policy";
 
 msg_remove_joining_info = "Leave from group? Sharing information will be removed & please re-setup if you join to other group again";
+requiresRecentLogin = "Your login is too old. Please login again.";

@@ -65,10 +65,20 @@ extension FirebaseService {
             removeAllInFridgeHarvest()
             removeAllCartedHarvest()
             removeAllMarketItems()
-            signOut()
             user.delete { (error) in
                 if let error = error {
                     print(error)
+                    guard let errorCode = AuthErrorCode(rawValue: error._code) else { return }
+                    switch errorCode {
+                    case .requiresRecentLogin:
+                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                            self.signOut()
+                        })
+                        self.alertErrorMessage(message: NSLocalizedString("requiresRecentLogin", comment: ""), actions: [action])
+                        
+                    default:
+                        break
+                    }
                 }
             }
             A0SimpleKeychain().deleteEntry(forKey: initializedFUIAuth)

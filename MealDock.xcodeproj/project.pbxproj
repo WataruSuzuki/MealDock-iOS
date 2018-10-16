@@ -45,6 +45,7 @@
 		966F5A6E2174D94E00A47EDF /* FirebaseObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A6D2174D94E00A47EDF /* FirebaseObserver.swift */; };
 		966F5A71217627F700A47EDF /* UsageInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F5A6F217627F700A47EDF /* UsageInfo.storyboard */; };
 		966F5A742176289100A47EDF /* GroupInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F5A722176289100A47EDF /* GroupInfo.storyboard */; };
+		966F5A762176313900A47EDF /* Firebase+HandleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A752176313900A47EDF /* Firebase+HandleError.swift */; };
 		967146B8216B807100DDA65E /* UsageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UsageInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
@@ -153,6 +154,7 @@
 		966F5A6D2174D94E00A47EDF /* FirebaseObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseObserver.swift; sourceTree = "<group>"; };
 		966F5A70217627F700A47EDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UsageInfo.storyboard; sourceTree = "<group>"; };
 		966F5A732176289100A47EDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GroupInfo.storyboard; sourceTree = "<group>"; };
+		966F5A752176313900A47EDF /* Firebase+HandleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+HandleError.swift"; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UsageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				964C00C1214FA8770099689B /* Firebase+CommandHarvest.swift */,
 				96FC04DC2168599300533529 /* Firebase+QueryHarvest.swift */,
 				CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */,
+				966F5A752176313900A47EDF /* Firebase+HandleError.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -843,6 +846,7 @@
 				967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */,
 				966F5A4F2171878000A47EDF /* OptionalError.swift in Sources */,
 				96FC04DD2168599300533529 /* Firebase+QueryHarvest.swift in Sources */,
+				966F5A762176313900A47EDF /* Firebase+HandleError.swift in Sources */,
 				966F5A652173364B00A47EDF /* ShowQrViewController.swift in Sources */,
 				9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */,
 				966F5A6C2174B7D200A47EDF /* DockMember.swift in Sources */,
