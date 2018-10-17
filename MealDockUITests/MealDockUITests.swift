@@ -61,9 +61,9 @@ class MealDockUITests: XCTestCase {
     }
     
     class func waitingSec(sec: Double, sender: XCTestCase) {
-        let expectation = sender.expectation(description: "Waiting")
+        weak var expectation = sender.expectation(description: "Waiting")
         DispatchQueue.main.asyncAfter(deadline: .now() + sec) {
-            expectation.fulfill()
+            expectation?.fulfill()
         }
         sender.waitForExpectations(timeout: (TimeInterval(sec + 2))) { (error) in
             //do nothing

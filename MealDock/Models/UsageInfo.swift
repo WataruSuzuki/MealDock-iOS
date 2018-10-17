@@ -24,6 +24,9 @@ struct UsageInfo: Codable {
         max
         
         func limitSize() -> Int {
+            #if SIMULATING_PURCHASED
+            return 100
+            #else
             switch self {
             case .unlockAd: return 40
             case .unlockPremium: return 100
@@ -31,6 +34,7 @@ struct UsageInfo: Codable {
             case .free: return 20
             case .max: return 20
             }
+            #endif
         }
         
         func productId() -> String {
