@@ -12,6 +12,7 @@
 		9601C8EC218EE1E00034F045 /* EditCustomItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601C8EB218EE1E00034F045 /* EditCustomItemsViewController.swift */; };
 		9601C8EF218EE2720034F045 /* EditCustomMarketItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9601C8ED218EE2720034F045 /* EditCustomMarketItem.storyboard */; };
 		9601C8F1218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */; };
+		960FAAB82191D7BE00784637 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */; };
 		9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615BDE7214CA79C001801D5 /* SettingsViewController.swift */; };
 		9615BDEB214CA7E0001801D5 /* InFridgeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */; };
 		9615BDEE214CA822001801D5 /* CartedItemList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDEC214CA822001801D5 /* CartedItemList.storyboard */; };
@@ -54,7 +55,6 @@
 		966F5A7A2178D0A200A47EDF /* UICollectionView+CellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A792178D0A200A47EDF /* UICollectionView+CellSize.swift */; };
 		967146B8216B807100DDA65E /* UsageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UsageInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
-		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */; };
 		96B49BB42185608A00657702 /* GooglePhotosErrorMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B49BB32185608A00657702 /* GooglePhotosErrorMedia.swift */; };
 		96B49BB821859CAC00657702 /* DetailDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B49BB721859CAC00657702 /* DetailDishViewController.swift */; };
@@ -143,6 +143,7 @@
 		9601C8EB218EE1E00034F045 /* EditCustomItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomItemsViewController.swift; sourceTree = "<group>"; };
 		9601C8EE218EE2720034F045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditCustomMarketItem.storyboard; sourceTree = "<group>"; };
 		9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCustomMarketItemDelegate.swift; sourceTree = "<group>"; };
+		960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
 		9615BDE7214CA79C001801D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9615BDEA214CA7E0001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InFridgeList.storyboard; sourceTree = "<group>"; };
 		9615BDED214CA822001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CartedItemList.storyboard; sourceTree = "<group>"; };
@@ -193,7 +194,6 @@
 		966F5A792178D0A200A47EDF /* UICollectionView+CellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CellSize.swift"; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UsageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
-		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
 		96B49BA92184518200657702 /* development.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = development.entitlements; sourceTree = "<group>"; };
 		96B49BB32185608A00657702 /* GooglePhotosErrorMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosErrorMedia.swift; sourceTree = "<group>"; };
@@ -378,7 +378,6 @@
 			isa = PBXGroup;
 			children = (
 				96317CA7210F56FD00F81F22 /* MealDockTests.swift */,
-				967146C3216E40A600DDA65E /* Firebase */,
 				96317CA9210F56FD00F81F22 /* Info.plist */,
 			);
 			path = MealDockTests;
@@ -461,14 +460,6 @@
 				966F5A5021718D1100A47EDF /* GooglePhoto+Token.swift */,
 			);
 			path = GooglePhotos;
-			sourceTree = "<group>";
-		};
-		967146C3216E40A600DDA65E /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				967146C1216E409E00DDA65E /* PermissionTest.swift */,
-			);
-			path = Firebase;
 			sourceTree = "<group>";
 		};
 		9696B4A4214C8DAF001DFB60 /* Firebase */ = {
@@ -598,6 +589,7 @@
 		CC77E4FE2165E875002891BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */,
 				CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */,
 				966F5A6021731A6100A47EDF /* Enum+Description.swift */,
 				CC39A1AD217DB52900074342 /* String+encript.swift */,
@@ -980,6 +972,7 @@
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,
 				CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */,
 				CCCFAC34216F518F002279B3 /* GooglePhotosMediaItem.swift in Sources */,
+				960FAAB82191D7BE00784637 /* UIImage+Orientation.swift in Sources */,
 				966F5A53217190DD00A47EDF /* GooglePhoto+Access.swift in Sources */,
 				CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */,
 				966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */,
@@ -1027,7 +1020,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */,
 				96317CA8210F56FD00F81F22 /* MealDockTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
