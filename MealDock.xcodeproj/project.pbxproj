@@ -13,6 +13,7 @@
 		9601C8EF218EE2720034F045 /* EditCustomMarketItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9601C8ED218EE2720034F045 /* EditCustomMarketItem.storyboard */; };
 		9601C8F1218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */; };
 		960FAAB82191D7BE00784637 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */; };
+		960FAABA2191E18E00784637 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960FAAB92191E18E00784637 /* ImageCacheService.swift */; };
 		9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615BDE7214CA79C001801D5 /* SettingsViewController.swift */; };
 		9615BDEB214CA7E0001801D5 /* InFridgeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */; };
 		9615BDEE214CA822001801D5 /* CartedItemList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDEC214CA822001801D5 /* CartedItemList.storyboard */; };
@@ -144,6 +145,7 @@
 		9601C8EE218EE2720034F045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditCustomMarketItem.storyboard; sourceTree = "<group>"; };
 		9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCustomMarketItemDelegate.swift; sourceTree = "<group>"; };
 		960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
+		960FAAB92191E18E00784637 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		9615BDE7214CA79C001801D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9615BDEA214CA7E0001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InFridgeList.storyboard; sourceTree = "<group>"; };
 		9615BDED214CA822001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CartedItemList.storyboard; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				9696B4A4214C8DAF001DFB60 /* Firebase */,
 				967146C0216E353000DDA65E /* GooglePhotos */,
 				CC54D960217978F000E42F28 /* Purchase */,
+				960FAAB92191E18E00784637 /* ImageCacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1008,6 +1011,7 @@
 				CC6495062174934100580268 /* Firebase+Dock.swift in Sources */,
 				CC39A1AC217DB3A400074342 /* Purchase+Consent.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,
+				960FAABA2191E18E00784637 /* ImageCacheService.swift in Sources */,
 				9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */,
 				CC39A1A9217D8D0500074342 /* Purchase+AdMobReward.swift in Sources */,
 				966F5A482170C40A00A47EDF /* GooglePhotosSharedInfo.swift in Sources */,

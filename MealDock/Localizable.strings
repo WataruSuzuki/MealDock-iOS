@@ -13,6 +13,7 @@ errandFoods = "Errand Foods";
 addNewMarketItem = "Add new Market Item";
 editCustomItem = "Delete custom market item";
 
+select = "Select";
 no_dishes = "No Dishes";
 no_foods = "No Foods";
 
