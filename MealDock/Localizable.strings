@@ -40,16 +40,15 @@ imageUrl = "Image URL";
 
 settings = "Settings";
 
-userInfo = "User information";
-editAccount = "Edit account";
-deleteAccount = "Delete account";
+editAccount = "Edit Account";
+deleteAccount = "Delete Account";
 
 displayName = "Display name";
 email = "Email";
 password = "Password";
 
-changeDisplayName = "Change Display name";
-changeEmail = "Change Email";
+changeDisplayName = "Change display name";
+changeEmail = "Change email";
 resetPassword = "Reset password";
 receive_your_change_request = "Receive your change request";
 
@@ -58,6 +57,9 @@ manageGrouping = "Manage grouping";
 groupOwner = "Group owner";
 addNewMember = "Add new member";
 requestToJoin = "Request to join";
+
+detailButton_addNewMember = "Add new member as group owner, first capture new member's QR code, then show your group's info QR to new member.";
+detailButton_requestToJoin = "Join to new group, first show your QR to group owner, then capture group's QR.";
 
 aboutThisApp = "About this app";
 help = "Help";

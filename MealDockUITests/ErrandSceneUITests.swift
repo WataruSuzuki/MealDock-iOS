@@ -44,5 +44,26 @@ class ErrandSceneUITests: XCTestCase {
         app.scrollViews.otherElements.collectionViews.cells.containing(.staticText, identifier:ErrandSceneUITests.itemName).children(matching: .other).element.tap()
         app.navigationBars["Errand Foods"].buttons["Done"].tap()
     }
+    
+    func testDeleteCustomMarketItem() {
+        let app = XCUIApplication()
+        app.tabBars.buttons["Carted Foods"].tap()
+        app.navigationBars["Carted Foods"].buttons["Add"].tap()
+        app.buttons["baseline more horiz black 36pt"].tap()
+        app.sheets["menu"].buttons["Delete custom market item"].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.cells.staticTexts[ErrandSceneUITests.itemName].swipeLeft()
+        tablesQuery.buttons["Delete"].tap()
+        
+        let deleted = tablesQuery.cells.staticTexts[ErrandSceneUITests.itemName]
+        XCTAssertFalse(deleted.exists)
+        
+        app.navigationBars["Delete custom market item"].buttons["Done"].tap()
+        app.buttons["baseline more horiz black 36pt"].tap()
+        app.sheets["menu"].buttons["Delete custom market item"].tap()
+        app.navigationBars["Delete custom market item"].buttons["Done"].tap()
+        app.navigationBars["Errand Foods"].buttons["Cancel"].tap()
+    }
 
 }

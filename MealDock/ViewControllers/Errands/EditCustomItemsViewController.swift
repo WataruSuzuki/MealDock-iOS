@@ -86,9 +86,6 @@ class EditCustomMarketItemsViewController: UITableViewController {
     
     @objc func tapDone() {
         delegate?.updatedItem()
-    }
-
-    deinit {
         FirebaseService.shared.removeCustomMarketItemObsever()
     }
 }
