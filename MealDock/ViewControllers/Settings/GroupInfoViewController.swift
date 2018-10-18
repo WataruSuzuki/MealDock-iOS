@@ -23,7 +23,6 @@ class GroupInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.title = NSLocalizedString("groupInfo", comment: "")
         if isGroupOwnerNow() {
             self.navigationItem.rightBarButtonItem = self.editButtonItem
         }
