@@ -82,7 +82,7 @@ class UsageInfoViewController: UITableViewController {
         if let sections = Sections(rawValue: indexPath.section) {
             switch sections {
             case .deleteAccount:
-                FirebaseService.shared.deleteCurrentUser()
+                confirmDeleteAccountAlert()
                 
             case .editAccount:
                 if let editRow = EditAccount(rawValue: indexPath.row) {
@@ -107,7 +107,7 @@ class UsageInfoViewController: UITableViewController {
     func showInputNewInfoController(row: EditAccount) {
         var keyboard = UIKeyboardType.default
         var content: UITextContentType!
-        var msg = "";
+        var msg = ""
         switch row {
         case .changeEmail:
             keyboard = .emailAddress
@@ -131,13 +131,36 @@ class UsageInfoViewController: UITableViewController {
                 text.textContentType = content
             }
         })
-        let completeAction:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (action) in
+        let completeAction = UIAlertAction(title: "OK", style: .default) { (action) in
             self.updateUserInfoByNewStr(row: row, alert: controller)
         }
         controller.addAction(completeAction)
         present(controller, animated: true, completion: nil)
     }
     
+    @objc func textFieldEditingChanged(textField: UITextField) {
+        deleteAction.isEnabled = textField.text == FirebaseService.shared.currentUser?.core.email
+    }
+    var deleteAction: UIAlertAction!
+    
+    func confirmDeleteAccountAlert() {
+        let controller = UIAlertController(title: "(・A・)", message: NSLocalizedString("msg_delete_account", comment: ""), preferredStyle: .alert)
+        controller.addEmptyCancelAction()
+        controller.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+            text.keyboardType = .emailAddress
+            text.addTarget(self, action: #selector(self.textFieldEditingChanged), for: .editingChanged)
+        })
+        deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            debugPrint("(；人；)")
+            self.navigationController?.popViewController(animated: true)
+            FirebaseService.shared.deleteCurrentUser()
+        }
+        deleteAction.isEnabled = false
+        controller.addAction(deleteAction)
+        present(controller, animated: true, completion: nil)
+    }
+    
+
     func updateUserInfoByNewStr(row: EditAccount, alert: UIAlertController) {
         if let textFields = alert.textFields {
             if textFields.count > 0 {

@@ -231,6 +231,10 @@ class DishListViewController: UICollectionViewController,
         if items.count > 0 {
             FirebaseService.shared.removeDishes(dishes: items)
             UIViewController.snackBarMessage(text: "(=^ ω ^=)" + NSLocalizedString("gochi_sou_sama", comment: ""))
+            checkedItems.removeAll()
+            isSelectMode = false
+            fab.isHidden = true
+            self.collectionView?.reloadData()
         } else {
             UIViewController.snackBarMessage(text: "(=・∀・=)??")
         }

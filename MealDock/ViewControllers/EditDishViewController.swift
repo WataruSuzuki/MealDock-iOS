@@ -211,10 +211,17 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     @objc func tapDone() {
+        let alert = UIAlertController(title: "(=・∀・=)", message: NSLocalizedString("msg_saving_data", comment: ""), preferredStyle: .alert)
+        let _ = alert.view.startIndicator()
+        present(alert, animated: true, completion: nil)
+        
         GooglePhotosService.shared.uploadDishPhoto(image: capturePhotoView?.image, uploadedMediaId: { (path) in
             FirebaseService.shared.addDish(dish: self.generateDishData(path: path))
-            self.dismiss(animated: true, completion: nil)
+            alert.dismiss(animated: true, completion: {
+                self.dismiss(animated: true, completion: nil)
+            })
         }) { (error) in
+            alert.dismiss(animated: false, completion: nil)
             if let error = error {
                 OptionalError.alertErrorMessage(error: error)
             } else {
@@ -224,13 +231,13 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     fileprivate func generateDishData(path: String) -> Dish {
-        var title: String!
+        var title = ""
         var description: String!
         for section in Section.allCases {
             if let cell = collectionView?.cellForItem(at: IndexPath(row: 0, section: section.rawValue)) as? TextFieldCell {
                 switch section {
                 case .title:
-                    title = cell.textField.text
+                    title = cell.textField.text ?? ""
                 case .description:
                     description = cell.multiLineField.text
                 default:

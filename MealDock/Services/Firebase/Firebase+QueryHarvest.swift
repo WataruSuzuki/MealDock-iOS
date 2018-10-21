@@ -171,15 +171,15 @@ extension FirebaseService {
             }
             self.itemCounters.updateValue(items.count, forKey: itemId)
             items.sort(by: {$0.timeStamp < $1.timeStamp})
-            if !user.isPurchased {
-                let fakeDish = Dish(title: "💩", description: "Ad", imagePath: "", harvest: [])
-                let count = items.count
-                for index in 0..<count {
-                    if index % 5 == 0 {
-                        items.insert(fakeDish, at: index)
-                    }
-                }
-            }
+//            if !user.isPurchased {
+//                let fakeDish = Dish(title: "💩", description: "Ad", imagePath: "", harvest: [])
+//                let count = items.count
+//                for index in 0..<count {
+//                    if index % 5 == 0 {
+//                        items.insert(fakeDish, at: index)
+//                    }
+//                }
+//            }
             success?(items)
         }, withCancel: { (error) in
             print(error.localizedDescription)
