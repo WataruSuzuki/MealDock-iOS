@@ -6,26 +6,22 @@
 	<string>ca-app-pub-3940256099942544/2934735716</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
-    <key>AD_UNIT_ID_FOR_NATIVE_TEST</key>
-    <string>ca-app-pub-3940256099942544/3986624511</string>
-    <key>AD_UNIT_ID_FOR_REWARDED_TEST</key>
-    <string>ca-app-pub-3940256099942544/1712485313</string>
 	<key>CLIENT_ID</key>
-	<string>929638895717-60457p806v46c9ljjo7mpncqb1qrtsqf.apps.googleusercontent.com</string>
+	<string>647833369806-6pk55msl26khlvrbtdj2n653phd2jfrr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.929638895717-60457p806v46c9ljjo7mpncqb1qrtsqf</string>
+	<string>com.googleusercontent.apps.647833369806-6pk55msl26khlvrbtdj2n653phd2jfrr</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAOv0rWl7tBRscGQJUwb9_NaCfKra_udgE</string>
+	<string>AIzaSyBjzgn3MJH2iOzwCNOUuJYln3TeX5RLSQw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>929638895717</string>
+	<string>647833369806</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>jp.co.JchanKchan.MealDock.dev</string>
+	<string>jp.co.JchanKchan.MealDock</string>
 	<key>PROJECT_ID</key>
-	<string>example-devjchankchan</string>
+	<string>meal-dock</string>
 	<key>STORAGE_BUCKET</key>
-	<string>example-devjchankchan.appspot.com</string>
+	<string>meal-dock.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -37,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:929638895717:ios:60e9ca875a5cd7f5</string>
+	<string>1:647833369806:ios:4b78ed9f39ee7601</string>
 	<key>DATABASE_URL</key>
-	<string>https://example-devjchankchan.firebaseio.com</string>
+	<string>https://meal-dock.firebaseio.com</string>
 </dict>
 </plist>
