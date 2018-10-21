@@ -11,7 +11,7 @@ import StoreKit
 import SwiftyStoreKit
 
 extension PurchaseService {
-    static let sharedSecret = "your-shared-secret"
+    static let sharedSecret = "12593bb40adf4724a62b941a0fe563b6"
     
     //Note that completeTransactions() should only be called once in your code
     func completeTransactions() {
