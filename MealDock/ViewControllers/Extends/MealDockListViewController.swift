@@ -145,6 +145,19 @@ class MealDockListViewController: UITableViewController,
         return NSAttributedString(string: "Let's start to add foods")
     }
     
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+        if let _ =  FirebaseService.shared.currentUser {
+            return NSAttributedString()
+        } else {
+            return NSAttributedString(string: "Sign In")
+        }
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        guard FirebaseService.shared.currentUser == nil else { return }
+        FirebaseService.shared.requestAuthUI()
+    }
+
     func onFabTapped() {
         self.fab.isHidden = true
         checkedItems.removeAll()

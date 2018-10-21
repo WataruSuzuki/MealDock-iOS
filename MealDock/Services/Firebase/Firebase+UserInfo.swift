@@ -34,6 +34,7 @@ extension FirebaseService {
         let newReference = rootRef.child("\(itemId)/\(user.core.uid)")
         let newObserver = newReference.observe(.value) { (snapshot) in
             guard let data = snapshot.value! as? [String: Any] else {
+                debugPrint(snapshot)
                 self.InitializedUsageInfo()
                 return
             }
@@ -50,9 +51,9 @@ extension FirebaseService {
         if let user = currentUser {
             addMyDockGroupMember(memberId: user.core.uid, name: user.core.displayName ?? "Dock Owner")
             rootRef.child("\(FirebaseService.ID_USAGE)/\(user.core.uid)").setValue([
-                "purchasePlan": UsageInfo.PurchasePlan.free.rawValue,
-                "currentDock": user.core.uid
+                "purchasePlan": UsageInfo.PurchasePlan.free.rawValue
                 ])
+            joinToGroupDock(dock: user.core.uid, id: user.core.uid)
         }
     }
     
@@ -84,12 +85,12 @@ extension FirebaseService {
     
     func deleteCurrentUser() {
         if let user = currentUser {
-            deleteMyDockGroup()
             deleteUsageInfo()
             removeAllMyDishes()
             removeAllInFridgeHarvest()
             removeAllCartedHarvest()
             removeAllMarketItems()
+            deleteMyDockGroup()
             user.delete { (error) in
                 self.handleError(error: error, funcName: #function)
             }

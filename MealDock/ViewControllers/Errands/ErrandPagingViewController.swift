@@ -29,7 +29,7 @@ class ErrandPagingViewController: UIViewController {
 
         let storyboard = UIStoryboard(name: "Errand", bundle: nil)
         var controllers = [ErrandViewController]()
-        for i in 0..<Harvest.Section.max.rawValue{
+        for i in 0..<items.count {
             let controller = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
             controller.title = NSLocalizedString(items[i].type, comment: "")
             controller.items = items[i].items
