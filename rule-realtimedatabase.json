@@ -1,0 +1,46 @@
+{
+  "rules": {
+    "mealdocks": {
+        "$user_id": {
+            ".read": "auth.uid === $user_id",
+            ".write": "auth.uid === $user_id"
+        }
+    },
+    "usage": {
+        "$user_id": {
+            ".read": "auth.uid === $user_id",
+            ".write": "auth.uid === $user_id"
+        }
+    },
+    "photos": {
+        "$meal_dock_id": {
+            ".read": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()",
+            ".write": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()"
+        }
+    },
+    "market_items": {
+        "$meal_dock_id": {
+            ".read": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()",
+            ".write": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()"
+        }
+    },
+    "dishes": {
+        "$meal_dock_id": {
+            ".read": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()",
+            ".write": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()"
+        }
+    },
+    "in_fridge_items": {
+        "$meal_dock_id": {
+            ".read": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()",
+            ".write": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()"
+        }
+    },
+    "carted_items": {
+        "$meal_dock_id": {
+            ".read": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()",
+            ".write": "root.child('mealdocks/'+$meal_dock_id).child(root.child('usage/'+ auth.uid + '/currentID').val()).exists()"
+        }
+    }
+  }
+}
