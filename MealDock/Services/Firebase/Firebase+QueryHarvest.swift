@@ -88,7 +88,7 @@ extension FirebaseService {
     }
     
     fileprivate func loadDefaultMarketItems(result:(([MarketItems], Error?) -> Void)?) {
-        let jsonUrl = "https://watarusuzuki.github.io/MealDock/default_market_items.json"
+        let jsonUrl = "https://watarusuzuki.github.io/MealDock/v1/default_market_items.json"
         Alamofire.request(jsonUrl).responseJSON { (response) in
             guard response.result.isSuccess, let jsonData = response.data else {
                     result?([MarketItems](), response.result.error!)
