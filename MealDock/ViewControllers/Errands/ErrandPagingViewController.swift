@@ -140,6 +140,8 @@ class ErrandPagingViewController: UIViewController,
             self.performSegue(withIdentifier: String(describing: EditCustomMarketItemsViewController.self), sender: self)
         }
         actionSheet.addAction(editingCustomItems)
+        actionSheet.popoverPresentationController?.sourceView = bottomBarView
+        actionSheet.popoverPresentationController?.permittedArrowDirections = .down
         present(actionSheet, animated: true, completion: nil)
     }
 

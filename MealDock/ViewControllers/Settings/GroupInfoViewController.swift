@@ -118,15 +118,15 @@ class GroupInfoViewController: UITableViewController {
         if !sender.isOn {
             FirebaseService.shared.joinToGroupDock(dock: "temp", id: "temp")
         } else {
-            let sheet = UIAlertController(title: "(・A・)", message: NSLocalizedString("msg_remove_joining_info", comment: ""), preferredStyle: .actionSheet)
+            let controller = UIAlertController(title: "(・A・)", message: NSLocalizedString("msg_remove_joining_info", comment: ""), preferredStyle: (UIDevice.current.userInterfaceIdiom == .phone ? .actionSheet : .alert))
             let removeAction = UIAlertAction(title: "Execute", style: .destructive) { (action) in
                 FirebaseService.shared.joinToGroupDock(dock: nil, id: nil)
             }
-            sheet.addAction(removeAction)
-            sheet.addCancelAction { (action) in
+            controller.addAction(removeAction)
+            controller.addCancelAction { (action) in
                 self.tableView.reloadSections(IndexSet(integer: Sections.manageGrouping.rawValue), with: .automatic)
             }
-            present(sheet, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
         }
     }
     
