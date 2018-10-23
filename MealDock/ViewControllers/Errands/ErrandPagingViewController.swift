@@ -36,7 +36,7 @@ class ErrandPagingViewController: UIViewController,
     func instatiatePavingViews() {
         let storyboard = UIStoryboard(name: "Errand", bundle: nil)
         var controllers = [ErrandViewController]()
-        for i in 0..<items.count {
+        for i in (0..<items.count).reversed() {
             let controller = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
             controller.items = items[i].items
             if let section = Harvest.Section(rawValue: i) {
