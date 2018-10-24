@@ -67,7 +67,8 @@ class PurchaseMenuViewController: UITableViewController {
             case .unlockPremium:
                 PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockPremium.productId()], atomically: false)
             case .subscriptionBasic:
-                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.subscriptionBasic.productId()], atomically: false)
+                //PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.subscriptionBasic.productId()], atomically: false)
+                performSegue(withIdentifier: String(describing: ConfirmSubscriptionViewController.self), sender: self)
             default:
                 break
             }
