@@ -30,12 +30,14 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0.3</string>
+	<string>0.5</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>(・∀・)</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>(・∀・)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>(・∀・)</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
