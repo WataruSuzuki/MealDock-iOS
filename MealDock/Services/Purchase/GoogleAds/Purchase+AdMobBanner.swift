@@ -14,7 +14,7 @@ extension PurchaseService: GADBannerViewDelegate {
         return bannerView(unitId: unitId, size: kGADAdSizeBanner, rootViewController: rootViewController)
     }
     
-    func middiumSizeBanner(unitId: String, rootViewController: UIViewController) -> UIView {
+    func mediumSizeBanner(unitId: String, rootViewController: UIViewController) -> UIView {
         return bannerView(unitId: unitId, size: kGADAdSizeMediumRectangle, rootViewController: rootViewController)
     }
     

@@ -71,7 +71,7 @@ extension Harvest {
         self.name = name
         self.section = section
         self.imageUrl = imageUrl
-        self.count = 1
+        self.count = 0
         self.timeStamp = NSDate().timeIntervalSince1970
     }
 }
