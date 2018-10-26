@@ -74,7 +74,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         debugPrint("Reward based video ad is closed.")
         guard let user = FirebaseService.shared.currentUser, !user.isPurchased else { return }
-        loadReward(unitId: "your_reward_unit_id")
+        loadReward(unitId: "ca-app-pub-3165756184642596/6250955761")
     }
     
     func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
