@@ -30,6 +30,10 @@ struct UsageInfo: Codable {
                 return 20
             }
         }
+        
+        func productId() -> String {
+            return Bundle.main.bundleIdentifier! + "." + self.description()
+        }
     }
 }
 

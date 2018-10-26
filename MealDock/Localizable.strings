@@ -50,6 +50,7 @@ password = "Password";
 changeDisplayName = "Change Display name";
 changeEmail = "Change Email";
 resetPassword = "Reset password";
+receive_your_change_request = "Receive your change request";
 
 invitedMembers = "Invited members";
 manageGrouping = "Manage grouping";
@@ -81,11 +82,17 @@ disconnected_network = "Disconnect network";
 ticket = "Ticket";
 rewared = "Get ticket by reward";
 footer_reward = "In free using, you need to register data by ticket. \nYou can get ticket after watched ad as reward.";
+please_wait = "Please wait...";
+current_ticket = "Current ticket";
 
 purchase = "Purchase";
 unlockAd = "Unlock Ad";
 subscription = "Premium Plan";
 restore = "Restore purchase";
+
+footer_unlockAd = "Unlock ads, become to use without tickets. \nAnd your limit of item counts will be upgrade to 50. \nDefault limit is 20.";
+footer_subscription = "This is monthly subscription. \nUnlock ads, become to use without tickets, and your limit of item counts will be upgrade to 100.";
+footer_restore = "Will be restore your purchase \"at iOS\". \nCannot restore any other platform.";
 
 //InAppPurchase...
 cannot_pay = "Cannot pay";

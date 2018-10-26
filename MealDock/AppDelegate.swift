@@ -10,6 +10,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    static let privacyPolicyUrl = "https://watarusuzuki.github.io/MealDock/privacy_policy.html"
 
     var window: UIWindow?
     var firebaseService: FirebaseService!

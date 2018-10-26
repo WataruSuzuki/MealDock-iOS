@@ -23,6 +23,8 @@ class SettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.reloadRows(at: [IndexPath(item: 0, section: Sections.ticket.rawValue)], with: .automatic)
+
         guard FirebaseService.shared.currentUser == nil else { return }
         FirebaseService.shared.requestAuthUI()
     }
@@ -48,7 +50,8 @@ class SettingsViewController: UITableViewController {
             case .aboutThisApp:
                 return AboutThisApp.max.rawValue
             case .ticket:
-                return TicketMenu.max.rawValue
+                let isFreeUser = !(FirebaseService.shared.currentUser?.isPurchased ?? true)
+                return (isFreeUser ? TicketMenu.max.rawValue : 0)
             case .purchase: fallthrough
             case .signOut:
                 return 1
@@ -61,6 +64,8 @@ class SettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath)
+        cell.detailTextLabel?.text = ""
+        cell.accessoryType = .none
 
         // Configure the cell...
         if let section = Sections(rawValue: indexPath.section) {
@@ -77,6 +82,9 @@ class SettingsViewController: UITableViewController {
             case .ticket:
                 if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
                     cell.textLabel?.text = NSLocalizedString(ticketMenu.description(), comment: "")
+                    let current =
+                        UserDefaults.standard.object(forKey: PurchaseService.keyTicket) as? Int ?? 0
+                    cell.detailTextLabel?.text = NSLocalizedString("current_ticket", comment: "") + ": \(current)" 
                     cell.accessoryType = .none
                 }
             case .purchase:
@@ -85,7 +93,6 @@ class SettingsViewController: UITableViewController {
                 cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
                 fallthrough
             default:
-                cell.accessoryType = .none
                 break
             }
         }
@@ -95,7 +102,10 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = Sections(rawValue: section) {
-            if sections != .signOut && sections != .purchase {
+            let isPurchased = (FirebaseService.shared.currentUser?.isPurchased ?? true)
+            if sections != .signOut && sections != .purchase
+                && !(sections == .ticket && isPurchased)
+            {
                 return NSLocalizedString(sections.description(), comment: "")
             }
         }
@@ -104,7 +114,8 @@ class SettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if let sections = Sections(rawValue: section) {
-            if sections == .ticket {
+            let isFreeUser = !(FirebaseService.shared.currentUser?.isPurchased ?? true)
+            if sections == .ticket && isFreeUser {
                 return NSLocalizedString("footer_reward", comment: "")
             }
         }
@@ -131,7 +142,7 @@ class SettingsViewController: UITableViewController {
                 if let aboutThis = AboutThisApp(rawValue: indexPath.row) {
                     switch aboutThis {
                     case .privacyPolicy:
-                        present(SFSafariViewController(url: URL(string: "https://watarusuzuki.github.io/MealDock/privacy_policy.html")!), animated: true, completion: nil)
+                        present(SFSafariViewController(url: URL(string: AppDelegate.privacyPolicyUrl)!), animated: true, completion: nil)
                     default:
                         break
                     }
@@ -140,6 +151,7 @@ class SettingsViewController: UITableViewController {
                 if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
                     switch ticketMenu {
                     case .rewared:
+                        PurchaseService.shared.showReward(rootViewController: self)
                         break
                     default:
                         break

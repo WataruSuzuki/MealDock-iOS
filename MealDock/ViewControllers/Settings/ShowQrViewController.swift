@@ -62,7 +62,7 @@ class ShowQrViewController: UIViewController,
         var jsonObj: [String : String]!
         switch type {
         case .requestToJoin:
-            joinUid = sha1(param: user.core.uid)
+            joinUid = user.core.uid.sha1(with: String(NSDate().timeIntervalSince1970))
             jsonObj = ["id": joinUid, "name": user.core.displayName ?? "(・∀・)"]
         case .tellDockId:
             jsonObj = ["id": user.core.uid, "name": user.core.displayName ?? "(・∀・)"]
@@ -75,18 +75,6 @@ class ShowQrViewController: UIViewController,
             print(error)
             return nil
         }
-    }
-
-    private func sha1(param: String) -> String {
-        let str = "\(param)_\(NSDate().timeIntervalSince1970)"
-        let data = str.data(using: .utf8)!
-        let length = Int(CC_SHA1_DIGEST_LENGTH)
-        var digest = [UInt8](repeating: 0, count: length)
-        _ = data.withUnsafeBytes { CC_SHA1($0, CC_LONG(data.count), &digest) }
-        let crypt = digest.map { String(format: "%02x", $0) }.joined(separator: "")
-        debugPrint("crypt : \(crypt)")
-
-        return crypt
     }
 
     @objc func tapDone() {

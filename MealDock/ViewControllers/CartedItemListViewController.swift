@@ -46,6 +46,18 @@ class CartedItemListViewController: MealDockListViewController {
     */
 
     @objc func onAddTapped() {
+        guard let user = FirebaseService.shared.currentUser else {
+            OptionalError.alertErrorMessage(message: "(=；人；=)", actions: nil)
+            return
+        }
+        if user.isPurchased || PurchaseService.shared.hasTicket() {
+            showErrand()
+        } else {
+            PurchaseService.shared.showReward(rootViewController: self)
+        }
+    }
+    
+    func showErrand()  {
         FirebaseService.shared.loadMarketItems(success: { (items) in
             DispatchQueue.main.async {
                 let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)

@@ -14,11 +14,9 @@ class PurchaseService: NSObject {
         return PurchaseService()
     }()
     var adLoader: GADAdLoader?
+    var bannerViews = Set<GADBannerView>()
     var loadedNativeAd = [GADUnifiedNativeAd]()
     var nativeViews = Set<GADUnifiedNativeAdView>()
-    
-//    var productRequest: SKProductsRequest?
-//    var productResponse: SKProductsResponse?
-//    var productIDs = Set<String>()
-    
+
+    var additionalParameters = [String : String]()
 }

@@ -7,4 +7,4 @@
 #import "FirebaseUIAuthInjection.h"
 #import <AppAuth/AppAuth.h>
 #import "OIDAuthState+Joiner.h"
-//#import <DJKInAppPurchase/DJKInAppPurchase.h>
+#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
