@@ -33,13 +33,13 @@ extension PurchaseService {
         }
     }
     
-    func validateProduct(productID: Set<String>, atomically: Bool) {
+    func validateProduct(productID: Set<String>, atomically: Bool, completion: @escaping () -> Void) {
         let indicator = UIViewController.topIndicatorStart()
         retrieveProductsInfo(productID: productID) { (result) in
             if let result = result {
                 for product in result.retrievedProducts {
                     if productID.contains(product.productIdentifier) {
-                        self.purchaseProduct(with: product, atomically: false)
+                        self.purchaseProduct(with: product, atomically: false, completion: completion)
                     }
                 }
             }
@@ -62,27 +62,42 @@ extension PurchaseService {
                 OptionalError.alertErrorMessage(message: message, actions: nil)
             }
             for product in result.retrievedProducts {
-                let priceString = product.localizedPrice!
-                debugPrint("Product: \(product.localizedDescription), price: \(priceString)")
+                debugPrint("Product: \(product.localizedDescription)")
+                let priceString = product.localizedPrice ?? "(・∀・)??"
+                debugPrint("Price: \(priceString)")
+                if #available(iOS 11.2, *) {
+                    if let period = product.subscriptionPeriod {
+                        debugPrint("period numberOfUnits: \(period.numberOfUnits)")
+                        debugPrint("period unit: \(period.unit)")
+                    }
+                }
             }
             completion(result)
         }
     }
     
-    private func purchaseProduct(with product: SKProduct, atomically: Bool) {
+    func retrieveProductInfo(productID: String, completion: @escaping (SKProduct?) -> Void) {
+        let indicator = UIViewController.topIndicatorStart()
+        retrieveProductsInfo(productID: [productID]) { (results) in
+            UIViewController.topIndicatorStop(view: indicator)
+            guard let results = results, results.retrievedProducts.count > 0 else {
+                completion(nil)
+                return
+            }
+            for product in results.retrievedProducts {
+                completion(product)
+                break
+            }
+        }
+    }
+
+    private func purchaseProduct(with product: SKProduct, atomically: Bool, completion: @escaping () -> Void) {
         SwiftyStoreKit.purchaseProduct(product, quantity: 1, atomically: atomically) { result in
-            self.handlePurchaseResult(result: result, atomically: atomically)
+            self.handlePurchaseResult(result: result, atomically: atomically, completion: completion)
         }
     }
     
-    
-    func purchaseProduct(with id: String, atomically: Bool) {
-        SwiftyStoreKit.purchaseProduct(id, quantity: 1, atomically: atomically) { result in
-            self.handlePurchaseResult(result: result, atomically: atomically)
-        }
-    }
-    
-    private func handlePurchaseResult(result: PurchaseResult, atomically: Bool) {
+    private func handlePurchaseResult(result: PurchaseResult, atomically: Bool, completion: @escaping () -> Void) {
         switch result {
         case .success(let product):
             // fetch content from your server, then:
@@ -94,25 +109,16 @@ extension PurchaseService {
                 || product.productId == UsageInfo.PurchasePlan.unlockAd.productId()
             {
                 verifyPurchase(productId: product.productId) { (verified) in
-                    switch verified {
-                    case .purchased( _):
-                        UIViewController.snackBarMessage(text: NSLocalizedString("thank_you_for_purchase", comment: ""))
-                    default:
-                        break
-                    }
+                    completion()
                 }
             } else {
                 verifySubscriptions(productIds: [product.productId]) { (verified) in
-                    switch verified {
-                    case .purchased( _, _):
-                        UIViewController.snackBarMessage(text: NSLocalizedString("thank_you_for_purchase", comment: ""))
-                    default:
-                        break
-                    }
+                    completion()
                 }
             }
             
         case .error(let error):
+            completion()
             switch error.code {
             case .paymentCancelled:
                 //Unnecessary to alert error

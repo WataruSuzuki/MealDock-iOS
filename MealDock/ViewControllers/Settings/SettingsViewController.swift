@@ -145,6 +145,8 @@ class SettingsViewController: UITableViewController {
             case .aboutThisApp:
                 if let aboutThis = AboutThisApp(rawValue: indexPath.row) {
                     switch aboutThis {
+                    case .terms:
+                        present(SFSafariViewController(url: URL(string: AppDelegate.termsUrl)!), animated: true, completion: nil)
                     case .privacyPolicy:
                         present(SFSafariViewController(url: URL(string: AppDelegate.privacyPolicyUrl)!), animated: true, completion: nil)
                     default:
@@ -196,7 +198,8 @@ class SettingsViewController: UITableViewController {
     }
     
     enum AboutThisApp: Int {
-        case privacyPolicy = 0,
+        case terms = 0,
+        privacyPolicy,
         //help,
         max
     }

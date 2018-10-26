@@ -90,6 +90,7 @@
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC4CBB34219D0BD800959EBA /* ConfirmSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */; };
 		CC4CBB37219D0C2700959EBA /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4CBB35219D0C2700959EBA /* Purchase.storyboard */; };
+		CC4CBB39219D5A7A00959EBA /* Date+FormatterStr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */; };
 		CC54D95D2178523500E42F28 /* Firebase+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95C2178523500E42F28 /* Firebase+Photos.swift */; };
 		CC54D95F21787E3500E42F28 /* UIViewController+MDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */; };
 		CC54D9622179792800E42F28 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D9612179792800E42F28 /* PurchaseService.swift */; };
@@ -238,6 +239,7 @@
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSubscriptionViewController.swift; sourceTree = "<group>"; };
 		CC4CBB36219D0C2700959EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Purchase.storyboard; sourceTree = "<group>"; };
+		CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatterStr.swift"; sourceTree = "<group>"; };
 		CC54D95C2178523500E42F28 /* Firebase+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Photos.swift"; sourceTree = "<group>"; };
 		CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MDC.swift"; sourceTree = "<group>"; };
 		CC54D9612179792800E42F28 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 				CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */,
 				966F5A6021731A6100A47EDF /* Enum+Description.swift */,
 				CC39A1AD217DB52900074342 /* String+encript.swift */,
+				CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1027,6 +1030,7 @@
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */,
 				966F5A6E2174D94E00A47EDF /* FirebaseObserver.swift in Sources */,
+				CC4CBB39219D5A7A00959EBA /* Date+FormatterStr.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
 				CC54D95F21787E3500E42F28 /* UIViewController+MDC.swift in Sources */,
 				CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */,

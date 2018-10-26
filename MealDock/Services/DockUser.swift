@@ -46,6 +46,13 @@ class DockUser: NSObject {
             debugPrint("plan: \(plan)")
             debugPrint("unlockPremium: \(info.unlockPremium ?? false)")
             debugPrint("unlockedAd: \(info.unlockedAd ?? false)")
+            if plan == .subscriptionBasic
+                && (info.expireDate == nil || info.expireDate! < Date().timeIntervalSince1970)
+            {
+                PurchaseService.shared.verifySubscriptions(productIds: [plan.productId()]) { (result) in
+                    debugPrint(result)
+                }
+            }
             return plan != .free || info.unlockPremium ?? false || info.unlockedAd ?? false
             #endif
         }
