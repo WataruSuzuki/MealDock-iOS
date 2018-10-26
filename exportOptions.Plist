@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>provisioningProfiles</key>
+    <dict>
+      <key>jp.co.JchanKchan.MealDock</key>
+      <string>MealDock Production</string>
+    </dict>
+    <key>signingCertificate</key>
+    <string>iOS Distribution</string>
+    <key>signingStyle</key>
+    <string>manual</string>
     <key>method</key>
     <string>app-store</string>
     <key>teamID</key>
