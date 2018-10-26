@@ -12,6 +12,12 @@ cartedFoods = "Carted Foods";
 errandFoods = "Errand Foods";
 addNewMarketItem = "Add new Market Item";
 
+no_dishes = "No Dishes";
+no_foods = "No Foods";
+
+msg_add_dishes = "Let's cook & add dish";
+msg_add_foods = "Let's start to add foods";
+
 signIn = "Sign in";
 account = "Account";
 userInfo = "User Information";
@@ -72,6 +78,8 @@ msg_remove_joining_info = "Leave from group? Sharing information will be removed
 msg_delete_account = "This operation can not be undone. If you continue it, please input your email";
 requiresRecentLogin = "Your login is too old. Please login again.";
 
+msg_show_qr_to_owner = "Show this QR to group owner";
+msg_show_qr_to_member = "Show this QR to new member";
 failed_generate_qr = "Failed to generate QR";
 failed_of_limit_capacity = "Failed to update because your capacity has been limited. Please delete unnecessary old data then try again.";
 failed_save_photo = "Failed save photo";
