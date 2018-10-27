@@ -52,7 +52,7 @@
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
 		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */; };
-		96B49BA62183542700657702 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B49BA52183542700657702 /* StoreKit.framework */; };
+		96B49BAC2184543F00657702 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B49BAB2184543F00657702 /* StoreKit.framework */; };
 		96D6501C217A260400A1458C /* PurchaseMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */; };
 		96D6501E217AD09F00A1458C /* Purchase+AdMobNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */; };
 		96D65020217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */; };
@@ -181,6 +181,8 @@
 		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
 		96B49BA92184518200657702 /* development.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = development.entitlements; sourceTree = "<group>"; };
+		96B49BAA218453E800657702 /* production.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = production.entitlements; sourceTree = "<group>"; };
+		96B49BAB2184543F00657702 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuViewController.swift; sourceTree = "<group>"; };
 		96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMobNative.swift"; sourceTree = "<group>"; };
 		96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+SwiftyStoreKit.swift"; sourceTree = "<group>"; };
@@ -245,8 +247,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96B49BAC2184543F00657702 /* StoreKit.framework in Frameworks */,
 				EAA25D2ED327EDD0EA90FDC7 /* Pods_MealDock.framework in Frameworks */,
-				96B49BA62183542700657702 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +323,6 @@
 		96317C8F210F56FC00F81F22 /* MealDock */ = {
 			isa = PBXGroup;
 			children = (
-				96B49BA92184518200657702 /* development.entitlements */,
 				CCDC94F22150E829007FBAB0 /* Models */,
 				CCDC94E3214B81EB007FBAB0 /* Services */,
 				9615BDF5214D40BF001801D5 /* Storyboards */,
@@ -333,6 +334,8 @@
 				96317C99210F56FD00F81F22 /* Assets.xcassets */,
 				96317C9E210F56FD00F81F22 /* Info.plist */,
 				CC7A3DC6214A2D6600F50AB0 /* MealDock-Bridging-Header.h */,
+				96B49BA92184518200657702 /* development.entitlements */,
+				96B49BAA218453E800657702 /* production.entitlements */,
 				96FC04E32168D6D200533529 /* InfoPlist.strings */,
 				9615BDF6214D42E7001801D5 /* Localizable.strings */,
 			);
@@ -512,7 +515,7 @@
 		AA70B33A27ACF3C86E6A50F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				96B49BA52183542700657702 /* StoreKit.framework */,
+				96B49BAB2184543F00657702 /* StoreKit.framework */,
 				D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */,
 				BE4497431E10628292717D8C /* Pods_MealDockTests.framework */,
 			);
@@ -1266,6 +1269,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MealDock/development.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F35G39V2UB;
 				INFOPLIST_FILE = MealDock/Info.plist;
@@ -1275,7 +1279,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MealDock Production";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1289,7 +1293,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = MealDock/development.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MealDock/production.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F35G39V2UB;
 				INFOPLIST_FILE = MealDock/Info.plist;
@@ -1299,7 +1304,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MealDock Production";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
