@@ -13,7 +13,7 @@ extension PurchaseService: GADBannerViewDelegate {
     func bannerView(unitId: String, rootViewController: UIViewController) -> UIView {
         let bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.delegate = self
-        #if DEBUG
+        #if true//DEBUG
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         #else
         bannerView.adUnitID = unitId

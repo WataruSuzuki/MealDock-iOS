@@ -71,7 +71,7 @@ class MealDockListViewController: UITableViewController,
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if 0 < harvests[section].count {
             if let user = FirebaseService.shared.currentUser, !user.isPurchased {
-                return PurchaseService.shared.bannerView(unitId: "ca-app-pub-3165756184642596/4608493613", rootViewController: self)
+                return PurchaseService.shared.bannerView(unitId: "your_banner_unit_id", rootViewController: self)
             }
         }
         return nil

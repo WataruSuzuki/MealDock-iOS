@@ -15,7 +15,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
     func loadReward(unitId: String) {
         UserDefaults.standard.register(defaults: [PurchaseService.keyTicket : 1])
         GADRewardBasedVideoAd.sharedInstance().delegate = self
-        #if DEBUG
+        #if true//DEBUG
         GADRewardBasedVideoAd.sharedInstance().load(adRequest(), withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
         #else
         GADRewardBasedVideoAd.sharedInstance().load(adRequest(), withAdUnitID: unitId)
@@ -29,7 +29,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
             let action = UIAlertAction(title: "OK", style: .default) { (action) in
                 self.confirmPersonalizedConsent(publisherIds: ["pub-3165756184642596"], completion: { (confirmed) in
                     if confirmed {
-                        self.loadReward(unitId: "ca-app-pub-3165756184642596/6250955761")
+                        self.loadReward(unitId: "your_reward_unit_id")
                     }
                 })
             }
@@ -81,7 +81,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         debugPrint("Reward based video ad is closed.")
         guard let user = FirebaseService.shared.currentUser, !user.isPurchased else { return }
-        loadReward(unitId: "ca-app-pub-3165756184642596/6250955761")
+        loadReward(unitId: "your_reward_unit_id")
     }
     
     func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {

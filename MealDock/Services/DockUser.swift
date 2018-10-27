@@ -71,7 +71,7 @@ class DockUser: NSObject {
                 if !self.isPurchased {
                     PurchaseService.shared.confirmPersonalizedConsent(publisherIds: ["pub-3165756184642596"], completion: { (confirmed) in
                         if confirmed {
-                            PurchaseService.shared.loadReward(unitId: "ca-app-pub-3165756184642596/6250955761")
+                            PurchaseService.shared.loadReward(unitId: "your_reward_unit_id")
                         }
                     })
                 }
