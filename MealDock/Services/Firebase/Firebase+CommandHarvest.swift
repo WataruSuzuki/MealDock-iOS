@@ -20,7 +20,7 @@ extension FirebaseService {
     }
     
     func addToFridge(harvests: [Harvest]) {
-        if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests) {
+        if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests, isInFridge: true) {
             removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
             UIViewController.snackBarMessage(text: "(=・∀・=)b \n" + NSLocalizedString("msg_mission_completed", comment: ""))
         } else {
@@ -28,8 +28,13 @@ extension FirebaseService {
         }
     }
     
-    fileprivate func addHarvest(itemId: String, harvests: [Harvest]) -> Bool {
-        guard let user = currentUser, user.hasCapacity(addingSize: harvests.count) else { return false }
+    private func addHarvest(itemId: String, harvests: [Harvest]) -> Bool {
+        return addHarvest(itemId: itemId, harvests: harvests, isInFridge: false)
+    }
+    
+    private func addHarvest(itemId: String, harvests: [Harvest], isInFridge: Bool) -> Bool {
+        guard let user = currentUser else { return false }
+        guard isInFridge || user.hasCapacity(addingSize: harvests.count) else { return false }
         for harvest in harvests {
             let harvestRef = rootRef.child(itemId).child(user.dockID).child(harvest.name)
             setHarvestValue(ref: harvestRef, harvest: harvest)
@@ -79,7 +84,8 @@ extension FirebaseService {
     }
     
     fileprivate func addDish(itemId: String, dish: Dish) -> Bool {
-        guard let user = currentUser, user.hasCapacity(addingSize: 1) else { return false }
+        guard let user = currentUser else { return false }
+//        guard let user = currentUser, user.hasCapacity(addingSize: 1) else { return false }
         let dishRef = rootRef.child(itemId).child(user.dockID).child(dish.title)
         var harvestArray = [Any]()
         for harvest in dish.harvests {

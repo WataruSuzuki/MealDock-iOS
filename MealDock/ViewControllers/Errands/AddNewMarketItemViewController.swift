@@ -156,8 +156,8 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     }
     
     @objc func tapSave() {
-        guard let cell = collectionView!.cellForItem(at: IndexPath(item: 0, section: Element.name.rawValue)) as? TextFieldCell,
-            let name = cell.textField.text else {
+        guard let cell = collectionView?.cellForItem(at: IndexPath(item: 0, section: Element.name.rawValue)) as? TextFieldCell, let name = cell.textField.text, !name.isEmpty else {
+            OptionalError.alertErrorMessage(message: NSLocalizedString("msg_necessary_name", comment: ""), actions: nil)
             return
         }
         let harvest = Harvest(name: name, section: selectedType.toString(), imageUrl: "")

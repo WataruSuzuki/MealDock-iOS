@@ -25,7 +25,7 @@ extension PurchaseService {
         //info.debugGeography = .notEEA
         
         //Uncommented if you reset consent status
-        info.consentStatus = .unknown
+        //info.consentStatus = .unknown
         
         let ids = ["pub-3940256099942544"]
         #else

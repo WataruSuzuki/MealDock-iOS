@@ -25,6 +25,8 @@ class DetailDishViewController: UIViewController {
     var shapeScheme = MDCShapeScheme()
     var typographyScheme = MDCTypographyScheme()
     
+    var constraints = [Constraint]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,23 +61,36 @@ class DetailDishViewController: UIViewController {
         imageView.backgroundColor = .gray
         
         descriptionTextView.text = dish.description
+        
+        card.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10))
+        imageView.autoPinEdge(toSuperviewEdge: .top)
+        imageView.autoPinEdge(toSuperviewEdge: .leading)
+        imageView.aspectRatio(1.0)
+        
+        descriptionTextView.sizeToFit()
+        descriptionTextView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10)
+        descriptionTextView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+
+        imageView.removeConstraints(constraints)
+        descriptionTextView.removeConstraints(constraints)
+        constraints.removeAll()
         
-        card.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10))
+        if view.frame.width >= view.frame.height {
+            constraints.append(imageView.autoPinEdge(.trailing, to: .leading, of: descriptionTextView))
+            constraints.append(imageView.autoPinEdge(toSuperviewEdge: .bottom))
+            constraints.append(descriptionTextView.autoPinEdge(.leading, to: .trailing, of: imageView, withOffset: 10))
+            constraints.append(descriptionTextView.autoPinEdge(toSuperviewEdge: .top, withInset: 10))
+        } else {
+            constraints.append(imageView.autoPinEdge(toSuperviewEdge: .trailing))
+            
+            constraints.append(descriptionTextView.autoPinEdge(.top, to: .bottom, of: imageView, withOffset: 10))
+            constraints.append(descriptionTextView.autoPinEdge(toSuperviewEdge: .leading, withInset: 10))
+        }
         
-        imageView.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
-        imageView.autoPinEdge(toSuperviewEdge: .leading, withInset: 10)
-        imageView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10)
-        imageView.aspectRatio(1.0)
-        
-        descriptionTextView.sizeToFit()
-        descriptionTextView.autoPinEdge(.top, to: .bottom, of: imageView, withOffset: 10)
-        descriptionTextView.autoPinEdge(toSuperviewEdge: .leading, withInset: 10)
-        descriptionTextView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10)
-        descriptionTextView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
     }
 }
 
