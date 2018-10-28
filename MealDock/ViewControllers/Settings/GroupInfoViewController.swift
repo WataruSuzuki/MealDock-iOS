@@ -37,6 +37,12 @@ class GroupInfoViewController: UITableViewController {
             self.tableView.reloadSections(IndexSet(integer: Sections.invitedMembers.rawValue), with: .automatic)
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        FirebaseService.shared.removeMemberObsever()
+    }
 
     // MARK: - Table view data source
 
@@ -150,7 +156,7 @@ class GroupInfoViewController: UITableViewController {
             // Delete the row from the data source
             FirebaseService.shared.deleteDockMember(memberId: dockMembers[indexPath.row].id)
             dockMembers.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            //tableView.deleteRows(at: [indexPath], with: .fade)
         //} else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
