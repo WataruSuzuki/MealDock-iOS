@@ -22,15 +22,15 @@ class GooglePhotosService: NSObject {
     var currentExternalUserAgentSession: OIDExternalUserAgentSession?
     private(set) var ownAuthState: OIDAuthState?
     private(set) var sharingAuthState: OIDAuthState?
-    
+
     var albumId: String?
 //    var shareToken: String?
 //    var shareableUrl: String?
     let mediaItemSize = 250
-    
+
     let authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth"
     let tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token"
-    
+
     var serviceConfiguration: OIDServiceConfiguration {
         get {
             return OIDServiceConfiguration(authorizationEndpoint: URL(string: authorizationEndpoint)!, tokenEndpoint: URL(string: tokenEndpoint)!)
@@ -52,7 +52,7 @@ class GooglePhotosService: NSObject {
         super.init()
         loadAuthState()
     }
-    
+
     func saveSharingAuthState(state: OIDAuthState?) {
         if let authState = state {
             self.ownAuthState = authState
@@ -62,14 +62,14 @@ class GooglePhotosService: NSObject {
             createMealDockAlbumIfNeed()
         }
     }
-    
+
     func loadAuthState() {
         if let handleAuthStateData = UserDefaults.standard.object(forKey: GooglePhotosService.keyAuthState) as? Data {
             ownAuthState = NSKeyedUnarchiver.unarchiveObject(with: handleAuthStateData) as? OIDAuthState
         }
         createMealDockAlbumIfNeed()
     }
-    
+
     func initSharingAuthState(token: String) {
         let fakeResponse = OIDAuthorizationResponse(request: authorizationRequest, parameters: [:])
         sharingAuthState = OIDAuthState(refreshToken: token, andResponse: fakeResponse)
@@ -80,7 +80,7 @@ class GooglePhotosService: NSObject {
         sharingAuthState = nil
         UserDefaults.standard.removeObject(forKey: GooglePhotosService.keyAuthState)
     }
-    
+
     func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         if let current = currentExternalUserAgentSession {
             if current.resumeExternalUserAgentFlow(with: url) {
@@ -90,5 +90,5 @@ class GooglePhotosService: NSObject {
         }
         return false
     }
-        
+
 }

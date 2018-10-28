@@ -21,7 +21,11 @@ extension UIViewController {
         container.preferredContentSize = CGSize(width: 500, height: self.view.frame.height / 2)
         container.appBarViewController.headerView.trackingScrollView = viewController.collectionView
         container.isTopLayoutGuideAdjustmentEnabled = true
-        MDCAppBarColorThemer.applyColorScheme(MDCSemanticColorScheme(), to: container.appBarViewController)
+        let colorScheme = MDCSemanticColorScheme()
+        colorScheme.primaryColor = MDCPalette.lightBlue.tint500
+        colorScheme.primaryColorVariant = MDCPalette.lightBlue.tint400
+        colorScheme.secondaryColor = colorScheme.primaryColor
+        MDCAppBarColorThemer.applyColorScheme(colorScheme, to: container.appBarViewController)
         
         let bottomSheet = MDCBottomSheetController(contentViewController: container)
         MDCBottomSheetControllerShapeThemer.applyShapeScheme(MDCShapeScheme(), to: bottomSheet)

@@ -18,7 +18,6 @@ class MealDockListViewController: UITableViewController,
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
     var harvests = [[Harvest]]()
     var checkedItems = [String : Harvest]()
-    let colorScheme = MDCSemanticColorScheme()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +32,11 @@ class MealDockListViewController: UITableViewController,
         self.tableView.emptyDataSetDelegate = self
         // A little trick for removing the cell separators
         self.tableView.tableFooterView = UIView()
+        
+        let colorScheme = MDCSemanticColorScheme()
+        colorScheme.primaryColor = MDCPalette.lightBlue.tint500
+        colorScheme.primaryColorVariant = MDCPalette.lightBlue.tint400
+        colorScheme.secondaryColor = colorScheme.primaryColor
         
         MDCFloatingButtonColorThemer.applySemanticColorScheme(colorScheme, to: fab)
     }

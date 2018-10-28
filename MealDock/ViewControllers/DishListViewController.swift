@@ -18,8 +18,6 @@ class DishListViewController: UICollectionViewController,
     UICollectionViewDelegateFlowLayout,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
-    var colorScheme = MDCSemanticColorScheme()
-    var shapeScheme = MDCShapeScheme()
     var typographyScheme = MDCTypographyScheme()
     let cardScheme = MDCCardScheme()
     let fab = MDCFloatingButton()
@@ -198,6 +196,22 @@ class DishListViewController: UICollectionViewController,
                 checkedItems.updateValue(dish, forKey: dish.title)
             } else {
                 checkedItems.removeValue(forKey: dish.title)
+            }
+        } else {
+            performSegue(withIdentifier: String(describing: DetailDishViewController.self), sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case String(describing: DetailDishViewController.self):
+                if let detail = segue.destination as? DetailDishViewController,
+                    let indexPaths = self.collectionView?.indexPathsForSelectedItems {
+                    detail.dish = dishes[indexPaths[0].row]
+                }
+            default:
+                break
             }
         }
     }
