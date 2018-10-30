@@ -163,7 +163,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
         }
         let harvest = Harvest(name: name, section: selectedType.toString(), imageUrl: "")
         guard FirebaseService.shared.addCustomMarketItem(harvests: [harvest]) else {
-            OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
+            PurchaseService.shared.alertCapacity()
             return
         }
         delegate?.updatedItem()

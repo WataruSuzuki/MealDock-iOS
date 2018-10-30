@@ -72,6 +72,7 @@
 		96EE88812158951F00924490 /* ErrandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EE887F2158951F00924490 /* ErrandCell.xib */; };
 		96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE888221589AAA00924490 /* UICollectionView+CustomNib.swift */; };
 		96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE88842158D0A200924490 /* UIViewController+Transition.swift */; };
+		96F5F0F021A14B450018AB1D /* Purchase+Recommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F0EF21A14B450018AB1D /* Purchase+Recommend.swift */; };
 		96FC04DD2168599300533529 /* Firebase+QueryHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DC2168599300533529 /* Firebase+QueryHarvest.swift */; };
 		96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DE21686D0B00533529 /* EditDishViewController.swift */; };
 		96FC04E2216892B500533529 /* EditDish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FC04E0216892B500533529 /* EditDish.storyboard */; };
@@ -219,6 +220,7 @@
 		96EE887F2158951F00924490 /* ErrandCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrandCell.xib; sourceTree = "<group>"; };
 		96EE888221589AAA00924490 /* UICollectionView+CustomNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CustomNib.swift"; sourceTree = "<group>"; };
 		96EE88842158D0A200924490 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
+		96F5F0EF21A14B450018AB1D /* Purchase+Recommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+Recommend.swift"; sourceTree = "<group>"; };
 		96FC04DC2168599300533529 /* Firebase+QueryHarvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+QueryHarvest.swift"; sourceTree = "<group>"; };
 		96FC04DE21686D0B00533529 /* EditDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDishViewController.swift; sourceTree = "<group>"; };
 		96FC04E1216892B500533529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditDish.storyboard; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 			children = (
 				CC54D9672179BD1100E42F28 /* Purchase+Store.swift */,
 				96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */,
+				96F5F0EF21A14B450018AB1D /* Purchase+Recommend.swift */,
 			);
 			path = InAppPurchase;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				966F5A592171E20F00A47EDF /* PickerCell.swift in Sources */,
 				966F5A5121718D1100A47EDF /* GooglePhoto+Token.swift in Sources */,
 				96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */,
+				96F5F0F021A14B450018AB1D /* Purchase+Recommend.swift in Sources */,
 				964C00BC214E22FB0099689B /* DishListViewController.swift in Sources */,
 				CC095B492175E4C500BB7712 /* UsageInfoViewController.swift in Sources */,
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,

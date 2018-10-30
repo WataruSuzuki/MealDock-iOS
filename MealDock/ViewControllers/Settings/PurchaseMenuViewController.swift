@@ -12,6 +12,10 @@ class PurchaseMenuViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isModal {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDismiss))
+        }
     }
 
     // MARK: - Table view data source

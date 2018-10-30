@@ -111,6 +111,7 @@ restrict_in_app_purchase = "Restrict this item";
 comp_restore = "Restore item";
 thank_you_for_purchase = "Thank you for purchase";
 cannot_find_paid_history = "Cannot find paid history";
+upgrade = "Upgrade";
 
 timePeriod = "Time period";
 aboutThisService = "About this service";

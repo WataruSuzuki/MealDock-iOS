@@ -155,7 +155,7 @@ class ErrandPagingViewController: UIViewController,
             debugPrint(controller.selectedItems)
             let items = [Harvest](controller.selectedItems.values)
             guard FirebaseService.shared.addToErrand(harvests: items) else {
-                OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
+                PurchaseService.shared.alertCapacity()
                 return
             }
         }
