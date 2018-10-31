@@ -32,7 +32,7 @@ class ConfirmSubscriptionViewController: UITableViewController {
                 let action = UIAlertAction(title: "OK", style: .default, handler: { (actopm) in
                     self.navigationController?.popViewController(animated: true)
                 })
-                OptionalError.alertErrorMessage(message: NSLocalizedString("", comment: ""), actions: [action])
+                OptionalError.alertErrorMessage(message: NSLocalizedString("not_available", comment: ""), actions: [action])
                 return
             }
             self.retrievedProduct = product
