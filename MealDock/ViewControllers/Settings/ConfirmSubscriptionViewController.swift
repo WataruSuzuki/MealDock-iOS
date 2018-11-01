@@ -29,10 +29,7 @@ class ConfirmSubscriptionViewController: UITableViewController {
         self.tabBarController?.tabBar.isHidden = true
         PurchaseService.shared.retrieveProductInfo(productID: plan.productId()) { (product) in
             guard let product = product else {
-                let action = UIAlertAction(title: "OK", style: .default, handler: { (actopm) in
-                    self.navigationController?.popViewController(animated: true)
-                })
-                OptionalError.alertErrorMessage(message: NSLocalizedString("not_available", comment: ""), actions: [action])
+                self.navigationController?.popViewController(animated: true)
                 return
             }
             self.retrievedProduct = product
