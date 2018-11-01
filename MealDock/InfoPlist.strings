@@ -6,6 +6,6 @@
   Copyright © 2018 WataruSuzuki. All rights reserved.
 */
 CFBundleDisplayName = "MealDock";
-NSCameraUsageDescription = "Access the camera to save your dish's photos with the application";
-NSPhotoLibraryAddUsageDescription = "Access the library to save your dish's photos with the application";
-NSPhotoLibraryUsageDescription = "Access the library to save your dish's photos with the application";
+NSCameraUsageDescription = "Using to take photo, capture barcode";
+NSPhotoLibraryAddUsageDescription = "Using to save photo";
+NSPhotoLibraryUsageDescription = "Using to save photo";
