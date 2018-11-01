@@ -35,11 +35,6 @@ class ErrandViewController: UICollectionViewController,
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-    }
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,10 +46,14 @@ class ErrandViewController: UICollectionViewController,
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ErrandCell
+        return errandCollection(collectionView, cellForItemAt: indexPath, item: items[indexPath.row])
+    }
     
+    func errandCollection(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, item: Harvest?) -> ErrandCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ErrandCell
+        guard let item = item else { return cell }
+
         // Configure the cell
-        let item = items[indexPath.row]
         cell.label.text = NSLocalizedString(item.name, tableName: "MarketItems", comment: "")
         if !item.imageUrl.isEmpty {
             if let url = URL(string: item.imageUrl) {
@@ -63,6 +62,9 @@ class ErrandViewController: UICollectionViewController,
                 print("(・A・) cannot create URL: \(items[indexPath.row].imageUrl)")
             }
         }
+        cell.isChecked = selectedItems.contains(where: { (selected) -> Bool in
+            return selected.key == item.name
+        })
 
         return cell
     }

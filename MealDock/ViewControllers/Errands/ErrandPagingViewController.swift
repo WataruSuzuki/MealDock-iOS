@@ -14,6 +14,7 @@ import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
 
 class ErrandPagingViewController: UIViewController,
+    SearchMarketItemViewDelegate,
     UpdateCustomMarketItemDelegate
 {
 
@@ -29,8 +30,8 @@ class ErrandPagingViewController: UIViewController,
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
         
-        instatiateBottomBar()
         instatiatePavingViews()
+        instatiateBottomBar()
     }
 
     func instatiatePavingViews() {
@@ -130,10 +131,18 @@ class ErrandPagingViewController: UIViewController,
         }
     }
     
+    func didSelect(harvest: Harvest, indexPath: IndexPath) {
+        let controllers = pagingViewController.viewControllers as! [ErrandViewController]
+        controllers[indexPath.section].selectedItems.updateValue(harvest, forKey: harvest.name)
+        controllers[indexPath.section].collectionView?.reloadData()
+        dismiss(animated: true, completion: nil)
+    }
+    
     @objc func tapSearch() {
         let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
         if let viewController = sb.instantiateViewController(withIdentifier: String(describing: SearchMarketItemViewController.self)) as? SearchMarketItemViewController {
-            viewController.marketItem = items
+            viewController.marketItems = items
+            viewController.delegate = self
             let navigation = UINavigationController.init(rootViewController: viewController)
             self.present(navigation, animated: true, completion: nil)
         }
