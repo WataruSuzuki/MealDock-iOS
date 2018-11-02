@@ -23,12 +23,7 @@ class SettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let user = FirebaseService.shared.currentUser else {
-            FirebaseService.shared.requestAuthUI()
-            return
-        }
-        
-        if !user.isPurchased {
+        if let user = FirebaseService.shared.currentUser, !user.isPurchased {
             self.tableView.reloadRows(at: [IndexPath(item: 0, section: Sections.ticket.rawValue)], with: .automatic)
         }        
     }
@@ -127,6 +122,11 @@ class SettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard FirebaseService.shared.currentUser != nil else {
+            FirebaseService.shared.requestAuthUI()
+            return
+        }
+        
         if let section = Sections(rawValue: indexPath.section) {
             switch section {
             case .account:
