@@ -11,6 +11,7 @@ import XCTest
 class ErrandSceneUITests: XCTestCase {
 
     static let itemName = "UI Test Market Item"
+    private let tester = ErrandSceneUITests.self
     
     override func setUp() {
         super.setUp()
@@ -25,32 +26,39 @@ class ErrandSceneUITests: XCTestCase {
 
     func testAddNewMarketItem() {
         let app = XCUIApplication()
-        app.tabBars.buttons["Carted Foods"].tap()
-        app.navigationBars["Carted Foods"].buttons["Add"].tap()
+        let cartedFood = XCTestCase.getTestStr(key: "cartedFoods", sender: tester, bundleClass: tester)
+        app.tabBars.buttons[cartedFood].tap()
+        app.navigationBars[cartedFood].buttons["Add"].tap()
         
-        app.buttons["Add new Market Item"].tap()
+        let addNewMarketItem = XCTestCase.getTestStr(key: "addNewMarketItem", sender: tester, bundleClass: tester)
+        app.buttons[addNewMarketItem].tap()
         
-        let titleTextField = app.collectionViews/*@START_MENU_TOKEN@*/.textFields["Title"]/*[[".cells.textFields[\"Title\"]",".textFields[\"Title\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let titleTextField = app.collectionViews.textFields[XCTestCase.getTestStr(key: "title", sender: tester, bundleClass: tester)]
         titleTextField.inputText(text: ErrandSceneUITests.itemName)
         
-        app.collectionViews.children(matching: .cell).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.tap()
+        let collectionViewsQuery = app.collectionViews
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.textFields["Title"]/*[[".cells.textFields[\"Title\"]",".textFields[\"Title\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["👻"]/*[[".cells.staticTexts[\"👻\"]",".staticTexts[\"👻\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
-        let pickerWheel = app/*@START_MENU_TOKEN@*/.pickerWheels["🍚🍞🍙🥖🍜🍝"]/*[[".pickers.pickerWheels[\"🍚🍞🍙🥖🍜🍝\"]",".pickerWheels[\"🍚🍞🍙🥖🍜🍝\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        pickerWheel.tap()
+        app.pickerWheels.element.adjust(toPickerWheelValue: "🍅🍆🌽🥒🥕🥔🥦🥬")
+        app.pickerWheels["🍅🍆🌽🥒🥕🥔🥦🥬"].tap()
+        
         app.toolbars["Toolbar"].buttons["Done"].tap()
-        app.navigationBars["Add new Market Item"].buttons["Save"].tap()
+        app.navigationBars[addNewMarketItem].buttons["Save"].tap()
         
-        app.collectionViews/*@START_MENU_TOKEN@*/.staticTexts["🍚🍞🍙🥖🍜🍝"]/*[[".cells.staticTexts[\"🍚🍞🍙🥖🍜🍝\"]",".staticTexts[\"🍚🍞🍙🥖🍜🍝\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.collectionViews.staticTexts["🍅🍆🌽🥒🥕🥔🥦🥬"].tap()
         app.scrollViews.otherElements.collectionViews.cells.containing(.staticText, identifier:ErrandSceneUITests.itemName).children(matching: .other).element.tap()
-        app.navigationBars["Errand Foods"].buttons["Done"].tap()
+        app.navigationBars[XCTestCase.getTestStr(key: "errandFoods", sender: tester, bundleClass: tester)].buttons["Done"].tap()
     }
     
     func testDeleteCustomMarketItem() {
         let app = XCUIApplication()
-        app.tabBars.buttons["Carted Foods"].tap()
-        app.navigationBars["Carted Foods"].buttons["Add"].tap()
+        let cartedFood = XCTestCase.getTestStr(key: "cartedFoods", sender: tester, bundleClass: tester)
+        app.tabBars.buttons[cartedFood].tap()
+        app.navigationBars[cartedFood].buttons["Add"].tap()
         app.buttons["baseline more horiz black 36pt"].tap()
-        app.sheets["menu"].buttons["Delete custom market item"].tap()
+        let editCustomItem = XCTestCase.getTestStr(key: "editCustomItem", sender: tester, bundleClass: tester)
+        app.sheets["menu"].buttons[editCustomItem].tap()
         
         let tablesQuery = app.tables
         tablesQuery.cells.staticTexts[ErrandSceneUITests.itemName].swipeLeft()
@@ -59,11 +67,11 @@ class ErrandSceneUITests: XCTestCase {
         let deleted = tablesQuery.cells.staticTexts[ErrandSceneUITests.itemName]
         XCTAssertFalse(deleted.exists)
         
-        app.navigationBars["Delete custom market item"].buttons["Done"].tap()
+        app.navigationBars[editCustomItem].buttons["Done"].tap()
         app.buttons["baseline more horiz black 36pt"].tap()
-        app.sheets["menu"].buttons["Delete custom market item"].tap()
-        app.navigationBars["Delete custom market item"].buttons["Done"].tap()
-        app.navigationBars["Errand Foods"].buttons["Cancel"].tap()
+        app.sheets["menu"].buttons[editCustomItem].tap()
+        app.navigationBars[editCustomItem].buttons["Done"].tap()
+        app.navigationBars[XCTestCase.getTestStr(key: "errandFoods", sender: tester, bundleClass: tester)].buttons["Cancel"].tap()
     }
 
 }
