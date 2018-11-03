@@ -2,11 +2,11 @@
 //  Firebase+Harvests.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/09/17.
+//  Created by Wataru Suzuki on 2018/09/17.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
-import UIKit
+import Firebase
 import MaterialComponents.MaterialSnackbar
 
 extension FirebaseService {
@@ -21,7 +21,7 @@ extension FirebaseService {
     
     func addToFridge(harvests: [Harvest]) {
         if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests, isInFridge: true) {
-            removeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
+            decrementHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
             UIViewController.snackBarMessage(text: "(=・∀・=)b \n" + NSLocalizedString("msg_mission_completed", comment: ""))
         } else {
             OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
@@ -36,25 +36,34 @@ extension FirebaseService {
         guard let user = currentUser else { return false }
         guard isInFridge || user.hasCapacity(addingSize: harvests.count) else { return false }
         for harvest in harvests {
-            let harvestRef = rootRef.child(itemId).child(user.dockID).child(harvest.name)
-            setHarvestValue(ref: harvestRef, harvest: harvest)
+            setHarvestValue(itemId: itemId, user: user, harvest: harvest)
         }
         return true
     }
     
-    fileprivate func setHarvestValue(ref: DatabaseReference, harvest: Harvest) {
-        ref.setValue([
-            "name": harvest.name,
-            "section": harvest.section,
-            "imageUrl": harvest.imageUrl,
-            "timeStamp": harvest.timeStamp
-            ])
+    fileprivate func setHarvestValue(itemId: String, user: DockUser, harvest: Harvest) {
+        let harvestRef = rootRef.child(itemId).child(user.dockID).child(harvest.name)
+        loadHarvestCount(itemId: itemId, harvestName: harvest.name) { (current) in
+            harvestRef.child("count").setValue(harvest.count + current)
+        }
+        harvestRef.child("name").setValue(harvest.name)
+        harvestRef.child("section").setValue(harvest.section)
+        harvestRef.child("imageUrl").setValue(harvest.imageUrl)
+        harvestRef.child("timeStamp").setValue(harvest.timeStamp)
     }
     
-    fileprivate func removeHarvest(itemId: String, harvests: [Harvest]) {
+    fileprivate func decrementHarvest(itemId: String, harvests: [Harvest]) {
         if let user = currentUser {
             for harvest in harvests {
-                rootRef.child(itemId).child(user.dockID).child(harvest.name).removeValue()
+                let ref = rootRef.child(itemId).child(user.dockID).child(harvest.name)
+                loadHarvestCount(itemId: itemId, harvestName: harvest.name) { (current) in
+                    let next = current - harvest.count
+                    if next > 0 {
+                        ref.child("count").setValue(next)
+                    } else {
+                        ref.removeValue()
+                    }
+                }
             }
         }
     }
@@ -79,13 +88,12 @@ extension FirebaseService {
     
     func addDish(dish: Dish) {
         if addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish) {
-            removeHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: dish.harvests)
+            decrementHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: dish.harvests)
         }
     }
     
     fileprivate func addDish(itemId: String, dish: Dish) -> Bool {
         guard let user = currentUser else { return false }
-//        guard let user = currentUser, user.hasCapacity(addingSize: 1) else { return false }
         let dishRef = rootRef.child(itemId).child(user.dockID).child(dish.title)
         var harvestArray = [Any]()
         for harvest in dish.harvests {

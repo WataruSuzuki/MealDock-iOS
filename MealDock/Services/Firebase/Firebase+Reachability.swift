@@ -6,7 +6,7 @@
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
-import Foundation
+import Firebase
 
 extension FirebaseService {
     func observeReachability() {

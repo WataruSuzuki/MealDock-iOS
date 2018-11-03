@@ -2,7 +2,7 @@
 //  InFridgeListViewController.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/08/15.
+//  Created by Wataru Suzuki on 2018/08/15.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -31,6 +31,24 @@ class InFridgeListViewController: MealDockListViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if let customCell = cell as? StrikethroughTableViewCell {
+            customCell.stepperMode = .decremental
+            let harvest = harvests[indexPath.section][indexPath.row]
+            customCell.stepperValueChanged = { (value) in
+                var decrementalHarvest = Harvest(name: harvest.name, section: harvest.section, imageUrl: harvest.imageUrl)
+                decrementalHarvest.count = value
+                self.updateCheckedItems(harvest: decrementalHarvest)
+            }
+            customCell.stepperValue = harvest.count
+        }
+        
+        return cell
+    }
     /*
     // MARK: - Navigation
 

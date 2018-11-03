@@ -2,12 +2,13 @@
 //  PermissionTest.swift
 //  MealDockTests
 //
-//  Created by 鈴木 航 on 2018/10/10.
+//  Created by Wataru Suzuki on 2018/10/10.
 //  Copyright © 2018 WataruSuzuki. All rights reserved.
 //
 
 import XCTest
 @testable import MealDock
+import Firebase
 
 class PermissionTest: XCTestCase {
 
@@ -23,11 +24,11 @@ class PermissionTest: XCTestCase {
                 expectation?.fulfill()
             }
         }
-        self.waitForExpectations(timeout: 5.00, handler: nil)
+        self.waitForExpectations(timeout: 10.00, handler: nil)
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        try? Auth.auth().signOut()
     }
 
     func testCorrectObserving() {        
@@ -59,15 +60,10 @@ class PermissionTest: XCTestCase {
         let expectation = self.expectation(description: itemId)
         ref.child(itemId).observe(.value, with: { (snapshot) in
             debugPrint(snapshot)
-            expectation.fulfill()
-            if let value = snapshot.value as? [String: Any] {
-                XCTAssertEqual(value.count, 1)
-                XCTAssertEqual(value[self.user.uid] as! String, "My Dock Group")
-            } else {
-                XCTFail("(・A・)!! testObservingMealDockRoom \(itemId)")
-            }
+            XCTFail("(・A・)!! testObservingMealDockRoom \(itemId)")
         }) { (error) in
-            XCTFail("(・A・)!! testObservingMealDockRoom \(error)")
+            XCTAssertNotNil(error)
+            expectation.fulfill()
         }
         self.waitForExpectations(timeout: 3.00, handler: nil)
     }

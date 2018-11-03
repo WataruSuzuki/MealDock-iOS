@@ -2,7 +2,7 @@
 //  CartedItemListViewController.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/09/17.
+//  Created by Wataru Suzuki on 2018/09/17.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -35,6 +35,23 @@ class CartedItemListViewController: MealDockListViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if let customCell = cell as? StrikethroughTableViewCell {
+            var harvest = harvests[indexPath.section][indexPath.row]
+            customCell.stepperValueChanged = { (value) in
+                harvest.count = value
+                self.updateCheckedItems(harvest: harvest)
+            }
+            customCell.stepperValue = harvest.count
+            updateCheckedItems(harvest: harvest)
+        }
+
+        return cell
+    }
     /*
     // MARK: - Navigation
 

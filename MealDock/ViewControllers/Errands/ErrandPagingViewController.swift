@@ -2,7 +2,7 @@
 //  SecondViewController.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/07/30.
+//  Created by Wataru Suzuki on 2018/07/30.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -65,7 +65,7 @@ class ErrandPagingViewController: UIViewController {
         } else {
             pagingViewController.view.autoPinEdge(toSuperviewEdge: .top)
         }
-        pagingViewController.view.autoPinEdge(.bottom, to: .top, of: bottomBarView, withOffset: bottomBarView.floatingButton.frame.height)
+        pagingViewController.view.autoPinEdge(.bottom, to: .top, of: bottomBarView, withOffset: bottomBarView.floatingButton.frame.height - 20)
         //pagingViewController.view.autoPinEdge(toSuperviewEdge: .bottom)
         pagingViewController.didMove(toParentViewController: self)
     }

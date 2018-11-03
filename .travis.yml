@@ -1,9 +1,10 @@
 language: objective-c
-osx_image: xcode10.0
-cache: cocoapods
+osx_image: xcode10
 podfile: Podfile
 before_install:
-    # - gem install cocoapods # Since Travis is not always on latest version
+    - gem install cocoapods # Since Travis is not always on latest version
+    - gem install xcodeproj
+    - pod setup
     - pod repo update
     - pod install
 script:

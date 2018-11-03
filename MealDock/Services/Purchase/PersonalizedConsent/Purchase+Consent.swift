@@ -19,7 +19,7 @@ extension PurchaseService {
         info.debugIdentifiers = [ASIdentifierManager.shared().advertisingIdentifier.uuidString.md5()]
         
         // Geography appears as in EEA for debug devices.
-        info.debugGeography = .EEA
+        //info.debugGeography = .EEA
         
         // Geography appears as not in EEA for debug devices.
         //info.debugGeography = .notEEA

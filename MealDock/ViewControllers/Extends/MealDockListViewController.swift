@@ -90,21 +90,33 @@ class MealDockListViewController: UITableViewController,
         return 0
     }
     
-    fileprivate func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
+    private func tableViewCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, harvests: [[Harvest]]) -> StrikethroughTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as! StrikethroughTableViewCell
         
         // Configure the cell...
-        cell.textLabel?.text = harvests[indexPath.section][indexPath.row].name
+        cell.selectionStyle = .none
+        
+        let harvest = harvests[indexPath.section][indexPath.row]
+        cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
         
         cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit
-        if !harvests[indexPath.section][indexPath.row].imageUrl.isEmpty {
-            cell.imageView?.setImageByAlamofire(with: URL(string: harvests[indexPath.section][indexPath.row].imageUrl)!)
+        if !harvest.imageUrl.isEmpty {
+            cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
-        
+                
         return cell
     }
-
+    
+    func updateCheckedItems(harvest: Harvest) {
+        if harvest.count > 0 {
+            checkedItems.updateValue(harvest, forKey: harvest.name)
+        } else {
+            checkedItems.removeValue(forKey: harvest.name)
+        }
+        fab.isHidden = 0 == checkedItems.count
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -139,19 +151,6 @@ class MealDockListViewController: UITableViewController,
         return true
     }
     */
-    
-    // MARK: - Table view delegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! StrikethroughTableViewCell
-        let harvest = harvests[indexPath.section][indexPath.row]
-        cell.isChecked = !cell.isChecked
-        if cell.isChecked {
-            checkedItems.updateValue(harvest, forKey: harvest.name)
-        } else {
-            checkedItems.removeValue(forKey: harvest.name)
-        }
-        fab.isHidden = 0 == checkedItems.count
-    }
     
     // MARK: DZNEmptyDataSetSource
 

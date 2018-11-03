@@ -2,11 +2,11 @@
 //  Firebase+Observe.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/10/06.
+//  Created by Wataru Suzuki on 2018/10/06.
 //  Copyright © 2018 WataruSuzuki. All rights reserved.
 //
 
-import Foundation
+import Firebase
 import Alamofire
 import CodableFirebase
 
@@ -113,6 +113,19 @@ extension FirebaseService {
         }
     }
 
+    func loadHarvestCount(itemId: String, harvestName: String, completion: @escaping ((Int)->Void)) {
+        guard let user = currentUser else {
+            completion(0)
+            return
+        }
+        rootRef.child("\(itemId)/\(user.dockID)/\(harvestName)/count/").observeSingleEvent(of: .value) { (snapshot) in
+            if let count = snapshot.value as? Int {
+                completion(count)
+            } else {
+                completion(0)
+            }
+        }
+    }
     
     fileprivate func snapshotToHarvests(snapshot: DataSnapshot) -> [[Harvest]] {
         var items = FirebaseService.initHarvestArray()
@@ -140,14 +153,8 @@ extension FirebaseService {
     }
     
     func observeDishes(success:(([Dish]) -> Void)?) {
-        if let _ = usageInfoKVO {
-            observeDishes(user: currentUser!, success: success)
-        } else {
-            let kvo = observe(\.usageInfoKVO) { (value, change) in
-                self.signInObservations["observeDishes"]?.invalidate()
-                self.observeDishes(user: self.currentUser!, success: success)
-            }
-            signInObservations.updateValue(kvo, forKey: "observeDishes")
+        waitLoadUserInfo {
+            self.observeDishes(user: self.currentUser!, success: success)
         }
     }
     

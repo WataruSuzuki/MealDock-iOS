@@ -2,7 +2,7 @@
 //  MealDockUITests.swift
 //  MealDockUITests
 //
-//  Created by 鈴木 航 on 2018/07/30.
+//  Created by Wataru Suzuki on 2018/07/30.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -24,7 +24,7 @@ class MealDockUITests: XCTestCase {
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         signInByGroupMember()
-        MealDockUITests.waitingSec(sec: 3.0, sender: self)
+        MealDockUITests.waitingSec(sec: 10.0, sender: self)
     }
     
     private func signInByGroupMember() {

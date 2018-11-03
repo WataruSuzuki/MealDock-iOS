@@ -28,9 +28,11 @@ extension FirebaseService {
             let newReference = rootRef.child("\(itemId)/\(user.dockID)/\(childItem)")
             let newObserver = newReference.observe(.value, with: { (snapshot) in
                 debugPrint(snapshot)
-                if let value = snapshot.value as? String {
-                    completion?(value)
+                guard let value = snapshot.value as? String else {
+                    completion?("")
+                    return
                 }
+                completion?(value)
             }, withCancel: { (error) in
                 print(error.localizedDescription)
             })

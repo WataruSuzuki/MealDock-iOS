@@ -2,7 +2,7 @@
 //  Firebase+User.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/09/15.
+//  Created by Wataru Suzuki on 2018/09/15.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -12,16 +12,8 @@ import CodableFirebase
 extension FirebaseService {
 
     func observeUsageInfo(info:((UsageInfo) -> Void)?) {
-        if let user = currentUser {
-            observeUsageInfo(user: user, info: info)
-        } else {
-            let kvo = observe(\.currentUser) { (user, change) in
-                if let newUser = self.currentUser {
-                    self.observeUsageInfo(user: newUser, info: info)
-                    self.signInObservations["observeUsageInfo"]?.invalidate()
-                }
-            }
-            signInObservations.updateValue(kvo, forKey: "observeUsageInfo")
+        waitSignIn {
+            self.observeUsageInfo(user: self.currentUser!, info: info)
         }
     }
     

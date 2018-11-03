@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import FirebaseDatabase
 import SimpleKeychain
 
 class FirebaseService: NSObject,
@@ -68,6 +69,30 @@ class FirebaseService: NSObject,
         database = Database.database()
         rootRef = database.reference()
         startToObservingDatabase()
+    }
+    
+    func waitSignIn(completion: @escaping (()->Void)) {
+        guard currentUser == nil else {
+            completion()
+            return
+        }
+        let kvo = observe(\.currentUser) { (value, change) in
+            completion()
+            self.signInObservations["waitSignIn"]?.invalidate()
+        }
+        signInObservations.updateValue(kvo, forKey: "waitSignIn")
+    }
+    
+    func waitLoadUserInfo(completed: @escaping (()->Void)) {
+        guard usageInfoKVO == nil else {
+            completed()
+            return
+        }
+        let kvo = observe(\.usageInfoKVO) { (value, change) in
+            completed()
+            self.signInObservations["waitSignInProcess"]?.invalidate()
+        }
+        signInObservations.updateValue(kvo, forKey: "waitSignInProcess")
     }
     
     fileprivate func loadDefaultAuthUI() {

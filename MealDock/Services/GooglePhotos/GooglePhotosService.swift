@@ -2,7 +2,7 @@
 //  AuthService.swift
 //  MealDock
 //
-//  Created by 鈴木 航 on 2018/10/09.
+//  Created by Wataru Suzuki on 2018/10/09.
 //  Copyright © 2018 WataruSuzuki. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ class GooglePhotosService: NSObject {
     static let shared: GooglePhotosService = {
         return GooglePhotosService()
     }()
-    static let keyAuthState = "sharingAuthState"
+    static let keyAuthState = "ownAuthState"
 
     let clientId = "1098918506603-1r34tifn5bv6bf831halvruhcg39jkf2.apps.googleusercontent.com"
     let redirect = "com.googleusercontent.apps.1098918506603-1r34tifn5bv6bf831halvruhcg39jkf2:https://watarusuzuki.github.io/MealDock/index.html"
@@ -21,7 +21,8 @@ class GooglePhotosService: NSObject {
     let ownScope = "https://www.googleapis.com/auth/photoslibrary"
     var currentExternalUserAgentSession: OIDExternalUserAgentSession?
     private(set) var ownAuthState: OIDAuthState?
-    private(set) var sharingAuthState: OIDAuthState?
+    @objc dynamic var sharingAuthState: OIDAuthState?
+    private(set) var tokenObservations = [String: NSKeyValueObservation]()
 
     var albumId: String?
 //    var shareToken: String?
@@ -73,6 +74,18 @@ class GooglePhotosService: NSObject {
     func initSharingAuthState(token: String) {
         let fakeResponse = OIDAuthorizationResponse(request: authorizationRequest, parameters: [:])
         sharingAuthState = OIDAuthState(refreshToken: token, andResponse: fakeResponse)
+    }
+
+    func waitSharingAuthState(completion: @escaping (()->Void)) {
+        guard sharingAuthState == nil else {
+            completion()
+            return
+        }
+        let kvo = observe(\.sharingAuthState) { (value, change) in
+            completion()
+            self.tokenObservations["waitSharingAuthState"]?.invalidate()
+        }
+        tokenObservations.updateValue(kvo, forKey: "waitSharingAuthState")
     }
 
     func removeAuthStatus() {
