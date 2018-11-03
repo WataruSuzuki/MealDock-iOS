@@ -2,7 +2,7 @@
 //  StrikethroughTableViewCell.swift
 //  MealDock
 //
-//  Created by 鈴木航 on 2018/10/04.
+//  Created by Wataru Suzuki 2018/10/04.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -18,17 +18,14 @@ class StrikethroughTableViewCell: UITableViewCell {
         didSet {
             stepper.value = Double(stepperValue)
             updateCount(value: stepperValue)
-            switch stepperMode {
-            case .incremental:
-                updateStrikethrough(isStrikethrough: stepperValue > 0)
-            case .decremental:
-                updateStrikethrough(isStrikethrough: decrementValue > stepperValue)
-                stepper.minimumValue = Double(stepperValue)
-                stepper.maximumValue = Double(stepperValue * 2)
-            }
+            updateStrikethrough(isStrikethrough: stepperValue > 0)
         }
     }
-    var decrementValue = 0
+    var decrementMaxValue = 100 {
+        didSet {
+            stepper.maximumValue = Double(decrementMaxValue)
+        }
+    }
     var stepperValueChanged: ((Int)->Void)?
     let countLabel = UILabel(frame: .zero)
     let decrementCountLabel = UILabel(frame: .zero)
@@ -50,14 +47,8 @@ class StrikethroughTableViewCell: UITableViewCell {
     @objc private func changeStepper(sender: UIStepper) {
         let value = Int(sender.value)
         updateCount(value: value)
-        switch stepperMode {
-        case .incremental:
-            stepperValueChanged?(value)
-            updateStrikethrough(isStrikethrough: value > 0)
-        case.decremental:
-            stepperValueChanged?(decrementValue)
-            updateStrikethrough(isStrikethrough: value > stepperValue)
-        }
+        stepperValueChanged?(value)
+        updateStrikethrough(isStrikethrough: value > 0)
     }
     
     private func updateStrikethrough(isStrikethrough: Bool) {
@@ -84,11 +75,10 @@ class StrikethroughTableViewCell: UITableViewCell {
             countLabel.isHidden = value == 0
             decrementCountLabel.isHidden = true
         case .decremental:
-            countLabel.text = stepperValue.description
-            decrementValue = value - stepperValue
-            let remain = stepperValue - decrementValue
+            countLabel.text = decrementMaxValue.description
+            let remain = decrementMaxValue - value
             decrementCountLabel.text = "\(remain)"
-            decrementCountLabel.isHidden = remain == stepperValue
+            decrementCountLabel.isHidden = value == 0
             break
         }
         arrowLabel.isHidden = decrementCountLabel.isHidden

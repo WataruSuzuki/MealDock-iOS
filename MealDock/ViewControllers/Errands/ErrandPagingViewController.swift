@@ -13,7 +13,9 @@ import MaterialComponents.MaterialBottomAppBar
 import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
 
-class ErrandPagingViewController: UIViewController {
+class ErrandPagingViewController: UIViewController,
+    AddNewMarketItemDelegate
+{
 
     let bottomBarView = MDCBottomAppBarView()
     var items: [MarketItems]!
@@ -26,13 +28,20 @@ class ErrandPagingViewController: UIViewController {
         self.title = NSLocalizedString("errandFoods", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
+        
+        instatiateBottomBar()
+        instatiatePavingViews()
+    }
 
+    func instatiatePavingViews() {
         let storyboard = UIStoryboard(name: "Errand", bundle: nil)
         var controllers = [ErrandViewController]()
         for i in 0..<items.count {
             let controller = storyboard.instantiateViewController(withIdentifier: String(describing: ErrandViewController.self)) as! ErrandViewController
-            controller.title = NSLocalizedString(items[i].type, comment: "")
             controller.items = items[i].items
+            if let section = Harvest.Section(rawValue: i) {
+                controller.title = section.emoji()
+            }
             controllers.append(controller)
         }
         
@@ -41,8 +50,11 @@ class ErrandPagingViewController: UIViewController {
         pagingViewController = FixedPagingViewController(viewControllers: controllers)
         addChildViewController(pagingViewController)
         view.addSubview(pagingViewController.view)
-        
-        instatiateBottomBar()
+    }
+    
+    func removePagingViews() {
+        pagingViewController.view.removeFromSuperview()
+        pagingViewController.removeFromParentViewController()
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,6 +117,19 @@ class ErrandPagingViewController: UIViewController {
         bottomBarView.autoPinEdge(toSuperviewSafeArea: .bottom)
     }
     
+    func completedAddingNewItem() {
+        FirebaseService.shared.loadMarketItems(success: { (items) in
+            self.items = items
+            DispatchQueue.main.async {
+                self.removePagingViews()
+                self.instatiatePavingViews()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }) { (error) in
+            OptionalError.alertErrorMessage(error: error)
+        }
+    }
+    
     @objc func tapMicToSpeech() {
     }
     
@@ -126,6 +151,19 @@ class ErrandPagingViewController: UIViewController {
             }
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let segueId = segue.identifier {
+            switch segueId {
+            case String(describing: AddNewMarketItemViewController.self):
+                if let navigation = segue.destination as? UINavigationController, let controller = navigation.viewControllers.last as? AddNewMarketItemViewController {
+                    controller.delegate = self
+                }
+            default:
+                break
+            }
+        }
     }
 }
 

@@ -2,7 +2,7 @@
 //  Firebase+Dock.swift
 //  MealDock
 //
-//  Created by 鈴木航 on 2018/10/15.
+//  Created by Wataru Suzuki 2018/10/15.
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
@@ -33,7 +33,9 @@ extension FirebaseService {
                     let memberNames = [String](json.values)
                     var members = [DockMember]()
                     for (index, id) in memberIds.enumerated() {
-                        members.append(DockMember(id: id, name: memberNames[index]))
+                        if id != user.core.uid {
+                            members.append(DockMember(id: id, name: memberNames[index]))
+                        }
                     }
                     success?(members)
                 }

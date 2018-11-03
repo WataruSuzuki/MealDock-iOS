@@ -28,13 +28,6 @@ deleteAccount = "Delete account";
 noFood = "No Foods";
 in_packed_list = "in packed list.";
 
-protein = "Protein";
-calcium = "Calcium";
-vegetable = "Vegetable";
-fruit = "Fruit";
-carbohydrate = "Carbohydrate";
-oil = "Oil";
-
 title = "Title";
 description = "Description";
 harvest = "Harvest";
