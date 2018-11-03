@@ -36,11 +36,12 @@ class DockUser: NSObject {
     }
     var isPurchased: Bool {
         get {
-            guard let info = usageInfo,
-                let plan = UsageInfo.PurchasePlan(rawValue: info.purchasePlan) else {
-                return false
-            }
-            return plan != .free
+//            guard let info = usageInfo,
+//                let plan = UsageInfo.PurchasePlan(rawValue: info.purchasePlan) else {
+//                return false
+//            }
+//            return plan != .free
+            return true
         }
     }
     var switchingDock :((String?) -> Void)?
