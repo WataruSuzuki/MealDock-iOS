@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class DockUser: NSObject {
-    
+
     let core: User
     private var currentDock: String?
     var dockID: String {
@@ -36,12 +36,14 @@ class DockUser: NSObject {
     }
     var isPurchased: Bool {
         get {
-//            guard let info = usageInfo,
-//                let plan = UsageInfo.PurchasePlan(rawValue: info.purchasePlan) else {
-//                return false
-//            }
-//            return plan != .free
-            return true
+            guard let info = usageInfo,
+                let plan = UsageInfo.PurchasePlan(rawValue: info.purchasePlan) else {
+                return false
+            }
+            debugPrint("plan: \(plan)")
+            debugPrint("unlockPremium: \(info.unlockPremium ?? false)")
+            debugPrint("unlockedAd: \(info.unlockedAd ?? false)")
+            return plan != .free || info.unlockPremium ?? false || info.unlockedAd ?? false
         }
     }
     var switchingDock :((String?) -> Void)?
@@ -51,7 +53,7 @@ class DockUser: NSObject {
         super.init()
         startObserving()
     }
-    
+
     func startObserving() {
         FirebaseService.shared.observeUsageInfo { (info) in
             self.usageInfo = info
@@ -83,17 +85,17 @@ class DockUser: NSObject {
             }
         }
     }
-    
+
     func delete(completion: UserProfileChangeCallback?) {
         core.delete(completion: completion)
     }
-    
+
     func printUserInfo() {
         debugPrint("uid = \(core.uid)")
         debugPrint("displayName = \(String(describing: core.displayName))")
         debugPrint("email = \(String(describing: core.email))")
     }
-    
+
     func hasCapacity(addingSize: Int) -> Bool {
         guard let usage = usageInfo, let plan = UsageInfo.PurchasePlan(rawValue: usage.purchasePlan) else {
             return false

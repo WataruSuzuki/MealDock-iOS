@@ -39,7 +39,9 @@ extension UIViewController {
         return nil
     }
     
-    static func topIndicatorStop(view: UIView) {
-        view.removeFromSuperview()
+    static func topIndicatorStop(view: UIView?) {
+        if let view = view {
+            view.removeFromSuperview()
+        }
     }
 }

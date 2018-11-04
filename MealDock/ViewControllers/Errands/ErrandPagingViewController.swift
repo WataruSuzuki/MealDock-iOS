@@ -14,7 +14,7 @@ import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
 
 class ErrandPagingViewController: UIViewController,
-    AddNewMarketItemDelegate
+    UpdateCustomMarketItemDelegate
 {
 
     let bottomBarView = MDCBottomAppBarView()
@@ -91,11 +91,11 @@ class ErrandPagingViewController: UIViewController,
         bottomBarView.floatingButtonPosition = .center
         bottomBarView.setFloatingButtonHidden(true, animated: true)
         
-//        let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_search_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapSearch))
+        let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_more_horiz_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapMore))
         let barButtonTrailingItem = UIBarButtonItem(title: NSLocalizedString("addNewMarketItem", comment: ""), style: .plain, target: self, action: #selector(tapCamera))
             //UIBarButtonItem(image: UIImage(named:"baseline_photo_camera_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapCamera))
         
-//        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
+        bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
         bottomBarView.trailingBarButtonItems = [ barButtonTrailingItem ]
     }
     
@@ -117,7 +117,7 @@ class ErrandPagingViewController: UIViewController,
         bottomBarView.autoPinEdge(toSuperviewSafeArea: .bottom)
     }
     
-    func completedAddingNewItem() {
+    func updatedItem() {
         FirebaseService.shared.loadMarketItems(success: { (items) in
             self.items = items
             DispatchQueue.main.async {
@@ -133,7 +133,14 @@ class ErrandPagingViewController: UIViewController,
     @objc func tapMicToSpeech() {
     }
     
-    @objc func tapSearch() {
+    @objc func tapMore() {
+        let actionSheet = UIAlertController(title: NSLocalizedString("menu", comment: ""), message: nil, preferredStyle: .actionSheet)
+        actionSheet.addEmptyCancelAction()
+        let editingCustomItems = UIAlertAction(title: NSLocalizedString("editCustomItem", comment: ""), style: .default) { (action) in
+            self.performSegue(withIdentifier: String(describing: EditCustomMarketItemsViewController.self), sender: self)
+        }
+        actionSheet.addAction(editingCustomItems)
+        present(actionSheet, animated: true, completion: nil)
     }
 
     @objc func tapCamera() {
@@ -154,14 +161,11 @@ class ErrandPagingViewController: UIViewController,
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let segueId = segue.identifier {
-            switch segueId {
-            case String(describing: AddNewMarketItemViewController.self):
-                if let navigation = segue.destination as? UINavigationController, let controller = navigation.viewControllers.last as? AddNewMarketItemViewController {
-                    controller.delegate = self
-                }
-            default:
-                break
+        if let navigation = segue.destination as? UINavigationController {
+            if let addNewItem = navigation.viewControllers.last as? AddNewMarketItemViewController {
+                addNewItem.delegate = self
+            } else if let editCustomItems = navigation.viewControllers.last as? EditCustomMarketItemsViewController {
+                editCustomItems.delegate = self
             }
         }
     }

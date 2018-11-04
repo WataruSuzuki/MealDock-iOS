@@ -24,7 +24,7 @@ class PermissionTest: XCTestCase {
                 expectation?.fulfill()
             }
         }
-        self.waitForExpectations(timeout: 10.00, handler: nil)
+        self.waitForExpectations(timeout: 20.00, handler: nil)
     }
 
     override func tearDown() {
@@ -52,7 +52,7 @@ class PermissionTest: XCTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        self.waitForExpectations(timeout: 3.00, handler: nil)
+        self.waitForExpectations(timeout: 20.00, handler: nil)
     }
 
     func testObservingMealDockRoom() {
@@ -65,7 +65,7 @@ class PermissionTest: XCTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        self.waitForExpectations(timeout: 3.00, handler: nil)
+        self.waitForExpectations(timeout: 20.00, handler: nil)
     }
 
     func testFailToObserveRootItems() {
@@ -84,6 +84,6 @@ class PermissionTest: XCTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        self.waitForExpectations(timeout: 3.00, handler: nil)
+        self.waitForExpectations(timeout: 20.00, handler: nil)
     }
 }

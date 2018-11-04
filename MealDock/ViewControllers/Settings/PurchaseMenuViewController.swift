@@ -17,7 +17,7 @@ class PurchaseMenuViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Menu.max.rawValue
+        return UsageInfo.PurchasePlan.max.rawValue
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,21 +28,27 @@ class PurchaseMenuViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PurchaseMenuCell", for: indexPath)
 
         // Configure the cell...
-        if let menu = Menu(rawValue: indexPath.section) {
-            cell.textLabel?.text = NSLocalizedString(menu.description(), comment: "")
+        if let menu = UsageInfo.PurchasePlan(rawValue: indexPath.section) {
+            if menu == .free {
+                cell.textLabel?.text = NSLocalizedString("restore", comment: "")
+            } else {
+                cell.textLabel?.text = NSLocalizedString(menu.description(), comment: "")
+            }
         }
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if let menu = Menu(rawValue: section) {
+        if let menu = UsageInfo.PurchasePlan(rawValue: section) {
             let key = "footer_" + menu.description()
             switch menu {
-            case .unlockAd:
-                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.unlockAd.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
-            case .subscription:
-                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.subscription.limitSize())
+            case .free:
+                return NSLocalizedString("footer_restore", comment: "")
+            case .unlockPremium:
+                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.unlockPremium.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
+            case .subscriptionBasic:
+                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.subscriptionBasic.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
             default:
                 return NSLocalizedString(key, comment: "")
             }
@@ -51,25 +57,20 @@ class PurchaseMenuViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let menu = Menu(rawValue: indexPath.section) {
+        if let menu = UsageInfo.PurchasePlan(rawValue: indexPath.section) {
             switch menu {
-            case .restore:
+            case .free:
                 PurchaseService.shared.restorePurchases()
                 break
             case .unlockAd:
                 PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockAd.productId()], atomically: false)
-            case .subscription:
-                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.subscription.productId()], atomically: false)
+            case .unlockPremium:
+                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockPremium.productId()], atomically: false)
+            case .subscriptionBasic:
+                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.subscriptionBasic.productId()], atomically: false)
             default:
                 break
             }
         }
-    }
-
-    enum Menu: Int {
-        case unlockAd = 0,
-        subscription,
-        restore,
-        max
     }
 }

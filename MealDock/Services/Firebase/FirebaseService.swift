@@ -111,9 +111,7 @@ class FirebaseService: NSObject,
             let indicator = UIViewController.topIndicatorStart()
             authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { (auth, user) in
                 debugPrint("auth = \(auth.debugDescription)")
-                if let indicator = indicator {
-                    UIViewController.topIndicatorStop(view: indicator)
-                }
+                UIViewController.topIndicatorStop(view: indicator)
                 if let user = user {
                     self.currentUser = DockUser(user: user)
                 } else {

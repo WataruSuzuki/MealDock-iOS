@@ -11,8 +11,12 @@ import MaterialComponents.MaterialSnackbar
 
 extension FirebaseService {
     
-    func addToMarketItem(harvests: [Harvest]) -> Bool {
+    func addCustomMarketItem(harvests: [Harvest]) -> Bool {
         return addHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvests: harvests)
+    }
+    
+    func removeMarketItem(harvest: Harvest) {
+        decrementHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, harvests: [harvest])
     }
     
     func addToErrand(harvests: [Harvest]) -> Bool {

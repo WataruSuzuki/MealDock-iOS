@@ -18,6 +18,7 @@ class MealDockListViewController: UITableViewController,
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
     var harvests = [[Harvest]]()
     var checkedItems = [String : Harvest]()
+    var midiumAdView: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,10 @@ class MealDockListViewController: UITableViewController,
         colorScheme.secondaryColor = colorScheme.primaryColor
         
         MDCFloatingButtonColorThemer.applySemanticColorScheme(colorScheme, to: fab)
+        if let user = FirebaseService.shared.currentUser, !user.isPurchased, midiumAdView == nil {
+            midiumAdView = PurchaseService.shared.middiumSizeBanner(unitId: "ca-app-pub-3165756184642596/4608493613", rootViewController: self)
+            view.addSubview(midiumAdView!)
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -46,6 +51,8 @@ class MealDockListViewController: UITableViewController,
         
         DispatchQueue.main.async {
             self.layout(fab: self.fab)
+            self.midiumAdView?.centerXToSuperview()
+            self.midiumAdView?.autoPinEdge(.bottom, to: .top, of: self.tabBarController!.tabBar)
         }
     }
     
@@ -177,6 +184,14 @@ class MealDockListViewController: UITableViewController,
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
         guard FirebaseService.shared.currentUser == nil else { return }
         FirebaseService.shared.requestAuthUI()
+    }
+    
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        midiumAdView?.isHidden = false
+    }
+    
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        midiumAdView?.isHidden = true
     }
 
     func onFabTapped() {

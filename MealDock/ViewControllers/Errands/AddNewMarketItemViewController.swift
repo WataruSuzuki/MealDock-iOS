@@ -10,10 +10,6 @@ import UIKit
 import MaterialComponents.MaterialCollections
 import ActionSheetPicker_3_0
 
-protocol AddNewMarketItemDelegate {
-    func completedAddingNewItem()
-}
-
 class AddNewMarketItemViewController: MDCCollectionViewController {
 
     var capturePhotoView: UIImageView?
@@ -21,7 +17,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     var typePicker: UIPickerView?
     var selectedType = Harvest.Section.unknown
     var items: [String]?
-    var delegate: AddNewMarketItemDelegate?
+    var delegate: UpdateCustomMarketItemDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,11 +162,11 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
             return
         }
         let harvest = Harvest(name: name, section: selectedType.toString(), imageUrl: "")
-        guard FirebaseService.shared.addToMarketItem(harvests: [harvest]) else {
+        guard FirebaseService.shared.addCustomMarketItem(harvests: [harvest]) else {
             OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
             return
         }
-        delegate?.completedAddingNewItem()
+        delegate?.updatedItem()
     }
     
     enum Element: Int {
