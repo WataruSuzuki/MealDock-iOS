@@ -12,6 +12,7 @@ import XCTest
 class MealDockTests: XCTestCase {
     
     static let email = "unittest@mealdock.com"
+    static let emailEmptyUser = "empty_unittest@mealdock.com"
     static let password = "unittest"
     
     override func setUp() {
