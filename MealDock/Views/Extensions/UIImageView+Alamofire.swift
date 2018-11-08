@@ -12,17 +12,24 @@ import AlamofireImage
 extension UIImageView {
     
     func setImageByAlamofire(with url: URL) {
-        
-        af_setImage(withURL: url) { [weak self] response in
-            switch response.result {
-            case .success(let image):
-                self?.image = image
-                
-            case .failure(_):
-                // error handling
-                break
+        setImageByAlamofire(with: url, cacheKey: url.absoluteString)
+    }
+    
+    func setImageByAlamofire(with url: URL, cacheKey: String) {
+        if let cachedImage = ImageCacheService.shared.imageCache.image(withIdentifier: cacheKey) {
+            self.image = cachedImage
+        } else {
+            af_setImage(withURL: url) { [weak self] response in
+                switch response.result {
+                case .success(let image):
+                    ImageCacheService.shared.imageCache.add(image, withIdentifier: cacheKey)
+                    self?.image = image
+                    
+                case .failure(_):
+                    // error handling
+                    break
+                }
             }
-            
         }
     }
 }

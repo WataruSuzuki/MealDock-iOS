@@ -12,6 +12,8 @@
 		9601C8EC218EE1E00034F045 /* EditCustomItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601C8EB218EE1E00034F045 /* EditCustomItemsViewController.swift */; };
 		9601C8EF218EE2720034F045 /* EditCustomMarketItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9601C8ED218EE2720034F045 /* EditCustomMarketItem.storyboard */; };
 		9601C8F1218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */; };
+		960FAAB82191D7BE00784637 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */; };
+		960FAABA2191E18E00784637 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960FAAB92191E18E00784637 /* ImageCacheService.swift */; };
 		9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615BDE7214CA79C001801D5 /* SettingsViewController.swift */; };
 		9615BDEB214CA7E0001801D5 /* InFridgeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDE9214CA7E0001801D5 /* InFridgeList.storyboard */; };
 		9615BDEE214CA822001801D5 /* CartedItemList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDEC214CA822001801D5 /* CartedItemList.storyboard */; };
@@ -25,7 +27,7 @@
 		96317C9A210F56FD00F81F22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96317C99210F56FD00F81F22 /* Assets.xcassets */; };
 		96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96317C9B210F56FD00F81F22 /* LaunchScreen.storyboard */; };
 		96317CA8210F56FD00F81F22 /* MealDockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CA7210F56FD00F81F22 /* MealDockTests.swift */; };
-		96317CB3210F56FD00F81F22 /* MealDockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CB2210F56FD00F81F22 /* MealDockUITests.swift */; };
+		96317CB3210F56FD00F81F22 /* ShowQrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96317CB2210F56FD00F81F22 /* ShowQrUITests.swift */; };
 		964C00BC214E22FB0099689B /* DishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00BB214E22FB0099689B /* DishListViewController.swift */; };
 		964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C1214FA8770099689B /* Firebase+CommandHarvest.swift */; };
 		964C00C4214FCC1A0099689B /* CartedItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C00C3214FCC1A0099689B /* CartedItemListViewController.swift */; };
@@ -54,7 +56,6 @@
 		966F5A7A2178D0A200A47EDF /* UICollectionView+CellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F5A792178D0A200A47EDF /* UICollectionView+CellSize.swift */; };
 		967146B8216B807100DDA65E /* UsageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146B7216B807100DDA65E /* UsageInfo.swift */; };
 		967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146BD216CF02700DDA65E /* GooglePhotosService.swift */; };
-		967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967146C1216E409E00DDA65E /* PermissionTest.swift */; };
 		9696B4A6214C8E28001DFB60 /* Firebase+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */; };
 		96B49BB42185608A00657702 /* GooglePhotosErrorMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B49BB32185608A00657702 /* GooglePhotosErrorMedia.swift */; };
 		96B49BB621857A5E00657702 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B49BB521857A5E00657702 /* StoreKit.framework */; };
@@ -100,12 +101,15 @@
 		CC77E5032165F9D5002891BB /* StrikethroughTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E5012165F9D5002891BB /* StrikethroughTableViewCell.swift */; };
 		CC77E5042165F9D5002891BB /* StrikethroughTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */; };
 		CC77E5062165FFBF002891BB /* UITableView+CustomNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E5052165FFBF002891BB /* UITableView+CustomNib.swift */; };
+		CC832B812194002900402B3E /* XCTestCase+SetupSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC832B802194002900402B3E /* XCTestCase+SetupSignIn.swift */; };
 		CC9B6D24215CB1CE00E49491 /* MarketItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B6D23215CB1CE00E49491 /* MarketItems.swift */; };
 		CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCA83D51214B45BF00226382 /* GoogleService-Info.plist */; };
 		CCCFAC32216F4FE9002279B3 /* GooglePhotosNewMediaItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFAC31216F4FE9002279B3 /* GooglePhotosNewMediaItemResult.swift */; };
 		CCCFAC34216F518F002279B3 /* GooglePhotosMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFAC33216F518F002279B3 /* GooglePhotosMediaItem.swift */; };
 		CCCFAC36216F5295002279B3 /* GooglePhotosMediaMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFAC35216F5295002279B3 /* GooglePhotosMediaMetadata.swift */; };
 		CCCFAC38216F58FA002279B3 /* GooglePhotosAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFAC37216F58FA002279B3 /* GooglePhotosAlbum.swift */; };
+		CCD75A762194180100676489 /* ErrandSceneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD75A752194180100676489 /* ErrandSceneUITests.swift */; };
+		CCD75A7821941B8A00676489 /* XCUIElement+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD75A7721941B8A00676489 /* XCUIElement+TextField.swift */; };
 		CCDC94E2214B813B007FBAB0 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E1214B813B007FBAB0 /* InitViewController.swift */; };
 		CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */; };
 		CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */; };
@@ -133,13 +137,19 @@
 
 /* Begin PBXFileReference section */
 		21C49D9CEEE8533906C5B8C0 /* Pods-MealDock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.debug.xcconfig"; sourceTree = "<group>"; };
+		2FE43088613671E735888CF1 /* Pods-MealDockTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.testflight.xcconfig"; sourceTree = "<group>"; };
 		35F6AC2451E85004C94B3BFC /* Pods_MealDockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40B784A7B69B83E7AE3DDBCE /* Pods-MealDockTests.unittesting.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.unittesting.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.unittesting.xcconfig"; sourceTree = "<group>"; };
+		45D67865DB1C07BED0A38CF5 /* Pods-MealDock.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.testflight.xcconfig"; sourceTree = "<group>"; };
 		7D6BE5948D8EA7618B433155 /* Pods-MealDockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.release.xcconfig"; sourceTree = "<group>"; };
 		89D3F00AACEC7B628F851B1A /* Pods-MealDockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealDockTests/Pods-MealDockTests.debug.xcconfig"; sourceTree = "<group>"; };
+		930988D48B5186753AA63A6B /* Pods-MealDock.unittesting.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.unittesting.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.unittesting.xcconfig"; sourceTree = "<group>"; };
 		9601C8E9218EE0BF0034F045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AddingNewMarketItem.storyboard; sourceTree = "<group>"; };
 		9601C8EB218EE1E00034F045 /* EditCustomItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomItemsViewController.swift; sourceTree = "<group>"; };
 		9601C8EE218EE2720034F045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditCustomMarketItem.storyboard; sourceTree = "<group>"; };
 		9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCustomMarketItemDelegate.swift; sourceTree = "<group>"; };
+		960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
+		960FAAB92191E18E00784637 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		9615BDE7214CA79C001801D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9615BDEA214CA7E0001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InFridgeList.storyboard; sourceTree = "<group>"; };
 		9615BDED214CA822001801D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CartedItemList.storyboard; sourceTree = "<group>"; };
@@ -160,7 +170,7 @@
 		96317CA7210F56FD00F81F22 /* MealDockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockTests.swift; sourceTree = "<group>"; };
 		96317CA9210F56FD00F81F22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96317CAE210F56FD00F81F22 /* MealDockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MealDockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		96317CB2210F56FD00F81F22 /* MealDockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDockUITests.swift; sourceTree = "<group>"; };
+		96317CB2210F56FD00F81F22 /* ShowQrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowQrUITests.swift; sourceTree = "<group>"; };
 		96317CB4210F56FD00F81F22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		964C00BB214E22FB0099689B /* DishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishListViewController.swift; sourceTree = "<group>"; };
 		964C00C1214FA8770099689B /* Firebase+CommandHarvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+CommandHarvest.swift"; sourceTree = "<group>"; };
@@ -190,7 +200,6 @@
 		966F5A792178D0A200A47EDF /* UICollectionView+CellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CellSize.swift"; sourceTree = "<group>"; };
 		967146B7216B807100DDA65E /* UsageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfo.swift; sourceTree = "<group>"; };
 		967146BD216CF02700DDA65E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
-		967146C1216E409E00DDA65E /* PermissionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionTest.swift; sourceTree = "<group>"; };
 		9696B4A5214C8E28001DFB60 /* Firebase+UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+UserInfo.swift"; sourceTree = "<group>"; };
 		96B49BA92184518200657702 /* development.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = development.entitlements; sourceTree = "<group>"; };
 		96B49BAA218453E800657702 /* production.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = production.entitlements; sourceTree = "<group>"; };
@@ -241,12 +250,15 @@
 		CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrikethroughTableViewCell.xib; sourceTree = "<group>"; };
 		CC77E5052165FFBF002891BB /* UITableView+CustomNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CustomNib.swift"; sourceTree = "<group>"; };
 		CC7A3DC6214A2D6600F50AB0 /* MealDock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MealDock-Bridging-Header.h"; sourceTree = "<group>"; };
+		CC832B802194002900402B3E /* XCTestCase+SetupSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+SetupSignIn.swift"; sourceTree = "<group>"; };
 		CC9B6D23215CB1CE00E49491 /* MarketItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketItems.swift; sourceTree = "<group>"; };
 		CCA83D51214B45BF00226382 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CCCFAC31216F4FE9002279B3 /* GooglePhotosNewMediaItemResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosNewMediaItemResult.swift; sourceTree = "<group>"; };
 		CCCFAC33216F518F002279B3 /* GooglePhotosMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosMediaItem.swift; sourceTree = "<group>"; };
 		CCCFAC35216F5295002279B3 /* GooglePhotosMediaMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosMediaMetadata.swift; sourceTree = "<group>"; };
 		CCCFAC37216F58FA002279B3 /* GooglePhotosAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosAlbum.swift; sourceTree = "<group>"; };
+		CCD75A752194180100676489 /* ErrandSceneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandSceneUITests.swift; sourceTree = "<group>"; };
+		CCD75A7721941B8A00676489 /* XCUIElement+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+TextField.swift"; sourceTree = "<group>"; };
 		CCDC94E1214B813B007FBAB0 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		CCDC94E4214B8239007FBAB0 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		CCDC94EE214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FUIPasswordSignInViewController+Injection.h"; sourceTree = "<group>"; };
@@ -292,6 +304,10 @@
 				A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */,
 				89D3F00AACEC7B628F851B1A /* Pods-MealDockTests.debug.xcconfig */,
 				7D6BE5948D8EA7618B433155 /* Pods-MealDockTests.release.xcconfig */,
+				930988D48B5186753AA63A6B /* Pods-MealDock.unittesting.xcconfig */,
+				45D67865DB1C07BED0A38CF5 /* Pods-MealDock.testflight.xcconfig */,
+				40B784A7B69B83E7AE3DDBCE /* Pods-MealDockTests.unittesting.xcconfig */,
+				2FE43088613671E735888CF1 /* Pods-MealDockTests.testflight.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -375,7 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				96317CA7210F56FD00F81F22 /* MealDockTests.swift */,
-				967146C3216E40A600DDA65E /* Firebase */,
 				96317CA9210F56FD00F81F22 /* Info.plist */,
 			);
 			path = MealDockTests;
@@ -384,8 +399,10 @@
 		96317CB1210F56FD00F81F22 /* MealDockUITests */ = {
 			isa = PBXGroup;
 			children = (
-				96317CB2210F56FD00F81F22 /* MealDockUITests.swift */,
+				CCD75A752194180100676489 /* ErrandSceneUITests.swift */,
+				96317CB2210F56FD00F81F22 /* ShowQrUITests.swift */,
 				96317CB4210F56FD00F81F22 /* Info.plist */,
+				CC832B7F2193FFEE00402B3E /* Extensions */,
 			);
 			path = MealDockUITests;
 			sourceTree = "<group>";
@@ -458,14 +475,6 @@
 				966F5A5021718D1100A47EDF /* GooglePhoto+Token.swift */,
 			);
 			path = GooglePhotos;
-			sourceTree = "<group>";
-		};
-		967146C3216E40A600DDA65E /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				967146C1216E409E00DDA65E /* PermissionTest.swift */,
-			);
-			path = Firebase;
 			sourceTree = "<group>";
 		};
 		9696B4A4214C8DAF001DFB60 /* Firebase */ = {
@@ -596,9 +605,19 @@
 		CC77E4FE2165E875002891BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				960FAAB72191D7BE00784637 /* UIImage+Orientation.swift */,
 				CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */,
 				966F5A6021731A6100A47EDF /* Enum+Description.swift */,
 				CC39A1AD217DB52900074342 /* String+encript.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CC832B7F2193FFEE00402B3E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CC832B802194002900402B3E /* XCTestCase+SetupSignIn.swift */,
+				CCD75A7721941B8A00676489 /* XCUIElement+TextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -610,6 +629,7 @@
 				9696B4A4214C8DAF001DFB60 /* Firebase */,
 				967146C0216E353000DDA65E /* GooglePhotos */,
 				CC54D960217978F000E42F28 /* Purchase */,
+				960FAAB92191E18E00784637 /* ImageCacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -981,6 +1001,7 @@
 				CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */,
 				CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */,
 				CCCFAC34216F518F002279B3 /* GooglePhotosMediaItem.swift in Sources */,
+				960FAAB82191D7BE00784637 /* UIImage+Orientation.swift in Sources */,
 				966F5A53217190DD00A47EDF /* GooglePhoto+Access.swift in Sources */,
 				CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */,
 				966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */,
@@ -1016,6 +1037,7 @@
 				CC6495062174934100580268 /* Firebase+Dock.swift in Sources */,
 				CC39A1AC217DB3A400074342 /* Purchase+Consent.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,
+				960FAABA2191E18E00784637 /* ImageCacheService.swift in Sources */,
 				9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */,
 				CC39A1A9217D8D0500074342 /* Purchase+AdMobReward.swift in Sources */,
 				966F5A482170C40A00A47EDF /* GooglePhotosSharedInfo.swift in Sources */,
@@ -1028,7 +1050,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				967146C2216E409E00DDA65E /* PermissionTest.swift in Sources */,
 				96317CA8210F56FD00F81F22 /* MealDockTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1037,7 +1058,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96317CB3210F56FD00F81F22 /* MealDockUITests.swift in Sources */,
+				CCD75A7821941B8A00676489 /* XCUIElement+TextField.swift in Sources */,
+				CC832B812194002900402B3E /* XCTestCase+SetupSignIn.swift in Sources */,
+				CCD75A762194180100676489 /* ErrandSceneUITests.swift in Sources */,
+				96317CB3210F56FD00F81F22 /* ShowQrUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1403,6 +1427,251 @@
 			};
 			name = Release;
 		};
+		965739C8219081E600993BD0 /* TestFlight */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = TestFlight;
+		};
+		965739C9219081E600993BD0 /* TestFlight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45D67865DB1C07BED0A38CF5 /* Pods-MealDock.testflight.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MealDock/development.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F35G39V2UB;
+				INFOPLIST_FILE = MealDock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SIMULATING_PURCHASED;
+				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = TestFlight;
+		};
+		965739CA219081E600993BD0 /* TestFlight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FE43088613671E735888CF1 /* Pods-MealDockTests.testflight.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F35G39V2UB;
+				INFOPLIST_FILE = MealDockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealDock.app/MealDock";
+			};
+			name = TestFlight;
+		};
+		965739CB219081E600993BD0 /* TestFlight */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F35G39V2UB;
+				INFOPLIST_FILE = MealDockUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDockUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MealDock;
+			};
+			name = TestFlight;
+		};
+		965739CC219081FC00993BD0 /* UnitTesting */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = UnitTesting;
+		};
+		965739CD219081FC00993BD0 /* UnitTesting */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 930988D48B5186753AA63A6B /* Pods-MealDock.unittesting.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MealDock/development.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F35G39V2UB;
+				INFOPLIST_FILE = MealDock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDock.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SIMULATING_PURCHASED";
+				SWIFT_OBJC_BRIDGING_HEADER = "MealDock/MealDock-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = UnitTesting;
+		};
+		965739CE219081FC00993BD0 /* UnitTesting */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40B784A7B69B83E7AE3DDBCE /* Pods-MealDockTests.unittesting.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F35G39V2UB;
+				INFOPLIST_FILE = MealDockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealDock.app/MealDock";
+			};
+			name = UnitTesting;
+		};
+		965739CF219081FC00993BD0 /* UnitTesting */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F35G39V2UB;
+				INFOPLIST_FILE = MealDockUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.JchanKchan.MealDockUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MealDock;
+			};
+			name = UnitTesting;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1410,7 +1679,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96317CB5210F56FD00F81F22 /* Debug */,
+				965739CC219081FC00993BD0 /* UnitTesting */,
 				96317CB6210F56FD00F81F22 /* Release */,
+				965739C8219081E600993BD0 /* TestFlight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1419,7 +1690,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96317CB8210F56FD00F81F22 /* Debug */,
+				965739CD219081FC00993BD0 /* UnitTesting */,
 				96317CB9210F56FD00F81F22 /* Release */,
+				965739C9219081E600993BD0 /* TestFlight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1428,7 +1701,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96317CBB210F56FD00F81F22 /* Debug */,
+				965739CE219081FC00993BD0 /* UnitTesting */,
 				96317CBC210F56FD00F81F22 /* Release */,
+				965739CA219081E600993BD0 /* TestFlight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1437,7 +1712,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96317CBE210F56FD00F81F22 /* Debug */,
+				965739CF219081FC00993BD0 /* UnitTesting */,
 				96317CBF210F56FD00F81F22 /* Release */,
+				965739CB219081E600993BD0 /* TestFlight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -190,7 +190,7 @@ class EditDishViewController: MDCCollectionViewController,
     // MARK: UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            capturePhotoView?.image = image
+            capturePhotoView?.image = image.transformToUp()
         }
         dismiss(animated: true, completion: nil)
     }

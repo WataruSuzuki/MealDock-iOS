@@ -47,10 +47,8 @@ class DishCardCollectionCell: MDCCardCollectionCell {
     private let uncheckImage = UIImage(named: "baseline_check_box_outline_blank_black_36pt")!
     private var checkmarkBackgroundView: UIView!
 
-    func configure(title: String, imageName: String) {
-        let bundle = Bundle(for: DishCardCollectionCell.self)
-        
-        self.imageView.image  = UIImage(named: imageName, in: bundle, compatibleWith: nil)
+    func configure(title: String, image: UIImage) {
+        self.imageView.image = image
         self.titleLabel.text = title
         
         self.contentView.addSubview(imageView)

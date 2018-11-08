@@ -28,7 +28,7 @@ class DishListViewController: UICollectionViewController,
     var checkBarButton: UIBarButtonItem!
     var cancelBarButton: UIBarButtonItem!
     var isSelectMode = false
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         PurchaseService.shared.load(unitId: "YOUR_AD_UNIT_ID_FOR_NATIVE", controller: self)
@@ -43,7 +43,7 @@ class DishListViewController: UICollectionViewController,
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
         
-        checkBarButton = UIBarButtonItem(image: UIImage(named: "baseline_check_box_black_36pt")!, style: .plain, target: self, action: #selector(changeSelectingMode))
+        checkBarButton = UIBarButtonItem(title: NSLocalizedString("select", comment: ""), style: .plain, target: self, action: #selector(changeSelectingMode))
         cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(changeSelectingMode))
     }
     
@@ -110,12 +110,16 @@ class DishListViewController: UICollectionViewController,
         cardCell.apply(cardScheme: cardScheme, typographyScheme: typographyScheme)
         // Configure the cell
         let dish = dishes[indexPath.row]
-        cardCell.configure(title: dish.title, imageName: "baseline_help_black_48pt")
-        let indicator = cardCell.startIndicator()
-        GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dish.imagePath) { (url, error) in
-            cardCell.stopIndicator(view: indicator)
-            guard error == nil else { return }
-            cardCell.imageView.setImageByAlamofire(with: URL(string: url)!)
+        if let image = ImageCacheService.shared.imageCache.image(withIdentifier: dish.imagePath) {
+            cardCell.configure(title: dish.title, image: image)
+        } else {
+            cardCell.configure(title: dish.title, image: UIImage(named: "baseline_help_black_48pt")!)
+            let indicator = cardCell.startIndicator()
+            GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dish.imagePath) { (url, error) in
+                cardCell.stopIndicator(view: indicator)
+                guard error == nil else { return }
+                cardCell.imageView.setImageByAlamofire(with: URL(string: url)!, cacheKey: dish.imagePath)
+            }
         }
         if dish.title == "💩" {
             if let nativeView = PurchaseService.shared.nativeView() {

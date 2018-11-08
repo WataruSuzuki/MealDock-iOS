@@ -36,7 +36,7 @@ class DockUser: NSObject {
     }
     var isPurchased: Bool {
         get {
-            #if TEST || SIMULATING_PURCHASED
+            #if SIMULATING_PURCHASED
             return true
             #else
             guard let info = usageInfo,
