@@ -5,7 +5,7 @@ APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" $PRO
 APP_BUILD_NO=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" $PRODUCT_SETTINGS_PATH)
 /usr/libexec/PlistBuddy -c "Set :PreferenceSpecifiers:2:DefaultValue ${APP_BUILD_NO}" "${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist"
 
-if [ "${CONFIGURATION}" = "Release" ]; then
+if [ "${CONFIGURATION}" = "Release" -o "${CONFIGURATION}" = "TestFlight" ]; then
 
     # get the build number
     buildNumber=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$INFOPLIST_FILE")
