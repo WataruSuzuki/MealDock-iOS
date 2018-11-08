@@ -11,7 +11,7 @@ import TinyConstraints
 
 class ErrandCell: UICollectionViewCell {
     
-    let itemImage = UIImageView(image: UIImage(named: "baseline_help_black_48pt"))
+    let itemImage = UIImageView(image: UIImage(named: "empty_white"))
     var label: UILabel!
     var isChecked = false {
         didSet {

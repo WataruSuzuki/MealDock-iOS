@@ -46,7 +46,9 @@ class EditCustomMarketItemsViewController: UITableViewController {
         
         cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit
-        if !harvest.imageUrl.isEmpty {
+        if harvest.imageUrl.isEmpty {
+            cell.imageView?.image = UIImage(named: "baseline_help_black_48pt")!
+        } else {
             cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
 

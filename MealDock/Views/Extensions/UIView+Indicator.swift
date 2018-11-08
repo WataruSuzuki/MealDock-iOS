@@ -22,7 +22,7 @@ extension UIView {
         return activityIndicator
     }
     
-    func stopIndicator(view: UIView) {
+    func stopIndicator(view: UIView?) {
         if let indicator = view as? MDCActivityIndicator {
             //if let indicator = view as? UIActivityIndicatorView {
             indicator.stopAnimating()
