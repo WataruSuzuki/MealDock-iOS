@@ -144,7 +144,7 @@ class EditDishViewController: MDCCollectionViewController,
         if let url = URL(string: harvest.imageUrl) {
             textCell.imageView?.setImageByAlamofire(with: url)
         } else {
-            textCell.imageView?.image = UIImage(named: "baseline_help_black_48pt")!
+            textCell.imageView?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
         }
 
         return textCell

@@ -119,7 +119,7 @@ class DishListViewController: UICollectionViewController,
                 cardCell.stopIndicator(view: indicator)
                 if let error = error {
                     print(error)
-                    cardCell.imageView.image = UIImage(named: "baseline_help_black_48pt")!
+                    cardCell.imageView.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
                 } else {
                     cardCell.imageView.setImageByAlamofire(with: URL(string: url)!, cacheKey: dish.imagePath)
                 }

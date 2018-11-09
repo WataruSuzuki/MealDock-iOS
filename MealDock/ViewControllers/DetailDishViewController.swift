@@ -17,7 +17,7 @@ class DetailDishViewController: UIViewController {
     var loadedImage: UIImage?
     
     let card = MDCCard()
-    let imageView = CardImageView(image: UIImage(named: "baseline_help_black_48pt")!)
+    let imageView = CardImageView(image: UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal))
 //    let button = MDCButton(frame: .zero)
     let descriptionTextView = UITextView(frame: .zero)
     

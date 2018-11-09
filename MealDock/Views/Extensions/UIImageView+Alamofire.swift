@@ -37,7 +37,7 @@ extension UIImageView {
                 case .failure(_):
                     // error handling
                     if self?.image == nil {
-                        self?.image = UIImage(named: "baseline_help_black_48pt")!
+                        self?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
                     }
                     break
                 }
