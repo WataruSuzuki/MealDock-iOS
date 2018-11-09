@@ -9,7 +9,7 @@
 import UIKit
 import BarcodeScanner
 
-extension ErrandPagingViewController : BarcodeScannerCodeDelegate, BarcodeScannerErrorDelegate, BarcodeScannerDismissalDelegate{
+extension ErrandPagingViewController : BarcodeScannerCodeDelegate, BarcodeScannerErrorDelegate, BarcodeScannerDismissalDelegate {
     
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
         debugPrint(code)

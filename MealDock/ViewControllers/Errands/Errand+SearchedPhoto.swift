@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SearchPhotoWebDelegate {
+    func searchedPhoto(urls: [String])
+}
+
 extension ErrandPagingViewController : SearchPhotoWebDelegate {
     func searchedPhoto(urls: [String]) {
         searchedPhotoUrls = urls

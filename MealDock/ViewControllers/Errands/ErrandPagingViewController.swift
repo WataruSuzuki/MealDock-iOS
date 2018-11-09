@@ -14,10 +14,7 @@ import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
 import BarcodeScanner
 
-class ErrandPagingViewController: UIViewController,
-    SearchMarketItemViewDelegate,
-    UpdateCustomMarketItemDelegate
-{
+class ErrandPagingViewController: UIViewController {
 
     let bottomBarView = MDCBottomAppBarView()
     let barcodeScanner = BarcodeScannerViewController()
@@ -120,26 +117,6 @@ class ErrandPagingViewController: UIViewController,
         bottomBarView.autoSetDimension(.height, toSize: bottomBarView.frame.height)
         //bottomBarView.autoPinEdge(toSuperviewEdge: .bottom)
         bottomBarView.autoPinEdge(toSuperviewSafeArea: .bottom)
-    }
-    
-    func updatedItem() {
-        FirebaseService.shared.loadMarketItems(success: { (items) in
-            self.items = items
-            DispatchQueue.main.async {
-                self.removePagingViews()
-                self.instatiatePavingViews()
-                self.dismiss(animated: true, completion: nil)
-            }
-        }) { (error) in
-            OptionalError.alertErrorMessage(error: error)
-        }
-    }
-    
-    func didSelect(harvest: Harvest, indexPath: IndexPath) {
-        let controllers = pagingViewController.viewControllers as! [ErrandViewController]
-        controllers[indexPath.section].selectedItems.updateValue(harvest, forKey: harvest.name)
-        controllers[indexPath.section].collectionView?.reloadData()
-        dismiss(animated: true, completion: nil)
     }
     
     @objc func tapSearch() {

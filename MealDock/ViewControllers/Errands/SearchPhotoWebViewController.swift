@@ -10,10 +10,6 @@ import UIKit
 import WebKit
 import PureLayout
 
-protocol SearchPhotoWebDelegate {
-    func searchedPhoto(urls: [String])
-}
-
 class SearchPhotoWebViewController: UIViewController,
     WKNavigationDelegate
 {
