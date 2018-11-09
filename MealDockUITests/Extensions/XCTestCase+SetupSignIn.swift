@@ -9,7 +9,7 @@
 import XCTest
 
 extension XCTestCase {
-    static let email = "member_unittest@mealdock.com"
+    static let email_member_unittest = "member_unittest@mealdock.com"
     static let password = "unittest"
 
     func setupAsGroupMember(app: XCUIApplication) {
@@ -32,7 +32,7 @@ extension XCTestCase {
         let tablesQuery = app.tables
         
         let emailTextField = tablesQuery/*@START_MENU_TOKEN@*/.textFields["Enter your email"]/*[[".cells[\"EmailCellAccessibilityID\"].textFields[\"Enter your email\"]",".textFields[\"Enter your email\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        emailTextField.inputText(text: XCTestCase.email)
+        emailTextField.inputText(text: XCTestCase.email_member_unittest)
         
         app.navigationBars["Enter your email"]/*@START_MENU_TOKEN@*/.buttons["NextButtonAccessibilityID"]/*[[".buttons[\"Next\"]",".buttons[\"NextButtonAccessibilityID\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         

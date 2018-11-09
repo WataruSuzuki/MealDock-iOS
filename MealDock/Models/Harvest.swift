@@ -19,6 +19,7 @@ struct Harvest: Codable {
         case unknown = 0,
         carbohydrate,
         dairy_soy,
+        drinks,
         fish,
         fruit,
         meat,
@@ -35,10 +36,11 @@ struct Harvest: Codable {
             switch self {
             case .carbohydrate: return "🍚🍞🍙🥖🍜🍝"
             case .dairy_soy: return "🥛🧀🥚🍳"
+            case .drinks: return "☕️🍵🍹🍾🍷"
             case .fish: return "🐟🐠🐡"
             case .meat: return "🍖🥩🍗🥓"
-            case .vegetable:    return "🍅🍆🌽🥒🥕🥔🥦🥬"
-            case .fruit:        return "🍓🍊🍎🍒🍇🍌🥝🍍"
+            case .vegetable: return "🍅🍆🌽🥒🥕🥔🥦🥬"
+            case .fruit: return "🍓🍊🍎🍒🍇🍌🥝🍍"
             case .seasoning: return "🧂🍯🌶🍶"
             case .processed: return "🍯🍰🍦🍨🍔🍟🍤"
             default: return "👻"

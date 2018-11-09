@@ -161,20 +161,20 @@ class GroupInfoViewController: UITableViewController {
         }    
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        if let groupInfo = Sections(rawValue: indexPath.section) {
+            switch groupInfo {
+            case .manageGrouping:
+                if let managing = ManageStatus(rawValue: indexPath.row) {
+                    let alert = UIAlertController(title: "", message: NSLocalizedString("detailButton_" + managing.description(), comment: ""), preferredStyle: .alert)
+                    alert.addEmptyOkAction()
+                    present(alert, animated: true, completion: nil)
+                }
+            default:
+                break
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let groupInfo = Sections(rawValue: indexPath.section) {
