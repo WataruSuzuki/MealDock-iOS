@@ -17,7 +17,7 @@ class ImageCacheService: NSObject {
     private override init() {
         let cache = URLCache(
             memoryCapacity: 0, diskCapacity: 1000 * 1024 * 1024,  // 1 GB
-            diskPath: "com.alamofire.imagedownloader"
+            diskPath: "org.alamofire.imagedownloader"
         )
         URLCache.shared = cache
     }
