@@ -14,7 +14,7 @@ class InFridgeListViewController: MealDockListViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("inFridgeFoods", comment: "")
-        activateFab(fab: fab, target: self, image: UIImage(named: "packed_food")!, selector: #selector(onFabTapped))
+        activateFab(fab: fab, target: self, image: UIImage(named: "dish")!, selector: #selector(onFabTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {

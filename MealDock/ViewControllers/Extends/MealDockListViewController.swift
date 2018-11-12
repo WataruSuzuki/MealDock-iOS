@@ -116,7 +116,7 @@ class MealDockListViewController: UITableViewController,
         let harvest = harvests[indexPath.section][indexPath.row]
         cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
         
-        cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
+        cell.imageView?.image = UIImage(named: "cart")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit
         if harvest.imageUrl.isEmpty {
             cell.imageView?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)

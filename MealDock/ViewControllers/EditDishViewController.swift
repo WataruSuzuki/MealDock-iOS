@@ -36,7 +36,7 @@ class EditDishViewController: MDCCollectionViewController,
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(tapDone))
         #else //canImport(FloatingPanel)
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_cancel_black_36pt")!, style: .plain, target: self, action: #selector(tapDismiss))
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "packed_food")!, style: .done, target: self, action: #selector(tapDone))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dish")!, style: .done, target: self, action: #selector(tapDone))
         #endif //canImport(FloatingPanel)
     }
 
@@ -140,7 +140,7 @@ class EditDishViewController: MDCCollectionViewController,
         let textCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewTextCell.self), for: indexPath) as! MDCCollectionViewTextCell
         let harvest = checkedItems[indexPath.row]
         textCell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
-        textCell.imageView?.image = UIImage(named: "harvest")
+        textCell.imageView?.image = UIImage(named: "cart")
         if let url = URL(string: harvest.imageUrl) {
             textCell.imageView?.setImageByAlamofire(with: url)
         } else {
