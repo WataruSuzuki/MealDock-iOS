@@ -34,6 +34,7 @@ extension PurchaseService {
     }
     
     func validateProduct(productID: Set<String>, atomically: Bool) {
+        let indicator = UIViewController.topIndicatorStart()
         retrieveProductsInfo(productID: productID) { (result) in
             if let result = result {
                 for product in result.retrievedProducts {
@@ -42,6 +43,7 @@ extension PurchaseService {
                     }
                 }
             }
+            UIViewController.topIndicatorStop(view: indicator)
         }
     }
     
@@ -129,6 +131,7 @@ extension PurchaseService {
     }
     
     func restorePurchases() {
+        let indicator = UIViewController.topIndicatorStart()
         SwiftyStoreKit.restorePurchases(atomically: false) { results in
             guard results.restoreFailedPurchases.count == 0 else {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
@@ -136,6 +139,7 @@ extension PurchaseService {
                 for restoreFailed in results.restoreFailedPurchases {
                     message.append("\n - \(restoreFailed)")
                 }
+                UIViewController.topIndicatorStop(view: indicator)
                 OptionalError.alertErrorMessage(message: message, actions: nil)
                 return
             }
@@ -177,6 +181,7 @@ extension PurchaseService {
                 print("Nothing to Restore")
                 OptionalError.alertErrorMessage(message: "cannot_find_paid_history", actions: nil)
             }
+            UIViewController.topIndicatorStop(view: indicator)
         }
     }
     
@@ -225,8 +230,10 @@ extension PurchaseService {
     }
     
     func verifyPurchase(productId: String, completion: @escaping (VerifyPurchaseResult) -> Void) {
+        let indicator = UIViewController.topIndicatorStart()
         verifyReceipt { (info) in
             guard let receipt = info else {
+                UIViewController.topIndicatorStop(view: indicator)
                 completion(.notPurchased)
                 return
             }
@@ -239,9 +246,9 @@ extension PurchaseService {
             case .purchased(let receiptItem):
                 debugPrint("\(productId) is purchased: \(receiptItem)")
                 switch productId {
-                case UsageInfo.PurchasePlan.unlockAd.description():
+                case UsageInfo.PurchasePlan.unlockAd.productId():
                     FirebaseService.shared.updateUnlockAdInfo(unlock: true)
-                case UsageInfo.PurchasePlan.unlockPremium.description():
+                case UsageInfo.PurchasePlan.unlockPremium.productId():
                     FirebaseService.shared.updateUnlockPremiumInfo(unlock: true)
                 default:
                     break
@@ -249,21 +256,24 @@ extension PurchaseService {
             case .notPurchased:
                 print("The user has never purchased \(productId)")
                 switch productId {
-                case UsageInfo.PurchasePlan.unlockAd.description():
+                case UsageInfo.PurchasePlan.unlockAd.productId():
                     FirebaseService.shared.updateUnlockAdInfo(unlock: false)
-                case UsageInfo.PurchasePlan.unlockPremium.description():
+                case UsageInfo.PurchasePlan.unlockPremium.productId():
                     FirebaseService.shared.updateUnlockPremiumInfo(unlock: false)
                 default:
                     break
                 }
             }
+            UIViewController.topIndicatorStop(view: indicator)
             completion(purchaseResult)
         }
     }
     
     func verifySubscriptions(productIds: Set<String>, completion: @escaping (VerifySubscriptionResult) -> Void) {
+        let indicator = UIViewController.topIndicatorStart()
         verifyReceipt { (info) in
             guard let receipt = info else {
+                UIViewController.topIndicatorStop(view: indicator)
                 completion(.notPurchased)
                 return
             }
@@ -280,6 +290,7 @@ extension PurchaseService {
             case .notPurchased:
                 print("The user has never purchased \(productIds)")
             }
+            UIViewController.topIndicatorStop(view: indicator)
             completion(purchaseResult)
         }
     }
