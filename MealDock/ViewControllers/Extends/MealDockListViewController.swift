@@ -10,12 +10,19 @@ import UIKit
 import MaterialComponents.MaterialCollections
 import MaterialComponents.MaterialButtons_ColorThemer
 import TinyConstraints
+#if canImport(FloatingPanel)
+import FloatingPanel
+#endif
 
 class MealDockListViewController: UITableViewController,
+    //FloatingPanelControllerDelegate,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     let fab = MDCFloatingButton()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
+    #if canImport(FloatingPanel)
+    let floatingPanel = FloatingPanelController()
+    #endif
     var harvests = [[Harvest]]()
     var checkedItems = [String : Harvest]()
     var mediumAdView: UIView?
@@ -25,7 +32,10 @@ class MealDockListViewController: UITableViewController,
 
         view.addSubview(fab)
         fab.isHidden = true
-        
+        #if canImport(FloatingPanel)
+        floatingPanel.delegate = self
+        #endif
+
         self.tableView.registerCustomCell(customCellIdentifier)
         self.tableView.rowHeight = CGFloat(integerLiteral: 66)
         
