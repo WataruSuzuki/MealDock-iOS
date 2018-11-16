@@ -29,8 +29,43 @@ extension UIViewController {
     }
 
     static func snackBarMessage(text: String) {
+        snackBarMessage(text: text, url: nil)
+    }
+    
+    static func snackBarMessage(text: String, url: URL?) {
         let message = MDCSnackbarMessage()
         message.text = text
+        
+        var items = [Any]()
+        
+        if let url = url {
+            items.append(url)
+        }
+        
+        if items.count > 0 {
+            let action = MDCSnackbarMessageAction()
+            let actionHandler = {() in
+                
+                let contoller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                contoller.excludedActivityTypes = [
+                    UIActivityType.postToWeibo,
+                    UIActivityType.saveToCameraRoll,
+                    UIActivityType.print
+                ]
+                if let top = UIViewController.currentTop() {
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        contoller.popoverPresentationController?.sourceView = top.view
+                        contoller.popoverPresentationController?.sourceRect = top.view.frame
+                    }
+                    top.present(contoller, animated: true, completion: nil)
+                }
+                
+            }
+            action.handler = actionHandler
+            action.title = NSLocalizedString("share", comment: "")
+            message.action = action
+        }
+        
         MDCSnackbarManager.show(message)
     }
 }
