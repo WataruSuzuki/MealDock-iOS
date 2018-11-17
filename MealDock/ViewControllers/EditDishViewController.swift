@@ -257,11 +257,7 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     private func getCurrentTimeStr() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        formatter.locale = Locale.current
-        return formatter.string(from: Date()).replacingOccurrences(of: "/", with: "-").replacingOccurrences(of: " ", with: "_")
+        return Date().formattedString().replacingOccurrences(of: "/", with: "-").replacingOccurrences(of: " ", with: "_")
     }
     
     enum Section: Int, CaseIterable {

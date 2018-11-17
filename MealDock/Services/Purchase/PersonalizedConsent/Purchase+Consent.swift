@@ -79,8 +79,9 @@ extension PurchaseService {
                     return
                 }
                 if userPrefersAdFree {
-                    self.validateProduct(productID: [UsageInfo.PurchasePlan.unlockAd.productId()], atomically: false)
-                    completion(false)
+                    self.validateProduct(productID: [UsageInfo.PurchasePlan.unlockAd.productId()], atomically: false, completion: {
+                        completion(false)
+                    })
                 } else {
                     let status = PACConsentInformation.sharedInstance.consentStatus
                     if status == .nonPersonalized {

@@ -89,6 +89,9 @@
 		CC39A1AE217DB52900074342 /* String+encript.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AD217DB52900074342 /* String+encript.swift */; };
 		CC39A1B0217DC2C900074342 /* Purchase+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
+		CC4CBB34219D0BD800959EBA /* ConfirmSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */; };
+		CC4CBB37219D0C2700959EBA /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4CBB35219D0C2700959EBA /* Purchase.storyboard */; };
+		CC4CBB39219D5A7A00959EBA /* Date+FormatterStr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */; };
 		CC54D95D2178523500E42F28 /* Firebase+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95C2178523500E42F28 /* Firebase+Photos.swift */; };
 		CC54D95F21787E3500E42F28 /* UIViewController+MDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */; };
 		CC54D9622179792800E42F28 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC54D9612179792800E42F28 /* PurchaseService.swift */; };
@@ -237,6 +240,9 @@
 		CC39A1AD217DB52900074342 /* String+encript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+encript.swift"; sourceTree = "<group>"; };
 		CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMob.swift"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
+		CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSubscriptionViewController.swift; sourceTree = "<group>"; };
+		CC4CBB36219D0C2700959EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Purchase.storyboard; sourceTree = "<group>"; };
+		CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatterStr.swift"; sourceTree = "<group>"; };
 		CC54D95C2178523500E42F28 /* Firebase+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Photos.swift"; sourceTree = "<group>"; };
 		CC54D95E21787E3500E42F28 /* UIViewController+MDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MDC.swift"; sourceTree = "<group>"; };
 		CC54D9612179792800E42F28 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
@@ -329,6 +335,7 @@
 				96317C9B210F56FD00F81F22 /* LaunchScreen.storyboard */,
 				96317C96210F56FC00F81F22 /* Main.storyboard */,
 				9615BDF2214D3605001801D5 /* Settings.storyboard */,
+				CC4CBB35219D0C2700959EBA /* Purchase.storyboard */,
 				966F5A722176289100A47EDF /* GroupInfo.storyboard */,
 				966F5A6F217627F700A47EDF /* UsageInfo.storyboard */,
 				9615BDEF214CA855001801D5 /* DishList.storyboard */,
@@ -432,6 +439,7 @@
 				966F5A5C2173142C00A47EDF /* GroupInfoViewController.swift */,
 				966F5A642173364B00A47EDF /* ShowQrViewController.swift */,
 				96D6501B217A260400A1458C /* PurchaseMenuViewController.swift */,
+				CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -609,6 +617,7 @@
 				CC77E4FF2165E88B002891BB /* UIImage+Resize.swift */,
 				966F5A6021731A6100A47EDF /* Enum+Description.swift */,
 				CC39A1AD217DB52900074342 /* String+encript.swift */,
+				CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -782,6 +791,7 @@
 				9615BDF1214CA855001801D5 /* DishList.storyboard in Resources */,
 				965460FC21109252005AC0B3 /* Settings.bundle in Resources */,
 				96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */,
+				CC4CBB37219D0C2700959EBA /* Purchase.storyboard in Resources */,
 				CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */,
 				96FC04E42168D6D200533529 /* InfoPlist.strings in Resources */,
 				9601C8EA218EE0BF0034F045 /* AddingNewMarketItem.storyboard in Resources */,
@@ -1029,6 +1039,7 @@
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */,
 				966F5A6E2174D94E00A47EDF /* FirebaseObserver.swift in Sources */,
+				CC4CBB39219D5A7A00959EBA /* Date+FormatterStr.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,
 				CC54D95F21787E3500E42F28 /* UIViewController+MDC.swift in Sources */,
 				CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */,
@@ -1037,6 +1048,7 @@
 				CC6495062174934100580268 /* Firebase+Dock.swift in Sources */,
 				CC39A1AC217DB3A400074342 /* Purchase+Consent.swift in Sources */,
 				9615BE00214E0F9C001801D5 /* FirebaseUIAuthInjection.m in Sources */,
+				CC4CBB34219D0BD800959EBA /* ConfirmSubscriptionViewController.swift in Sources */,
 				960FAABA2191E18E00784637 /* ImageCacheService.swift in Sources */,
 				9615BDE8214CA79C001801D5 /* SettingsViewController.swift in Sources */,
 				CC39A1A9217D8D0500074342 /* Purchase+AdMobReward.swift in Sources */,
@@ -1175,6 +1187,14 @@
 				96FC04E1216892B500533529 /* Base */,
 			);
 			name = EditDish.storyboard;
+			sourceTree = "<group>";
+		};
+		CC4CBB35219D0C2700959EBA /* Purchase.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC4CBB36219D0C2700959EBA /* Base */,
+			);
+			name = Purchase.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

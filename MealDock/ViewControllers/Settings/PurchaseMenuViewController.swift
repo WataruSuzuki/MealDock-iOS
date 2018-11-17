@@ -34,6 +34,7 @@ class PurchaseMenuViewController: UITableViewController {
             } else {
                 cell.textLabel?.text = NSLocalizedString(menu.description(), comment: "")
             }
+            cell.accessoryType = (menu == .subscriptionBasic ? .disclosureIndicator : .none)
         }
 
         return cell
@@ -48,7 +49,7 @@ class PurchaseMenuViewController: UITableViewController {
             case .unlockPremium:
                 return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.unlockPremium.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
             case .subscriptionBasic:
-                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.subscriptionBasic.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
+                return nil
             default:
                 return NSLocalizedString(key, comment: "")
             }
@@ -63,11 +64,24 @@ class PurchaseMenuViewController: UITableViewController {
                 PurchaseService.shared.restorePurchases()
                 break
             case .unlockAd:
-                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockAd.productId()], atomically: false)
+                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockAd.productId()], atomically: false, completion: {})
             case .unlockPremium:
-                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockPremium.productId()], atomically: false)
+                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.unlockPremium.productId()], atomically: false, completion: {})
             case .subscriptionBasic:
-                PurchaseService.shared.validateProduct(productID: [UsageInfo.PurchasePlan.subscriptionBasic.productId()], atomically: false)
+                performSegue(withIdentifier: String(describing: ConfirmSubscriptionViewController.self), sender: self)
+            default:
+                break
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case String(describing: ConfirmSubscriptionViewController.self):
+                if let destination = segue.destination as? ConfirmSubscriptionViewController {
+                    destination.plan = .subscriptionBasic
+                }
             default:
                 break
             }

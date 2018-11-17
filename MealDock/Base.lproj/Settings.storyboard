@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cqE-9P-Aqi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cqE-9P-Aqi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -52,7 +52,7 @@
                     <connections>
                         <segue destination="vEe-5Y-5m6" kind="show" identifier="GroupInfoViewController" id="UvL-Hj-LFi"/>
                         <segue destination="7Xz-TJ-DIw" kind="show" identifier="UsageInfoViewController" id="J2Y-G2-vdG"/>
-                        <segue destination="G2g-Du-UCH" kind="show" identifier="PurchaseMenuViewController" id="GBj-6i-YHw"/>
+                        <segue destination="L3Y-rT-hha" kind="show" identifier="PurchaseMenuViewController" id="GBj-6i-YHw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wgg-do-uUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,34 +84,6 @@
             </objects>
             <point key="canvasLocation" x="2426" y="45"/>
         </scene>
-        <!--Purchase Menu View Controller-->
-        <scene sceneID="0OF-nv-Q2c">
-            <objects>
-                <tableViewController storyboardIdentifier="PurchaseMenuViewController" id="G2g-Du-UCH" customClass="PurchaseMenuViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="84r-b5-4L3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PurchaseMenuCell" id="TL3-jj-heb">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TL3-jj-heb" id="WnI-V3-DgO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="G2g-Du-UCH" id="exR-dg-ih9"/>
-                            <outlet property="delegate" destination="G2g-Du-UCH" id="xd7-gP-GRn"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fPf-gS-Oxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2495" y="429"/>
-        </scene>
         <!--UsageInfoViewController-->
         <scene sceneID="6sd-MX-Pth">
             <objects>
@@ -120,8 +92,16 @@
             </objects>
             <point key="canvasLocation" x="2425" y="-197"/>
         </scene>
+        <!--PurchaseMenuViewController-->
+        <scene sceneID="8rx-Cm-oez">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PurchaseMenuViewController" storyboardName="Purchase" referencedIdentifier="PurchaseMenuViewController" id="L3Y-rT-hha" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5o-uz-KGm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2426" y="269"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="baseline_settings_black_36pt" width="36" height="36"/>
+        <image name="baseline_settings_black_36pt" width="72" height="72"/>
     </resources>
 </document>
