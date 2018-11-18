@@ -28,7 +28,7 @@ extension FirebaseService {
             decrementHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
             UIViewController.snackBarMessage(text: "(=・∀・=)b \n" + NSLocalizedString("msg_mission_completed", comment: ""))
         } else {
-            OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: nil)
+            PurchaseService.shared.alertCapacity()
         }
     }
     

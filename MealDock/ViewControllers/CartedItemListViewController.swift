@@ -46,8 +46,11 @@ class CartedItemListViewController: MealDockListViewController {
                 harvest.count = value
                 self.updateCheckedItems(harvest: harvest)
             }
-            customCell.stepperValue = harvest.count
-            updateCheckedItems(harvest: harvest)
+            if let item = checkedItems[harvest.name] {
+                customCell.stepperValue = item.count
+            } else {
+                customCell.stepperValue = harvest.count
+            }
         }
 
         return cell
