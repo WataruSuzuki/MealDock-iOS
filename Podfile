@@ -26,6 +26,7 @@ target "MealDock" do
     pod 'QRCodeReader.swift', '~> 9.0.1'
     pod 'QRCode'
     pod 'SwiftyStoreKit'
+    pod 'JJFloatingActionButton'
 
     # platform :ios, '10.0'
         # pod 'OAuthSwift', '~> 1.2.0'
