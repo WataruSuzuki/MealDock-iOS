@@ -10,12 +10,11 @@ import UIKit
 import Alamofire
 import MaterialComponents.MaterialCollections
 
-private let reuseIdentifier = "ErrandCell"
-
 class ErrandViewController: UICollectionViewController,
     UICollectionViewDelegateFlowLayout,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
+    let reuseIdentifier = "ErrandCell"
     var items: [Harvest]!
     var selectedItems = [String : Harvest]()
 

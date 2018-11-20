@@ -86,10 +86,10 @@ class ErrandPagingViewController: UIViewController,
         view.addSubview(bottomBarView)
         
         bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
-        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_mic_white_48pt"), for: .normal)
-        bottomBarView.floatingButton.addTarget(self, action: #selector(tapMicToSpeech), for: .touchUpInside)
+        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_search_black_36pt"), for: .normal)
+        bottomBarView.floatingButton.addTarget(self, action: #selector(tapSearch), for: .touchUpInside)
         bottomBarView.floatingButtonPosition = .center
-        bottomBarView.setFloatingButtonHidden(true, animated: true)
+        //bottomBarView.setFloatingButtonHidden(true, animated: true)
         
         let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_more_horiz_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapMore))
         let barButtonTrailingItem = UIBarButtonItem(title: NSLocalizedString("addNewMarketItem", comment: ""), style: .plain, target: self, action: #selector(tapCamera))
@@ -130,7 +130,13 @@ class ErrandPagingViewController: UIViewController,
         }
     }
     
-    @objc func tapMicToSpeech() {
+    @objc func tapSearch() {
+        let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
+        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: SearchMarketItemViewController.self)) as? SearchMarketItemViewController {
+            viewController.marketItem = items
+            let navigation = UINavigationController.init(rootViewController: viewController)
+            self.present(navigation, animated: true, completion: nil)
+        }
     }
     
     @objc func tapMore() {
