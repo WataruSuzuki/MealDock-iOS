@@ -25,7 +25,7 @@ appstore_connect () {
     "${ALTTOOL}" --upload-app -f "${PWD}/${OUT_IPA_DIR}/$1.ipa"  -u ${ITUNES_ID} -p ${ITUNES_PW}
 }
 
-# Release
-appstore_connect MealDock Release
 # TestFlight
 appstore_connect MealDock TestFlight
+# Release
+appstore_connect MealDock Release

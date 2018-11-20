@@ -55,11 +55,9 @@ extension PurchaseService {
                 return
             }
             if result.invalidProductIDs.count > 0 {
-                var message = "Invalid product identifier:"
                 for invalidProduct in result.invalidProductIDs {
-                    message.append("\n - \(invalidProduct)")
+                    print("Invalid product identifier: \(invalidProduct)")
                 }
-                OptionalError.alertErrorMessage(message: message, actions: nil)
             }
             for product in result.retrievedProducts {
                 debugPrint("Product: \(product.localizedDescription)")
