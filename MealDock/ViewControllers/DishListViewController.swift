@@ -35,7 +35,7 @@ class DishListViewController: UICollectionViewController,
 
         view.addSubview(fab)
         fab.isHidden = true
-        activateFab(fab: fab, target: self, image: UIImage(named: "baseline_local_dining_black_36pt")!, selector: #selector(onFabTapped))
+        activateFab(fab: fab, target: self, image: UIImage(named: "baseline_local_dining_black_36pt")!, tap: #selector(onFabTapped), longTap: nil)
         
         self.title = NSLocalizedString("dishes", comment: "")
         self.collectionView!.register(DishCardCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -65,7 +65,7 @@ class DishListViewController: UICollectionViewController,
         super.viewWillLayoutSubviews()
         
         DispatchQueue.main.async {
-            self.layout(fab: self.fab)
+            self.layout(fab: self.fab, menu: nil)
         }
     }
     

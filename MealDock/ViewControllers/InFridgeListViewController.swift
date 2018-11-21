@@ -14,7 +14,7 @@ class InFridgeListViewController: MealDockListViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("inFridgeFoods", comment: "")
-        activateFab(fab: fab, target: self, image: UIImage(named: "dish")!, selector: #selector(onFabTapped))
+        activateFab(fab: fab, target: self, image: UIImage(named: "dish")!, tap: #selector(onFabTapped), longTap: #selector(onFabLongPressed))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,4 +83,11 @@ class InFridgeListViewController: MealDockListViewController {
         super.onFabTapped()
     }
     
+    override func onTapUndo() {
+        super.onTapUndo()
+    }
+    
+    override func onTapDelete() {
+        super.onTapDelete()
+    }
 }

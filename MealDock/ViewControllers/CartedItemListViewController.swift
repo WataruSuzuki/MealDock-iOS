@@ -18,7 +18,7 @@ class CartedItemListViewController: MealDockListViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
         
-        activateFab(fab: fab, target: self, image: UIImage(named: "freezer")!, selector: #selector(onFabTapped))
+        activateFab(fab: fab, target: self, image: UIImage(named: "freezer")!, tap: #selector(onFabTapped), longTap: #selector(onFabLongPressed))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,5 +97,13 @@ class CartedItemListViewController: MealDockListViewController {
         FirebaseService.shared.addToFridge(harvests: items)
         
         super.onFabTapped()
+    }
+    
+    override func onTapUndo() {
+        super.onTapUndo()
+    }
+    
+    override func onTapDelete() {
+        super.onTapDelete()
     }
 }

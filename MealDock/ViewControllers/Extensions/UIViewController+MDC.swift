@@ -6,17 +6,26 @@
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
-import Foundation
+import JJFloatingActionButton
 import MaterialComponents.MaterialButtons_ColorThemer
 
 extension UIViewController {
     
-    func activateFab(fab: MDCFloatingButton, target: Any?, image: UIImage, selector: Selector) {
+    func activateFab(fab: MDCFloatingButton, target: Any?, image: UIImage, tap: Selector, longTap: Selector?) {
         fab.setImage(image, for: .normal)
-        fab.addTarget(target, action: selector, for: .touchUpInside)
+        
+        if let longTap = longTap {
+            let tapGesture = UITapGestureRecognizer(target: self, action: tap)
+            let longGesture = UILongPressGestureRecognizer(target: self, action: longTap)
+            tapGesture.numberOfTapsRequired = 1
+            fab.addGestureRecognizer(tapGesture)
+            fab.addGestureRecognizer(longGesture)
+        } else {
+            fab.addTarget(target, action: tap, for: .touchUpInside)
+        }
     }
     
-    func layout(fab: MDCFloatingButton) {
+    func layout(fab: MDCFloatingButton, menu: JJFloatingActionButton?) {
         fab.centerXToSuperview()
         if let targetOf = tabBarController?.tabBar {
             //fab.autoPinEdge(.trailing, to: .trailing, of: targetOf, withOffset: -30)
@@ -24,6 +33,10 @@ extension UIViewController {
         } else {
             //fab.autoPinEdge(.trailing, to: .trailing, of: self.view, withOffset: -30)
             fab.autoPinEdge(.bottom, to: .top, of: self.view, withOffset: -20)
+        }
+        if let menu = menu {
+            menu.centerXToSuperview()
+            menu.autoPinEdge(.bottom, to: .bottom, of: fab)
         }
         view.bringSubview(toFront: fab)
     }

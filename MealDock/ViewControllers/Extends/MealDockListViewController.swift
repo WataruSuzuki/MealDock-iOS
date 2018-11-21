@@ -13,12 +13,14 @@ import TinyConstraints
 #if canImport(FloatingPanel)
 import FloatingPanel
 #endif
+import JJFloatingActionButton
 
 class MealDockListViewController: UITableViewController,
     //FloatingPanelControllerDelegate,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     let fab = MDCFloatingButton()
+    let fabMenus = JJFloatingActionButton()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
     #if canImport(FloatingPanel)
     let floatingPanel = FloatingPanelController()
@@ -30,8 +32,12 @@ class MealDockListViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(fabMenus)
         view.addSubview(fab)
         fab.isHidden = true
+        fabMenus.isHidden = fab.isHidden
+        setupFabMenus()
+
         #if canImport(FloatingPanel)
         floatingPanel.delegate = self
         #endif
@@ -60,7 +66,7 @@ class MealDockListViewController: UITableViewController,
         super.viewWillLayoutSubviews()
         
         DispatchQueue.main.async {
-            self.layout(fab: self.fab)
+            self.layout(fab: self.fab, menu: self.fabMenus)
             self.mediumAdView?.centerXToSuperview()
             self.mediumAdView?.autoPinEdge(.bottom, to: .top, of: self.tabBarController!.tabBar)
         }
@@ -134,6 +140,7 @@ class MealDockListViewController: UITableViewController,
             checkedItems.removeValue(forKey: harvest.name)
         }
         fab.isHidden = 0 == checkedItems.count
+        fabMenus.isHidden = fab.isHidden
     }
     
     /*
@@ -207,7 +214,66 @@ class MealDockListViewController: UITableViewController,
     }
 
     func onFabTapped() {
-        self.fab.isHidden = true
+        fab.isHidden = true
+        fabMenus.isHidden = fab.isHidden
         checkedItems.removeAll()
+    }
+    
+    private func setupFabMenus() {
+        fabMenus.addTarget(self, action: #selector(onFabMenuTapped), for: .touchUpInside)
+        fabMenus.buttonImage = UIImage(named: "baseline_add_black_24pt")
+        fabMenus.buttonImageColor = .blue
+        
+        let undo = fabMenus.addItem(title: NSLocalizedString("undo", comment: ""), image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.onTapUndo()
+        }
+        undo.titlePosition = .trailing
+        undo.titleLabel.textColor = .black
+        undo.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+
+        let delete = fabMenus.addItem(title: NSLocalizedString("delete", comment: ""), image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.onTapDelete()
+        }
+        delete.titlePosition = .trailing
+        delete.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        delete.titleLabel.textColor = .black
+        delete.buttonColor = .white
+        delete.buttonImageColor = .red
+
+        //fabMenus.addItem(title: "item 3", image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
+            // do something
+        //}
+        fabMenus.configureDefaultItem { item in
+            item.layer.shadowColor = UIColor.black.cgColor
+            item.layer.shadowOffset = CGSize(width: 0, height: 1)
+            item.layer.shadowOpacity = Float(0.4)
+            item.layer.shadowRadius = CGFloat(2)
+        }
+    }
+    
+    func onTapUndo() {
+        onFabMenuTapped()
+        //Please override it
+    }
+    
+    func onTapDelete() {
+        onFabMenuTapped()
+        //Please override it
+    }
+    
+    @objc func onFabMenuTapped() {
+        view.bringSubview(toFront: fab)
+        fab.isHidden = false
+    }
+    
+    @objc func onFabLongPressed(sender: UILongPressGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            fabMenus.sendActions(for: .touchUpInside)
+            view.bringSubview(toFront: fabMenus)
+            fab.isHidden = true
+        default:
+            break
+        }
     }
 }
