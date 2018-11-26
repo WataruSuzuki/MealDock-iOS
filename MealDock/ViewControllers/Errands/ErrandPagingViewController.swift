@@ -14,6 +14,7 @@ import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
 
 class ErrandPagingViewController: UIViewController,
+    SearchMarketItemViewDelegate,
     UpdateCustomMarketItemDelegate
 {
 
@@ -29,8 +30,8 @@ class ErrandPagingViewController: UIViewController,
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
         
-        instatiateBottomBar()
         instatiatePavingViews()
+        instatiateBottomBar()
     }
 
     func instatiatePavingViews() {
@@ -86,10 +87,10 @@ class ErrandPagingViewController: UIViewController,
         view.addSubview(bottomBarView)
         
         bottomBarView.setFloatingButtonPosition(.trailing, animated: true)
-        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_mic_white_48pt"), for: .normal)
-        bottomBarView.floatingButton.addTarget(self, action: #selector(tapMicToSpeech), for: .touchUpInside)
+        bottomBarView.floatingButton.setImage(UIImage(named: "baseline_search_black_36pt"), for: .normal)
+        bottomBarView.floatingButton.addTarget(self, action: #selector(tapSearch), for: .touchUpInside)
         bottomBarView.floatingButtonPosition = .center
-        bottomBarView.setFloatingButtonHidden(true, animated: true)
+        //bottomBarView.setFloatingButtonHidden(true, animated: true)
         
         let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_more_horiz_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapMore))
         let barButtonTrailingItem = UIBarButtonItem(title: NSLocalizedString("addNewMarketItem", comment: ""), style: .plain, target: self, action: #selector(tapCamera))
@@ -130,7 +131,21 @@ class ErrandPagingViewController: UIViewController,
         }
     }
     
-    @objc func tapMicToSpeech() {
+    func didSelect(harvest: Harvest, indexPath: IndexPath) {
+        let controllers = pagingViewController.viewControllers as! [ErrandViewController]
+        controllers[indexPath.section].selectedItems.updateValue(harvest, forKey: harvest.name)
+        controllers[indexPath.section].collectionView?.reloadData()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func tapSearch() {
+        let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
+        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: SearchMarketItemViewController.self)) as? SearchMarketItemViewController {
+            viewController.marketItems = items
+            viewController.delegate = self
+            let navigation = UINavigationController.init(rootViewController: viewController)
+            self.present(navigation, animated: true, completion: nil)
+        }
     }
     
     @objc func tapMore() {
