@@ -9,7 +9,8 @@
 import XCTest
 
 class ShowQrUITests: XCTestCase {
-    
+    private let tester = ShowQrUITests.self
+
     override func setUp() {
         super.setUp()
         setupAsGroupMember(app: XCUIApplication())
@@ -28,8 +29,8 @@ class ShowQrUITests: XCTestCase {
         app.tabBars.buttons["Settings"].tap()
         
         let tablesQuery = app.tables
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Group Information"]/*[[".cells.staticTexts[\"Group Information\"]",".staticTexts[\"Group Information\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Request to join"]/*[[".cells.staticTexts[\"Request to join\"]",".staticTexts[\"Request to join\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.staticTexts[XCTestCase.getTestStr(key: "groupInfo", sender: tester, bundleClass: tester)].tap()
+        tablesQuery.staticTexts[XCTestCase.getTestStr(key: "requestToJoin", sender: tester, bundleClass: tester)].tap()
         let QR = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
         XCTAssertNotNil(QR)
         

@@ -74,6 +74,9 @@
 		96EE888321589AAA00924490 /* UICollectionView+CustomNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE888221589AAA00924490 /* UICollectionView+CustomNib.swift */; };
 		96EE88852158D0A200924490 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE88842158D0A200924490 /* UIViewController+Transition.swift */; };
 		96F5F0F021A14B450018AB1D /* Purchase+Recommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F0EF21A14B450018AB1D /* Purchase+Recommend.swift */; };
+		96F5F0F221B2BD690018AB1D /* XCTestCase+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F0F121B2BD690018AB1D /* XCTestCase+Localization.swift */; };
+		96F5F0F321B2C2780018AB1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9615BDF6214D42E7001801D5 /* Localizable.strings */; };
+		96F5F0F421B2C27C0018AB1D /* MarketItems.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96B49BB92188AB7000657702 /* MarketItems.strings */; };
 		96FC04DD2168599300533529 /* Firebase+QueryHarvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DC2168599300533529 /* Firebase+QueryHarvest.swift */; };
 		96FC04DF21686D0B00533529 /* EditDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04DE21686D0B00533529 /* EditDishViewController.swift */; };
 		96FC04E2216892B500533529 /* EditDish.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FC04E0216892B500533529 /* EditDish.storyboard */; };
@@ -89,6 +92,7 @@
 		CC39A1AC217DB3A400074342 /* Purchase+Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AB217DB3A400074342 /* Purchase+Consent.swift */; };
 		CC39A1AE217DB52900074342 /* String+encript.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AD217DB52900074342 /* String+encript.swift */; };
 		CC39A1B0217DC2C900074342 /* Purchase+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */; };
+		CC3BA3E121A3FC9700429517 /* SearchMarketItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC4CBB34219D0BD800959EBA /* ConfirmSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */; };
 		CC4CBB37219D0C2700959EBA /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4CBB35219D0C2700959EBA /* Purchase.storyboard */; };
@@ -224,6 +228,7 @@
 		96EE888221589AAA00924490 /* UICollectionView+CustomNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CustomNib.swift"; sourceTree = "<group>"; };
 		96EE88842158D0A200924490 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		96F5F0EF21A14B450018AB1D /* Purchase+Recommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+Recommend.swift"; sourceTree = "<group>"; };
+		96F5F0F121B2BD690018AB1D /* XCTestCase+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Localization.swift"; sourceTree = "<group>"; };
 		96FC04DC2168599300533529 /* Firebase+QueryHarvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+QueryHarvest.swift"; sourceTree = "<group>"; };
 		96FC04DE21686D0B00533529 /* EditDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDishViewController.swift; sourceTree = "<group>"; };
 		96FC04E1216892B500533529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditDish.storyboard; sourceTree = "<group>"; };
@@ -241,6 +246,7 @@
 		CC39A1AB217DB3A400074342 /* Purchase+Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+Consent.swift"; sourceTree = "<group>"; };
 		CC39A1AD217DB52900074342 /* String+encript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+encript.swift"; sourceTree = "<group>"; };
 		CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMob.swift"; sourceTree = "<group>"; };
+		CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketItemViewController.swift; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSubscriptionViewController.swift; sourceTree = "<group>"; };
 		CC4CBB36219D0C2700959EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Purchase.storyboard; sourceTree = "<group>"; };
@@ -455,6 +461,7 @@
 				9601C8EB218EE1E00034F045 /* EditCustomItemsViewController.swift */,
 				96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */,
 				9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */,
+				CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */,
 			);
 			path = Errands;
 			sourceTree = "<group>";
@@ -630,6 +637,7 @@
 			children = (
 				CC832B802194002900402B3E /* XCTestCase+SetupSignIn.swift */,
 				CCD75A7721941B8A00676489 /* XCUIElement+TextField.swift */,
+				96F5F0F121B2BD690018AB1D /* XCTestCase+Localization.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -827,6 +835,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F5F0F321B2C2780018AB1D /* Localizable.strings in Resources */,
+				96F5F0F421B2C27C0018AB1D /* MarketItems.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,6 +1009,7 @@
 				CC77E5062165FFBF002891BB /* UITableView+CustomNib.swift in Sources */,
 				96FC04F8216AF43B00533529 /* DishCardCollectionCell.swift in Sources */,
 				CC9B6D24215CB1CE00E49491 /* MarketItems.swift in Sources */,
+				CC3BA3E121A3FC9700429517 /* SearchMarketItemViewController.swift in Sources */,
 				CCCFAC38216F58FA002279B3 /* GooglePhotosAlbum.swift in Sources */,
 				967146B8216B807100DDA65E /* UsageInfo.swift in Sources */,
 				96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */,
@@ -1074,6 +1085,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F5F0F221B2BD690018AB1D /* XCTestCase+Localization.swift in Sources */,
 				CCD75A7821941B8A00676489 /* XCUIElement+TextField.swift in Sources */,
 				CC832B812194002900402B3E /* XCTestCase+SetupSignIn.swift in Sources */,
 				CCD75A762194180100676489 /* ErrandSceneUITests.swift in Sources */,
