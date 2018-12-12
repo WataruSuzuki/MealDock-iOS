@@ -58,13 +58,7 @@ extension UIViewController {
         if items.count > 0 {
             let action = MDCSnackbarMessageAction()
             let actionHandler = {() in
-                
-                let contoller = UIActivityViewController(activityItems: items, applicationActivities: nil)
-                contoller.excludedActivityTypes = [
-                    UIActivityType.postToWeibo,
-                    UIActivityType.saveToCameraRoll,
-                    UIActivityType.print
-                ]
+                let contoller = UIViewController.getActivityViewController(items: items)
                 if let top = UIViewController.currentTop() {
                     if UIDevice.current.userInterfaceIdiom == .pad {
                         contoller.popoverPresentationController?.sourceView = top.view
@@ -72,7 +66,6 @@ extension UIViewController {
                     }
                     top.present(contoller, animated: true, completion: nil)
                 }
-                
             }
             action.handler = actionHandler
             action.title = NSLocalizedString("share", comment: "")

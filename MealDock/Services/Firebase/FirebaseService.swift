@@ -197,7 +197,8 @@ class FirebaseService: NSObject,
     func isSourceApplication(url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
             guard let url = dynamicLink.url else { return false}
-            if url.host == "mealdockjchankchan.app.link"
+            debugPrint("url.path: \(url.path)")
+            if url.host == FirebaseService.deepLinkHost
                 //&& url.path.hasPrefix("/app/top")
             {
                 // ここでアプリトップ画面へ遷移させる処理
@@ -206,14 +207,5 @@ class FirebaseService: NSObject,
         }
         let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
         return defaultAuthUI.handleOpen(url, sourceApplication: sourceApplication)
-    }
-    
-    func handleUniversalLink(webpageURL: URL) -> Bool {
-        return DynamicLinks.dynamicLinks().handleUniversalLink(webpageURL) { dynamiclink, error in
-            guard let dynamiclink = dynamiclink, let url = dynamiclink.url else { return }
-            
-            // ディープリンク URLを使用する処理...
-            print("url:", url)
-        }
     }
 }

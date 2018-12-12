@@ -70,6 +70,7 @@ cancel = "Cancel";
 skip = "Skip";
 delete = "Delete";
 undo = "Undo";
+share = "Share";
 
 msg_necessary_name = "Please set name for saving";
 msg_saving_data = "Saving new data...";
