@@ -19,6 +19,7 @@ class MealDockListViewController: UITableViewController,
     //FloatingPanelControllerDelegate,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
+    let rowHeight = 66
     let fab = MDCFloatingButton()
     let fabMenus = JJFloatingActionButton()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
@@ -43,7 +44,7 @@ class MealDockListViewController: UITableViewController,
         #endif
 
         self.tableView.registerCustomCell(customCellIdentifier)
-        self.tableView.rowHeight = CGFloat(integerLiteral: 66)
+        self.tableView.rowHeight = CGFloat(integerLiteral: rowHeight)
         
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
@@ -122,10 +123,12 @@ class MealDockListViewController: UITableViewController,
         let harvest = harvests[indexPath.section][indexPath.row]
         cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
         
-        cell.imageView?.image = UIImage(named: "cart")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
+        let placeHolderImage = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal).resize(size: CGSize(width: rowHeight, height: rowHeight))
+        cell.imageView?.image = placeHolderImage
+        
         cell.imageView?.contentMode = .scaleAspectFit
         if harvest.imageUrl.isEmpty {
-            cell.imageView?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
+            cell.imageView?.image = placeHolderImage
         } else {
             cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
