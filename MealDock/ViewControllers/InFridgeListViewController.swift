@@ -83,6 +83,14 @@ class InFridgeListViewController: MealDockListViewController {
         super.onFabTapped()
     }
     
+    override func onTapPlane() {
+        if let deepLink = FirebaseService.shared.createDeepLink(extra: FirebaseService.DeepLinkExtra.inFridgeFoods.rawValue) {
+            let message = NSLocalizedString("msg_link_in_fridge_foods", comment: "") + "\n\n"
+            present(UIViewController.getActivityViewController(items: [message, deepLink]), animated: true, completion: nil)
+        }
+        super.onTapPlane()
+    }
+    
     override func onTapUndo() {
         super.onTapUndo()
     }
