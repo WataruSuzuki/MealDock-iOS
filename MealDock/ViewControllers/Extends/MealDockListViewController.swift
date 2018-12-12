@@ -52,8 +52,8 @@ class MealDockListViewController: UITableViewController,
         self.tableView.tableFooterView = UIView()
         
         let colorScheme = MDCSemanticColorScheme()
-        colorScheme.primaryColor = MDCPalette.lightBlue.tint500
-        colorScheme.primaryColorVariant = MDCPalette.lightBlue.tint400
+        colorScheme.primaryColor = view.tintColor
+        colorScheme.primaryColorVariant = view.tintColor
         colorScheme.secondaryColor = colorScheme.primaryColor
         
         MDCFloatingButtonColorThemer.applySemanticColorScheme(colorScheme, to: fab)
@@ -225,7 +225,8 @@ class MealDockListViewController: UITableViewController,
     private func setupFabMenus() {
         fabMenus.addTarget(self, action: #selector(onFabMenuTapped), for: .touchUpInside)
         fabMenus.buttonImage = UIImage(named: "baseline_add_black_24pt")
-        fabMenus.buttonImageColor = .blue
+        fabMenus.buttonColor = view.tintColor
+        fabMenus.buttonImageColor = .black
 
         let plane = fabMenus.addItem(title: NSLocalizedString("share", comment: ""), image: UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)) { item in
             self.onTapPlane()
