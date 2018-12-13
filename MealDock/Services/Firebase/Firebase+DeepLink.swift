@@ -13,7 +13,7 @@ extension FirebaseService {
     static let deepLinkHost = "devjchankchan.page.link"
     static let deepLinkAppStoreId = "1447468603"
     
-    enum DeepLinkExtra: String {
+    enum DeepLinkExtra: String, CaseIterable {
         case dishes = "/dishes",
         inFridgeFoods = "/infridgefoods",
         cartedFoods = "/cartedfoods"
