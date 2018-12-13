@@ -107,10 +107,6 @@ class CartedItemListViewController: MealDockListViewController {
         super.onTapPlane()
     }
     
-    override func onTapUndo() {
-        super.onTapUndo()
-    }
-    
     override func onTapDelete() {
         super.onTapDelete()
     }

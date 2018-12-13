@@ -268,6 +268,8 @@ class MealDockListViewController: UITableViewController,
     }
     
     func onTapUndo() {
+        checkedItems.removeAll()
+        tableView.reloadData()
         onFabMenuTapped()
         //Please override it
     }
