@@ -108,6 +108,9 @@ class CartedItemListViewController: MealDockListViewController {
     }
     
     override func onTapDelete() {
+        let items = [Harvest](checkedItems.values)
+        FirebaseService.shared.removeFromCart(harvests: items)
+        
         super.onTapDelete()
     }
 }

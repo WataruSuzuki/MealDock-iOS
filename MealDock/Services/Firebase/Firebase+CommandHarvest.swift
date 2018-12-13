@@ -32,6 +32,10 @@ extension FirebaseService {
         }
     }
     
+    func removeFromCart(harvests: [Harvest]) {
+        decrementHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
+    }
+    
     private func addHarvest(itemId: String, harvests: [Harvest]) -> Bool {
         return addHarvest(itemId: itemId, harvests: harvests, isInFridge: false)
     }
@@ -94,6 +98,10 @@ extension FirebaseService {
         if addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish) {
             decrementHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: dish.harvests)
         }
+    }
+    
+    func removeFromFridge(harvests: [Harvest]) {
+        decrementHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests)
     }
     
     fileprivate func addDish(itemId: String, dish: Dish) -> Bool {

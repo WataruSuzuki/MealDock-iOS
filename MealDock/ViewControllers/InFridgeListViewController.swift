@@ -92,6 +92,9 @@ class InFridgeListViewController: MealDockListViewController {
     }
     
     override func onTapDelete() {
+        let items = [Harvest](checkedItems.values)
+        FirebaseService.shared.removeFromFridge(harvests: items)
+        
         super.onTapDelete()
     }
 }
