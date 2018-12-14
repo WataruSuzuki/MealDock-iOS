@@ -90,6 +90,8 @@
 		CC39A1AC217DB3A400074342 /* Purchase+Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AB217DB3A400074342 /* Purchase+Consent.swift */; };
 		CC39A1AE217DB52900074342 /* String+encript.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AD217DB52900074342 /* String+encript.swift */; };
 		CC39A1B0217DC2C900074342 /* Purchase+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */; };
+		CC3B543521E5EC4D00F4638A /* InAppPurchase.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC3B543421E5EC4D00F4638A /* InAppPurchase.strings */; };
+		CC3B543721E5ED7E00F4638A /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B543621E5ED7E00F4638A /* String+Localized.swift */; };
 		CC3BA3E121A3FC9700429517 /* SearchMarketItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */; };
 		CC44046821C88DAD002591B1 /* Errand+CaptureBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44046721C88DAD002591B1 /* Errand+CaptureBarcode.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
@@ -249,6 +251,8 @@
 		CC39A1AB217DB3A400074342 /* Purchase+Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+Consent.swift"; sourceTree = "<group>"; };
 		CC39A1AD217DB52900074342 /* String+encript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+encript.swift"; sourceTree = "<group>"; };
 		CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMob.swift"; sourceTree = "<group>"; };
+		CC3B543421E5EC4D00F4638A /* InAppPurchase.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InAppPurchase.strings; sourceTree = "<group>"; };
+		CC3B543621E5ED7E00F4638A /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketItemViewController.swift; sourceTree = "<group>"; };
 		CC44046721C88DAD002591B1 /* Errand+CaptureBarcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Errand+CaptureBarcode.swift"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
@@ -408,6 +412,7 @@
 				96FC04E32168D6D200533529 /* InfoPlist.strings */,
 				9615BDF6214D42E7001801D5 /* Localizable.strings */,
 				96B49BB92188AB7000657702 /* MarketItems.strings */,
+				CC3B543421E5EC4D00F4638A /* InAppPurchase.strings */,
 			);
 			path = MealDock;
 			sourceTree = "<group>";
@@ -643,6 +648,7 @@
 				966F5A6021731A6100A47EDF /* Enum+Description.swift */,
 				CC39A1AD217DB52900074342 /* String+encript.swift */,
 				CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */,
+				CC3B543621E5ED7E00F4638A /* String+Localized.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -818,6 +824,7 @@
 				965460FC21109252005AC0B3 /* Settings.bundle in Resources */,
 				96317C9D210F56FD00F81F22 /* LaunchScreen.storyboard in Resources */,
 				CC4CBB37219D0C2700959EBA /* Purchase.storyboard in Resources */,
+				CC3B543521E5EC4D00F4638A /* InAppPurchase.strings in Resources */,
 				CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */,
 				96FC04E42168D6D200533529 /* InfoPlist.strings in Resources */,
 				9601C8EA218EE0BF0034F045 /* AddingNewMarketItem.storyboard in Resources */,
@@ -1007,6 +1014,7 @@
 				9601C8EC218EE1E00034F045 /* EditCustomItemsViewController.swift in Sources */,
 				CCCFAC32216F4FE9002279B3 /* GooglePhotosNewMediaItemResult.swift in Sources */,
 				CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */,
+				CC3B543721E5ED7E00F4638A /* String+Localized.swift in Sources */,
 				96B49BB821859CAC00657702 /* DetailDishViewController.swift in Sources */,
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
 				96E5F24121244FBF00C2F09E /* SearchPhotoWebViewController.swift in Sources */,
