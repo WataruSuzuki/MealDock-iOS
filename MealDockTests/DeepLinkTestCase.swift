@@ -27,4 +27,16 @@ class DeepLinkTestCase: XCTestCase {
         }
     }
 
+    func testHandleDeepLink() {
+        FirebaseService.DeepLinkExtra.allCases.forEach { (extra) in
+            let path = extra.rawValue.replacingOccurrences(of: "/", with: "")
+            let url = "https://devjchankchan.page.link/?link=https%3A%2F%2Fexample%2Ddevjchankchan%2Efirebaseapp%2Ecom%2F" + path + "&ibi=jp%2Eco%2EJchanKchan%2EMealDock%2Edev&apn=dev%2Ejchankchan%2Emealdock%2Eapp"
+
+            let isDeepLink = FirebaseService.shared.handleUniversalLink(webpageURL: URL(string: url)!) { (link, error) in
+                XCTAssertNil(error)
+                XCTAssertTrue(link!.url!.absoluteString.contains(path))
+            }
+            XCTAssertTrue(isDeepLink)
+        }
+    }
 }

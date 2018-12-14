@@ -25,4 +25,4 @@ DerivedData/
 Pods/Google-Mobile-Ads-SDK/
 out_archives/
 out_ipa/
-unittest.log
+test_primary.log

@@ -19,7 +19,7 @@ extension FirebaseService {
         cartedFoods = "/cartedfoods"
     }
 
-    func handleUniversalLink(webpageURL: URL) -> Bool {
+    func handleUniversalLink(webpageURL: URL, completion: DynamicLinkUniversalLinkHandler? = nil) -> Bool {
         return DynamicLinks.dynamicLinks().handleUniversalLink(webpageURL) { dynamiclink, error in
             guard let dynamiclink = dynamiclink, let url = dynamiclink.url else { return }
             
