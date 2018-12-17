@@ -1,0 +1,12 @@
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "0F2-zp-Lu6"; */
+"0F2-zp-Lu6.title" = "Settings";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "7lr-Yx-bUm"; */
+"7lr-Yx-bUm.text" = "Title";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "BIm-ZU-k3V"; */
+"BIm-ZU-k3V.text" = "Detail";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "NHJ-9i-tUD"; */
+"NHJ-9i-tUD.title" = "Settings";
