@@ -33,7 +33,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
                     }
                 })
             }
-            OptionalError.alertErrorMessage(message: NSLocalizedString("please_wait", comment: ""), actions: [action])
+            OptionalError.alertErrorMessage(message: "please_wait".localized, actions: [action])
         }
     }
     

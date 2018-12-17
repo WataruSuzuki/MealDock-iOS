@@ -13,7 +13,7 @@ class CartedItemListViewController: MealDockListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("cartedFoods", comment: "")
+        self.title = "cartedFoods".localized
 
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
@@ -101,7 +101,7 @@ class CartedItemListViewController: MealDockListViewController {
     
     override func onTapPlane() {
         if let deepLink = FirebaseService.shared.createDeepLink(extra: FirebaseService.DeepLinkExtra.cartedFoods.rawValue) {
-            let message = NSLocalizedString("msg_link_carted_foods", comment: "") + "\n\n"
+            let message = "msg_link_carted_foods".localized + "\n\n"
             present(UIViewController.getActivityViewController(items: [message, deepLink]), animated: true, completion: nil)
         }
         super.onTapPlane()

@@ -13,7 +13,7 @@ class InFridgeListViewController: MealDockListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("inFridgeFoods", comment: "")
+        self.title = "inFridgeFoods".localized
         activateFab(fab: fab, target: self, image: UIImage(named: "dish")!, tap: #selector(onFabTapped), longTap: #selector(onFabLongPressed))
     }
     
@@ -85,7 +85,7 @@ class InFridgeListViewController: MealDockListViewController {
     
     override func onTapPlane() {
         if let deepLink = FirebaseService.shared.createDeepLink(extra: FirebaseService.DeepLinkExtra.inFridgeFoods.rawValue) {
-            let message = NSLocalizedString("msg_link_in_fridge_foods", comment: "") + "\n\n"
+            let message = "msg_link_in_fridge_foods".localized + "\n\n"
             present(UIViewController.getActivityViewController(items: [message, deepLink]), animated: true, completion: nil)
         }
         super.onTapPlane()

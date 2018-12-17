@@ -77,7 +77,7 @@ class GroupInfoViewController: UITableViewController {
             case .manageGrouping:
                 cell.accessoryType = .detailButton
                 if let managing = ManageStatus(rawValue: indexPath.row) {
-                    cell.textLabel?.text = NSLocalizedString(managing.description(), comment: "")
+                    cell.textLabel?.text = managing.description().localized
                     switch managing {
                     case .groupOwner:
                         cell.textLabel?.isEnabled = true
@@ -118,7 +118,7 @@ class GroupInfoViewController: UITableViewController {
         if !sender.isOn {
             FirebaseService.shared.joinToGroupDock(dock: "temp", id: "temp")
         } else {
-            let controller = UIAlertController(title: "(・A・)", message: NSLocalizedString("msg_remove_joining_info", comment: ""), preferredStyle: (UIDevice.current.userInterfaceIdiom == .phone ? .actionSheet : .alert))
+            let controller = UIAlertController(title: "(・A・)", message: "msg_remove_joining_info".localized, preferredStyle: (UIDevice.current.userInterfaceIdiom == .phone ? .actionSheet : .alert))
             let removeAction = UIAlertAction(title: "Execute", style: .destructive) { (action) in
                 FirebaseService.shared.joinToGroupDock(dock: nil, id: nil)
             }
@@ -139,7 +139,7 @@ class GroupInfoViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let groupInfo = Sections(rawValue: section) {
-            return NSLocalizedString(groupInfo.description(), comment: "")
+            return groupInfo.description().localized
         }
         return nil
     }
@@ -166,7 +166,7 @@ class GroupInfoViewController: UITableViewController {
             switch groupInfo {
             case .manageGrouping:
                 if let managing = ManageStatus(rawValue: indexPath.row) {
-                    let alert = UIAlertController(title: "", message: NSLocalizedString("detailButton_" + managing.description(), comment: ""), preferredStyle: .alert)
+                    let alert = UIAlertController(title: "", message: ("detailButton_" + managing.description()).localized, preferredStyle: .alert)
                     alert.addEmptyOkAction()
                     present(alert, animated: true, completion: nil)
                 }

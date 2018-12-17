@@ -10,13 +10,13 @@ import UIKit
 
 extension PurchaseService {
     func alertCapacity() {
-        OptionalError.alertErrorMessage(message: NSLocalizedString("failed_of_limit_capacity", comment: ""), actions: getActions())
+        OptionalError.alertErrorMessage(message: "failed_of_limit_capacity".localized, actions: getActions())
     }
     
     private func getActions() -> [UIAlertAction]? {
         guard let user = FirebaseService.shared.currentUser, user.isPurchased else {
-            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
-            let recommendAction = UIAlertAction(title: NSLocalizedString("upgrade", comment: ""), style: .default) { (action) in
+            let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil)
+            let recommendAction = UIAlertAction(title: "upgrade".purchaseWord, style: .default) { (action) in
                 DispatchQueue.main.async {
                     let sb = UIStoryboard(name: "Purchase", bundle: Bundle.main)
                     if let viewController = sb.instantiateViewController(withIdentifier: String(describing: PurchaseMenuViewController.self)) as? PurchaseMenuViewController {

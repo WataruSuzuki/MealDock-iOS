@@ -20,7 +20,7 @@ extension FirebaseService {
                 let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     self.signOut()
                 })
-                OptionalError.alertErrorMessage(message: NSLocalizedString("requiresRecentLogin", comment: ""), actions: [action])
+                OptionalError.alertErrorMessage(message: "requiresRecentLogin".localized, actions: [action])
                 
             default:
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)

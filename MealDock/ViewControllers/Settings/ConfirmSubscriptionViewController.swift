@@ -68,12 +68,12 @@ class ConfirmSubscriptionViewController: UITableViewController {
         if let nature = AutoRenewableNature(rawValue: indexPath.section) {
             
             cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.text = NSLocalizedString("description_" + nature.description(), comment: "")
+            cell.textLabel?.text = ("description_" + nature.description()).purchaseWord
             cell.detailTextLabel?.text = ""
             
             switch nature {
             case .timePeriod:
-                cell.textLabel?.text = NSLocalizedString("valid_until", comment: "")
+                cell.textLabel?.text = "valid_until".purchaseWord
                 if let expireDate = FirebaseService.shared.currentUser?.usageInfo?.expireDate {
                     cell.detailTextLabel?.text = Date(timeIntervalSince1970: expireDate).formattedString()
                 } else {
@@ -87,7 +87,7 @@ class ConfirmSubscriptionViewController: UITableViewController {
                 }
             case .aboutThisApp:
                 if let aboutThisApp = SettingsViewController.AboutThisApp(rawValue: indexPath.row) {
-                    cell.textLabel?.text = NSLocalizedString(aboutThisApp.description(), comment: "")
+                    cell.textLabel?.text = aboutThisApp.description().purchaseWord
                 }
             default:
                 break
@@ -99,14 +99,14 @@ class ConfirmSubscriptionViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let nature = AutoRenewableNature(rawValue: section) else { return nil }
-        return NSLocalizedString(nature.description(), comment: "")
+        return nature.description().purchaseWord
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if let nature = AutoRenewableNature(rawValue: section) {
             if nature == .aboutThisService, let product = retrievedProduct {
                 let key = "footer_" + plan.description()
-                return product.localizedDescription + "\n" + String(format: NSLocalizedString(key, comment: ""), plan.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
+                return product.localizedDescription + "\n" + String(format: key.localized, plan.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
             }
         }
         return nil

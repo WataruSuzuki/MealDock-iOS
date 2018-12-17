@@ -33,7 +33,7 @@ extension ErrandPagingViewController : BarcodeScannerCodeDelegate, BarcodeScanne
         barcodeScanner.codeDelegate = self
         barcodeScanner.errorDelegate = self
         barcodeScanner.dismissalDelegate = self
-        barcodeScanner.headerViewController.customBarButtonItem = UIBarButtonItem(title: NSLocalizedString("skip", comment: ""), style: .plain, target: self, action: #selector(tapSkip))
+        barcodeScanner.headerViewController.customBarButtonItem = UIBarButtonItem(title: "skip".localized, style: .plain, target: self, action: #selector(tapSkip))
         present(barcodeScanner, animated: true, completion: nil)
     }
     

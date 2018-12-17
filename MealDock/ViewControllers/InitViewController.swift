@@ -18,7 +18,7 @@ class InitViewController: UITabBarController {
         if let tabbars = viewControllers {
             for (index, tab) in tabbars.enumerated() {
                 if let item = TabItem(rawValue: index), let navigationController = tab as? UINavigationController {
-                    navigationController.title = NSLocalizedString(item.description(), comment: "")
+                    navigationController.title = item.description().localized
                 }
             }
         }

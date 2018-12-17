@@ -27,7 +27,7 @@ class ErrandPagingViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = NSLocalizedString("errandFoods", comment: "")
+        self.title = "errandFoods".localized
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(tapDismiss))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
         
@@ -94,7 +94,7 @@ class ErrandPagingViewController: UIViewController {
         //bottomBarView.setFloatingButtonHidden(true, animated: true)
         
         let barButtonLeadingItem = UIBarButtonItem(image: UIImage(named:"baseline_more_horiz_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapMore))
-        let barButtonTrailingItem = UIBarButtonItem(title: NSLocalizedString("addNewMarketItem", comment: ""), style: .plain, target: self, action: #selector(tapCamera))
+        let barButtonTrailingItem = UIBarButtonItem(title: "addNewMarketItem".localized, style: .plain, target: self, action: #selector(tapCamera))
             //UIBarButtonItem(image: UIImage(named:"baseline_photo_camera_black_36pt")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(tapCamera))
         
         bottomBarView.leadingBarButtonItems = [ barButtonLeadingItem ]
@@ -130,9 +130,9 @@ class ErrandPagingViewController: UIViewController {
     }
     
     @objc func tapMore() {
-        let actionSheet = UIAlertController(title: NSLocalizedString("menu", comment: ""), message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "menu".localized, message: nil, preferredStyle: .actionSheet)
         actionSheet.addEmptyCancelAction()
-        let editingCustomItems = UIAlertAction(title: NSLocalizedString("editCustomItem", comment: ""), style: .default) { (action) in
+        let editingCustomItems = UIAlertAction(title: "editCustomItem".localized, style: .default) { (action) in
             self.performSegue(withIdentifier: String(describing: EditCustomMarketItemsViewController.self), sender: self)
         }
         actionSheet.addAction(editingCustomItems)

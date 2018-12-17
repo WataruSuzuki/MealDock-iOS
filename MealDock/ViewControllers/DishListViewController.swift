@@ -37,13 +37,13 @@ class DishListViewController: UICollectionViewController,
         fab.isHidden = true
         activateFab(fab: fab, target: self, image: UIImage(named: "baseline_local_dining_black_36pt")!, tap: #selector(onFabTapped), longTap: nil)
         
-        self.title = NSLocalizedString("dishes", comment: "")
+        self.title = "dishes".localized
         self.collectionView!.register(DishCardCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         // Do any additional setup after loading the view.
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
         
-        checkBarButton = UIBarButtonItem(title: NSLocalizedString("select", comment: ""), style: .plain, target: self, action: #selector(changeSelectingMode))
+        checkBarButton = UIBarButtonItem(title: "select".localized, style: .plain, target: self, action: #selector(changeSelectingMode))
         cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(changeSelectingMode))
     }
     
@@ -232,18 +232,18 @@ class DishListViewController: UICollectionViewController,
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("no_dishes", comment: ""))
+        return NSAttributedString(string: "no_dishes".localized)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("msg_add_dishes", comment: ""))
+        return NSAttributedString(string: "msg_add_dishes".localized)
     }
     
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         if let _ =  FirebaseService.shared.currentUser {
             return NSAttributedString()
         } else {
-            return NSAttributedString(string: NSLocalizedString("signIn", comment: ""))
+            return NSAttributedString(string: "signIn".localized)
         }
     }
     
@@ -268,7 +268,7 @@ class DishListViewController: UICollectionViewController,
         let items = [Dish](checkedItems.values)
         if items.count > 0 {
             FirebaseService.shared.removeDishes(dishes: items)
-            UIViewController.snackBarMessage(text: "(=^ ω ^=)" + NSLocalizedString("gochi_sou_sama", comment: ""))
+            UIViewController.snackBarMessage(text: "(=^ ω ^=)" + "gochi_sou_sama".localized)
             checkedItems.removeAll()
             isSelectMode = false
             fab.isHidden = true

@@ -51,15 +51,15 @@ class UsageInfoViewController: UITableViewController {
             switch sections {
             case .userInfo:
                 if let userInfoRow = UserInfo(rawValue: indexPath.row) {
-                    cell.textLabel?.text = NSLocalizedString(userInfoRow.description(), comment: "")
+                    cell.textLabel?.text = userInfoRow.description().localized
                     cell.detailTextLabel?.text = getUserInfoDetailStr(index: userInfoRow)
                 }
             case .editAccount:
                 if let editAccountRow = EditAccount(rawValue: indexPath.row) {
-                    cell.textLabel?.text = NSLocalizedString(editAccountRow.description(), comment: "")
+                    cell.textLabel?.text = editAccountRow.description().localized
                 }
             case .deleteAccount:
-                cell.textLabel?.text = NSLocalizedString(sections.description(), comment: "")
+                cell.textLabel?.text = sections.description().localized
                 cell.textLabel?.textColor = .red
             default:
                 break
@@ -72,7 +72,7 @@ class UsageInfoViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = Sections(rawValue: section) {
             if sections != .deleteAccount {
-                return NSLocalizedString(sections.description(), comment: "")
+                return sections.description().localized
             }
         }
         return nil
@@ -123,7 +123,7 @@ class UsageInfoViewController: UITableViewController {
         default:
             return
         }
-        let controller = UIAlertController(title: "(・∀・)", message: NSLocalizedString(msg, comment: ""), preferredStyle: .alert)
+        let controller = UIAlertController(title: "(・∀・)", message: msg.localized, preferredStyle: .alert)
         controller.addEmptyCancelAction()
         controller.addTextField(configurationHandler: {(text:UITextField!) -> Void in
             text.keyboardType = keyboard
@@ -144,7 +144,7 @@ class UsageInfoViewController: UITableViewController {
     var deleteAction: UIAlertAction!
     
     func confirmDeleteAccountAlert() {
-        let controller = UIAlertController(title: "(・A・)", message: NSLocalizedString("msg_delete_account", comment: ""), preferredStyle: .alert)
+        let controller = UIAlertController(title: "(・A・)", message: "msg_delete_account".localized, preferredStyle: .alert)
         controller.addEmptyCancelAction()
         controller.addTextField(configurationHandler: {(text:UITextField!) -> Void in
             text.keyboardType = .emailAddress

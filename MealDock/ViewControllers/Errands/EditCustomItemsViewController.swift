@@ -17,7 +17,7 @@ class EditCustomMarketItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("editCustomItem", comment: "")
+        self.title = "editCustomItem".localized
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
         indicator = UIViewController.topIndicatorStart()
         FirebaseService.shared.observeCustomMarketItem { (items) in
@@ -42,7 +42,7 @@ class EditCustomMarketItemsViewController: UITableViewController {
 
         // Configure the cell...
         let harvest = items[indexPath.section][indexPath.row]
-        cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
+        cell.textLabel?.text = harvest.name.foodName
         
         cell.imageView?.image = UIImage(named: "cart")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit

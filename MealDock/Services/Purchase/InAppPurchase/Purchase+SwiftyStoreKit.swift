@@ -195,8 +195,7 @@ extension PurchaseService {
             itemName = item.productId
             itemName.replaceSubrange(range, with: "")
         }
-        UIViewController.snackBarMessage(text: NSLocalizedString("comp_restore", comment: "")
-            + "\n" + NSLocalizedString(itemName, comment: ""))
+        UIViewController.snackBarMessage(text: "comp_restore".purchaseWord)
     }
     
     func fetchReceipt(force: Bool, completion: @escaping (String?) -> Void) {

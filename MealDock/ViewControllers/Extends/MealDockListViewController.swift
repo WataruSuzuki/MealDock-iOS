@@ -121,7 +121,7 @@ class MealDockListViewController: UITableViewController,
         cell.selectionStyle = .none
         
         let harvest = harvests[indexPath.section][indexPath.row]
-        cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
+        cell.textLabel?.text = harvest.name.foodName
         
         let placeHolderImage = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal).resize(size: CGSize(width: rowHeight, height: rowHeight))
         cell.imageView?.image = placeHolderImage
@@ -188,18 +188,18 @@ class MealDockListViewController: UITableViewController,
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("no_foods", comment: ""))
+        return NSAttributedString(string: "no_foods".localized)
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("msg_add_foods", comment: ""))
+        return NSAttributedString(string: "msg_add_foods".localized)
     }
     
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         if let _ =  FirebaseService.shared.currentUser {
             return NSAttributedString()
         } else {
-            return NSAttributedString(string: NSLocalizedString("signIn", comment: ""))
+            return NSAttributedString(string: "signIn".localized)
         }
     }
     
@@ -228,14 +228,14 @@ class MealDockListViewController: UITableViewController,
         fabMenus.buttonColor = view.tintColor
         fabMenus.buttonImageColor = .black
 
-        let plane = fabMenus.addItem(title: NSLocalizedString("share", comment: ""), image: UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)) { item in
+        let plane = fabMenus.addItem(title: "share".localized, image: UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)) { item in
             self.onTapPlane()
         }
         plane.titlePosition = .trailing
         plane.titleLabel.textColor = .black
         plane.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
 
-        let undo = fabMenus.addItem(title: NSLocalizedString("undo", comment: ""), image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { item in
+        let undo = fabMenus.addItem(title: "undo".localized, image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { item in
             self.onTapUndo()
         }
         undo.titlePosition = .trailing
@@ -245,7 +245,7 @@ class MealDockListViewController: UITableViewController,
         //fabMenus.addItem(title: "item 3", image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
             // do something
         //}
-        let delete = fabMenus.addItem(title: NSLocalizedString("delete", comment: ""), image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
+        let delete = fabMenus.addItem(title: "delete".localized, image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
             self.onTapDelete()
         }
         delete.titlePosition = .trailing

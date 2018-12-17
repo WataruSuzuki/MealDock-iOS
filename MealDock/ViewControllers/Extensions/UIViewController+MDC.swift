@@ -68,7 +68,7 @@ extension UIViewController {
                 }
             }
             action.handler = actionHandler
-            action.title = NSLocalizedString("share", comment: "")
+            action.title = "share".localized
             message.action = action
         }
         
