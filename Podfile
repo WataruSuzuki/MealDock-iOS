@@ -28,6 +28,7 @@ target "MealDock" do
 
     # platform :ios, '10.0'
     #     pod 'OAuthSwift', '~> 1.2.0'
+    #     pod 'FloatingPanel'
 
     target 'MealDockTests' do
         inherit! :search_paths
