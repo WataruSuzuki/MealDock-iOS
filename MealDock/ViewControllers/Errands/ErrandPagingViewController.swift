@@ -12,6 +12,7 @@ import PureLayout
 import MaterialComponents.MaterialBottomAppBar
 import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
+import BarcodeScanner
 
 class ErrandPagingViewController: UIViewController,
     SearchMarketItemViewDelegate,
@@ -19,8 +20,11 @@ class ErrandPagingViewController: UIViewController,
 {
 
     let bottomBarView = MDCBottomAppBarView()
+    let barcodeScanner = BarcodeScannerViewController()
+    var barcode: String?
     var items: [MarketItems]!
     var pagingViewController: FixedPagingViewController!
+    var searchedPhotoUrls = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,7 +165,7 @@ class ErrandPagingViewController: UIViewController,
     }
 
     @objc func tapCamera() {
-        performSegue(withIdentifier: String(describing: AddNewMarketItemViewController.self), sender: self)
+        presentBarcodeScanner()
     }
     
     @objc func tapDone() {
@@ -181,9 +185,13 @@ class ErrandPagingViewController: UIViewController,
         if let navigation = segue.destination as? UINavigationController {
             if let addNewItem = navigation.viewControllers.last as? AddNewMarketItemViewController {
                 addNewItem.delegate = self
+                addNewItem.searchedPhotoUrls = searchedPhotoUrls
             } else if let editCustomItems = navigation.viewControllers.last as? EditCustomMarketItemsViewController {
                 editCustomItems.delegate = self
             }
+        } else if let web = segue.destination as? SearchPhotoWebViewController {
+            web.barcode = barcode
+            web.delegate = self
         }
     }
 }

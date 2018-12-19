@@ -18,6 +18,8 @@ public final class HeaderViewController: UIViewController {
   public private(set) lazy var titleLabel: UILabel = self.makeTitleLabel()
   /// Left bar button item of the navigation bar.
   public private(set) lazy var closeButton: UIButton = self.makeCloseButton()
+  /// Left bar button item of the navigation bar.
+  public var customBarButtonItem: UIBarButtonItem?
 
   // MARK: - View lifecycle
 
@@ -68,6 +70,9 @@ private extension HeaderViewController {
     let navigationItem = UINavigationItem()
     closeButton.sizeToFit()
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: closeButton)
+    if let rightItem = customBarButtonItem {
+        navigationItem.rightBarButtonItem = rightItem
+    }
     titleLabel.sizeToFit()
     navigationItem.titleView = titleLabel
     return navigationItem

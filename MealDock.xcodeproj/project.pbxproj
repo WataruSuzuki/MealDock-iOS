@@ -64,7 +64,7 @@
 		96D6501E217AD09F00A1458C /* Purchase+AdMobNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */; };
 		96D65020217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */; };
 		96E5F24021244FBF00C2F09E /* ErrandPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */; };
-		96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */; };
+		96E5F24121244FBF00C2F09E /* SearchPhotoWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F23F21244FBF00C2F09E /* SearchPhotoWebViewController.swift */; };
 		96E5F243212459E000C2F09E /* InFridgeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5F242212459E000C2F09E /* InFridgeListViewController.swift */; };
 		96EE887821565CED00924490 /* Errand.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96EE887621565CED00924490 /* Errand.storyboard */; };
 		96EE887D2158806100924490 /* UIImageView+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE887C2158806100924490 /* UIImageView+Alamofire.swift */; };
@@ -92,6 +92,7 @@
 		CC39A1AE217DB52900074342 /* String+encript.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AD217DB52900074342 /* String+encript.swift */; };
 		CC39A1B0217DC2C900074342 /* Purchase+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */; };
 		CC3BA3E121A3FC9700429517 /* SearchMarketItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */; };
+		CC44046821C88DAD002591B1 /* Errand+CaptureBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44046721C88DAD002591B1 /* Errand+CaptureBarcode.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
 		CC4CBB34219D0BD800959EBA /* ConfirmSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */; };
 		CC4CBB37219D0C2700959EBA /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4CBB35219D0C2700959EBA /* Purchase.storyboard */; };
@@ -108,6 +109,8 @@
 		CC77E5032165F9D5002891BB /* StrikethroughTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E5012165F9D5002891BB /* StrikethroughTableViewCell.swift */; };
 		CC77E5042165F9D5002891BB /* StrikethroughTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */; };
 		CC77E5062165FFBF002891BB /* UITableView+CustomNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77E5052165FFBF002891BB /* UITableView+CustomNib.swift */; };
+		CC80753D21C8D16C0086313F /* Errand+SearchedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80753C21C8D16C0086313F /* Errand+SearchedPhoto.swift */; };
+		CC80753F21C8D67C0086313F /* RecommendPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80753E21C8D67C0086313F /* RecommendPhotosViewController.swift */; };
 		CC832B812194002900402B3E /* XCTestCase+SetupSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC832B802194002900402B3E /* XCTestCase+SetupSignIn.swift */; };
 		CC9B6D24215CB1CE00E49491 /* MarketItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B6D23215CB1CE00E49491 /* MarketItems.swift */; };
 		CCA83D52214B45BF00226382 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCA83D51214B45BF00226382 /* GoogleService-Info.plist */; };
@@ -216,7 +219,7 @@
 		96D6501D217AD09F00A1458C /* Purchase+AdMobNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMobNative.swift"; sourceTree = "<group>"; };
 		96D6501F217AD3B700A1458C /* Purchase+SwiftyStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+SwiftyStoreKit.swift"; sourceTree = "<group>"; };
 		96E5F23E21244FBF00C2F09E /* ErrandPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrandPagingViewController.swift; sourceTree = "<group>"; };
-		96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureBarcodeViewController.swift; sourceTree = "<group>"; };
+		96E5F23F21244FBF00C2F09E /* SearchPhotoWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPhotoWebViewController.swift; sourceTree = "<group>"; };
 		96E5F242212459E000C2F09E /* InFridgeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFridgeListViewController.swift; sourceTree = "<group>"; };
 		96EE887721565CED00924490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Errand.storyboard; sourceTree = "<group>"; };
 		96EE887C2158806100924490 /* UIImageView+Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alamofire.swift"; sourceTree = "<group>"; };
@@ -244,6 +247,7 @@
 		CC39A1AD217DB52900074342 /* String+encript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+encript.swift"; sourceTree = "<group>"; };
 		CC39A1AF217DC2C900074342 /* Purchase+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+AdMob.swift"; sourceTree = "<group>"; };
 		CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketItemViewController.swift; sourceTree = "<group>"; };
+		CC44046721C88DAD002591B1 /* Errand+CaptureBarcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Errand+CaptureBarcode.swift"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
 		CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSubscriptionViewController.swift; sourceTree = "<group>"; };
 		CC4CBB36219D0C2700959EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Purchase.storyboard; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 		CC77E5022165F9D5002891BB /* StrikethroughTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrikethroughTableViewCell.xib; sourceTree = "<group>"; };
 		CC77E5052165FFBF002891BB /* UITableView+CustomNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CustomNib.swift"; sourceTree = "<group>"; };
 		CC7A3DC6214A2D6600F50AB0 /* MealDock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MealDock-Bridging-Header.h"; sourceTree = "<group>"; };
+		CC80753C21C8D16C0086313F /* Errand+SearchedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Errand+SearchedPhoto.swift"; sourceTree = "<group>"; };
+		CC80753E21C8D67C0086313F /* RecommendPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPhotosViewController.swift; sourceTree = "<group>"; };
 		CC832B802194002900402B3E /* XCTestCase+SetupSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+SetupSignIn.swift"; sourceTree = "<group>"; };
 		CC9B6D23215CB1CE00E49491 /* MarketItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketItems.swift; sourceTree = "<group>"; };
 		CCA83D51214B45BF00226382 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -454,9 +460,12 @@
 				964C00C5214FDBB10099689B /* ErrandViewController.swift */,
 				966F5A562171D1FD00A47EDF /* AddNewMarketItemViewController.swift */,
 				9601C8EB218EE1E00034F045 /* EditCustomItemsViewController.swift */,
-				96E5F23F21244FBF00C2F09E /* CaptureBarcodeViewController.swift */,
+				96E5F23F21244FBF00C2F09E /* SearchPhotoWebViewController.swift */,
 				9601C8F0218EE5990034F045 /* UpdateCustomMarketItemDelegate.swift */,
 				CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */,
+				CC44046721C88DAD002591B1 /* Errand+CaptureBarcode.swift */,
+				CC80753C21C8D16C0086313F /* Errand+SearchedPhoto.swift */,
+				CC80753E21C8D67C0086313F /* RecommendPhotosViewController.swift */,
 			);
 			path = Errands;
 			sourceTree = "<group>";
@@ -983,7 +992,7 @@
 				CC5C68D621636A830026441D /* MealDockListViewController.swift in Sources */,
 				96B49BB821859CAC00657702 /* DetailDishViewController.swift in Sources */,
 				964C00C6214FDBB10099689B /* ErrandViewController.swift in Sources */,
-				96E5F24121244FBF00C2F09E /* CaptureBarcodeViewController.swift in Sources */,
+				96E5F24121244FBF00C2F09E /* SearchPhotoWebViewController.swift in Sources */,
 				CC54D9682179BD1100E42F28 /* Purchase+Store.swift in Sources */,
 				966F5A7A2178D0A200A47EDF /* UICollectionView+CellSize.swift in Sources */,
 				967146BE216CF02700DDA65E /* GooglePhotosService.swift in Sources */,
@@ -1020,6 +1029,7 @@
 				960FAAB82191D7BE00784637 /* UIImage+Orientation.swift in Sources */,
 				966F5A53217190DD00A47EDF /* GooglePhoto+Access.swift in Sources */,
 				CC77E5002165E88B002891BB /* UIImage+Resize.swift in Sources */,
+				CC80753F21C8D67C0086313F /* RecommendPhotosViewController.swift in Sources */,
 				966F5A6121731A6100A47EDF /* Enum+Description.swift in Sources */,
 				966F5A572171D1FD00A47EDF /* AddNewMarketItemViewController.swift in Sources */,
 				CC39A1A7217D701300074342 /* Purchase+AdMobBanner.swift in Sources */,
@@ -1042,8 +1052,10 @@
 				CC64950921759B6200580268 /* DockUser.swift in Sources */,
 				CCE4CED7217812A300AB999D /* OIDAuthState+Joiner.m in Sources */,
 				966F5A4A2170C47700A47EDF /* GooglePhotosSharedInfoResponse.swift in Sources */,
+				CC80753D21C8D16C0086313F /* Errand+SearchedPhoto.swift in Sources */,
 				CCDC94E5214B8239007FBAB0 /* FirebaseService.swift in Sources */,
 				964C00C2214FA8770099689B /* Firebase+CommandHarvest.swift in Sources */,
+				CC44046821C88DAD002591B1 /* Errand+CaptureBarcode.swift in Sources */,
 				966F5A6E2174D94E00A47EDF /* FirebaseObserver.swift in Sources */,
 				CC4CBB39219D5A7A00959EBA /* Date+FormatterStr.swift in Sources */,
 				96317C91210F56FC00F81F22 /* AppDelegate.swift in Sources */,

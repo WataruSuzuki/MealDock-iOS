@@ -45,6 +45,7 @@
                     <connections>
                         <segue destination="L9T-pA-8dz" kind="presentation" identifier="AddNewMarketItemViewController" id="Bxo-Bf-Z1E"/>
                         <segue destination="62c-Vx-0rF" kind="presentation" identifier="EditCustomMarketItemsViewController" id="5Kr-zW-Ou5"/>
+                        <segue destination="aCn-KK-dip" kind="show" identifier="SearchPhotoWebViewController" id="0sS-t4-BBD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i63-DR-uzb" sceneMemberID="firstResponder"/>
@@ -137,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="573.60000000000002" y="136.28185907046478"/>
         </scene>
-        <!--Capture Barcode View Controller-->
+        <!--Search Photo Web View Controller-->
         <scene sceneID="pgT-Wr-F2h">
             <objects>
-                <viewController storyboardIdentifier="CaptureBarcodeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aCn-KK-dip" customClass="CaptureBarcodeViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CaptureBarcodeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aCn-KK-dip" customClass="SearchPhotoWebViewController" customModule="MealDock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lYr-Wl-tZV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
