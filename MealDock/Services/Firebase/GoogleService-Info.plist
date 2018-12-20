@@ -27,7 +27,7 @@
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
@@ -36,5 +36,7 @@
 	<string>1:647833369806:ios:4b78ed9f39ee7601</string>
 	<key>DATABASE_URL</key>
 	<string>https://meal-dock.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-3165756184642596~7376335171</string>
 </dict>
 </plist>
