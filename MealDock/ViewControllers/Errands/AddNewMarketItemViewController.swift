@@ -10,7 +10,9 @@ import UIKit
 import MaterialComponents.MaterialCollections
 import ActionSheetPicker_3_0
 
-class AddNewMarketItemViewController: MDCCollectionViewController {
+class AddNewMarketItemViewController: MDCCollectionViewController,
+    SelectPhotoDelegate
+{
 
     var capturePhotoView: UIImageView?
     var cameraButton: UIButton?
@@ -18,7 +20,9 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     var selectedType = Harvest.Section.unknown
     var items: [String]?
     var delegate: UpdateCustomMarketItemDelegate?
-    
+    var searchedPhotoUrls = [String]()
+    var selectedPhoto: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,8 +66,8 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
             case .type:
                 return viewTextCell(collectionView, cellForItemAt: indexPath, section: section)
                 
-//            case .imageUrl:
-//                return photoCell(collectionView, cellForItemAt: indexPath, section: section)
+            case .imageUrl:
+                return photoCell(collectionView, cellForItemAt: indexPath, section: section)
                 
             default:
                 break
@@ -94,14 +98,25 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     fileprivate func photoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, section: Element) -> MDCCollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewCell.self), for: indexPath) as! MDCCollectionViewCell
         
-        if capturePhotoView == nil {
-            capturePhotoView = UIImageView(frame: .zero)
-            capturePhotoView!.contentMode = .scaleAspectFit
-            cell.addSubview(capturePhotoView!)
-            capturePhotoView!.autoPinEdgesToSuperviewEdges()
-            capturePhotoView?.isHidden = true
+        switch section {
+        case .imageUrl:
+            if cameraButton == nil {
+                cameraButton = UIButton(frame: .zero)
+                cameraButton!.setImage(UIImage(named: "baseline_insert_photo_black_48pt"), for: .normal)
+                cameraButton!.addTarget(self, action: #selector(tapPhoto), for: .touchUpInside)
+                cell.addSubview(cameraButton!)
+                cameraButton!.autoCenterInSuperview()
+            }
+            if capturePhotoView == nil {
+                capturePhotoView = UIImageView(frame: .zero)
+                capturePhotoView!.contentMode = .scaleAspectFit
+                cell.addSubview(capturePhotoView!)
+                capturePhotoView!.autoPinEdgesToSuperviewEdges()
+            }
+            
+        default:
+            break
         }
-
         return cell
     }
 
@@ -114,8 +129,8 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let section = Element(rawValue: indexPath.section) {
             switch section {
-//            case .imageUrl:
-//                return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.width / 2)
+            case .imageUrl:
+                return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.width / 2)
                 
             case .name:
                 return CGSize(width: collectionView.bounds.size.width, height: MDCCellDefaultOneLineHeight * 1.5)
@@ -156,12 +171,27 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
         }
     }
     
+    func didSelect(url: String) {
+        capturePhotoView?.setImageByAlamofire(with: URL(string: url)!)
+        selectedPhoto = url
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func tapPhoto() {
+        let sb = UIStoryboard(name: "AddingNewMarketItem", bundle: Bundle.main)
+        if let viewController = sb.instantiateViewController(withIdentifier: String(describing: RecommendPhotosViewController.self)) as? RecommendPhotosViewController {
+            viewController.searchedPhotoUrls = searchedPhotoUrls
+            viewController.delegate = self
+            presentBottomSheet(viewController: viewController)
+        }
+    }
+    
     @objc func tapSave() {
         guard let cell = collectionView?.cellForItem(at: IndexPath(item: 0, section: Element.name.rawValue)) as? TextFieldCell, let name = cell.textField.text, !name.isEmpty else {
             OptionalError.alertErrorMessage(message: NSLocalizedString("msg_necessary_name", comment: ""), actions: nil)
             return
         }
-        let harvest = Harvest(name: name, section: selectedType.toString(), imageUrl: "")
+        let harvest = Harvest(name: name, section: selectedType.toString(), imageUrl: selectedPhoto ?? "")
         guard FirebaseService.shared.addCustomMarketItem(harvests: [harvest]) else {
             PurchaseService.shared.alertCapacity()
             return
@@ -172,7 +202,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController {
     enum Element: Int {
         case name = 0,
         type,
-        //imageUrl,
+        imageUrl,
         max
         
         func toString() -> String {

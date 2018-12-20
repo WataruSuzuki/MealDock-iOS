@@ -113,12 +113,16 @@ class DishListViewController: UICollectionViewController,
         if let image = ImageCacheService.shared.imageCache.image(withIdentifier: dish.imagePath) {
             cardCell.configure(title: dish.title, image: image)
         } else {
-            cardCell.configure(title: dish.title, image: UIImage(named: "baseline_help_black_48pt")!)
+            cardCell.configure(title: dish.title, image: UIImage(named: "empty_white")!)
             let indicator = cardCell.startIndicator()
             GooglePhotosService.shared.getMediaItemUrl(MEDIA_ITEM_ID: dish.imagePath) { (url, error) in
                 cardCell.stopIndicator(view: indicator)
-                guard error == nil else { return }
-                cardCell.imageView.setImageByAlamofire(with: URL(string: url)!, cacheKey: dish.imagePath)
+                if let error = error {
+                    print(error)
+                    cardCell.imageView.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
+                } else {
+                    cardCell.imageView.setImageByAlamofire(with: URL(string: url)!, cacheKey: dish.imagePath)
+                }
             }
         }
         if dish.title == "💩" {

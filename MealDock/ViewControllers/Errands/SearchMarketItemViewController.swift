@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol SearchMarketItemViewDelegate {
-    func didSelect(harvest: Harvest, indexPath: IndexPath)
-}
-
 class SearchMarketItemViewController: ErrandViewController,
     UISearchBarDelegate
 {

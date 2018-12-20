@@ -67,6 +67,7 @@ terms = "Terms";
 privacyPolicy = "Privacy policy";
 
 cancel = "Cancel";
+skip = "Skip";
 
 msg_necessary_name = "Please set name for saving";
 msg_saving_data = "Saving new data...";
@@ -77,6 +78,7 @@ msg_remove_joining_info = "Leave from group? Sharing information will be removed
 msg_delete_account = "This operation can not be undone. If you continue it, please input your email";
 requiresRecentLogin = "Your login is too old. Please login again.";
 
+msg_scan_barcode = "Scan barcode";
 msg_show_qr_to_owner = "Show this QR to group owner";
 msg_show_qr_to_member = "Show this QR to new member";
 failed_generate_qr = "Failed to generate QR";

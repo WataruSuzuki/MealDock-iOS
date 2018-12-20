@@ -55,12 +55,10 @@ class ErrandViewController: UICollectionViewController,
 
         // Configure the cell
         cell.label.text = NSLocalizedString(item.name, tableName: "MarketItems", comment: "")
-        if !item.imageUrl.isEmpty {
-            if let url = URL(string: item.imageUrl) {
-                cell.itemImage.setImageByAlamofire(with: url)
-            } else {
-                print("(・A・) cannot create URL: \(items[indexPath.row].imageUrl)")
-            }
+        if let url = URL(string: item.imageUrl) {
+            cell.itemImage.setImageByAlamofire(with: url)
+        } else {
+            cell.itemImage.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
         }
         cell.isChecked = selectedItems.contains(where: { (selected) -> Bool in
             return selected.key == item.name

@@ -9,6 +9,7 @@ target "MealDock" do
     pod 'Firebase/AdMob'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
+    pod 'Firebase/DynamicLinks'
     pod 'FirebaseUI/Auth'
     pod 'CodableFirebase'
     pod 'PersonalizedAdConsent'
@@ -27,7 +28,8 @@ target "MealDock" do
     pod 'SwiftyStoreKit'
 
     # platform :ios, '10.0'
-    #     pod 'OAuthSwift', '~> 1.2.0'
+        # pod 'OAuthSwift', '~> 1.2.0'
+        # pod 'FloatingPanel'
 
     target 'MealDockTests' do
         inherit! :search_paths

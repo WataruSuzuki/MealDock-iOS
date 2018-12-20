@@ -12,15 +12,16 @@ import PureLayout
 import MaterialComponents.MaterialBottomAppBar
 import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
+import BarcodeScanner
 
-class ErrandPagingViewController: UIViewController,
-    SearchMarketItemViewDelegate,
-    UpdateCustomMarketItemDelegate
-{
+class ErrandPagingViewController: UIViewController {
 
     let bottomBarView = MDCBottomAppBarView()
+    let barcodeScanner = BarcodeScannerViewController()
+    var barcode: String?
     var items: [MarketItems]!
     var pagingViewController: FixedPagingViewController!
+    var searchedPhotoUrls = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,26 +119,6 @@ class ErrandPagingViewController: UIViewController,
         bottomBarView.autoPinEdge(toSuperviewSafeArea: .bottom)
     }
     
-    func updatedItem() {
-        FirebaseService.shared.loadMarketItems(success: { (items) in
-            self.items = items
-            DispatchQueue.main.async {
-                self.removePagingViews()
-                self.instatiatePavingViews()
-                self.dismiss(animated: true, completion: nil)
-            }
-        }) { (error) in
-            OptionalError.alertErrorMessage(error: error)
-        }
-    }
-    
-    func didSelect(harvest: Harvest, indexPath: IndexPath) {
-        let controllers = pagingViewController.viewControllers as! [ErrandViewController]
-        controllers[indexPath.section].selectedItems.updateValue(harvest, forKey: harvest.name)
-        controllers[indexPath.section].collectionView?.reloadData()
-        dismiss(animated: true, completion: nil)
-    }
-    
     @objc func tapSearch() {
         let sb = UIStoryboard(name: "Errand", bundle: Bundle.main)
         if let viewController = sb.instantiateViewController(withIdentifier: String(describing: SearchMarketItemViewController.self)) as? SearchMarketItemViewController {
@@ -161,7 +142,7 @@ class ErrandPagingViewController: UIViewController,
     }
 
     @objc func tapCamera() {
-        performSegue(withIdentifier: String(describing: AddNewMarketItemViewController.self), sender: self)
+        presentBarcodeScanner()
     }
     
     @objc func tapDone() {
@@ -181,9 +162,13 @@ class ErrandPagingViewController: UIViewController,
         if let navigation = segue.destination as? UINavigationController {
             if let addNewItem = navigation.viewControllers.last as? AddNewMarketItemViewController {
                 addNewItem.delegate = self
+                addNewItem.searchedPhotoUrls = searchedPhotoUrls
             } else if let editCustomItems = navigation.viewControllers.last as? EditCustomMarketItemsViewController {
                 editCustomItems.delegate = self
             }
+        } else if let web = segue.destination as? SearchPhotoWebViewController {
+            web.barcode = barcode
+            web.delegate = self
         }
     }
 }

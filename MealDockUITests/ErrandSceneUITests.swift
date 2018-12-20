@@ -33,6 +33,11 @@ class ErrandSceneUITests: XCTestCase {
         let addNewMarketItem = XCTestCase.getTestStr(key: "addNewMarketItem", sender: tester, bundleClass: tester)
         app.buttons[addNewMarketItem].tap()
         
+        let scanBarcode = XCTestCase.getTestStr(key: "msg_scan_barcode", sender: tester, bundleClass: tester)
+        let skip = XCTestCase.getTestStr(key: "skip", sender: tester, bundleClass: tester)
+        app.navigationBars[scanBarcode].buttons[skip].tap()
+        waitingSec(sec: 5.0, sender: self)
+
         let titleTextField = app.collectionViews.textFields[XCTestCase.getTestStr(key: "title", sender: tester, bundleClass: tester)]
         titleTextField.inputText(text: ErrandSceneUITests.itemName)
         

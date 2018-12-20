@@ -10,12 +10,19 @@ import UIKit
 import MaterialComponents.MaterialCollections
 import MaterialComponents.MaterialButtons_ColorThemer
 import TinyConstraints
+#if canImport(FloatingPanel)
+import FloatingPanel
+#endif
 
 class MealDockListViewController: UITableViewController,
+    //FloatingPanelControllerDelegate,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     let fab = MDCFloatingButton()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
+    #if canImport(FloatingPanel)
+    let floatingPanel = FloatingPanelController()
+    #endif
     var harvests = [[Harvest]]()
     var checkedItems = [String : Harvest]()
     var mediumAdView: UIView?
@@ -25,6 +32,9 @@ class MealDockListViewController: UITableViewController,
 
         view.addSubview(fab)
         fab.isHidden = true
+        #if canImport(FloatingPanel)
+        floatingPanel.delegate = self
+        #endif
 
         self.tableView.registerCustomCell(customCellIdentifier)
         self.tableView.rowHeight = CGFloat(integerLiteral: 66)
@@ -106,9 +116,11 @@ class MealDockListViewController: UITableViewController,
         let harvest = harvests[indexPath.section][indexPath.row]
         cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
 
-        cell.imageView?.image = UIImage(named: "harvest")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
+        cell.imageView?.image = UIImage(named: "cart")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
         cell.imageView?.contentMode = .scaleAspectFit
-        if !harvest.imageUrl.isEmpty {
+        if harvest.imageUrl.isEmpty {
+            cell.imageView?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
+        } else {
             cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
 

@@ -21,14 +21,22 @@ extension UIViewController {
         container.preferredContentSize = CGSize(width: 500, height: self.view.frame.height / 2)
         container.appBarViewController.headerView.trackingScrollView = viewController.collectionView
         container.isTopLayoutGuideAdjustmentEnabled = true
-        let colorScheme = MDCSemanticColorScheme()
-        colorScheme.primaryColor = MDCPalette.lightBlue.tint500
-        colorScheme.primaryColorVariant = MDCPalette.lightBlue.tint400
-        colorScheme.secondaryColor = colorScheme.primaryColor
-        MDCAppBarColorThemer.applyColorScheme(colorScheme, to: container.appBarViewController)
+        
+        //let colorScheme = MDCSemanticColorScheme()
+        //colorScheme.primaryColor = MDCPalette.lightBlue.tint500
+        //colorScheme.primaryColorVariant = MDCPalette.lightBlue.tint400
+        //colorScheme.secondaryColor = colorScheme.primaryColor
+        //MDCAppBarColorThemer.applyColorScheme(colorScheme, to: container.appBarViewController)
         
         let bottomSheet = MDCBottomSheetController(contentViewController: container)
         MDCBottomSheetControllerShapeThemer.applyShapeScheme(MDCShapeScheme(), to: bottomSheet)
+        
+        let shapeGenerator = MDCRectangleShapeGenerator()
+        let cornerTreatment = MDCRoundedCornerTreatment(radius: 16)
+        shapeGenerator.topLeftCorner = cornerTreatment
+        shapeGenerator.topRightCorner = cornerTreatment
+        bottomSheet.setShapeGenerator(shapeGenerator, for: .preferred)
+        
         bottomSheet.trackingScrollView = viewController.collectionView;
         // Present the bottom sheet
         present(bottomSheet, animated: true, completion: nil)

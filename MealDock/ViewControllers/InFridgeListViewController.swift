@@ -14,7 +14,7 @@ class InFridgeListViewController: MealDockListViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("inFridgeFoods", comment: "")
-        activateFab(fab: fab, target: self, image: UIImage(named: "packed_food")!, selector: #selector(onFabTapped))
+        activateFab(fab: fab, target: self, image: UIImage(named: "dish")!, selector: #selector(onFabTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +68,17 @@ class InFridgeListViewController: MealDockListViewController {
         let sb = UIStoryboard(name: "InFridgeList", bundle: Bundle.main)
         if let viewController = sb.instantiateViewController(withIdentifier: String(describing: EditDishViewController.self)) as? EditDishViewController {
             viewController.checkedItems = [Harvest](checkedItems.values)
-            presentBottomSheet(viewController: viewController)
+            
+            #if canImport(FloatingPanel)
+                let navigation = UINavigationController(rootViewController: viewController)
+                floatingPanel.set(contentViewController: navigation)
+                floatingPanel.track(scrollView: viewController.collectionView!)
+                floatingPanel.surfaceView.cornerRadius = 25.0
+                floatingPanel.isRemovalInteractionEnabled = true // Optional: Let it removable by a swipe-down
+                self.present(floatingPanel, animated: true, completion: nil)
+            #else //canImport(FloatingPanel)
+                presentBottomSheet(viewController: viewController)
+            #endif //canImport(FloatingPanel)
         }
         super.onFabTapped()
     }
