@@ -1,25 +1,16 @@
-/* 
-  InAppPurchase.strings
-  MealDock
 
-  Created by Wataru Suzuki on 2019/01/09.
-  Copyright © 2019 WataruSuzuki. All rights reserved.
-*/
-cannot_pay = "Cannot pay";
-fail_validation = "Fail validation";
-not_available = "Not available";
-restrict_in_app_purchase = "Restrict this item";
-comp_restore = "Restore item";
-thank_you_for_purchase = "Thank you for purchase";
-cannot_find_paid_history = "Cannot find paid history";
-upgrade = "Upgrade";
-
-timePeriod = "Time period";
-aboutThisService = "About this service";
-aboutAppStoreSubscription = "About App Store Subscription";
-
-description_timePeriod = "- - - -";
-description_aboutThisService = "- - - -";
-description_aboutAppStoreSubscription = "• Payment will be charged to iTunes Account at confirmation of purchase\n\n• Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n\n• Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n\n• Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user's Account Settings after purchase\n\n• Any unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable";
-
-valid_until = "Valid until";
+cannot_pay = "支払うことができません";
+fail_validation = "検証に失敗";
+not_available = "利用不可";
+restrict_in_app_purchase = "このアイテムを制限";
+comp_restore = "アイテムを復元";
+thank_you_for_purchase = "購入いただきありがとうございます";
+cannot_find_paid_history = "有料の歴史を見つけることができません";
+upgrade = "アップグレード";
+timePeriod = "期間";
+aboutThisService = "このサービスについて";
+aboutAppStoreSubscription = "App Storeのサブスクリプションについて";
+description_timePeriod = " -   -   -   - ";
+description_aboutThisService = " -   -   -   - ";
+description_aboutAppStoreSubscription = "•お支払いは、購入\の確認でiTunesのアカウントに課金N \ N自動更新は、少なくとも24時間、現在の期間の\の終了前にオフN \ N•アカウントの更新のために課金されますされていない場合•購読が自動的に更新されます前現在の期間の終了まで24時間以内、および更新\のコストを識別N \ N•サブスクリプションは、ユーザーによって管理され、自動更新は、購入後にユーザーのアカウント設定に行くことによってオフにすることができる\ N \ N•無料試用期間の未使用部分は、提供されている場合、ユーザーが該当する場合はそのパブリケーションへのサブスクリプションを購入したときに没収されます";
+valid_until = "まで有効";

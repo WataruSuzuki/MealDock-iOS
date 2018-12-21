@@ -1,10 +1,4 @@
-/* 
-  Localizable.strings
-  MealDock
 
-  Created by Wataru Suzuki on 2018/09/15.
-  Copyright © 2018年 WataruSuzuki. All rights reserved.
-*/
 gochi_sou_sama = "Thank you for the wonderful meal";
 dishes = "Dishes";
 inFridgeFoods = "In Fridge Foods";
@@ -12,66 +6,51 @@ cartedFoods = "Carted Foods";
 errandFoods = "Errand Foods";
 addNewMarketItem = "Add new Market Item";
 editCustomItem = "Delete custom market item";
-
 select = "Select";
 no_dishes = "No Dishes";
 no_foods = "No Foods";
-
 msg_add_dishes = "Let's cook & add dish";
 msg_add_foods = "Let's start to add foods";
-
 signIn = "Sign in";
 account = "Account";
 userInfo = "User Information";
 groupInfo = "Group Information";
 signOut = "Sign out";
 deleteAccount = "Delete account";
-
 noFood = "No Foods";
 in_packed_list = "in packed list.";
-
 title = "Title";
 description = "Description";
 harvest = "Harvest";
-
 name = "Name";
 type = "Type";
 imageUrl = "Image URL";
-
 settings = "Settings";
-
 editAccount = "Edit Account";
 deleteAccount = "Delete Account";
-
 displayName = "Display name";
 email = "Email";
 password = "Password";
-
 changeDisplayName = "Change display name";
 changeEmail = "Change email";
 resetPassword = "Reset password";
 receive_your_change_request = "Receive your change request";
-
 invitedMembers = "Invited members";
 manageGrouping = "Manage grouping";
 groupOwner = "Group owner";
 addNewMember = "Add new member";
 requestToJoin = "Request to join";
-
-detailButton_addNewMember = "Add new member as group owner, first capture new member's QR code, then show your group's info QR to new member.";
-detailButton_requestToJoin = "Join to new group, first show your QR to group owner, then capture group's QR.";
-
+detailButton_addNewMember = "Add new member as group owner,first capture new member's QR code,then show your group's info QR to new member.";
+detailButton_requestToJoin = "Join to new group,first show your QR to group owner,then capture group's QR.";
 aboutThisApp = "About this app";
 help = "Help";
 terms = "Terms";
 privacyPolicy = "Privacy policy";
-
 cancel = "Cancel";
 skip = "Skip";
 delete = "Delete";
 undo = "Undo";
 share = "Share";
-
 msg_necessary_name = "Please set name for saving";
 msg_saving_data = "Saving new data...";
 msg_mission_completed = "Mission completed!!";
@@ -80,32 +59,27 @@ msg_link_in_fridge_foods = "Please check in-fridge foods.";
 msg_change_displayname = "Please input new display name";
 msg_change_email = "Please input new Email";
 msg_remove_joining_info = "Leave from group? Sharing information will be removed & please re-setup if you join to other group again";
-msg_delete_account = "This operation can not be undone. If you continue it, please input your email";
+msg_delete_account = "This operation can not be undone. If you continue it,please input your email";
 requiresRecentLogin = "Your login is too old. Please login again.";
-
 msg_scan_barcode = "Scan barcode";
 msg_show_qr_to_owner = "Show this QR to group owner";
 msg_show_qr_to_member = "Show this QR to new member";
 failed_generate_qr = "Failed to generate QR";
 failed_of_limit_capacity = "Failed to update because your capacity has been limited. Please delete unnecessary old data then try again.";
 failed_save_photo = "Failed save photo";
-
 connected_to_database = "Connected to database";
 disconnected_network = "Disconnect network";
-
 ticket = "Ticket";
 rewared = "Get ticket by reward";
-footer_reward = "In free using, you need to register data by ticket. \nYou can get ticket after watched ad as reward.";
+footer_reward = "In free using,you need to register data by ticket. \nYou can get ticket after watched ad as reward.";
 please_wait = "Please wait...";
 current_ticket = "Current ticket";
-
 purchase = "Purchase";
 unlockAd = "Unlock Ad";
 unlockPremium = "Premium";
 subscriptionBasic = "Subscription";
 restore = "Restore purchase";
-
-footer_unlockAd = "Unlock ads, become to use without tickets.";
-footer_unlockPremium = "Unlock ads, become to use without tickets. \nAnd your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
-footer_subscriptionBasic = "This product be Unlock ads, become to use without tickets, and your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
+footer_unlockAd = "Unlock ads,become to use without tickets.";
+footer_unlockPremium = "Unlock ads,become to use without tickets. \nAnd your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
+footer_subscriptionBasic = "This product be Unlock ads,become to use without tickets,and your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
 footer_restore = "Will be restore your purchase \"at iOS\". \nCannot restore any other platform.";
