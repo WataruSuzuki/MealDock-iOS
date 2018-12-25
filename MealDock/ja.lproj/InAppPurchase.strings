@@ -1,16 +1,16 @@
 
-cannot_pay = "支払うことができません";
-fail_validation = "検証に失敗";
-not_available = "利用不可";
-restrict_in_app_purchase = "このアイテムを制限";
-comp_restore = "アイテムを復元";
-thank_you_for_purchase = "購入いただきありがとうございます";
-cannot_find_paid_history = "有料の歴史を見つけることができません";
+cannot_pay = "支払い処理ができません";
+fail_validation = "検証に失敗しました";
+not_available = "利用できません";
+restrict_in_app_purchase = "このアイテムは制限されています";
+comp_restore = "復元が完了しました";
+thank_you_for_purchase = "ご購入ありがとうございます";
+cannot_find_paid_history = "購入履歴が見つかりません";
 upgrade = "アップグレード";
 timePeriod = "期間";
 aboutThisService = "このサービスについて";
-aboutAppStoreSubscription = "App Storeのサブスクリプションについて";
+aboutAppStoreSubscription = "App Storeの定期購読について";
 description_timePeriod = " -   -   -   - ";
 description_aboutThisService = " -   -   -   - ";
-description_aboutAppStoreSubscription = "•お支払いは、購入\の確認でiTunesのアカウントに課金N \ N自動更新は、少なくとも24時間、現在の期間の\の終了前にオフN \ N•アカウントの更新のために課金されますされていない場合•購読が自動的に更新されます前現在の期間の終了まで24時間以内、および更新\のコストを識別N \ N•サブスクリプションは、ユーザーによって管理され、自動更新は、購入後にユーザーのアカウント設定に行くことによってオフにすることができる\ N \ N•無料試用期間の未使用部分は、提供されている場合、ユーザーが該当する場合はそのパブリケーションへのサブスクリプションを購入したときに没収されます";
-valid_until = "まで有効";
+description_aboutAppStoreSubscription = "•お支払いは、購入確認時にiTunesアカウントに請求されます。\n\n•自動更新が現在の期間の終了の少なくとも24時間前にオフにされていない限り、購読は自動的に更新されます。\n\n•アカウントには、現在の期間が終了する前の24時間以内に更新の料金が請求され、更新の費用が特定されます。\n\n•購読はユーザーによって管理され、自動更新は購入後にユーザーのアカウント設定に移動することによってオフにされることがあります。\n\n•無料試用期間に該当し、提供されている場合、未使用部分はユーザーがその出版物の購読を購入した時点で失効します。";
+valid_until = "有効期限";
