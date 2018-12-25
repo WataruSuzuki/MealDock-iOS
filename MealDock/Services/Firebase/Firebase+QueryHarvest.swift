@@ -30,6 +30,18 @@ extension FirebaseService {
         }
     }
     
+    func syncItemCounters(success:(() -> Void)?) {
+        syncItemCounters(itemId: FirebaseService.ID_CARTED_ITEMS) {
+            self.syncItemCounters(itemId: FirebaseService.ID_FRIDGE_ITEMS, success: {
+                self.syncItemCounters(itemId: FirebaseService.ID_MARKET_ITEMS, success: {
+                    self.syncDishCounters(user: self.currentUser!, success: {
+                        success?()
+                    })
+                })
+            })
+        }
+    }
+    
     func removeCustomMarketItemObsever() {
         if let observer = observers[FirebaseService.ID_MARKET_ITEMS] {
             observer.ref.removeObserver(withHandle: observer.handle)
@@ -100,6 +112,20 @@ extension FirebaseService {
             } catch let error {
                 print(error)
                 result?([MarketItems](), error)
+            }
+        }
+    }
+    
+    fileprivate func syncItemCounters(itemId: String, success:(() -> Void)?) {
+        if let user = currentUser {
+            rootRef.child("\(itemId)/\(user.dockID)").observeSingleEvent(of: .value) { (snapshot) in
+                let items = self.snapshotToHarvests(snapshot: snapshot)
+                var harvestCount = 0
+                for item in items {
+                    harvestCount += item.count
+                }
+                self.itemCounters.updateValue(harvestCount, forKey: itemId)
+                success?()
             }
         }
     }
@@ -209,5 +235,27 @@ extension FirebaseService {
             print(error.localizedDescription)
         })
         observers.updateValue(FirebaseObserver(ref: newReference, handle: newObserver), forKey: itemId)
+    }
+    
+    fileprivate func syncDishCounters(user: DockUser, success:(() -> Void)?) {
+        let itemId = FirebaseService.ID_DISH_ITEMS
+        rootRef.child("\(itemId)/\(user.dockID)").observeSingleEvent(of: .value) { (snapshot) in
+            var items = [Dish]()
+            for child in snapshot.children {
+                debugPrint(child)
+                if let data = child as? DataSnapshot {
+                    if let childValue = data.value! as? [String: Any] {
+                        do {
+                            let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
+                            items.append(dish)
+                        } catch let error {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            self.itemCounters.updateValue(items.count, forKey: itemId)
+            success?()
+        }
     }
 }
