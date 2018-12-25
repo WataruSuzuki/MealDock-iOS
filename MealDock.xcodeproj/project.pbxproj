@@ -95,6 +95,7 @@
 		CC3BA3E121A3FC9700429517 /* SearchMarketItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */; };
 		CC44046821C88DAD002591B1 /* Errand+CaptureBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC44046721C88DAD002591B1 /* Errand+CaptureBarcode.swift */; };
 		CC4406FE215A1ADE00D15934 /* Firebase+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */; };
+		CC46121B21EDC63200C6A6AB /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC46121A21EDC63200C6A6AB /* String+Localization.swift */; };
 		CC4CBB34219D0BD800959EBA /* ConfirmSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */; };
 		CC4CBB37219D0C2700959EBA /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4CBB35219D0C2700959EBA /* Purchase.storyboard */; };
 		CC4CBB39219D5A7A00959EBA /* Date+FormatterStr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */; };
@@ -273,6 +274,7 @@
 		CC3BA3E021A3FC9700429517 /* SearchMarketItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketItemViewController.swift; sourceTree = "<group>"; };
 		CC44046721C88DAD002591B1 /* Errand+CaptureBarcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Errand+CaptureBarcode.swift"; sourceTree = "<group>"; };
 		CC4406FD215A1ADE00D15934 /* Firebase+Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Reachability.swift"; sourceTree = "<group>"; };
+		CC46121A21EDC63200C6A6AB /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		CC4CBB33219D0BD800959EBA /* ConfirmSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSubscriptionViewController.swift; sourceTree = "<group>"; };
 		CC4CBB36219D0C2700959EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Purchase.storyboard; sourceTree = "<group>"; };
 		CC4CBB38219D5A7A00959EBA /* Date+FormatterStr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatterStr.swift"; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 				CC832B802194002900402B3E /* XCTestCase+SetupSignIn.swift */,
 				CCD75A7721941B8A00676489 /* XCUIElement+TextField.swift */,
 				96F5F0F121B2BD690018AB1D /* XCTestCase+Localization.swift */,
+				CC46121A21EDC63200C6A6AB /* String+Localization.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1137,6 +1140,7 @@
 				96F5F0F221B2BD690018AB1D /* XCTestCase+Localization.swift in Sources */,
 				CCD75A7821941B8A00676489 /* XCUIElement+TextField.swift in Sources */,
 				CC832B812194002900402B3E /* XCTestCase+SetupSignIn.swift in Sources */,
+				CC46121B21EDC63200C6A6AB /* String+Localization.swift in Sources */,
 				CCD75A762194180100676489 /* ErrandSceneUITests.swift in Sources */,
 				96317CB3210F56FD00F81F22 /* ShowQrUITests.swift in Sources */,
 			);

@@ -25,4 +25,5 @@ DerivedData/
 Pods/Google-Mobile-Ads-SDK/
 out_archives/
 out_ipa/
-test_primary.log
+test_primary_phone.log
+test_primary_pad.log
