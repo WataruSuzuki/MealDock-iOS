@@ -52,6 +52,7 @@ class FirebaseService: NSObject,
     var signInObservations = [String: NSKeyValueObservation]()
     var observers = [String: FirebaseObserver]()
     var itemCounters = [String : Int]()
+    var isSyncItemCountersNow = false
 
     class func initHarvestArray() -> [[Harvest]] {
         return [[Harvest]](repeating: [], count: Harvest.Section.max.rawValue)
