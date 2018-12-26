@@ -102,7 +102,13 @@ class CartedItemListViewController: MealDockListViewController {
     override func onTapPlane() {
         if let deepLink = FirebaseService.shared.createDeepLink(extra: FirebaseService.DeepLinkExtra.cartedFoods.rawValue) {
             let message = "msg_link_carted_foods".localized + "\n\n"
-            present(UIViewController.getActivityViewController(items: [message, deepLink]), animated: true, completion: nil)
+            let activity = UIViewController.getActivityViewController(items: [message, deepLink])
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                let planeButton = fabMenus.items[0]
+                activity.popoverPresentationController?.sourceView = planeButton
+                activity.popoverPresentationController?.sourceRect = planeButton.frame
+            }
+            present(activity, animated: true, completion: nil)
         }
         super.onTapPlane()
     }
