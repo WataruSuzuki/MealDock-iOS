@@ -5,7 +5,7 @@
   Created by Wataru Suzuki on 2018/10/06.
   Copyright © 2018 WataruSuzuki. All rights reserved.
 */
-CFBundleDisplayName = "MealDock";
+CFBundleDisplayName = "ミールドック";
 NSCameraUsageDescription = "Using to take photo, capture barcode";
 NSPhotoLibraryAddUsageDescription = "Using to save photo";
 NSPhotoLibraryUsageDescription = "Using to save photo";
