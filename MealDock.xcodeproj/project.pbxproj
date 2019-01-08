@@ -132,6 +132,7 @@
 		CCDC94F0214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94EF214BB235007FBAB0 /* FUIPasswordSignInViewController+Injection.m */; };
 		CCDC94F42150E853007FBAB0 /* Harvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDC94F32150E853007FBAB0 /* Harvest.swift */; };
 		CCE4CED7217812A300AB999D /* OIDAuthState+Joiner.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE4CED6217812A300AB999D /* OIDAuthState+Joiner.m */; };
+		CCE6E15621F191F0006F57AF /* CartedItemsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE6E15521F191F0006F57AF /* CartedItemsUITests.swift */; };
 		EAA25D2ED327EDD0EA90FDC7 /* Pods_MealDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -314,6 +315,7 @@
 		CCDC94F32150E853007FBAB0 /* Harvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvest.swift; sourceTree = "<group>"; };
 		CCE4CED5217812A300AB999D /* OIDAuthState+Joiner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OIDAuthState+Joiner.h"; sourceTree = "<group>"; };
 		CCE4CED6217812A300AB999D /* OIDAuthState+Joiner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OIDAuthState+Joiner.m"; sourceTree = "<group>"; };
+		CCE6E15521F191F0006F57AF /* CartedItemsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartedItemsUITests.swift; sourceTree = "<group>"; };
 		D43F49E848D2ECAED9C04A48 /* Pods_MealDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -453,6 +455,7 @@
 				96317CB2210F56FD00F81F22 /* ShowQrUITests.swift */,
 				96317CB4210F56FD00F81F22 /* Info.plist */,
 				CC832B7F2193FFEE00402B3E /* Extensions */,
+				CCE6E15521F191F0006F57AF /* CartedItemsUITests.swift */,
 			);
 			path = MealDockUITests;
 			sourceTree = "<group>";
@@ -1140,6 +1143,7 @@
 				96F5F0F221B2BD690018AB1D /* XCTestCase+Localization.swift in Sources */,
 				CCD75A7821941B8A00676489 /* XCUIElement+TextField.swift in Sources */,
 				CC832B812194002900402B3E /* XCTestCase+SetupSignIn.swift in Sources */,
+				CCE6E15621F191F0006F57AF /* CartedItemsUITests.swift in Sources */,
 				CC46121B21EDC63200C6A6AB /* String+Localization.swift in Sources */,
 				CCD75A762194180100676489 /* ErrandSceneUITests.swift in Sources */,
 				96317CB3210F56FD00F81F22 /* ShowQrUITests.swift in Sources */,

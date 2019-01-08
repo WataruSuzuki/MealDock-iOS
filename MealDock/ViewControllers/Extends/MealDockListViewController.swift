@@ -35,8 +35,7 @@ class MealDockListViewController: UITableViewController,
 
         view.addSubview(fabMenus)
         view.addSubview(fab)
-        fab.isHidden = true
-        fabMenus.isHidden = fab.isHidden
+        updateFabHidden(state: true)
         setupFabMenus()
 
         #if canImport(FloatingPanel)
@@ -142,8 +141,7 @@ class MealDockListViewController: UITableViewController,
         } else {
             checkedItems.removeValue(forKey: harvest.name)
         }
-        fab.isHidden = 0 == checkedItems.count
-        fabMenus.isHidden = fab.isHidden
+        updateFabHidden(state: 0 == checkedItems.count)
     }
     
     /*
@@ -217,9 +215,13 @@ class MealDockListViewController: UITableViewController,
     }
 
     func onFabTapped() {
-        fab.isHidden = true
-        fabMenus.isHidden = fab.isHidden
+        updateFabHidden(state: true)
         checkedItems.removeAll()
+    }
+    
+    func updateFabHidden(state: Bool) {
+        fab.isHidden = state
+        fabMenus.isHidden = fab.isHidden
     }
     
     private func setupFabMenus() {
@@ -234,6 +236,7 @@ class MealDockListViewController: UITableViewController,
         plane.titlePosition = .trailing
         plane.titleLabel.textColor = .black
         plane.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        plane.accessibilityIdentifier = "paper_plane"
 
         let undo = fabMenus.addItem(title: "undo".localized, image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { item in
             self.onTapUndo()
@@ -264,6 +267,7 @@ class MealDockListViewController: UITableViewController,
     
     func onTapPlane() {
         onFabMenuTapped()
+        updateFabHidden(state: true)
         //Please override it
     }
     
@@ -271,11 +275,13 @@ class MealDockListViewController: UITableViewController,
         checkedItems.removeAll()
         tableView.reloadData()
         onFabMenuTapped()
+        updateFabHidden(state: true)
         //Please override it
     }
     
     func onTapDelete() {
         onFabMenuTapped()
+        updateFabHidden(state: true)
         //Please override it
     }
     
