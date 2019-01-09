@@ -31,6 +31,9 @@ class CartedItemsUITests: XCTestCase {
         tablesQuery.cells.containing(.staticText, identifier:"UI Test Market Item").buttons["Increment"].tap()
         tablesQuery.buttons["freezer"].press(forDuration: 2.0);
         
+        let menuQuery = tablesQuery.buttons["fabMenus"]
+        menuQuery.buttons["paper_plane"].tap()
+        waitingSec(sec: 1.0, sender: self)
     }
 
 }

@@ -236,7 +236,6 @@ class MealDockListViewController: UITableViewController,
         plane.titlePosition = .trailing
         plane.titleLabel.textColor = .black
         plane.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-        plane.accessibilityIdentifier = "paper_plane"
 
         let undo = fabMenus.addItem(title: "undo".localized, image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { item in
             self.onTapUndo()
@@ -263,6 +262,9 @@ class MealDockListViewController: UITableViewController,
             item.layer.shadowOpacity = Float(0.4)
             item.layer.shadowRadius = CGFloat(2)
         }
+        
+        fabMenus.accessibilityIdentifier = "fabMenus"
+        fabMenus.items[0].accessibilityIdentifier = "paper_plane"
     }
     
     func onTapPlane() {
