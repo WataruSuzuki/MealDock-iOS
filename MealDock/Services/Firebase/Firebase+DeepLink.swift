@@ -13,13 +13,13 @@ extension FirebaseService {
     static let deepLinkHost = "devjchankchan.page.link"
     static let deepLinkAppStoreId = "1447468603"
     
-    enum DeepLinkExtra: String {
+    enum DeepLinkExtra: String, CaseIterable {
         case dishes = "/dishes",
         inFridgeFoods = "/infridgefoods",
         cartedFoods = "/cartedfoods"
     }
 
-    func handleUniversalLink(webpageURL: URL) -> Bool {
+    func handleUniversalLink(webpageURL: URL, completion: DynamicLinkUniversalLinkHandler? = nil) -> Bool {
         return DynamicLinks.dynamicLinks().handleUniversalLink(webpageURL) { dynamiclink, error in
             guard let dynamiclink = dynamiclink, let url = dynamiclink.url else { return }
             
