@@ -10,10 +10,10 @@ import UIKit
 import MaterialComponents.MaterialCollections
 import MaterialComponents.MaterialButtons_ColorThemer
 import TinyConstraints
+import PopMenu
 #if canImport(FloatingPanel)
 import FloatingPanel
 #endif
-import JJFloatingActionButton
 
 class MealDockListViewController: UITableViewController,
     //FloatingPanelControllerDelegate,
@@ -21,7 +21,6 @@ class MealDockListViewController: UITableViewController,
 {
     let rowHeight = 66
     let fab = MDCFloatingButton()
-    let fabMenus = JJFloatingActionButton()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
     #if canImport(FloatingPanel)
     let floatingPanel = FloatingPanelController()
@@ -33,10 +32,8 @@ class MealDockListViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(fabMenus)
         view.addSubview(fab)
         updateFabHidden(state: true)
-        setupFabMenus()
 
         #if canImport(FloatingPanel)
         floatingPanel.delegate = self
@@ -66,7 +63,7 @@ class MealDockListViewController: UITableViewController,
         super.viewWillLayoutSubviews()
         
         DispatchQueue.main.async {
-            self.layout(fab: self.fab, menu: self.fabMenus)
+            self.layout(fab: self.fab)
             self.mediumAdView?.centerXToSuperview()
             self.mediumAdView?.autoPinEdge(.bottom, to: .top, of: self.tabBarController!.tabBar)
         }
@@ -221,83 +218,47 @@ class MealDockListViewController: UITableViewController,
     
     func updateFabHidden(state: Bool) {
         fab.isHidden = state
-        fabMenus.isHidden = fab.isHidden
     }
     
-    private func setupFabMenus() {
-        fabMenus.addTarget(self, action: #selector(onFabMenuTapped), for: .touchUpInside)
-        fabMenus.buttonImage = UIImage(named: "baseline_add_black_24pt")
-        fabMenus.buttonColor = view.tintColor
-        fabMenus.buttonImageColor = .black
-
-        let plane = fabMenus.addItem(title: "share".localized, image: UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.onTapPlane()
+    private func presentFabMenus() {
+        let plane = PopMenuDefaultAction(title: "share".localized, image: UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)) { (action) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.onTapPlane()
+            }
         }
-        plane.titlePosition = .trailing
-        plane.titleLabel.textColor = .black
-        plane.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-
-        let undo = fabMenus.addItem(title: "undo".localized, image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { item in
+        
+        let undo = PopMenuDefaultAction(title: "undo".localized, image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { (action) in
             self.onTapUndo()
         }
-        undo.titlePosition = .trailing
-        undo.titleLabel.textColor = .black
-        undo.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
         
-        //fabMenus.addItem(title: "item 3", image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
-            // do something
-        //}
-        let delete = fabMenus.addItem(title: "delete".localized, image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
+        let delete = PopMenuDefaultAction(title: "delete".localized, image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate), color: UIColor.red) { (action) in
             self.onTapDelete()
         }
-        delete.titlePosition = .trailing
-        delete.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-        delete.titleLabel.textColor = .black
-        delete.buttonColor = .white
-        delete.buttonImageColor = .red
         
-        fabMenus.configureDefaultItem { item in
-            item.layer.shadowColor = UIColor.black.cgColor
-            item.layer.shadowOffset = CGSize(width: 0, height: 1)
-            item.layer.shadowOpacity = Float(0.4)
-            item.layer.shadowRadius = CGFloat(2)
-        }
-        
-        fabMenus.accessibilityIdentifier = "fabMenus"
-        fabMenus.items[0].accessibilityIdentifier = "paper_plane"
+        let popMenu = PopMenuViewController(sourceView: fab, actions: [plane, undo, delete])
+        popMenu.appearance.popMenuBackgroundStyle = .blurred(.light)
+        present(popMenu, animated: true, completion: nil)
     }
     
     func onTapPlane() {
-        onFabMenuTapped()
-        updateFabHidden(state: true)
         //Please override it
     }
     
     func onTapUndo() {
         checkedItems.removeAll()
         tableView.reloadData()
-        onFabMenuTapped()
-        updateFabHidden(state: true)
         //Please override it
     }
     
     func onTapDelete() {
-        onFabMenuTapped()
-        updateFabHidden(state: true)
         //Please override it
-    }
-    
-    @objc func onFabMenuTapped() {
-        view.bringSubview(toFront: fab)
-        fab.isHidden = false
     }
     
     @objc func onFabLongPressed(sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .began:
-            fabMenus.sendActions(for: .touchUpInside)
-            view.bringSubview(toFront: fabMenus)
             fab.isHidden = true
+            presentFabMenus()
         default:
             break
         }

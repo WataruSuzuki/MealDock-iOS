@@ -6,7 +6,6 @@
 //  Copyright © 2018年 WataruSuzuki. All rights reserved.
 //
 
-import JJFloatingActionButton
 import MaterialComponents.MaterialButtons_ColorThemer
 
 extension UIViewController {
@@ -25,18 +24,12 @@ extension UIViewController {
         }
     }
     
-    func layout(fab: MDCFloatingButton, menu: JJFloatingActionButton?) {
+    func layout(fab: MDCFloatingButton) {
         fab.centerXToSuperview()
         if let targetOf = tabBarController?.tabBar {
-            //fab.autoPinEdge(.trailing, to: .trailing, of: targetOf, withOffset: -30)
-            fab.autoPinEdge(.bottom, to: .top, of: targetOf, withOffset: -20)
+            fab.autoPinEdge(.bottom, to: .top, of: targetOf, withOffset: -44)
         } else {
-            //fab.autoPinEdge(.trailing, to: .trailing, of: self.view, withOffset: -30)
-            fab.autoPinEdge(.bottom, to: .top, of: self.view, withOffset: -20)
-        }
-        if let menu = menu {
-            menu.centerXToSuperview()
-            menu.autoPinEdge(.bottom, to: .bottom, of: fab)
+            fab.autoPinEdge(.bottom, to: .top, of: self.view, withOffset: -44)
         }
         view.bringSubview(toFront: fab)
     }

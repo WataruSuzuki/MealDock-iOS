@@ -20,10 +20,7 @@ class CartedItemsUITests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
+    func testPopMenuSelectShare() {
         let app = XCUIApplication()
         app.tabBars.buttons["Carted Foods"].tap()
         
@@ -31,9 +28,10 @@ class CartedItemsUITests: XCTestCase {
         tablesQuery.cells.containing(.staticText, identifier:"UI Test Market Item").buttons["Increment"].tap()
         tablesQuery.buttons["freezer"].press(forDuration: 2.0);
         
-        let menuQuery = tablesQuery.buttons["fabMenus"]
-        menuQuery.buttons["paper_plane"].tap()
-        waitingSec(sec: 1.0, sender: self)
+        XCUIApplication().staticTexts["Share"].tap()
+        waitingSec(sec: 2.0, sender: self)
+        
+        app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }
 
 }

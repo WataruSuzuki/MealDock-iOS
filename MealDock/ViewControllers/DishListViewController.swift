@@ -65,7 +65,7 @@ class DishListViewController: UICollectionViewController,
         super.viewWillLayoutSubviews()
         
         DispatchQueue.main.async {
-            self.layout(fab: self.fab, menu: nil)
+            self.layout(fab: self.fab)
         }
     }
     
