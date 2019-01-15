@@ -2,13 +2,14 @@
 //  CartedItemsUITests.swift
 //  MealDockUITests
 //
-//  Created by 鈴木航 on 2019/01/18.
+//  Created by Wataru Suzuki on 2019/01/18.
 //  Copyright © 2019 WataruSuzuki. All rights reserved.
 //
 
 import XCTest
 
 class CartedItemsUITests: XCTestCase {
+    private let tester = CartedItemsUITests.self
 
     override func setUp() {
         super.setUp()
@@ -16,22 +17,26 @@ class CartedItemsUITests: XCTestCase {
     }
     
     override func tearDown() {
-        tearDownWithGroupMember()
+        //tearDownWithGroupMember()
         super.tearDown()
     }
 
     func testPopMenuSelectShare() {
         let app = XCUIApplication()
-        app.tabBars.buttons["Carted Foods"].tap()
+        app.tabBars.buttons["cartedFoods".localized(for: tester)].tap()
         
         let tablesQuery = app.tables
-        tablesQuery.cells.containing(.staticText, identifier:"UI Test Market Item").buttons["Increment"].tap()
+        tablesQuery.cells.containing(.staticText, identifier: uiTestItemName).buttons["Increment"].tap()
         tablesQuery.buttons["freezer"].press(forDuration: 2.0);
         
-        XCUIApplication().staticTexts["Share"].tap()
+        XCUIApplication().staticTexts["share".localized(for: tester)].tap()
         waitingSec(sec: 2.0, sender: self)
         
-        app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        } else {
+            app.buttons["cancel".localized(for: tester)].tap()
+        }
     }
 
 }

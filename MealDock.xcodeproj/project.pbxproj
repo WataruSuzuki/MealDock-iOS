@@ -77,6 +77,8 @@
 		96FC04E8216900FD00533529 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E7216900FD00533529 /* Dish.swift */; };
 		96FC04EA21690B8D00533529 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04E921690B8D00533529 /* TextFieldCell.swift */; };
 		96FC04F8216AF43B00533529 /* DishCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */; };
+		CC06C80621F57D3E00D5652B /* AddingEachTypeItemUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC06C80521F57D3E00D5652B /* AddingEachTypeItemUITest.swift */; };
+		CC06C80821F582E000D5652B /* DishListSceneUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC06C80721F582E000D5652B /* DishListSceneUITest.swift */; };
 		CC095B492175E4C500BB7712 /* UsageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */; };
 		CC095B4B2176CF1000BB7712 /* AlertControl+Cancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */; };
 		CC095B4D2177132900BB7712 /* UIViewController+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC095B4C2177132900BB7712 /* UIViewController+Top.swift */; };
@@ -242,6 +244,8 @@
 		96FC04F7216AF43B00533529 /* DishCardCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCardCollectionCell.swift; sourceTree = "<group>"; };
 		A96E94D7D1293B4BD678E76E /* Pods-MealDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDock.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealDock/Pods-MealDock.release.xcconfig"; sourceTree = "<group>"; };
 		BE4497431E10628292717D8C /* Pods_MealDockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC06C80521F57D3E00D5652B /* AddingEachTypeItemUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingEachTypeItemUITest.swift; sourceTree = "<group>"; };
+		CC06C80721F582E000D5652B /* DishListSceneUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishListSceneUITest.swift; sourceTree = "<group>"; };
 		CC095B482175E4C500BB7712 /* UsageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInfoViewController.swift; sourceTree = "<group>"; };
 		CC095B4A2176CF1000BB7712 /* AlertControl+Cancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertControl+Cancel.swift"; sourceTree = "<group>"; };
 		CC095B4C2177132900BB7712 /* UIViewController+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Top.swift"; sourceTree = "<group>"; };
@@ -451,11 +455,13 @@
 		96317CB1210F56FD00F81F22 /* MealDockUITests */ = {
 			isa = PBXGroup;
 			children = (
+				CC06C80521F57D3E00D5652B /* AddingEachTypeItemUITest.swift */,
+				CCE6E15521F191F0006F57AF /* CartedItemsUITests.swift */,
+				CC06C80721F582E000D5652B /* DishListSceneUITest.swift */,
 				CCD75A752194180100676489 /* ErrandSceneUITests.swift */,
 				96317CB2210F56FD00F81F22 /* ShowQrUITests.swift */,
 				96317CB4210F56FD00F81F22 /* Info.plist */,
 				CC832B7F2193FFEE00402B3E /* Extensions */,
-				CCE6E15521F191F0006F57AF /* CartedItemsUITests.swift */,
 			);
 			path = MealDockUITests;
 			sourceTree = "<group>";
@@ -1142,12 +1148,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC06C80621F57D3E00D5652B /* AddingEachTypeItemUITest.swift in Sources */,
 				96F5F0F221B2BD690018AB1D /* XCTestCase+Localization.swift in Sources */,
 				CCD75A7821941B8A00676489 /* XCUIElement+TextField.swift in Sources */,
 				CC832B812194002900402B3E /* XCTestCase+SetupSignIn.swift in Sources */,
 				CCE6E15621F191F0006F57AF /* CartedItemsUITests.swift in Sources */,
 				CC46121B21EDC63200C6A6AB /* String+Localization.swift in Sources */,
 				CCD75A762194180100676489 /* ErrandSceneUITests.swift in Sources */,
+				CC06C80821F582E000D5652B /* DishListSceneUITest.swift in Sources */,
 				96317CB3210F56FD00F81F22 /* ShowQrUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

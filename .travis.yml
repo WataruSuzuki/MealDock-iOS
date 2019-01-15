@@ -9,3 +9,4 @@ before_install:
     - pod install
 script:
     ./test_primary.sh
+    # travis_wait 30 ./test_primary.sh

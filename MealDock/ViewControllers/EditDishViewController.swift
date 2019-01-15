@@ -38,6 +38,8 @@ class EditDishViewController: MDCCollectionViewController,
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_cancel_black_36pt")!, style: .plain, target: self, action: #selector(tapDismiss))
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dish")!, style: .done, target: self, action: #selector(tapDone))
         #endif //canImport(FloatingPanel)
+        
+        collectionView?.keyboardDismissMode = .onDrag
     }
 
     /*

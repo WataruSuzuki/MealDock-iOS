@@ -10,12 +10,23 @@ import Foundation
 
 extension String {
     
-    func localized(for testCase: AnyClass) -> String {
-        if let languageBundlePath = Bundle(for: testCase).path(forResource: NSLocale.current.languageCode!, ofType: "lproj") {
-            if let localizationBundle = Bundle(path: languageBundlePath) {
-                return NSLocalizedString(self, bundle:localizationBundle, comment: self)
-            }
+    func foodName(for testCase: AnyClass) -> String {
+        if let languageBundlePath = getTestBundlePath(for: testCase),
+            let localizationBundle = Bundle(path: languageBundlePath) {
+            return NSLocalizedString(self, tableName: "MarketItems", bundle: localizationBundle, comment: self)
         }
-        return NSLocalizedString(self, bundle:Bundle(for: testCase), comment: "")
+        return NSLocalizedString(self, tableName: "MarketItems", bundle: Bundle(for: testCase), comment: "")
+    }
+    
+    func localized(for testCase: AnyClass) -> String {
+        if let languageBundlePath = getTestBundlePath(for: testCase),
+            let localizationBundle = Bundle(path: languageBundlePath) {
+                return NSLocalizedString(self, bundle: localizationBundle, comment: self)
+        }
+        return NSLocalizedString(self, bundle: Bundle(for: testCase), comment: "")
+    }
+    
+    func getTestBundlePath(for testCase: AnyClass) -> String? {
+        return Bundle(for: testCase).path(forResource: NSLocale.current.languageCode!, ofType: "lproj")
     }
 }

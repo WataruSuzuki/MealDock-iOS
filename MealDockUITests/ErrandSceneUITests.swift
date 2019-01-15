@@ -10,7 +10,6 @@ import XCTest
 
 class ErrandSceneUITests: XCTestCase {
 
-    static let itemName = "UI Test Market Item"
     private let tester = ErrandSceneUITests.self
     
     override func setUp() {
@@ -19,7 +18,7 @@ class ErrandSceneUITests: XCTestCase {
     }
 
     override func tearDown() {
-        tearDownWithGroupMember()
+        //tearDownWithGroupMember()
         super.tearDown()
     }
 
@@ -38,7 +37,7 @@ class ErrandSceneUITests: XCTestCase {
         waitingSec(sec: 5.0, sender: self)
 
         let titleTextField = app.collectionViews.textFields["title".localized(for: tester)]
-        titleTextField.inputText(text: ErrandSceneUITests.itemName)
+        titleTextField.inputText(text: uiTestItemName)
         
         let collectionViewsQuery = app.collectionViews
         collectionViewsQuery.textFields["title".localized(for: tester)].tap()
@@ -51,7 +50,7 @@ class ErrandSceneUITests: XCTestCase {
         app.navigationBars[addNewMarketItem].buttons["Save"].tap()
         
         app.collectionViews.staticTexts["🍅🍆🌽🥒🥕🥔🥦🥬"].tap()
-        app.scrollViews.otherElements.collectionViews.cells.containing(.staticText, identifier:ErrandSceneUITests.itemName).children(matching: .other).element.tap()
+        app.scrollViews.otherElements.collectionViews.cells.containing(.staticText, identifier:uiTestItemName).children(matching: .other).element.tap()
         app.navigationBars["errandFoods".localized(for: tester)].buttons["Done"].tap()
     }
     
@@ -65,10 +64,10 @@ class ErrandSceneUITests: XCTestCase {
         app.sheets["menu".localized(for: tester)].buttons[editCustomItem].tap()
         
         let tablesQuery = app.tables
-        tablesQuery.cells.staticTexts[ErrandSceneUITests.itemName].swipeLeft()
+        tablesQuery.cells.staticTexts[uiTestItemName].swipeLeft()
         tablesQuery.buttons["Delete"].tap()
         
-        let deleted = tablesQuery.cells.staticTexts[ErrandSceneUITests.itemName]
+        let deleted = tablesQuery.cells.staticTexts[uiTestItemName]
         XCTAssertFalse(deleted.exists)
         
         app.navigationBars[editCustomItem].buttons["Done"].tap()

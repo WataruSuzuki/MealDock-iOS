@@ -17,7 +17,7 @@ class ShowQrUITests: XCTestCase {
     }
     
     override func tearDown() {
-        tearDownWithGroupMember()
+        //tearDownWithGroupMember()
         super.tearDown()
     }
     
