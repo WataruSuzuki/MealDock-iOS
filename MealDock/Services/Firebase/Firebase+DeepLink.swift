@@ -9,9 +9,9 @@
 import FirebaseDynamicLinks
 
 extension FirebaseService {
-    static let deepLink = "https://example-devjchankchan.firebaseapp.com"
-    static let deepLinkHost = "devjchankchan.page.link"
-    static let deepLinkAppStoreId = "1447468603"
+    static let deepLink = "https://meal-dock.firebaseapp.com"
+    static let deepLinkHost = "mealdockjchankchan.page.link"
+    static let deepLinkAppStoreId = "1439586211"
     
     enum DeepLinkExtra: String, CaseIterable {
         case dishes = "/dishes",
