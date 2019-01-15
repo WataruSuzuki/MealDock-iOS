@@ -1,25 +1,16 @@
-/* 
-  InAppPurchase.strings
-  MealDock
 
-  Created by Wataru Suzuki on 2019/01/09.
-  Copyright © 2019 WataruSuzuki. All rights reserved.
-*/
-cannot_pay = "Cannot pay";
-fail_validation = "Fail validation";
-not_available = "Not available";
-restrict_in_app_purchase = "Restrict this item";
-comp_restore = "Restore item";
-thank_you_for_purchase = "Thank you for purchase";
-cannot_find_paid_history = "Cannot find paid history";
-upgrade = "Upgrade";
-
-timePeriod = "Time period";
-aboutThisService = "About this service";
-aboutAppStoreSubscription = "About App Store Subscription";
-
-description_timePeriod = "- - - -";
-description_aboutThisService = "- - - -";
-description_aboutAppStoreSubscription = "• Payment will be charged to iTunes Account at confirmation of purchase\n\n• Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n\n• Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n\n• Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user's Account Settings after purchase\n\n• Any unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable";
-
-valid_until = "Valid until";
+cannot_pay = "支払い処理ができません";
+fail_validation = "検証に失敗しました";
+not_available = "利用できません";
+restrict_in_app_purchase = "このアイテムは制限されています";
+comp_restore = "復元が完了しました";
+thank_you_for_purchase = "ご購入ありがとうございます";
+cannot_find_paid_history = "購入履歴が見つかりません";
+upgrade = "アップグレード";
+timePeriod = "期間";
+aboutThisService = "このサービスについて";
+aboutAppStoreSubscription = "App Storeの定期購読について";
+description_timePeriod = " -   -   -   - ";
+description_aboutThisService = " -   -   -   - ";
+description_aboutAppStoreSubscription = "•お支払いは、購入確認時にiTunesアカウントに請求されます。\n\n•自動更新が現在の期間の終了の少なくとも24時間前にオフにされていない限り、購読は自動的に更新されます。\n\n•アカウントには、現在の期間が終了する前の24時間以内に更新の料金が請求され、更新の費用が特定されます。\n\n•購読はユーザーによって管理され、自動更新は購入後にユーザーのアカウント設定に移動することによってオフにされることがあります。\n\n•無料試用期間に該当し、提供されている場合、未使用部分はユーザーがその出版物の購読を購入した時点で失効します。";
+valid_until = "有効期限";
