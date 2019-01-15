@@ -90,7 +90,7 @@ class EditDishViewController: MDCCollectionViewController,
         case .title:
             if cell.textField.superview == nil {
                 cell.inputController = MDCTextInputControllerOutlined(textInput: cell.textField)
-                cell.inputController?.placeholderText = NSLocalizedString("title", comment: "")
+                cell.inputController?.placeholderText = "title".localized
                 cell.addSubview(cell.textField)
                 cell.textField.autoPinEdgesToSuperviewEdges()
             }
@@ -98,7 +98,7 @@ class EditDishViewController: MDCCollectionViewController,
         case .description:
             if cell.multiLineField.superview == nil {
                 cell.inputController = MDCTextInputControllerOutlinedTextArea(textInput: cell.multiLineField)
-                cell.inputController?.placeholderText = NSLocalizedString("description", comment: "")
+                cell.inputController?.placeholderText = "description".localized
                 cell.addSubview(cell.multiLineField)
                 cell.multiLineField.autoPinEdgesToSuperviewEdges()
             }
@@ -139,7 +139,7 @@ class EditDishViewController: MDCCollectionViewController,
     fileprivate func harvestCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MDCCollectionViewTextCell {
         let textCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MDCCollectionViewTextCell.self), for: indexPath) as! MDCCollectionViewTextCell
         let harvest = checkedItems[indexPath.row]
-        textCell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
+        textCell.textLabel?.text = harvest.name.foodName
         textCell.imageView?.image = UIImage(named: "cart")
         if let url = URL(string: harvest.imageUrl) {
             textCell.imageView?.setImageByAlamofire(with: url)
@@ -175,7 +175,7 @@ class EditDishViewController: MDCCollectionViewController,
         let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as! MDCCollectionViewTextCell
         if kind == UICollectionElementKindSectionHeader {
             if let section = Section(rawValue: indexPath.section) {
-                view.textLabel?.text = NSLocalizedString(section.toString(), comment: "")
+                view.textLabel?.text = section.toString().localized
             }
         }
         return view
@@ -221,7 +221,7 @@ class EditDishViewController: MDCCollectionViewController,
     }
     
     @objc func tapDone() {
-        let alert = UIAlertController(title: "(=・∀・=)", message: NSLocalizedString("msg_saving_data", comment: ""), preferredStyle: .alert)
+        let alert = UIAlertController(title: "(=・∀・=)", message: "msg_saving_data".localized, preferredStyle: .alert)
         let _ = alert.view.startIndicator()
         present(alert, animated: true, completion: nil)
         
@@ -235,7 +235,7 @@ class EditDishViewController: MDCCollectionViewController,
                 if let error = error {
                     OptionalError.alertErrorMessage(error: error)
                 } else {
-                    OptionalError.alertErrorMessage(message: NSLocalizedString("failed_save_photo", comment: ""), actions: nil)
+                    OptionalError.alertErrorMessage(message: "failed_save_photo".localized, actions: nil)
                 }
             })
         }

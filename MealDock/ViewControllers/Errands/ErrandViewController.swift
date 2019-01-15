@@ -54,7 +54,7 @@ class ErrandViewController: UICollectionViewController,
         guard let item = item else { return cell }
 
         // Configure the cell
-        cell.label.text = NSLocalizedString(item.name, tableName: "MarketItems", comment: "")
+        cell.label.text = item.name.foodName
         if let url = URL(string: item.imageUrl) {
             cell.itemImage.setImageByAlamofire(with: url)
         } else {

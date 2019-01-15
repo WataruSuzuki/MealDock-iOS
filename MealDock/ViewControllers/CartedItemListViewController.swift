@@ -13,12 +13,12 @@ class CartedItemListViewController: MealDockListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("cartedFoods", comment: "")
+        self.title = "cartedFoods".localized
 
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddTapped))
         
-        activateFab(fab: fab, target: self, image: UIImage(named: "freezer")!, selector: #selector(onFabTapped))
+        activateFab(fab: fab, target: self, image: UIImage(named: "freezer")!, tap: #selector(onFabTapped), longTap: #selector(onFabLongPressed))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,5 +97,20 @@ class CartedItemListViewController: MealDockListViewController {
         FirebaseService.shared.addToFridge(harvests: items)
         
         super.onFabTapped()
+    }
+    
+    override func onTapPlane() {
+        if let deepLink = FirebaseService.shared.createDeepLink(extra: FirebaseService.DeepLinkExtra.cartedFoods.rawValue) {
+            let message = "msg_link_carted_foods".localized + "\n\n"
+            present(UIViewController.getActivityViewController(items: [message, deepLink]), animated: true, completion: nil)
+        }
+        super.onTapPlane()
+    }
+    
+    override func onTapDelete() {
+        let items = [Harvest](checkedItems.values)
+        FirebaseService.shared.removeFromCart(harvests: items)
+        
+        super.onTapDelete()
     }
 }

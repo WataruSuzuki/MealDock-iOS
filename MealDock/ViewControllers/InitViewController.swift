@@ -18,10 +18,28 @@ class InitViewController: UITabBarController {
         if let tabbars = viewControllers {
             for (index, tab) in tabbars.enumerated() {
                 if let item = TabItem(rawValue: index), let navigationController = tab as? UINavigationController {
-                    navigationController.title = NSLocalizedString(item.description(), comment: "")
+                    navigationController.title = item.description().localized
                 }
             }
         }
+    }
+    
+    static func switchTab(to: TabItem) {
+        guard let top = UIViewController.currentTop() else { return }
+        if let topTab = top as? InitViewController {
+            switchTab(to: to, tabBarController: topTab)
+        } else if let tabBarController = top.tabBarController {
+            switchTab(to: to, tabBarController: tabBarController)
+        } else {
+            top.dismiss(animated: true) {
+                switchTab(to: to)
+            }
+        }
+    }
+    
+    private static func switchTab(to: TabItem, tabBarController: UITabBarController) {
+        tabBarController.selectedIndex = to.rawValue
+        tabBarController.selectedViewController = tabBarController.viewControllers![to.rawValue]
     }
 
     enum TabItem: Int {

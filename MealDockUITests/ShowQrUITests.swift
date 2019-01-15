@@ -29,8 +29,8 @@ class ShowQrUITests: XCTestCase {
         app.tabBars.buttons["Settings"].tap()
         
         let tablesQuery = app.tables
-        tablesQuery.staticTexts[XCTestCase.getTestStr(key: "groupInfo", sender: tester, bundleClass: tester)].tap()
-        tablesQuery.staticTexts[XCTestCase.getTestStr(key: "requestToJoin", sender: tester, bundleClass: tester)].tap()
+        tablesQuery.staticTexts["groupInfo".localized(for: tester)].tap()
+        tablesQuery.staticTexts["requestToJoin".localized(for: tester)].tap()
         let QR = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
         XCTAssertNotNil(QR)
         

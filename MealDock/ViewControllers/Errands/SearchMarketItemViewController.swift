@@ -71,7 +71,7 @@ class SearchMarketItemViewController: ErrandViewController,
         if let inputText = searchBarText {
             filteredItem = filteredItem.map({
                 $0.filter({
-                    NSLocalizedString($0.name, tableName: "MarketItems", comment: "").contains(inputText)
+                    $0.name.foodName.contains(inputText)
                 })
             })
             self.collectionView?.reloadData()

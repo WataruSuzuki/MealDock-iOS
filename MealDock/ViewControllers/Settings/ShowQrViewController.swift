@@ -33,10 +33,10 @@ class ShowQrViewController: UIViewController,
         switch qrType! {
         case .requestToJoin:
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanQR))
-            label.text = NSLocalizedString("msg_show_qr_to_owner", comment: "")
+            label.text = "msg_show_qr_to_owner".localized
         case .tellDockId:
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapDone))
-            label.text = NSLocalizedString("msg_show_qr_to_member", comment: "")
+            label.text = "msg_show_qr_to_member".localized
         }
         if let user = FirebaseService.shared.currentUser,
             let qrStr = generateQRData(user: user, type: qrType) {
@@ -50,7 +50,7 @@ class ShowQrViewController: UIViewController,
         let failedAction = UIAlertAction(title: "OK", style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
         }
-        OptionalError.alertErrorMessage(message: NSLocalizedString("failed_generate_qr", comment: ""), actions: [failedAction])
+        OptionalError.alertErrorMessage(message: "failed_generate_qr".localized, actions: [failedAction])
     }
     
     override func viewWillLayoutSubviews() {

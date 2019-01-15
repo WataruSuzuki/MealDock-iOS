@@ -26,24 +26,24 @@ class ErrandSceneUITests: XCTestCase {
 
     func testAddNewMarketItem() {
         let app = XCUIApplication()
-        let cartedFood = XCTestCase.getTestStr(key: "cartedFoods", sender: tester, bundleClass: tester)
+        let cartedFood = "cartedFoods".localized(for: tester)
         app.tabBars.buttons[cartedFood].tap()
         app.navigationBars[cartedFood].buttons["Add"].tap()
         
-        let addNewMarketItem = XCTestCase.getTestStr(key: "addNewMarketItem", sender: tester, bundleClass: tester)
+        let addNewMarketItem = "addNewMarketItem".localized(for: tester)
         app.buttons[addNewMarketItem].tap()
         
-        let scanBarcode = XCTestCase.getTestStr(key: "msg_scan_barcode", sender: tester, bundleClass: tester)
-        let skip = XCTestCase.getTestStr(key: "skip", sender: tester, bundleClass: tester)
+        let scanBarcode = "msg_scan_barcode".localized(for: tester)
+        let skip = "skip".localized(for: tester)
         app.navigationBars[scanBarcode].buttons[skip].tap()
         waitingSec(sec: 5.0, sender: self)
 
-        let titleTextField = app.collectionViews.textFields[XCTestCase.getTestStr(key: "title", sender: tester, bundleClass: tester)]
+        let titleTextField = app.collectionViews.textFields["title".localized(for: tester)]
         titleTextField.inputText(text: ErrandSceneUITests.itemName)
         
         let collectionViewsQuery = app.collectionViews
-        collectionViewsQuery/*@START_MENU_TOKEN@*/.textFields["Title"]/*[[".cells.textFields[\"Title\"]",".textFields[\"Title\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["👻"]/*[[".cells.staticTexts[\"👻\"]",".staticTexts[\"👻\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        collectionViewsQuery.textFields["title".localized(for: tester)].tap()
+        collectionViewsQuery.staticTexts["👻"].tap()
         
         app.pickerWheels.element.adjust(toPickerWheelValue: "🍅🍆🌽🥒🥕🥔🥦🥬")
         app.pickerWheels["🍅🍆🌽🥒🥕🥔🥦🥬"].tap()
@@ -53,17 +53,17 @@ class ErrandSceneUITests: XCTestCase {
         
         app.collectionViews.staticTexts["🍅🍆🌽🥒🥕🥔🥦🥬"].tap()
         app.scrollViews.otherElements.collectionViews.cells.containing(.staticText, identifier:ErrandSceneUITests.itemName).children(matching: .other).element.tap()
-        app.navigationBars[XCTestCase.getTestStr(key: "errandFoods", sender: tester, bundleClass: tester)].buttons["Done"].tap()
+        app.navigationBars["errandFoods".localized(for: tester)].buttons["Done"].tap()
     }
     
     func testDeleteCustomMarketItem() {
         let app = XCUIApplication()
-        let cartedFood = XCTestCase.getTestStr(key: "cartedFoods", sender: tester, bundleClass: tester)
+        let cartedFood = "cartedFoods".localized(for: tester)
         app.tabBars.buttons[cartedFood].tap()
         app.navigationBars[cartedFood].buttons["Add"].tap()
         app.buttons["baseline more horiz black 36pt"].tap()
-        let editCustomItem = XCTestCase.getTestStr(key: "editCustomItem", sender: tester, bundleClass: tester)
-        app.sheets["menu"].buttons[editCustomItem].tap()
+        let editCustomItem = "editCustomItem".localized(for: tester)
+        app.sheets["menu".localized(for: tester)].buttons[editCustomItem].tap()
         
         let tablesQuery = app.tables
         tablesQuery.cells.staticTexts[ErrandSceneUITests.itemName].swipeLeft()
@@ -74,9 +74,9 @@ class ErrandSceneUITests: XCTestCase {
         
         app.navigationBars[editCustomItem].buttons["Done"].tap()
         app.buttons["baseline more horiz black 36pt"].tap()
-        app.sheets["menu"].buttons[editCustomItem].tap()
+        app.sheets["menu".localized(for: tester)].buttons[editCustomItem].tap()
         app.navigationBars[editCustomItem].buttons["Done"].tap()
-        app.navigationBars[XCTestCase.getTestStr(key: "errandFoods", sender: tester, bundleClass: tester)].buttons["Cancel"].tap()
+        app.navigationBars["errandFoods".localized(for: tester)].buttons["Cancel"].tap()
     }
 
 }

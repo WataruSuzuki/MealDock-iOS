@@ -11,7 +11,7 @@ import Foundation
 extension UIAlertController {
     
     func addCancelAction(handler: ((UIAlertAction) -> Void)?) {
-        let action = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: handler)
+        let action = UIAlertAction(title: "cancel".localized, style: .cancel, handler: handler)
         self.addAction(action)
     }
     
@@ -20,7 +20,7 @@ extension UIAlertController {
     }
     
     func addEmptyOkAction() {
-        let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)
+        let action = UIAlertAction(title: "OK".localized, style: .default, handler: nil)
         self.addAction(action)
     }
 }

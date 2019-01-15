@@ -134,6 +134,6 @@ extension FirebaseService {
             self.handleError(error: error, funcName: funcName)
             return
         }
-        UIViewController.snackBarMessage(text: NSLocalizedString("receive_your_change_request", comment: ""))
+        UIViewController.snackBarMessage(text: "receive_your_change_request".localized)
     }
 }

@@ -34,9 +34,9 @@ class PurchaseMenuViewController: UITableViewController {
         // Configure the cell...
         if let menu = UsageInfo.PurchasePlan(rawValue: indexPath.section) {
             if menu == .free {
-                cell.textLabel?.text = NSLocalizedString("restore", comment: "")
+                cell.textLabel?.text = "restore".localized
             } else {
-                cell.textLabel?.text = NSLocalizedString(menu.description(), comment: "")
+                cell.textLabel?.text = menu.description().localized
             }
             cell.accessoryType = (menu == .subscriptionBasic ? .disclosureIndicator : .none)
         }
@@ -49,13 +49,13 @@ class PurchaseMenuViewController: UITableViewController {
             let key = "footer_" + menu.description()
             switch menu {
             case .free:
-                return NSLocalizedString("footer_restore", comment: "")
+                return "footer_restore".localized
             case .unlockPremium:
-                return String(format: NSLocalizedString(key, comment: ""), UsageInfo.PurchasePlan.unlockPremium.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
+                return String(format: key.localized, UsageInfo.PurchasePlan.unlockPremium.limitSize(), UsageInfo.PurchasePlan.free.limitSize())
             case .subscriptionBasic:
                 return nil
             default:
-                return NSLocalizedString(key, comment: "")
+                return key.localized
             }
         }
         return nil

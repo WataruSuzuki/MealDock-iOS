@@ -14,7 +14,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("settings", comment: "")
+        self.title = "settings".localized
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -72,24 +72,24 @@ class SettingsViewController: UITableViewController {
             switch section {
             case .account:
                 if let accountRow = AccountRow(rawValue: indexPath.row) {
-                    cell.textLabel?.text = NSLocalizedString(accountRow.description(), comment: "")
+                    cell.textLabel?.text = accountRow.description().localized
                 }
             case .aboutThisApp:
                 if let aboutThisRow = AboutThisApp(rawValue: indexPath.row) {
-                    cell.textLabel?.text = NSLocalizedString(aboutThisRow.description(), comment: "")
+                    cell.textLabel?.text = aboutThisRow.description().localized
                 }
             case .ticket:
                 if let ticketMenu = TicketMenu(rawValue: indexPath.row) {
-                    cell.textLabel?.text = NSLocalizedString(ticketMenu.description(), comment: "")
+                    cell.textLabel?.text = ticketMenu.description().localized
                     let current =
                         UserDefaults.standard.object(forKey: PurchaseService.keyTicket) as? Int ?? 0
-                    cell.detailTextLabel?.text = NSLocalizedString("current_ticket", comment: "") + ": \(current)" 
+                    cell.detailTextLabel?.text = "current_ticket".localized + ": \(current)" 
                     cell.accessoryType = .none
                 }
             case .purchase:
-                cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
+                cell.textLabel?.text = section.description().localized
             case .signOut:
-                cell.textLabel?.text = NSLocalizedString(section.description(), comment: "")
+                cell.textLabel?.text = section.description().localized
                 fallthrough
             default:
                 break
@@ -105,7 +105,7 @@ class SettingsViewController: UITableViewController {
             if sections != .signOut && sections != .purchase
                 && !(sections == .ticket && isPurchased)
             {
-                return NSLocalizedString(sections.description(), comment: "")
+                return sections.description().localized
             }
         }
         return nil
@@ -115,7 +115,7 @@ class SettingsViewController: UITableViewController {
         if let sections = Sections(rawValue: section) {
             let isFreeUser = !(FirebaseService.shared.currentUser?.isPurchased ?? true)
             if sections == .ticket && isFreeUser {
-                return NSLocalizedString("footer_reward", comment: "")
+                return "footer_reward".localized
             }
         }
         return nil

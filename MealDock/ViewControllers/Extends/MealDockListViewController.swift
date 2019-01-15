@@ -13,12 +13,15 @@ import TinyConstraints
 #if canImport(FloatingPanel)
 import FloatingPanel
 #endif
+import JJFloatingActionButton
 
 class MealDockListViewController: UITableViewController,
     //FloatingPanelControllerDelegate,
     DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
+    let rowHeight = 66
     let fab = MDCFloatingButton()
+    let fabMenus = JJFloatingActionButton()
     let customCellIdentifier = String(describing: StrikethroughTableViewCell.self)
     #if canImport(FloatingPanel)
     let floatingPanel = FloatingPanelController()
@@ -30,14 +33,18 @@ class MealDockListViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(fabMenus)
         view.addSubview(fab)
         fab.isHidden = true
+        fabMenus.isHidden = fab.isHidden
+        setupFabMenus()
+
         #if canImport(FloatingPanel)
         floatingPanel.delegate = self
         #endif
 
         self.tableView.registerCustomCell(customCellIdentifier)
-        self.tableView.rowHeight = CGFloat(integerLiteral: 66)
+        self.tableView.rowHeight = CGFloat(integerLiteral: rowHeight)
 
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
@@ -45,8 +52,8 @@ class MealDockListViewController: UITableViewController,
         self.tableView.tableFooterView = UIView()
 
         let colorScheme = MDCSemanticColorScheme()
-        colorScheme.primaryColor = MDCPalette.lightBlue.tint500
-        colorScheme.primaryColorVariant = MDCPalette.lightBlue.tint400
+        colorScheme.primaryColor = view.tintColor
+        colorScheme.primaryColorVariant = view.tintColor
         colorScheme.secondaryColor = colorScheme.primaryColor
 
         MDCFloatingButtonColorThemer.applySemanticColorScheme(colorScheme, to: fab)
@@ -60,7 +67,7 @@ class MealDockListViewController: UITableViewController,
         super.viewWillLayoutSubviews()
 
         DispatchQueue.main.async {
-            self.layout(fab: self.fab)
+            self.layout(fab: self.fab, menu: self.fabMenus)
             self.mediumAdView?.centerXToSuperview()
             self.mediumAdView?.autoPinEdge(.bottom, to: .top, of: self.tabBarController!.tabBar)
         }
@@ -114,12 +121,14 @@ class MealDockListViewController: UITableViewController,
         cell.selectionStyle = .none
 
         let harvest = harvests[indexPath.section][indexPath.row]
-        cell.textLabel?.text = NSLocalizedString(harvest.name, tableName: "MarketItems", comment: "")
+        cell.textLabel?.text = harvest.name.foodName
 
-        cell.imageView?.image = UIImage(named: "cart")?.resize(size: CGSize(width: self.tableView.rowHeight, height: self.tableView.rowHeight))
+        let placeHolderImage = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal).resize(size: CGSize(width: rowHeight, height: rowHeight))
+        cell.imageView?.image = placeHolderImage
+
         cell.imageView?.contentMode = .scaleAspectFit
         if harvest.imageUrl.isEmpty {
-            cell.imageView?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
+            cell.imageView?.image = placeHolderImage
         } else {
             cell.imageView?.setImageByAlamofire(with: URL(string: harvest.imageUrl)!)
         }
@@ -134,6 +143,7 @@ class MealDockListViewController: UITableViewController,
             checkedItems.removeValue(forKey: harvest.name)
         }
         fab.isHidden = 0 == checkedItems.count
+        fabMenus.isHidden = fab.isHidden
     }
 
     /*
@@ -178,18 +188,18 @@ class MealDockListViewController: UITableViewController,
     }
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("no_foods", comment: ""))
+        return NSAttributedString(string: "no_foods".localized)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("msg_add_foods", comment: ""))
+        return NSAttributedString(string: "msg_add_foods".localized)
     }
 
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
         if let _ =  FirebaseService.shared.currentUser {
             return NSAttributedString()
         } else {
-            return NSAttributedString(string: NSLocalizedString("signIn", comment: ""))
+            return NSAttributedString(string: "signIn".localized)
         }
     }
 
@@ -207,7 +217,81 @@ class MealDockListViewController: UITableViewController,
     }
 
     func onFabTapped() {
-        self.fab.isHidden = true
+        fab.isHidden = true
+        fabMenus.isHidden = fab.isHidden
         checkedItems.removeAll()
+    }
+
+    private func setupFabMenus() {
+        fabMenus.addTarget(self, action: #selector(onFabMenuTapped), for: .touchUpInside)
+        fabMenus.buttonImage = UIImage(named: "baseline_add_black_24pt")
+        fabMenus.buttonColor = view.tintColor
+        fabMenus.buttonImageColor = .black
+
+        let plane = fabMenus.addItem(title: "share".localized, image: UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.onTapPlane()
+        }
+        plane.titlePosition = .trailing
+        plane.titleLabel.textColor = .black
+        plane.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+
+        let undo = fabMenus.addItem(title: "undo".localized, image: UIImage(named: "baseline_undo_black_36pt")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.onTapUndo()
+        }
+        undo.titlePosition = .trailing
+        undo.titleLabel.textColor = .black
+        undo.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+
+        //fabMenus.addItem(title: "item 3", image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
+            // do something
+        //}
+        let delete = fabMenus.addItem(title: "delete".localized, image: UIImage(named: "trash_people")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.onTapDelete()
+        }
+        delete.titlePosition = .trailing
+        delete.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        delete.titleLabel.textColor = .black
+        delete.buttonColor = .white
+        delete.buttonImageColor = .red
+
+        fabMenus.configureDefaultItem { item in
+            item.layer.shadowColor = UIColor.black.cgColor
+            item.layer.shadowOffset = CGSize(width: 0, height: 1)
+            item.layer.shadowOpacity = Float(0.4)
+            item.layer.shadowRadius = CGFloat(2)
+        }
+    }
+
+    func onTapPlane() {
+        onFabMenuTapped()
+        //Please override it
+    }
+
+    func onTapUndo() {
+        checkedItems.removeAll()
+        tableView.reloadData()
+        onFabMenuTapped()
+        //Please override it
+    }
+
+    func onTapDelete() {
+        onFabMenuTapped()
+        //Please override it
+    }
+
+    @objc func onFabMenuTapped() {
+        view.bringSubview(toFront: fab)
+        fab.isHidden = false
+    }
+
+    @objc func onFabLongPressed(sender: UILongPressGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            fabMenus.sendActions(for: .touchUpInside)
+            view.bringSubview(toFront: fabMenus)
+            fab.isHidden = true
+        default:
+            break
+        }
     }
 }

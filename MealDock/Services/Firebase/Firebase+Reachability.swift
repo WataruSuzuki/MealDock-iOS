@@ -16,10 +16,10 @@ extension FirebaseService {
         connectedRef.observe(.value, with: { snapshot in
             if snapshot.value as? Bool ?? false {
                 print("Connected")
-                //UIViewController.snackBarMessage(text: "(=・∀・=) \n" + NSLocalizedString("connected_to_database", comment: ""))
+                //UIViewController.snackBarMessage(text: "(=・∀・=) \n" + "connected_to_database".localized)
             } else {
                 print("Not connected")
-                //UIViewController.snackBarMessage(text: "(Φ人Φ) \n" + NSLocalizedString("disconnected_network", comment: ""))
+                //UIViewController.snackBarMessage(text: "(Φ人Φ) \n" + "disconnected_network".localized)
             }
         })
     }

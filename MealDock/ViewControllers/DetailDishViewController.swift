@@ -64,13 +64,24 @@ class DetailDishViewController: UIViewController {
         descriptionTextView.isEditable = false
         
         card.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10))
-        imageView.autoPinEdge(toSuperviewEdge: .top)
-        imageView.autoPinEdge(toSuperviewEdge: .leading)
-        imageView.aspectRatio(1.0)
+        if #available(iOS 12.0, *) {
+            imageView.autoPinEdge(toSuperviewEdge: .top)
+            imageView.autoPinEdge(toSuperviewEdge: .leading)
+            imageView.aspectRatio(1.0)
+        } else {
+            constraints.append(imageView.autoPinEdge(toSuperviewEdge: .top))
+            constraints.append(imageView.autoPinEdge(toSuperviewEdge: .leading))
+            constraints.append(imageView.aspectRatio(1.0))
+        }
         
         descriptionTextView.sizeToFit()
-        descriptionTextView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10)
-        descriptionTextView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
+        if #available(iOS 12.0, *) {
+            descriptionTextView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10)
+            descriptionTextView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10)
+        } else {
+            constraints.append(descriptionTextView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10))
+            constraints.append(descriptionTextView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10))
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -79,6 +90,21 @@ class DetailDishViewController: UIViewController {
         imageView.removeConstraints(constraints)
         descriptionTextView.removeConstraints(constraints)
         constraints.removeAll()
+        
+        if #available(iOS 12.0, *) {
+            //Do nothing
+        } else {
+            imageView.removeFromSuperview()
+            descriptionTextView.removeFromSuperview()
+            card.addSubview(imageView)
+            card.addSubview(descriptionTextView)
+            
+            constraints.append(imageView.autoPinEdge(toSuperviewEdge: .top))
+            constraints.append(imageView.autoPinEdge(toSuperviewEdge: .leading))
+            constraints.append(imageView.aspectRatio(1.0))
+            constraints.append(descriptionTextView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 10))
+            constraints.append(descriptionTextView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10))
+        }
         
         if view.frame.width >= view.frame.height {
             constraints.append(imageView.autoPinEdge(.trailing, to: .leading, of: descriptionTextView))
@@ -92,6 +118,11 @@ class DetailDishViewController: UIViewController {
             constraints.append(descriptionTextView.autoPinEdge(toSuperviewEdge: .leading, withInset: 10))
         }
         
+        if #available(iOS 12.0, *) {
+            //Do nothing
+        } else {
+            card.updateConstraintsIfNeeded()
+        }
     }
 }
 

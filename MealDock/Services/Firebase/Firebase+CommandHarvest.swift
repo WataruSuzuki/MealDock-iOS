@@ -26,10 +26,14 @@ extension FirebaseService {
     func addToFridge(harvests: [Harvest]) {
         if addHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests, isInFridge: true) {
             decrementHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
-            UIViewController.snackBarMessage(text: "(=・∀・=)b \n" + NSLocalizedString("msg_mission_completed", comment: ""))
+            UIViewController.snackBarMessage(text: "(=・∀・=)b \n" + "msg_mission_completed".localized)
         } else {
             PurchaseService.shared.alertCapacity()
         }
+    }
+    
+    func removeFromCart(harvests: [Harvest]) {
+        decrementHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, harvests: harvests)
     }
     
     private func addHarvest(itemId: String, harvests: [Harvest]) -> Bool {
@@ -94,6 +98,10 @@ extension FirebaseService {
         if addDish(itemId: FirebaseService.ID_DISH_ITEMS, dish: dish) {
             decrementHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: dish.harvests)
         }
+    }
+    
+    func removeFromFridge(harvests: [Harvest]) {
+        decrementHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, harvests: harvests)
     }
     
     fileprivate func addDish(itemId: String, dish: Dish) -> Bool {

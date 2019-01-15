@@ -123,6 +123,12 @@ class DockUser: NSObject {
             num1 + num2
         })
         debugPrint("currentSize = \(currentSize)")
-        return plan.limitSize() > currentSize
+        
+        let hasCapacity = plan.limitSize() > currentSize
+        if !hasCapacity {
+            FirebaseService.shared.syncItemCounters(success: nil)
+        }
+        
+        return hasCapacity
     }
 }

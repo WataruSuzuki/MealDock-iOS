@@ -26,7 +26,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("addNewMarketItem", comment: "")        
+        self.title = "addNewMarketItem".localized        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -87,7 +87,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController,
         
         if cell.textField.superview == nil {
             cell.inputController = MDCTextInputControllerOutlined(textInput: cell.textField)
-            cell.inputController?.placeholderText = NSLocalizedString("title", comment: "")
+            cell.inputController?.placeholderText = "title".localized
             cell.addSubview(cell.textField)
             cell.textField.autoPinEdgesToSuperviewEdges()
         }
@@ -188,7 +188,7 @@ class AddNewMarketItemViewController: MDCCollectionViewController,
     
     @objc func tapSave() {
         guard let cell = collectionView?.cellForItem(at: IndexPath(item: 0, section: Element.name.rawValue)) as? TextFieldCell, let name = cell.textField.text, !name.isEmpty else {
-            OptionalError.alertErrorMessage(message: NSLocalizedString("msg_necessary_name", comment: ""), actions: nil)
+            OptionalError.alertErrorMessage(message: "msg_necessary_name".localized, actions: nil)
             return
         }
         let harvest = Harvest(name: name, section: selectedType.toString(), imageUrl: selectedPhoto ?? "")
