@@ -1,7 +1,7 @@
 ./test_primary.sh
 
 xcodebuild test -workspace MealDock.xcworkspace -scheme MealDock -sdk iphonesimulator \
-    -destination 'platform=iOS Simulator,name=iPad (5th generation),OS=11.4' \
+    -destination 'platform=iOS Simulator,name=iPad (6th generation),OS=11.4' \
     -destination 'platform=iOS Simulator,name=iPhone X,OS=11.4' \
     > test_os11.log
 

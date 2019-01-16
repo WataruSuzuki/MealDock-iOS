@@ -31,11 +31,16 @@ extension FirebaseService {
     }
     
     func syncItemCounters(success:(() -> Void)?) {
+        guard !isSyncItemCountersNow else {
+            return
+        }
+        isSyncItemCountersNow = true
         syncItemCounters(itemId: FirebaseService.ID_CARTED_ITEMS) {
             self.syncItemCounters(itemId: FirebaseService.ID_FRIDGE_ITEMS, success: {
                 self.syncItemCounters(itemId: FirebaseService.ID_MARKET_ITEMS, success: {
                     self.syncDishCounters(user: self.currentUser!, success: {
                         success?()
+                        self.isSyncItemCountersNow = false
                     })
                 })
             })
