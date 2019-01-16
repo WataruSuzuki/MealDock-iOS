@@ -79,7 +79,8 @@ class ErrandPagingViewController: UIViewController {
         } else {
             pagingViewController.view.autoPinEdge(toSuperviewEdge: .top)
         }
-        pagingViewController.view.autoPinEdge(.bottom, to: .top, of: bottomBarView, withOffset: bottomBarView.floatingButton.frame.height - 20)
+        let offset = CGFloat(integerLiteral: (UIScreen.main.nativeBounds.height <= 1136.0 ? 40 : 20))
+        pagingViewController.view.autoPinEdge(.bottom, to: .top, of: bottomBarView, withOffset: bottomBarView.floatingButton.frame.height - offset)
         //pagingViewController.view.autoPinEdge(toSuperviewEdge: .bottom)
         pagingViewController.didMove(toParentViewController: self)
     }
