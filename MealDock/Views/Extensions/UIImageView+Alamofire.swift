@@ -31,15 +31,15 @@ extension UIImageView {
                 self?.stopIndicator(view: indicator)
                 switch response.result {
                 case .success(let image):
-                    ImageCacheService.shared.imageCache.add(image, withIdentifier: cacheKey)
-                    self?.image = image
-                    
-                case .failure(_):
-                    // error handling
-                    if self?.image == nil {
-                        self?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
+                    if url == response.request?.url {
+                        ImageCacheService.shared.imageCache.add(image, withIdentifier: cacheKey)
+                        self?.image = image
+                        return
                     }
-                    break
+                    fallthrough
+                default:
+                    // error handling
+                    self?.image = UIImage(named: "baseline_help_black_48pt")!.withRenderingMode(.alwaysOriginal)
                 }
             }
         }
