@@ -13,21 +13,23 @@ import CodableFirebase
 extension FirebaseService {
     
     func observeCartedHarvest(success:(([[Harvest]]) -> Void)?) {
-        observeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS) { (items) in
-            success?(items)
-        }
+        observeHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, success: success)
     }
     
     func observeInFridgeHarvest(success:(([[Harvest]]) -> Void)?) {
-        observeHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS) { (items) in
-            success?(items)
-        }
+        observeHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, success: success)
     }
     
     func observeCustomMarketItem(success:(([[Harvest]]) -> Void)?) {
-        observeHarvest(itemId: FirebaseService.ID_MARKET_ITEMS) { (items) in
-            success?(items)
-        }
+        observeHarvest(itemId: FirebaseService.ID_MARKET_ITEMS, success: success)
+    }
+    
+    func loadCartedHarvest(success:(([[Harvest]]) -> Void)?) {
+        loadHarvest(itemId: FirebaseService.ID_CARTED_ITEMS, success: success)
+    }
+    
+    func loadInFridgeHarvest(success:(([[Harvest]]) -> Void)?) {
+        loadHarvest(itemId: FirebaseService.ID_FRIDGE_ITEMS, success: success)
     }
     
     func syncItemCounters(success:(() -> Void)?) {
@@ -35,10 +37,10 @@ extension FirebaseService {
             return
         }
         isSyncItemCountersNow = true
-        syncItemCounters(itemId: FirebaseService.ID_CARTED_ITEMS) {
-            self.syncItemCounters(itemId: FirebaseService.ID_FRIDGE_ITEMS, success: {
-                self.syncItemCounters(itemId: FirebaseService.ID_MARKET_ITEMS, success: {
-                    self.syncDishCounters(user: self.currentUser!, success: {
+        loadDishes { (dishes) in
+            self.loadInFridgeHarvest(success: { (fridge) in
+                self.loadCartedHarvest(success: { (carted) in
+                    self.loadCustomMarketItems(result: { (items, error) in
                         success?()
                         self.isSyncItemCountersNow = false
                     })
@@ -83,11 +85,13 @@ extension FirebaseService {
     
     fileprivate func loadCustomMarketItems(result:(([MarketItems], Error?) -> Void)?) {
         if let user = currentUser {
-            rootRef.child(FirebaseService.ID_MARKET_ITEMS)
+            let itemId = FirebaseService.ID_MARKET_ITEMS
+            rootRef.child(itemId)
                 .child(user.dockID)
                 .observeSingleEvent(of: .value, with: { (snapshot) in
                     var items = [MarketItems]()
                     let harvests = self.snapshotToHarvests(snapshot: snapshot)
+                    self.updateItemCounters(itemId: itemId, items: harvests)
                     for (index, harvest) in harvests.enumerated() {
                         if let section = Harvest.Section(rawValue: index) {
                             let item = MarketItems(type: section.toString(), harvest: harvest)
@@ -108,8 +112,8 @@ extension FirebaseService {
         let jsonUrl = "https://watarusuzuki.github.io/MealDock/v1/default_market_items.json"
         Alamofire.request(jsonUrl).responseJSON { (response) in
             guard response.result.isSuccess, let jsonData = response.data else {
-                    result?([MarketItems](), response.result.error!)
-                    return
+                result?([MarketItems](), response.result.error!)
+                return
             }
             do {
                 let marketItems = try JSONDecoder().decode([MarketItems].self, from: jsonData)
@@ -121,16 +125,21 @@ extension FirebaseService {
         }
     }
     
-    fileprivate func syncItemCounters(itemId: String, success:(() -> Void)?) {
+    fileprivate func updateItemCounters(itemId: String, items: [[Harvest]]) {
+        var harvestCount = 0
+        items.forEach({ harvestCount += $0.count })
+        itemCounters.updateValue(harvestCount, forKey: itemId)
+    }
+    
+    fileprivate func loadHarvest(itemId: String, success:(([[Harvest]]) -> Void)?) {
         if let user = currentUser {
-            rootRef.child("\(itemId)/\(user.dockID)").observeSingleEvent(of: .value) { (snapshot) in
+            rootRef.child("\(itemId)/\(user.dockID)").observeSingleEvent(of: .value, with: { (snapshot) in
                 let items = self.snapshotToHarvests(snapshot: snapshot)
-                var harvestCount = 0
-                for item in items {
-                    harvestCount += item.count
-                }
-                self.itemCounters.updateValue(harvestCount, forKey: itemId)
-                success?()
+                self.updateItemCounters(itemId: itemId, items: items)
+                success?(items)
+            }) { (error) in
+                OptionalError.alertErrorMessage(error: error)
+                print(error.localizedDescription)
             }
         }
     }
@@ -144,11 +153,7 @@ extension FirebaseService {
             let newReference = rootRef.child("\(itemId)/\(user.dockID)")
             let newObserver = newReference.observe(.value, with: { (snapshot) in
                 let items = self.snapshotToHarvests(snapshot: snapshot)
-                var harvestCount = 0
-                for item in items {
-                    harvestCount += item.count
-                }
-                self.itemCounters.updateValue(harvestCount, forKey: itemId)
+                self.updateItemCounters(itemId: itemId, items: items)
                 success?(items)
             }, withCancel: { (error) in
                 print(error.localizedDescription)
@@ -196,6 +201,38 @@ extension FirebaseService {
         return items
     }
     
+    fileprivate func snapshotToDishes(snapshot: DataSnapshot) -> [Dish] {
+        var items = [Dish]()
+        for child in snapshot.children {
+            debugPrint(child)
+            if let data = child as? DataSnapshot {
+                if let childValue = data.value! as? [String: Any] {
+                    do {
+                        let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
+                        items.append(dish)
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            }
+        }
+        return items
+    }
+    
+    func loadDishes(success:(([Dish]) -> Void)?) {
+        let itemId = FirebaseService.ID_DISH_ITEMS
+        if let user = currentUser {
+            rootRef.child("\(itemId)/\(user.dockID)").observeSingleEvent(of: .value, with: { (snapshot) in
+                var items = self.snapshotToDishes(snapshot: snapshot)
+                self.itemCounters.updateValue(items.count, forKey: itemId)
+                items.sort(by: {$0.timeStamp < $1.timeStamp})
+                success?(items)
+            }) { (error) in
+                OptionalError.alertErrorMessage(error: error)
+            }
+        }
+    }
+    
     func observeDishes(success:(([Dish]) -> Void)?) {
         waitLoadUserInfo {
             self.observeDishes(user: self.currentUser!, success: success)
@@ -210,20 +247,7 @@ extension FirebaseService {
         }
         let newReference = rootRef.child("\(itemId)/\(user.dockID)")
         let newObserver = newReference.observe(.value, with: { (snapshot) in
-            var items = [Dish]()
-            for child in snapshot.children {
-                debugPrint(child)
-                if let data = child as? DataSnapshot {
-                    if let childValue = data.value! as? [String: Any] {
-                        do {
-                            let dish = try FirebaseDecoder().decode(Dish.self, from: childValue)
-                            items.append(dish)
-                        } catch let error {
-                            print(error)
-                        }
-                    }
-                }
-            }
+            var items = self.snapshotToDishes(snapshot: snapshot)
             self.itemCounters.updateValue(items.count, forKey: itemId)
             items.sort(by: {$0.timeStamp < $1.timeStamp})
 //            if !user.isPurchased {
