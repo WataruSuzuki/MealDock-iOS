@@ -92,6 +92,14 @@ class CartedItemListViewController: MealDockListViewController {
         }
     }
     
+    override func refresh() {
+        FirebaseService.shared.loadCartedHarvest(success: { (harvests) in
+            self.harvests = harvests
+            self.tableView.reloadData()
+            super.refresh()
+        })
+    }
+    
     @objc override func onFabTapped() {
         let items = [Harvest](checkedItems.values)
         FirebaseService.shared.addToFridge(harvests: items)

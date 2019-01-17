@@ -64,6 +64,14 @@ class InFridgeListViewController: MealDockListViewController {
     }
     */
 
+    override func refresh() {
+        FirebaseService.shared.loadInFridgeHarvest(success: { (harvests) in
+            self.harvests = harvests
+            self.tableView.reloadData()
+            super.refresh()
+        })
+    }
+    
     @objc override func onFabTapped() {
         let sb = UIStoryboard(name: "InFridgeList", bundle: Bundle.main)
         if let viewController = sb.instantiateViewController(withIdentifier: String(describing: EditDishViewController.self)) as? EditDishViewController {

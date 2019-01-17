@@ -57,6 +57,10 @@ class MealDockListViewController: UITableViewController,
             mediumAdView = PurchaseService.shared.mediumSizeBanner(unitId: "your_banner_unit_id", rootViewController: self)
             view.addSubview(mediumAdView!)
         }
+        if #available(iOS 10.0, *) {
+            refreshControl = UIRefreshControl()
+            refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -214,6 +218,10 @@ class MealDockListViewController: UITableViewController,
     func onFabTapped() {
         updateFabHidden(state: true)
         checkedItems.removeAll()
+    }
+    
+    @objc func refresh() {
+        refreshControl?.endRefreshing()
     }
     
     func updateFabHidden(state: Bool) {

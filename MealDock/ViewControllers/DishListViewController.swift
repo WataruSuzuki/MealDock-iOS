@@ -24,6 +24,7 @@ class DishListViewController: UICollectionViewController,
     
     var checkedItems = [String : Dish]()
     var dishes = [Dish]()
+    let refreshControl = UIRefreshControl()
     
     var checkBarButton: UIBarButtonItem!
     var cancelBarButton: UIBarButtonItem!
@@ -45,19 +46,18 @@ class DishListViewController: UICollectionViewController,
         
         checkBarButton = UIBarButtonItem(title: "select".localized, style: .plain, target: self, action: #selector(changeSelectingMode))
         cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(changeSelectingMode))
+        
+        if #available(iOS 10.0, *) {
+            self.collectionView!.refreshControl = refreshControl
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         FirebaseService.shared.observeDishes { (dishes) in
-            self.dishes = dishes
-            if dishes.count > 0 {
-                self.navigationItem.rightBarButtonItem = (self.isSelectMode ? self.cancelBarButton : self.checkBarButton)
-            } else {
-                self.navigationItem.rightBarButtonItem = nil
-            }
-            self.collectionView!.reloadData()
+            self.updateDishList(newDishes: dishes)
         }
     }
 
@@ -250,6 +250,23 @@ class DishListViewController: UICollectionViewController,
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
         guard FirebaseService.shared.currentUser == nil else { return }
         FirebaseService.shared.requestAuthUI()
+    }
+    
+    private func updateDishList(newDishes: [Dish]) {
+        dishes = newDishes
+        if dishes.count > 0 {
+            self.navigationItem.rightBarButtonItem = (isSelectMode ? cancelBarButton : checkBarButton)
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
+        }
+        self.collectionView!.reloadData()
+    }
+    
+    @objc private func refresh() {
+        FirebaseService.shared.loadDishes(success: { (dishes) in
+            self.updateDishList(newDishes: dishes)
+            self.refreshControl.endRefreshing()
+        })
     }
     
     @objc func changeSelectingMode() {
