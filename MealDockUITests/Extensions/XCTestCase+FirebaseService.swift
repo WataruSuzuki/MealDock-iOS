@@ -12,7 +12,7 @@ let uiTestItemName = "UI Test Market Item"
 
 extension XCTestCase {
     static let email_member_unittest = "member_unittest@mealdock.com"
-    static let password = "unittest"
+    static let password_member_unittest = "unittest"
 
     func setupAsGroupMember(app: XCUIApplication) {
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -42,7 +42,7 @@ extension XCTestCase {
         
         let passwordTextField = tablesQuery/*@START_MENU_TOKEN@*/.secureTextFields["Enter your password"]/*[[".cells.secureTextFields[\"Enter your password\"]",".secureTextFields[\"Enter your password\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         passwordTextField.tap()
-        passwordTextField.typeText(XCTestCase.password)
+        passwordTextField.typeText(XCTestCase.password_member_unittest)
         app.navigationBars["Sign in"].buttons["Sign in"].tap()
     }
     

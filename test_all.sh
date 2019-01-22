@@ -19,5 +19,5 @@ xcodebuild test -workspace MealDock.xcworkspace -scheme MealDock -sdk iphonesimu
 xcodebuild test -workspace MealDock.xcworkspace -scheme MealDock -sdk iphonesimulator \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
 
-xcodebuild test -workspace MealDock.xcworkspace -scheme MealDock -sdk iphonesimulator \
-    -destination 'platform=iOS Simulator,name=iPhone 4s,OS=9.3'
+# xcodebuild test -workspace MealDock.xcworkspace -scheme MealDock -sdk iphonesimulator \
+#     -destination 'platform=iOS Simulator,name=iPhone 4s,OS=9.3'

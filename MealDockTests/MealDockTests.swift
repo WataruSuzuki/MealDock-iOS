@@ -13,7 +13,7 @@ class MealDockTests: XCTestCase {
     
     static let email = "unittest@mealdock.com"
     static let emailEmptyUser = "empty_unittest@mealdock.com"
-    static let password = "unittest"
+    static let emptyUserPassword = "unittest"
     
     override func setUp() {
         super.setUp()
