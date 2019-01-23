@@ -2,11 +2,12 @@ language: objective-c
 osx_image: xcode10.1
 podfile: Podfile
 before_install:
+    - gem install fastlane
     - gem install cocoapods # Since Travis is not always on latest version
     - gem install xcodeproj
     - pod setup
     - pod repo update
     - pod install
 script:
-    ./test_primary.sh
+    - fastlane tests
     # travis_wait 30 ./test_primary.sh

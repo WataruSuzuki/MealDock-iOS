@@ -27,3 +27,5 @@ out_archives/
 out_ipa/
 test_primary_phone.log
 test_primary_pad.log
+fastlane/report.xml
+fastlane/test_output
