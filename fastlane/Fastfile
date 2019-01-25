@@ -22,6 +22,12 @@ platform :ios do
         workspace: "MealDock.xcworkspace",
         scheme: "MealDock",
         devices: [
+            # "iPhone 6 (10.3.1)",
+            # "iPad Air (9.3)",
+            # "iPhone 7 Plus (10.3.1)",
+            # "iPad Pro (12.9 inch) (10.3.1)",
+            # "iPhone X (11.4)",
+            # "iPad Pro (10.5-inch) (11.4)",
             "iPhone XS Max",
             "iPad Pro (12.9-inch) (3rd generation)"
         ],
