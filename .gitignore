@@ -29,3 +29,6 @@ test_primary_phone.log
 test_primary_pad.log
 fastlane/report.xml
 fastlane/test_output
+*.ipa
+*.dSYM.zip
+fastlane/Preview.html
