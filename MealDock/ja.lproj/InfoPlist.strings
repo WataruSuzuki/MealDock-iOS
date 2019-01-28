@@ -6,6 +6,6 @@
   Copyright © 2018 WataruSuzuki. All rights reserved.
 */
 CFBundleDisplayName = "ミールドック";
-NSCameraUsageDescription = "Using to take photo, capture barcode";
-NSPhotoLibraryAddUsageDescription = "Using to save photo";
-NSPhotoLibraryUsageDescription = "Using to save photo";
+NSCameraUsageDescription = "写真撮影やバーコード読み取りに使用します";
+NSPhotoLibraryAddUsageDescription = "写真の保存に使用します";
+NSPhotoLibraryUsageDescription = "写真の保存に使用します";
