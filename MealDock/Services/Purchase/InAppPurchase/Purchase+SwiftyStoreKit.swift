@@ -129,6 +129,26 @@ extension PurchaseService {
             case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
             case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
             case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
+            case .privacyAcknowledgementRequired:
+                break
+            case .unauthorizedRequestData:
+                break
+            case .invalidOfferIdentifier:
+                break
+            case .invalidSignature:
+                break
+            case .missingOfferParams:
+                break
+            case .invalidOfferPrice:
+                break
+            case .overlayCancelled:
+                break
+            case .overlayInvalidConfiguration:
+                break
+            case .overlayTimeout:
+                break
+            case .ineligibleForOffer:
+                break
             }
             OptionalError.alertErrorMessage(error: error)
         }

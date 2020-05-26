@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-MealDock/Pods-MealDock-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle
+${PODS_ROOT}/NendSDK_iOS/NendAd.embeddedframework/NendAd.framework/Resources/NendAdResource.bundle

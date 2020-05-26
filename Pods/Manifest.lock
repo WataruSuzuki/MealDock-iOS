@@ -641,7 +641,7 @@ DEPENDENCIES:
   - TinyConstraints
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
     - AlamofireImage
@@ -741,4 +741,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 319b2ec936760a332b79a34333531c3b7c1a9003
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.10.0
