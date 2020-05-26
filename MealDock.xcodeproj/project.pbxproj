@@ -757,7 +757,6 @@
 				96317C8A210F56FC00F81F22 /* Frameworks */,
 				96317C8B210F56FC00F81F22 /* Resources */,
 				A453649339ECB2BDDC675D29 /* [CP] Embed Pods Frameworks */,
-				965460FD211093F2005AC0B3 /* Auto Increments Build Number */,
 				0E913DA41B4B2236E2065201 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
