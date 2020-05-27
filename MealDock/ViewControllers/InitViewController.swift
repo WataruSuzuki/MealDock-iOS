@@ -24,6 +24,15 @@ class InitViewController: UITabBarController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let alert = UIAlertController(title: "m(_ _)m", message: "thank_you_for_using_this_app".localized, preferredStyle: .alert)
+        alert.addEmptyOkAction()
+        guard let top = UIViewController.currentTop() else { return }
+        top.present(alert, animated: true, completion: nil)
+    }
+    
     static func switchTab(to: TabItem) {
         guard let top = UIViewController.currentTop() else { return }
         if let topTab = top as? InitViewController {

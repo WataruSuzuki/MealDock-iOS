@@ -81,3 +81,5 @@ footer_unlockPremium = "Unlock ads, become to use without tickets. \nAnd your li
 footer_subscriptionBasic = "This product be Unlock ads, become to use without tickets, and your limit of item counts will be upgrade to %d. \nDefault limit is %d.";
 footer_restore = "Will be restore your purchase \"at iOS\". \nCannot restore any other platform.";
 menu = "Menu";
+
+thank_you_for_using_this_app = "This app will be closed on Dec 31, 2020. Thank you for using.";
